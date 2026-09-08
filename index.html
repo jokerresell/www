@@ -171,7 +171,8 @@
   @media (min-width: 640px) { .hero__art-dot-1 { width: 5rem; height: 5rem; } .hero__art-dot-2 { width: 4rem; height: 4rem; } }
 
   /* Reveal */
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal { transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.reveal-armed { opacity: 0; transform: translateY(18px); }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
   /* About */
@@ -783,9 +784,12 @@
     link.addEventListener('click', closeMenu);
   });
 
-  // Scroll reveal
+  // Scroll reveal — content is visible by default (see .reveal CSS); this only
+  // arms a fade-in for browsers that support IntersectionObserver, and always
+  // falls back to revealing everything so content never gets stuck hidden.
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
+    revealEls.forEach(function (el) { el.classList.add('reveal-armed'); });
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -795,8 +799,11 @@
       });
     }, { threshold: 0.15 });
     revealEls.forEach(function (el) { observer.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+
+    window.setTimeout(function () {
+      revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+      observer.disconnect();
+    }, 2000);
   }
 
   // Order form: inline validation + mailto submission

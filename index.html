@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Była sobie beza — cukiernia bezowa</title>
+<meta name="description" content="Była sobie beza — rzemieślnicza cukiernia specjalizująca się w bezach i pavlovie. Ręcznie robione, świeże każdego dnia. Zamów online lub odbierz osobiście.">
+<meta name="theme-color" content="#92400E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23FEF3C7'/%3E%3Cpath d='M20 44c0-14 6-24 12-24s12 10 12 24' fill='none' stroke='%2392400E' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M24 30c2-4 4-6 8-6s6 2 8 6' fill='none' stroke='%2392400E' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Playfair+Display+SC:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-cream: #FFFBEB;
+    --color-cream-deep: #FEF3C7;
+    --color-bark: #3F2A14;
+    --color-bark-soft: #6B4A24;
+    --color-brand-50: #FDF6EC;
+    --color-brand-100: #FDE68A;
+    --color-brand-300: #D9A441;
+    --color-brand-400: #B45309;
+    --color-brand-600: #92400E;
+    --color-brand-700: #78350F;
+    --color-berry-500: #B0224B;
+    --color-berry-600: #8F1B3D;
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-caps: "Playfair Display SC", Georgia, serif;
+    --font-sans: Karla, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --shadow-soft: 0 20px 45px -20px rgba(63, 42, 20, 0.35);
+    --shadow-card: 0 10px 30px -12px rgba(63, 42, 20, 0.25);
+    --radius-lg: 1.5rem;
+    --radius-full: 999px;
+    --container-max: 1280px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background: var(--color-cream);
+    color: var(--color-bark);
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  h1, h2, h3, p, dl, dd, dt, blockquote, figure { margin: 0; }
+  button { font: inherit; background: none; border: none; cursor: pointer; }
+  input, select, textarea { font: inherit; color: inherit; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  :focus-visible { outline: 3px solid var(--color-brand-600); outline-offset: 3px; border-radius: 4px; }
+
+  .skip-link {
+    position: absolute; top: 0.5rem; left: 0.5rem; z-index: 100;
+    border-radius: 0.5rem; background: var(--color-brand-600); color: #fff;
+    padding: 0.75rem 1.25rem; font-weight: 600;
+    transform: translateY(-150%); transition: transform 0.2s ease;
+  }
+  .skip-link:focus { transform: translateY(0); }
+
+  .container { max-width: var(--container-max); margin: 0 auto; padding: 0 1.25rem; }
+  @media (min-width: 640px) { .container { padding: 0 2rem; } }
+
+  .section { padding: 4rem 0; border-bottom: 1px solid rgba(217,164,65,0.25); }
+  .section--alt { background: #fff; }
+  @media (min-width: 640px) { .section { padding: 5rem 0; } }
+  @media (min-width: 1024px) { .section { padding: 6rem 0; } }
+
+  .eyebrow { font-family: var(--font-caps); font-size: 0.75rem; letter-spacing: 0.2em; color: var(--color-berry-500); }
+  .heading-lg { font-family: var(--font-display); font-weight: 600; color: var(--color-brand-700); line-height: 1.15; }
+  .lede { color: var(--color-bark-soft); line-height: 1.7; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: var(--radius-full); font-weight: 600; font-size: 1rem;
+    padding: 0.9rem 1.75rem; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    min-height: 44px;
+  }
+  .btn--primary { background: var(--color-brand-600); color: #fff; box-shadow: var(--shadow-soft); }
+  .btn--primary:hover { background: var(--color-brand-700); }
+  .btn--outline { border: 2px solid var(--color-brand-600); color: var(--color-brand-700); background: transparent; }
+  .btn--outline:hover { background: rgba(253, 230, 138, 0.45); }
+  .btn--block { width: 100%; }
+  @media (min-width: 640px) { .btn--block { width: auto; } }
+
+  .icon { flex-shrink: 0; }
+
+  /* Header */
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255, 251, 235, 0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(217,164,65,0.25);
+  }
+  .site-header__bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1rem 1.25rem;
+  }
+  @media (min-width: 640px) { .site-header__bar { padding: 1rem 2rem; } }
+  .logo { display: flex; align-items: center; gap: 0.65rem; font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--color-brand-700); }
+  .logo .icon { width: 2.25rem; height: 2.25rem; color: var(--color-brand-600); }
+
+  .nav-desktop { display: none; }
+  .nav-desktop ul { display: flex; align-items: center; gap: 2rem; font-size: 0.95rem; font-weight: 500; }
+  .nav-desktop a { transition: color 0.2s ease; }
+  .nav-desktop a:hover { color: var(--color-brand-600); }
+  @media (min-width: 1024px) { .nav-desktop { display: block; } }
+
+  .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+  .cta-header { display: none; }
+  @media (min-width: 640px) { .cta-header { display: inline-flex; } }
+
+  .menu-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: var(--radius-full);
+    color: var(--color-brand-700); transition: background-color 0.2s ease;
+  }
+  .menu-toggle:hover { background: var(--color-brand-100); }
+  .menu-toggle .icon { width: 1.5rem; height: 1.5rem; }
+  @media (min-width: 1024px) { .menu-toggle { display: none; } }
+
+  .nav-mobile {
+    border-top: 1px solid rgba(217,164,65,0.25); background: var(--color-cream);
+  }
+  .nav-mobile[hidden] { display: none; }
+  .nav-mobile ul { display: flex; flex-direction: column; gap: 0.25rem; padding: 1rem 1.25rem; }
+  .nav-mobile a { display: block; padding: 0.85rem 0.75rem; border-radius: 0.75rem; font-weight: 500; }
+  .nav-mobile a:hover { background: rgba(253, 230, 138, 0.4); }
+  @media (min-width: 1024px) { .nav-mobile { display: none; } }
+
+  /* Hero */
+  .hero {
+    position: relative; overflow: hidden;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(217,164,65,0.18) 0, rgba(217,164,65,0) 55%),
+      radial-gradient(circle at 85% 15%, rgba(176,34,75,0.10) 0, rgba(176,34,75,0) 50%),
+      radial-gradient(circle at 75% 85%, rgba(146,64,14,0.12) 0, rgba(146,64,14,0) 55%);
+    border-bottom: 1px solid rgba(217,164,65,0.25);
+  }
+  .hero__grid { display: grid; gap: 3rem; padding: 4rem 0; }
+  @media (min-width: 1024px) { .hero__grid { grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 7rem 0; } }
+  .hero h1 { font-size: 2.25rem; margin-top: 1rem; }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 1024px) { .hero h1 { font-size: 3.75rem; } }
+  .hero p.lede { max-width: 34rem; font-size: 1.125rem; margin-top: 1.5rem; }
+  .hero__ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+  .trust-list { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 2.5rem; font-size: 0.9rem; font-weight: 500; color: var(--color-bark-soft); }
+  .trust-list li { display: flex; align-items: center; gap: 0.5rem; }
+  .trust-list .icon { width: 1.25rem; height: 1.25rem; color: var(--color-brand-600); }
+
+  .hero__art { position: relative; margin: 0 auto; width: 100%; max-width: 26rem; aspect-ratio: 1 / 1; }
+  .hero__art-glow { position: absolute; inset: 1.5rem; border-radius: 50%; background: rgba(253,230,138,0.6); filter: blur(40px); }
+  .hero__art-disc {
+    position: absolute; inset: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.7); border: 1px solid var(--color-brand-100); box-shadow: var(--shadow-soft);
+  }
+  .hero__art-disc .icon { width: 60%; height: 60%; color: var(--color-brand-600); }
+  .hero__art-dot-1 { position: absolute; top: -0.75rem; right: 2rem; width: 4rem; height: 4rem; border-radius: 50%; background: rgba(176,34,75,0.9); box-shadow: var(--shadow-card); }
+  .hero__art-dot-2 { position: absolute; bottom: 1rem; left: -1rem; width: 3rem; height: 3rem; border-radius: 50%; background: var(--color-brand-300); box-shadow: var(--shadow-card); }
+  @media (min-width: 640px) { .hero__art-dot-1 { width: 5rem; height: 5rem; } .hero__art-dot-2 { width: 4rem; height: 4rem; } }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* About */
+  .about__grid { display: grid; gap: 3rem; }
+  @media (min-width: 1024px) { .about__grid { grid-template-columns: 1fr 1fr; align-items: center; } }
+  .about__text h2 { font-size: 1.875rem; margin-top: 0.75rem; }
+  @media (min-width: 640px) { .about__text h2 { font-size: 2.25rem; } }
+  .about__text p { margin-top: 1.25rem; }
+  .about__media { order: -1; aspect-ratio: 4 / 3; border-radius: var(--radius-lg); background: var(--color-cream-deep); box-shadow: var(--shadow-card); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .about__media .icon { width: 40%; height: 40%; color: rgba(146,64,14,0.8); }
+  @media (min-width: 1024px) { .about__media { order: 0; } }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+  @media (min-width: 640px) { .stat-row { gap: 2rem; } }
+  .stat-row dd:first-of-type { font-family: var(--font-display); font-weight: 600; font-size: 1.875rem; color: var(--color-brand-600); }
+  @media (min-width: 640px) { .stat-row dd:first-of-type { font-size: 2.25rem; } }
+  .stat-row .stat-label { margin-top: 0.25rem; font-size: 0.875rem; color: var(--color-bark-soft); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Section intro */
+  .section-intro { max-width: 40rem; margin: 0 auto; text-align: center; }
+  .section-intro h2 { font-size: 1.875rem; margin-top: 0.75rem; }
+  @media (min-width: 640px) { .section-intro h2 { font-size: 2.25rem; } }
+  .section-intro p { margin-top: 1rem; }
+
+  /* Product grid */
+  .product-grid { display: grid; gap: 1.5rem; margin-top: 3rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .card {
+    position: relative; display: flex; flex-direction: column;
+    border: 1px solid var(--color-brand-100); background: #fff;
+    border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-card);
+    transition: transform 0.25s ease;
+  }
+  .card:hover { transform: translateY(-4px); }
+  .card__badge {
+    position: absolute; top: 1.25rem; right: 1.25rem; border-radius: var(--radius-full);
+    padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 600; color: #fff;
+  }
+  .card__badge--berry { background: var(--color-berry-500); }
+  .card__badge--brand { background: var(--color-brand-600); }
+  .card__media { aspect-ratio: 4 / 3; border-radius: 1rem; background: var(--color-cream-deep); display: flex; align-items: center; justify-content: center; }
+  .card__media .icon { width: 4rem; height: 4rem; color: var(--color-brand-600); }
+  .card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--color-brand-700); margin-top: 1.25rem; }
+  .card p { flex: 1; margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--color-bark-soft); }
+  .card__price { margin-top: 1rem; font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; color: var(--color-brand-600); }
+
+  /* Steps */
+  .steps { display: grid; gap: 2.5rem; margin-top: 3.5rem; grid-template-columns: 1fr; text-align: center; }
+  @media (min-width: 640px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step-num {
+    margin: 0 auto; display: flex; align-items: center; justify-content: center;
+    width: 4rem; height: 4rem; border-radius: 50%; background: var(--color-brand-600);
+    color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 1.5rem;
+  }
+  .steps h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; color: var(--color-brand-700); margin-top: 1.25rem; }
+  .steps p { margin-top: 0.5rem; font-size: 0.9rem; line-height: 1.6; color: var(--color-bark-soft); }
+
+  /* Form */
+  .form-wrap { max-width: 48rem; margin: 0 auto; }
+  .order-form {
+    margin-top: 2.5rem; border-radius: var(--radius-lg); border: 1px solid var(--color-brand-100);
+    background: #fff; box-shadow: var(--shadow-card); padding: 1.5rem;
+  }
+  @media (min-width: 640px) { .order-form { padding: 2.5rem; } }
+
+  .form-alert { margin-bottom: 1.5rem; border-radius: 0.75rem; padding: 1rem; font-size: 0.9rem; }
+  .form-alert[hidden] { display: none; }
+  .form-alert--error { border: 1px solid rgba(176,34,75,0.4); background: rgba(176,34,75,0.06); color: var(--color-berry-600); }
+  .form-alert--error h3 { font-weight: 600; }
+  .form-alert--error ul { list-style: disc; margin-top: 0.5rem; padding-left: 1.25rem; }
+  .form-alert--success { display: flex; align-items: flex-start; gap: 0.75rem; border: 1px solid rgba(217,164,65,0.5); background: var(--color-brand-50); color: var(--color-brand-700); }
+  .form-alert--success .icon { width: 1.25rem; height: 1.25rem; margin-top: 0.15rem; color: var(--color-brand-600); }
+
+  .form-row { display: grid; gap: 1.25rem; grid-template-columns: 1fr; margin-top: 1.25rem; }
+  @media (min-width: 640px) { .form-row { grid-template-columns: 1fr 1fr; } }
+  .form-row:first-of-type { margin-top: 0; }
+  .field label { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; font-weight: 600; }
+  .field .optional { font-weight: 400; color: var(--color-bark-soft); }
+  .field input, .field select, .field textarea {
+    width: 100%; border-radius: 0.75rem; border: 1px solid var(--color-brand-100);
+    background: rgba(255,251,235,0.5); padding: 0.75rem 1rem; transition: border-color 0.2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--color-brand-400); outline: none; }
+  .field input[aria-invalid="true"], .field select[aria-invalid="true"] { border-color: var(--color-berry-500); }
+  .error-msg { margin-top: 0.4rem; font-size: 0.875rem; color: var(--color-berry-600); }
+  .error-msg[hidden] { display: none; }
+
+  /* Testimonials */
+  .testimonial-grid { display: grid; gap: 1.5rem; margin-top: 3rem; grid-template-columns: 1fr; }
+  @media (min-width: 1024px) { .testimonial-grid { grid-template-columns: repeat(3, 1fr); } }
+  .testimonial {
+    border-radius: var(--radius-lg); border: 1px solid var(--color-brand-100);
+    background: var(--color-cream); padding: 1.75rem; box-shadow: var(--shadow-card);
+  }
+  .stars { display: flex; gap: 0.15rem; color: var(--color-brand-400); }
+  .stars .icon { width: 1rem; height: 1rem; }
+  .testimonial blockquote { margin-top: 1rem; color: var(--color-bark-soft); line-height: 1.6; }
+  .testimonial figcaption { margin-top: 1rem; font-weight: 600; color: var(--color-brand-700); }
+
+  /* Contact */
+  .contact-grid { display: grid; gap: 2rem; margin-top: 3rem; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+  .contact-card {
+    display: flex; flex-direction: column; gap: 1.5rem;
+    border-radius: var(--radius-lg); border: 1px solid var(--color-brand-100);
+    background: #fff; padding: 1.75rem; box-shadow: var(--shadow-card);
+  }
+  @media (min-width: 640px) { .contact-card { padding: 2.25rem; } }
+  .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .contact-item .icon { width: 1.5rem; height: 1.5rem; margin-top: 0.15rem; color: var(--color-brand-600); }
+  .contact-item h3 { font-weight: 600; }
+  .contact-item p, .contact-item a { margin-top: 0.25rem; color: var(--color-bark-soft); display: block; }
+  .contact-item a:hover { color: var(--color-brand-600); }
+  .hours-dl { margin-top: 0.25rem; display: grid; grid-template-columns: auto 1fr; gap: 0 0.75rem; color: var(--color-bark-soft); }
+  .social-row { display: flex; gap: 0.75rem; }
+  .social-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 50%; background: var(--color-brand-100);
+    color: var(--color-brand-700); transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .social-btn:hover { background: var(--color-brand-300); color: #fff; }
+  .social-btn .icon { width: 1.25rem; height: 1.25rem; }
+  .map-frame { aspect-ratio: 4 / 3; width: 100%; overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--color-brand-100); box-shadow: var(--shadow-card); }
+  @media (min-width: 1024px) { .map-frame { aspect-ratio: auto; height: 100%; min-height: 26rem; } }
+  .map-frame iframe { width: 100%; height: 100%; border: 0; }
+
+  /* Footer */
+  .site-footer { background: var(--color-brand-700); color: var(--color-cream-deep); }
+  .footer-grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; padding: 3rem 0; }
+  @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(4, 1fr); } }
+  .footer-brand { display: flex; align-items: center; gap: 0.65rem; font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; color: #fff; }
+  .footer-brand .icon { width: 2rem; height: 2rem; }
+  .footer-tagline { margin-top: 0.75rem; max-width: 20rem; font-size: 0.9rem; color: rgba(253,230,138,0.8); }
+  .footer-col h3 { font-weight: 600; color: #fff; }
+  .footer-col ul { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: rgba(253,230,138,0.8); }
+  .footer-col a:hover { color: #fff; }
+  .footer-social { display: flex; gap: 0.75rem; margin-top: 0.75rem; }
+  .footer-social .social-btn { background: rgba(255,255,255,0.1); color: #fff; }
+  .footer-social .social-btn:hover { background: rgba(255,255,255,0.2); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 0; font-size: 0.875rem; color: rgba(253,230,138,0.7); }
+</style>
+</head>
+<body>
+<a href="#glowna-tresc" class="skip-link">Przejdź do treści głównej</a>
+
+<!-- SVG sprite: meringue swirl mark, reused across the page -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-meringue" viewBox="0 0 64 64">
+      <path d="M18 46C18 30 24 18 32 18s14 12 14 28" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M22 32c2.5-4.5 5.5-7 10-7s7.5 2.5 10 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M25 24c1.6-2.6 3.8-4 7-4s5.4 1.4 7 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="32" cy="47" r="2.6" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></symbol>
+    <symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 21v-7h2.5l.5-3H14V9c0-.9.3-1.5 1.6-1.5H17V4.8C16.6 4.7 15.6 4.6 14.5 4.6c-2.3 0-3.9 1.4-3.9 4V11H8v3h2.6v7h3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.6 5.6 6.1.6-4.6 4.2 1.3 6.1L12 16.6 6.6 19.5l1.3-6.1L3.3 9.2l6.1-.6L12 3Z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-header__bar">
+    <a href="#glowna-tresc" class="logo">
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-meringue"/></svg>
+      <span>Była sobie beza</span>
+    </a>
+
+    <nav aria-label="Nawigacja główna" class="nav-desktop">
+      <ul>
+        <li><a href="#oferta">Oferta</a></li>
+        <li><a href="#o-nas">O nas</a></li>
+        <li><a href="#jak-zamowic">Jak zamówić</a></li>
+        <li><a href="#opinie">Opinie</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#zamowienie" class="btn btn--primary cta-header">Zamów teraz</a>
+      <button id="menu-toggle" type="button" class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otwórz menu nawigacji">
+        <svg class="icon" id="menu-icon-open" aria-hidden="true" focusable="false"><use href="#icon-menu"/></svg>
+        <svg class="icon" id="menu-icon-close" aria-hidden="true" focusable="false" style="display:none"><use href="#icon-x"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-menu" aria-label="Nawigacja mobilna" class="nav-mobile" hidden>
+    <ul>
+      <li><a href="#oferta">Oferta</a></li>
+      <li><a href="#o-nas">O nas</a></li>
+      <li><a href="#jak-zamowic">Jak zamówić</a></li>
+      <li><a href="#opinie">Opinie</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="#zamowienie" class="btn btn--primary btn--block">Zamów teraz</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="glowna-tresc">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <p class="eyebrow">RĘCZNIE ROBIONE BEZY OD 2016 ROKU</p>
+        <h1 class="heading-lg">Chrupiąca skorupka.<br>Puszyste wnętrze.<br>Słodka historia.</h1>
+        <p class="lede">
+          Była sobie beza to mała cukiernia, w której bezy i pavlovy piecze się codziennie na świeżo — z naturalnych składników, bez konserwantów, z sercem wielkim jak porcja bitej śmietany.
+        </p>
+        <div class="hero__ctas">
+          <a href="#oferta" class="btn btn--primary">Zobacz ofertę</a>
+          <a href="#zamowienie" class="btn btn--outline">Złóż zamówienie</a>
+        </div>
+        <ul class="trust-list">
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>Ręcznie robione</li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>Świeże każdego dnia</li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>Naturalne składniki</li>
+        </ul>
+      </div>
+
+      <div class="hero__art" aria-hidden="true">
+        <div class="hero__art-glow"></div>
+        <div class="hero__art-disc"><svg class="icon" focusable="false"><use href="#icon-meringue"/></svg></div>
+        <div class="hero__art-dot-1"></div>
+        <div class="hero__art-dot-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O NAS -->
+  <section id="o-nas" class="section section--alt">
+    <div class="container about__grid">
+      <div class="reveal about__text">
+        <p class="eyebrow">NASZA HISTORIA</p>
+        <h2 class="heading-lg">Zaczęło się od jednej beznadziejnie dobrej bezy</h2>
+        <p class="lede">
+          „Była sobie beza” narodziła się z rodzinnego przepisu babci i uporu, żeby zrobić bezę idealną: chrupiącą na zewnątrz i miękką jak chmurka w środku. Dziś nasza mała pracownia piecze każdego dnia świeże bezy, pavlovy i torty bezowe — dokładnie tak, jak robiła to babcia, tylko na większą skalę.
+        </p>
+        <p class="lede">
+          Używamy tylko naturalnych składników: świeżych jaj, sezonowych owoców i prawdziwej wanilii. Żadnych sztucznych barwników, żadnych skrótów.
+        </p>
+        <dl class="stat-row">
+          <div>
+            <dt class="sr-only">Lata doświadczenia</dt>
+            <dd>8+</dd>
+            <dd class="stat-label">lat na rynku</dd>
+          </div>
+          <div>
+            <dt class="sr-only">Liczba smaków</dt>
+            <dd>15+</dd>
+            <dd class="stat-label">smaków bezy</dd>
+          </div>
+          <div>
+            <dt class="sr-only">Sprzedane bezy</dt>
+            <dd>10k+</dd>
+            <dd class="stat-label">sprzedanych bez</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="reveal about__media" aria-hidden="true">
+        <svg class="icon" focusable="false"><use href="#icon-meringue"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section id="oferta" class="section">
+    <div class="container">
+      <div class="reveal section-intro">
+        <p class="eyebrow">NASZA OFERTA</p>
+        <h2 class="heading-lg">Bezy na każdą okazję</h2>
+        <p class="lede">Od klasyki po sezonowe eksperymenty — każda beza pieczona jest tego samego dnia, w którym trafia do sprzedaży.</p>
+      </div>
+
+      <div class="product-grid">
+
+        <article class="reveal card">
+          <span class="card__badge card__badge--berry">Bestseller</span>
+          <div class="card__media" aria-hidden="true"><svg class="icon"><use href="#icon-meringue"/></svg></div>
+          <h3>Pavlova malinowa</h3>
+          <p>Lekka jak chmurka podstawa bezowa, bita śmietana, świeże maliny i nuta mięty.</p>
+          <p class="card__price">od 22 zł</p>
+        </article>
+
+        <article class="reveal card">
+          <div class="card__media" aria-hidden="true"><svg class="icon"><use href="#icon-meringue"/></svg></div>
+          <h3>Beza klasyczna</h3>
+          <p>Chrupiąca skorupka, bita śmietana i sezonowe owoce — smak, od którego wszystko się zaczęło.</p>
+          <p class="card__price">od 18 zł</p>
+        </article>
+
+        <article class="reveal card">
+          <div class="card__media" aria-hidden="true"><svg class="icon"><use href="#icon-meringue"/></svg></div>
+          <h3>Beza czekoladowa</h3>
+          <p>Kakaowa podstawa bezowa z warstwą ganache i posypką z prawdziwej czekolady.</p>
+          <p class="card__price">od 24 zł</p>
+        </article>
+
+        <article class="reveal card">
+          <div class="card__media" aria-hidden="true"><svg class="icon"><use href="#icon-meringue"/></svg></div>
+          <h3>Mini bezy (pudełko 6 szt.)</h3>
+          <p>Idealne na prezent lub do popołudniowej kawy. Ładnie zapakowane, gotowe do wręczenia.</p>
+          <p class="card__price">od 26 zł</p>
+        </article>
+
+        <article class="reveal card">
+          <span class="card__badge card__badge--brand">Na zamówienie</span>
+          <div class="card__media" aria-hidden="true"><svg class="icon"><use href="#icon-meringue"/></svg></div>
+          <h3>Tort bezowy</h3>
+          <p>Warstwy bezy, kremu i owoców na urodziny, wesela i inne wyjątkowe okazje.</p>
+          <p class="card__price">od 120 zł</p>
+        </article>
+
+        <article class="reveal card">
+          <div class="card__media" aria-hidden="true"><svg class="icon"><use href="#icon-meringue"/></svg></div>
+          <h3>Beza sezonowa</h3>
+          <p>Smak zmienia się razem z porami roku — jesienią dyniowa, zimą piernikowa, latem cytrynowa.</p>
+          <p class="card__price">od 20 zł</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JAK ZAMÓWIĆ -->
+  <section id="jak-zamowic" class="section section--alt">
+    <div class="container">
+      <div class="reveal section-intro">
+        <p class="eyebrow">PROSTA ŚCIEŻKA</p>
+        <h2 class="heading-lg">Jak zamówić bezę?</h2>
+      </div>
+
+      <ol class="steps">
+        <li class="reveal">
+          <div class="step-num">1</div>
+          <h3>Wybierz swoją bezę</h3>
+          <p>Przejrzyj ofertę i zdecyduj się na smak — klasyczny, sezonowy albo coś na specjalną okazję.</p>
+        </li>
+        <li class="reveal">
+          <div class="step-num">2</div>
+          <h3>Złóż zamówienie</h3>
+          <p>Zadzwoń, napisz na Instagramie lub wypełnij formularz poniżej. Podaj termin odbioru.</p>
+        </li>
+        <li class="reveal">
+          <div class="step-num">3</div>
+          <h3>Odbierz i delektuj się</h3>
+          <p>Odbierz świeżą bezę w cukierni lub zamów dostawę w Twojej okolicy.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FORMULARZ ZAMÓWIENIA -->
+  <section id="zamowienie" class="section">
+    <div class="container form-wrap">
+      <div class="reveal section-intro">
+        <p class="eyebrow">ZAMÓWIENIE</p>
+        <h2 class="heading-lg">Zamów swoją bezę</h2>
+        <p class="lede">Wypełnij formularz — otworzymy Twój program pocztowy z gotową, uzupełnioną wiadomością do wysłania.</p>
+      </div>
+
+      <form id="order-form" novalidate class="reveal order-form">
+        <div id="form-summary" role="alert" tabindex="-1" class="form-alert form-alert--error" hidden>
+          <h3 id="form-summary-title">Sprawdź poniższe pola</h3>
+          <ul id="form-summary-list"></ul>
+        </div>
+
+        <div id="form-success" role="status" class="form-alert form-alert--success" hidden>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+          <p>Otwieramy Twój program pocztowy z gotową wiadomością — wystarczy ją wysłać, a my odezwiemy się najszybciej, jak to możliwe.</p>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="imie">Imię i nazwisko</label>
+            <input id="imie" name="imie" type="text" autocomplete="name" required placeholder="Jan Kowalski">
+            <p class="error-msg" id="imie-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="telefon">Telefon</label>
+            <input id="telefon" name="telefon" type="tel" autocomplete="tel" required placeholder="600 000 000">
+            <p class="error-msg" id="telefon-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="email">Adres e-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="jan@przyklad.pl">
+            <p class="error-msg" id="email-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="rodzaj">Rodzaj bezy</label>
+            <select id="rodzaj" name="rodzaj" required>
+              <option value="">Wybierz smak</option>
+              <option>Pavlova malinowa</option>
+              <option>Beza klasyczna</option>
+              <option>Beza czekoladowa</option>
+              <option>Mini bezy (6 szt.)</option>
+              <option>Tort bezowy</option>
+              <option>Beza sezonowa</option>
+              <option>Inny / do ustalenia</option>
+            </select>
+            <p class="error-msg" id="rodzaj-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="data-odbioru">Termin odbioru</label>
+            <input id="data-odbioru" name="data-odbioru" type="date" required>
+            <p class="error-msg" id="data-odbioru-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="wiadomosc">Dodatkowe informacje <span class="optional">(opcjonalnie)</span></label>
+            <textarea id="wiadomosc" name="wiadomosc" rows="4" placeholder="Np. alergie, dedykacja na torcie, godzina odbioru..."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block" style="margin-top: 1.75rem;">Wyślij zamówienie</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- OPINIE -->
+  <section id="opinie" class="section section--alt">
+    <div class="container">
+      <div class="reveal section-intro">
+        <p class="eyebrow">OPINIE KLIENTÓW</p>
+        <h2 class="heading-lg">Co mówią nasi klienci</h2>
+      </div>
+
+      <div class="testimonial-grid">
+        <figure class="reveal testimonial">
+          <div class="stars" aria-hidden="true">
+            <svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg>
+          </div>
+          <blockquote>„Najlepsza pavlova w mieście! Chrupiąca na zewnątrz, puszysta w środku — dokładnie taka, jaka powinna być.”</blockquote>
+          <figcaption>Ania K.</figcaption>
+        </figure>
+        <figure class="reveal testimonial">
+          <div class="stars" aria-hidden="true">
+            <svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg>
+          </div>
+          <blockquote>„Zamawiałam tort bezowy na urodziny mamy. Wszyscy pytali o przepis — smak dopracowany do perfekcji.”</blockquote>
+          <figcaption>Marta W.</figcaption>
+        </figure>
+        <figure class="reveal testimonial">
+          <div class="stars" aria-hidden="true">
+            <svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg><svg class="icon"><use href="#icon-star"/></svg>
+          </div>
+          <blockquote>„Mini bezy to idealny prezent — ładnie zapakowane i pyszne. Wracam po nie co tydzień.”</blockquote>
+          <figcaption>Tomasz L.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="section">
+    <div class="container">
+      <div class="reveal section-intro">
+        <p class="eyebrow">ODWIEDŹ NAS</p>
+        <h2 class="heading-lg">Kontakt i lokalizacja</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="reveal contact-card">
+          <div class="contact-item">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-pin"/></svg>
+            <div>
+              <h3>Adres</h3>
+              <!-- Placeholder address — proszę podmienić na właściwy adres cukierni -->
+              <p>ul. Cukiernicza 8<br>00-001 Warszawa</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-clock"/></svg>
+            <div>
+              <h3>Godziny otwarcia</h3>
+              <dl class="hours-dl">
+                <dt>Pon–Pt</dt><dd>9:00–18:00</dd>
+                <dt>Sobota</dt><dd>9:00–15:00</dd>
+                <dt>Niedziela</dt><dd>nieczynne</dd>
+              </dl>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-phone"/></svg>
+            <div>
+              <h3>Telefon</h3>
+              <a href="tel:+48600000000">+48 600 000 000</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-mail"/></svg>
+            <div>
+              <h3>E-mail</h3>
+              <a href="mailto:kontakt@bylasobiebeza.pl">kontakt@bylasobiebeza.pl</a>
+            </div>
+          </div>
+
+          <div class="social-row">
+            <a href="#" class="social-btn" aria-label="Odwiedź nas na Instagramie"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-instagram"/></svg></a>
+            <a href="#" class="social-btn" aria-label="Odwiedź nas na Facebooku"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-facebook"/></svg></a>
+          </div>
+        </div>
+
+        <div class="reveal map-frame">
+          <iframe
+            title="Mapa — lokalizacja cukierni Była sobie beza"
+            src="https://www.google.com/maps?q=Warszawa&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="#glowna-tresc" class="footer-brand">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-meringue"/></svg>
+        Była sobie beza
+      </a>
+      <p class="footer-tagline">Rzemieślnicza cukiernia bezowa. Świeże, ręcznie robione, prosto z pieca do Ciebie.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li><a href="#oferta">Oferta</a></li>
+        <li><a href="#o-nas">O nas</a></li>
+        <li><a href="#jak-zamowic">Jak zamówić</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Kontakt</h3>
+      <ul>
+        <li><a href="tel:+48600000000">+48 600 000 000</a></li>
+        <li><a href="mailto:kontakt@bylasobiebeza.pl">kontakt@bylasobiebeza.pl</a></li>
+        <li>ul. Cukiernicza 8, 00-001 Warszawa</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Obserwuj nas</h3>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Odwiedź nas na Instagramie"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-instagram"/></svg></a>
+        <a href="#" class="social-btn" aria-label="Odwiedź nas na Facebooku"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-facebook"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; <span id="rok"></span> Była sobie beza. Wszystkie prawa zastrzeżone.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('rok').textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  var menuToggle = document.getElementById('menu-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var iconOpen = document.getElementById('menu-icon-open');
+  var iconClose = document.getElementById('menu-icon-close');
+
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Otwórz menu nawigacji');
+    mobileMenu.hidden = true;
+    iconOpen.style.display = '';
+    iconClose.style.display = 'none';
+  }
+
+  menuToggle.addEventListener('click', function () {
+    var isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      closeMenu();
+    } else {
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-label', 'Zamknij menu nawigacji');
+      mobileMenu.hidden = false;
+      iconOpen.style.display = 'none';
+      iconClose.style.display = '';
+    }
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  // Order form: inline validation + mailto submission
+  var form = document.getElementById('order-form');
+  var summaryBox = document.getElementById('form-summary');
+  var summaryList = document.getElementById('form-summary-list');
+  var successBox = document.getElementById('form-success');
+
+  var fields = [
+    { id: 'imie', message: 'Podaj imię i nazwisko.' },
+    { id: 'telefon', message: 'Podaj numer telefonu.' },
+    { id: 'email', message: 'Podaj poprawny adres e-mail.' },
+    { id: 'rodzaj', message: 'Wybierz rodzaj bezy.' },
+    { id: 'data-odbioru', message: 'Wybierz termin odbioru.' },
+  ];
+
+  function clearErrors() {
+    fields.forEach(function (f) {
+      document.getElementById(f.id).removeAttribute('aria-invalid');
+      var err = document.getElementById(f.id + '-error');
+      err.textContent = '';
+      err.hidden = true;
+    });
+    summaryBox.hidden = true;
+    summaryList.innerHTML = '';
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    successBox.hidden = true;
+    clearErrors();
+
+    var invalid = [];
+    fields.forEach(function (f) {
+      var input = document.getElementById(f.id);
+      var isValid = input.value.trim().length > 0;
+      if (f.id === 'email' && isValid) {
+        isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+      }
+      if (!isValid) {
+        input.setAttribute('aria-invalid', 'true');
+        var err = document.getElementById(f.id + '-error');
+        err.textContent = f.message;
+        err.hidden = false;
+        invalid.push(f);
+      }
+    });
+
+    if (invalid.length > 0) {
+      invalid.forEach(function (f) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = '#' + f.id;
+        a.textContent = f.message;
+        li.appendChild(a);
+        summaryList.appendChild(li);
+      });
+      summaryBox.hidden = false;
+      summaryBox.focus();
+      document.getElementById(invalid[0].id).focus();
+      return;
+    }
+
+    var data = Object.fromEntries(new FormData(form).entries());
+    var subject = encodeURIComponent('Zamówienie: ' + data.rodzaj);
+    var body = encodeURIComponent(
+      'Imię i nazwisko: ' + data.imie + '\n' +
+      'Telefon: ' + data.telefon + '\n' +
+      'E-mail: ' + data.email + '\n' +
+      'Rodzaj bezy: ' + data.rodzaj + '\n' +
+      'Termin odbioru: ' + data['data-odbioru'] + '\n' +
+      'Dodatkowe informacje: ' + (data.wiadomosc || '—')
+    );
+
+    window.location.href = 'mailto:kontakt@bylasobiebeza.pl?subject=' + subject + '&body=' + body;
+    successBox.hidden = false;
+  });
+</script>
+</body>
+</html>

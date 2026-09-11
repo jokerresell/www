@@ -6,10 +6,54 @@
 <title>OBSIDIAN Detailing — studio detailingu samochodowego premium</title>
 <meta name="description" content="OBSIDIAN Detailing — premium studio detailingu samochodowego w Warszawie. Korekta lakieru, powłoki ceramiczne, folia PPF i detailing wnętrza. Umów bezpłatne oględziny.">
 <meta name="theme-color" content="#0A0908">
+<link rel="canonical" href="https://obsidian-detailing.pl/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OBSIDIAN Detailing">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:url" content="https://obsidian-detailing.pl/">
+<meta property="og:title" content="OBSIDIAN Detailing — studio detailingu samochodowego premium">
+<meta property="og:description" content="Korekta lakieru, powłoki ceramiczne, folia PPF i detailing wnętrza. Umów bezpłatne oględziny w studiu w Warszawie.">
+<meta property="og:image" content="https://obsidian-detailing.pl/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OBSIDIAN Detailing — studio detailingu samochodowego premium">
+<meta name="twitter:description" content="Korekta lakieru, powłoki ceramiczne, folia PPF i detailing wnętrza. Umów bezpłatne oględziny w studiu w Warszawie.">
+<meta name="twitter:image" content="https://obsidian-detailing.pl/images/og-image.jpg">
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230A0908'/%3E%3Cpath d='M32 10 L48 22 L42 46 L22 46 L16 22 Z' fill='none' stroke='%23C9A961' stroke-width='2.5'/%3E%3Cpath d='M22 24 L34 16' stroke='%23E8C877' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A0908'/%3E%3Cpath d='M32 10 L48 22 L42 46 L22 46 L16 22 Z' fill='none' stroke='%23C9A961' stroke-width='2.5'/%3E%3Cpath d='M22 24 L34 16' stroke='%23E8C877' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutomotiveBusiness",
+  "name": "OBSIDIAN Detailing",
+  "image": "https://obsidian-detailing.pl/images/og-image.jpg",
+  "description": "Premium studio detailingu samochodowego — korekta lakieru, powłoki ceramiczne, folia PPF i detailing wnętrza.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ul. Fabryczna 14",
+    "addressLocality": "Warszawa",
+    "postalCode": "03-887",
+    "addressCountry": "PL"
+  },
+  "telephone": "+48512340210",
+  "email": "kontakt@obsidian-detailing.pl",
+  "priceRange": "450-4200 PLN",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/",
+    "https://www.facebook.com/"
+  ]
+}
+</script>
 <style>
   :root {
     --color-bg: #0A0908;
@@ -63,6 +107,8 @@
   }
 
   :focus-visible { outline: 2px solid var(--color-gold-bright); outline-offset: 3px; border-radius: 4px; }
+
+  section[id] { scroll-margin-top: 5.5rem; }
 
   .skip-link {
     position: absolute; top: 0.5rem; left: 0.5rem; z-index: 200;
@@ -141,6 +187,8 @@
   }
   .nav-desktop a:hover { color: var(--color-text); }
   .nav-desktop a:hover::after { right: 0; }
+  .nav-desktop a.is-active { color: var(--color-gold-bright); }
+  .nav-desktop a.is-active::after { right: 0; }
   @media (min-width: 1024px) { .nav-desktop { display: block; } }
 
   .header-actions { display: flex; align-items: center; gap: 0.75rem; }
@@ -513,6 +561,67 @@
   .footer-social { display: flex; gap: 0.75rem; margin-top: 0.85rem; }
   .footer-bottom { border-top: 1px solid var(--color-line); padding: 1.5rem 0; font-size: 0.82rem; }
   .footer-bottom .container { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
+  .footer-legal { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; }
+  .footer-legal button { color: var(--color-text-muted); text-decoration: underline; text-underline-offset: 3px; }
+  .footer-legal button:hover { color: var(--color-gold-bright); }
+
+  /* Back to top */
+  .back-to-top {
+    position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 70;
+    width: 3rem; height: 3rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: rgba(10,9,8,0.85); border: 1px solid var(--color-line-strong); color: var(--color-gold);
+    backdrop-filter: blur(6px); opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), background-color 0.2s ease, color 0.2s ease;
+  }
+  .back-to-top.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .back-to-top:hover { background: var(--color-gold); color: #14120F; }
+  .back-to-top .icon { width: 1.3rem; height: 1.3rem; }
+
+  /* FAQ */
+  .faq-list { max-width: 48rem; margin: 3rem auto 0; display: flex; flex-direction: column; gap: 0.9rem; }
+  .faq-item {
+    border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-bg-card);
+    overflow: hidden; transition: border-color 0.25s ease;
+  }
+  .faq-item[open] { border-color: var(--color-line-strong); }
+  .faq-item summary {
+    list-style: none; cursor: pointer; padding: 1.25rem 1.5rem; display: flex; align-items: center;
+    justify-content: space-between; gap: 1rem; font-weight: 600; color: #FFFDF8; font-size: 0.98rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary .icon { width: 1.2rem; height: 1.2rem; color: var(--color-gold); flex-shrink: 0; transition: transform 0.3s var(--ease-out); }
+  .faq-item[open] summary .icon { transform: rotate(45deg); }
+  .faq-item p { padding: 0 1.5rem 1.25rem; font-size: 0.9rem; line-height: 1.65; color: var(--color-text-muted); }
+
+  /* Cookie banner */
+  .cookie-banner {
+    position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 95; max-width: 52rem; margin: 0 auto;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-lg); border: 1px solid var(--color-line-strong); background: rgba(16,15,13,0.96);
+    backdrop-filter: blur(10px); box-shadow: var(--shadow-soft);
+    transform: translateY(140%); transition: transform 0.5s var(--ease-out);
+  }
+  .cookie-banner.is-visible { transform: translateY(0); }
+  .cookie-banner[hidden] { display: none; }
+  .cookie-banner p { flex: 1 1 20rem; font-size: 0.85rem; line-height: 1.6; color: var(--color-text-muted); }
+  .cookie-banner p button { color: var(--color-gold-bright); text-decoration: underline; text-underline-offset: 3px; }
+  .cookie-banner__actions { display: flex; gap: 0.75rem; flex-shrink: 0; }
+
+  /* Legal modals */
+  .legal-dialog {
+    max-width: 42rem; width: calc(100vw - 2.5rem); border-radius: var(--radius-lg); border: 1px solid var(--color-line-strong);
+    background: var(--color-bg-card); color: var(--color-text); padding: 0; box-shadow: var(--shadow-soft);
+  }
+  .legal-dialog::backdrop { background: rgba(5,5,4,0.75); backdrop-filter: blur(3px); }
+  .legal-dialog__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 1.75rem; border-bottom: 1px solid var(--color-line); }
+  .legal-dialog__head h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: #FFFDF8; }
+  .legal-dialog__close { width: 2.25rem; height: 2.25rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); flex-shrink: 0; }
+  .legal-dialog__close:hover { background: rgba(201,169,97,0.1); color: var(--color-text); }
+  .legal-dialog__close .icon { width: 1.2rem; height: 1.2rem; }
+  .legal-dialog__body { padding: 1.5rem 1.75rem 2rem; max-height: 60vh; overflow-y: auto; font-size: 0.88rem; line-height: 1.75; color: var(--color-text-muted); }
+  .legal-dialog__body h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: #FFFDF8; margin-top: 1.4rem; }
+  .legal-dialog__body h3:first-child { margin-top: 0; }
+  .legal-dialog__body p { margin-top: 0.5rem; }
 </style>
 </head>
 <body>
@@ -537,6 +646,8 @@
     <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="icon-x" viewBox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></symbol>
     <symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 21v-7h2.5l.5-3H14V9c0-.9.3-1.5 1.6-1.5H17V4.8C16.6 4.7 15.6 4.6 14.5 4.6c-2.3 0-3.9 1.4-3.9 4V11H8v3h2.6v7h3.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
     <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.6 5.6 6.1.6-4.6 4.2 1.3 6.1L12 16.6 6.6 19.5l1.3-6.1L3.3 9.2l6.1-.6L12 3Z" fill="currentColor"/></symbol>
@@ -702,6 +813,7 @@
         <li><a href="#proces">Proces</a></li>
         <li><a href="#cennik">Cennik</a></li>
         <li><a href="#opinie">Opinie</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </nav>
@@ -722,6 +834,7 @@
       <li><a href="#proces">Proces</a></li>
       <li><a href="#cennik">Cennik</a></li>
       <li><a href="#opinie">Opinie</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
       <li><a href="#rezerwacja" class="btn btn--primary btn--block">Umów wizytę</a></li>
     </ul>
@@ -1077,6 +1190,43 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq" class="section section--alt">
+    <div class="container">
+      <div class="reveal section-intro centered" style="margin-left:auto;margin-right:auto;">
+        <p class="eyebrow">PYTANIA I ODPOWIEDZI</p>
+        <h2 class="heading-lg">Najczęściej zadawane pytania</h2>
+      </div>
+
+      <div class="reveal faq-list">
+        <details class="faq-item">
+          <summary>Ile trwa korekta lakieru?<svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary>
+          <p>W zależności od stanu lakieru i zakresu prac korekta trwa od 1 do 3 dni roboczych. Dokładny czas ustalamy podczas bezpłatnych oględzin, po ocenie grubości powłoki lakierniczej i liczby defektów.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy powłoka ceramiczna naprawdę chroni przed rysami?<svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary>
+          <p>Powłoka ceramiczna 9H znacząco zwiększa odporność lakieru na drobne zarysowania myjące i działanie czynników chemicznych, ale nie jest niezniszczalna — przed głębokimi uszkodzeniami (np. odpryskami kamieni) chroni skutecznie folia PPF.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Jak długo utrzymuje się folia PPF?<svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary>
+          <p>Przy prawidłowej pielęgnacji folia PPF zachowuje właściwości ochronne i optyczne przez 5–10 lat. Każda aplikacja objęta jest pisemną gwarancją, a jej warunki omawiamy indywidualnie przy wycenie.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy oferujecie odbiór i dowóz samochodu?<svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary>
+          <p>Tak, w promieniu 15 km od studia organizujemy bezpłatny odbiór i dowóz auta. Opcję tę można zaznaczyć w wiadomości podczas rezerwacji terminu.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Jak przygotować się do wizyty?<svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary>
+          <p>Wystarczy dostarczyć auto na umówioną godzinę — resztę, łącznie z myciem wstępnym, wykonujemy na miejscu. Prosimy jedynie o zabranie osobistych przedmiotów z wnętrza przed usługą detailingu kabiny.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Jakie formy płatności akceptujecie?<svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"/></svg></summary>
+          <p>Akceptujemy płatność kartą, BLIK-iem oraz przelewem. Dla usług powyżej 1500 zł istnieje możliwość rozłożenia płatności na dwie raty.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- REZERWACJA -->
   <section id="rezerwacja" class="section">
     <div class="container form-wrap">
@@ -1261,10 +1411,61 @@
   <div class="footer-bottom">
     <div class="container">
       <p>&copy; <span id="rok"></span> OBSIDIAN Detailing. Wszystkie prawa zastrzeżone.</p>
-      <p>Projekt i realizacja: OBSIDIAN Detailing Studio</p>
+      <div class="footer-legal">
+        <button type="button" data-open-dialog="dialog-privacy">Polityka prywatności</button>
+        <button type="button" data-open-dialog="dialog-terms">Regulamin</button>
+      </div>
     </div>
   </div>
 </footer>
+
+<button type="button" id="back-to-top" class="back-to-top" aria-label="Przewiń do góry strony">
+  <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"/></svg>
+</button>
+
+<div id="cookie-banner" class="cookie-banner" role="region" aria-label="Informacja o plikach cookie" hidden>
+  <p>Ta strona używa plików cookie, aby zapewnić prawidłowe działanie i mierzyć ruch. Szczegóły znajdziesz w <button type="button" data-open-dialog="dialog-privacy">polityce prywatności</button>.</p>
+  <div class="cookie-banner__actions">
+    <button type="button" class="btn btn--outline" id="cookie-decline" style="padding:0.6rem 1.1rem; font-size:0.85rem;">Odrzuć</button>
+    <button type="button" class="btn btn--primary" id="cookie-accept" style="padding:0.6rem 1.1rem; font-size:0.85rem;">Akceptuję</button>
+  </div>
+</div>
+
+<dialog id="dialog-privacy" class="legal-dialog">
+  <div class="legal-dialog__head">
+    <h2>Polityka prywatności</h2>
+    <button type="button" class="legal-dialog__close" data-close-dialog aria-label="Zamknij okno"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"/></svg></button>
+  </div>
+  <div class="legal-dialog__body">
+    <h3>1. Administrator danych</h3>
+    <p>Administratorem danych osobowych przetwarzanych w związku z korzystaniem z serwisu jest OBSIDIAN Detailing, ul. Fabryczna 14, 03-887 Warszawa. Kontakt w sprawach ochrony danych: kontakt@obsidian-detailing.pl.</p>
+    <h3>2. Zakres przetwarzanych danych</h3>
+    <p>Dane podane w formularzu rezerwacji (imię i nazwisko, telefon, e-mail, dane pojazdu) przetwarzane są wyłącznie w celu przygotowania i realizacji wyceny oraz umówienia wizyty w studiu.</p>
+    <h3>3. Pliki cookie</h3>
+    <p>Serwis wykorzystuje niezbędne pliki cookie do prawidłowego działania oraz opcjonalne pliki analityczne, na które użytkownik wyraża zgodę w bannerze cookie. Zgodę można wycofać w dowolnym momencie w ustawieniach przeglądarki.</p>
+    <h3>4. Prawa użytkownika</h3>
+    <p>Każdej osobie przysługuje prawo dostępu do swoich danych, ich sprostowania, usunięcia oraz ograniczenia przetwarzania, a także prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.</p>
+    <p style="margin-top:1.5rem; opacity:0.7;">To jest przykładowa treść demonstracyjna — przed uruchomieniem produkcyjnym powinna zostać zweryfikowana przez prawnika.</p>
+  </div>
+</dialog>
+
+<dialog id="dialog-terms" class="legal-dialog">
+  <div class="legal-dialog__head">
+    <h2>Regulamin</h2>
+    <button type="button" class="legal-dialog__close" data-close-dialog aria-label="Zamknij okno"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"/></svg></button>
+  </div>
+  <div class="legal-dialog__body">
+    <h3>1. Postanowienia ogólne</h3>
+    <p>Niniejszy regulamin określa zasady korzystania z usług studia OBSIDIAN Detailing oraz zasady składania rezerwacji za pośrednictwem strony internetowej.</p>
+    <h3>2. Rezerwacje</h3>
+    <p>Rezerwacja terminu wizyty następuje poprzez formularz kontaktowy lub telefonicznie. Studio zastrzega sobie prawo do kontaktu w celu potwierdzenia zakresu usługi i terminu przed jej realizacją.</p>
+    <h3>3. Wycena i płatność</h3>
+    <p>Ceny podane na stronie mają charakter orientacyjny („od") — ostateczna wycena ustalana jest po bezpłatnych oględzinach pojazdu, z uwzględnieniem jego stanu i zakresu prac.</p>
+    <h3>4. Gwarancja</h3>
+    <p>Usługi objęte gwarancją (powłoki ceramiczne, folia PPF) posiadają pisemną kartę gwarancyjną wydawaną przy odbiorze pojazdu, określającą szczegółowe warunki i okres ochrony.</p>
+    <p style="margin-top:1.5rem; opacity:0.7;">To jest przykładowa treść demonstracyjna — przed uruchomieniem produkcyjnym powinna zostać zweryfikowana przez prawnika.</p>
+  </div>
+</dialog>
 
 <script>
   document.getElementById('rok').textContent = new Date().getFullYear();
@@ -1379,6 +1580,7 @@
   var showcaseBadge1 = document.getElementById('showcase-badge-1');
   var showcaseBadge2 = document.getElementById('showcase-badge-2');
   var heroGlow = document.getElementById('hero-glow');
+  var backToTop = document.getElementById('back-to-top');
 
   function clamp(val, min, max) { return Math.max(min, Math.min(max, val)); }
 
@@ -1403,6 +1605,8 @@
       if (scrollY > 40) siteHeader.classList.add('is-scrolled');
       else siteHeader.classList.remove('is-scrolled');
     }
+
+    if (backToTop) backToTop.classList.toggle('is-visible', scrollY > 600);
 
     if (!prefersReducedMotion) {
       if (heroGlow) {
@@ -1434,6 +1638,71 @@
   window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', requestTick);
   onScrollFrame();
+
+  // Back to top
+  if (backToTop) {
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+  }
+
+  // Scrollspy: highlight the nav link matching the section currently in view
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-desktop a[href^="#"]'));
+  var spySections = navLinks
+    .map(function (link) { return document.querySelector(link.getAttribute('href')); })
+    .filter(Boolean);
+  if ('IntersectionObserver' in window && spySections.length) {
+    var spyObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var link = navLinks[spySections.indexOf(entry.target)];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach(function (l) { l.classList.remove('is-active'); });
+          link.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    spySections.forEach(function (section) { spyObserver.observe(section); });
+  }
+
+  // Cookie consent banner
+  var cookieBanner = document.getElementById('cookie-banner');
+  var cookieAccept = document.getElementById('cookie-accept');
+  var cookieDecline = document.getElementById('cookie-decline');
+  function getCookieChoice() {
+    try { return window.localStorage.getItem('obsidian-cookie-choice'); } catch (e) { return null; }
+  }
+  function setCookieChoice(value) {
+    try { window.localStorage.setItem('obsidian-cookie-choice', value); } catch (e) { /* private mode: banner will just reappear next visit */ }
+  }
+  if (cookieBanner && !getCookieChoice()) {
+    cookieBanner.hidden = false;
+    window.setTimeout(function () { cookieBanner.classList.add('is-visible'); }, 400);
+  }
+  function hideCookieBanner(choice) {
+    setCookieChoice(choice);
+    if (!cookieBanner) return;
+    cookieBanner.classList.remove('is-visible');
+    window.setTimeout(function () { cookieBanner.hidden = true; }, 500);
+  }
+  if (cookieAccept) cookieAccept.addEventListener('click', function () { hideCookieBanner('accepted'); });
+  if (cookieDecline) cookieDecline.addEventListener('click', function () { hideCookieBanner('declined'); });
+
+  // Legal dialogs (Polityka prywatności / Regulamin)
+  document.querySelectorAll('[data-open-dialog]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var dialog = document.getElementById(btn.getAttribute('data-open-dialog'));
+      if (dialog && typeof dialog.showModal === 'function') dialog.showModal();
+    });
+  });
+  document.querySelectorAll('.legal-dialog').forEach(function (dialog) {
+    dialog.querySelectorAll('[data-close-dialog]').forEach(function (btn) {
+      btn.addEventListener('click', function () { dialog.close(); });
+    });
+    dialog.addEventListener('click', function (e) {
+      if (e.target === dialog) dialog.close();
+    });
+  });
 
   // Subtle magnetic hover on primary CTA buttons (pointer devices only, motion allowed)
   if (canHover && !prefersReducedMotion) {

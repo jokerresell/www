@@ -288,10 +288,11 @@
   .day-list-item__main strong { font-size: 0.85rem; color: var(--color-text); }
   .day-list-item__main span { font-size: 0.76rem; color: var(--color-text-faint); }
 
-  /* ============ MODAL / DIALOG ============ */
-  dialog { padding: 0; border: none; background: transparent; }
-  dialog:not([open]) { display: none; }
-  dialog::backdrop { background: rgba(5,5,4,0.75); backdrop-filter: blur(3px); }
+  /* ============ MODAL ============ */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+    padding: 1.25rem; background: rgba(5,5,4,0.75); backdrop-filter: blur(3px);
+  }
   .modal-card {
     width: min(34rem, calc(100vw - 2.5rem)); max-height: 85vh; display: flex; flex-direction: column;
     border-radius: var(--radius-lg); border: 1px solid var(--color-line-strong); background: var(--color-bg-card); box-shadow: var(--shadow-soft);
@@ -564,73 +565,79 @@
 </div>
 
 <!-- ============ MODALS ============ -->
-<dialog id="modal-booking" class="modal-card">
-  <div class="modal-head"><h2 id="booking-modal-title">Nowa rezerwacja</h2><button type="button" class="modal-close" data-close><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"/></svg></button></div>
-  <form id="booking-form">
-    <div class="modal-body">
-      <div class="form-row cols-2">
-        <div class="field"><label for="b-customer">Imię i nazwisko</label><input id="b-customer" required></div>
-        <div class="field"><label for="b-phone">Telefon</label><input id="b-phone" type="tel" required></div>
-      </div>
-      <div class="form-row"><div class="field"><label for="b-email">E-mail</label><input id="b-email" type="email"></div></div>
-      <div class="form-row cols-2">
-        <div class="field"><label for="b-car">Marka i model auta</label><input id="b-car" required></div>
-        <div class="field"><label for="b-service">Usługa</label><select id="b-service" required></select></div>
-      </div>
-      <div class="form-row cols-2">
-        <div class="field"><label for="b-date">Data</label><input id="b-date" type="date" required></div>
-        <div class="field"><label for="b-price">Cena (zł)</label><input id="b-price" type="number" min="0" step="1" required></div>
-      </div>
-      <div class="form-row cols-2">
-        <div class="field"><label for="b-status">Status</label>
-          <select id="b-status">
-            <option value="nowa">Nowa</option>
-            <option value="potwierdzona">Potwierdzona</option>
-            <option value="zrealizowana">Zrealizowana</option>
-            <option value="anulowana">Anulowana</option>
-          </select>
+<div id="modal-booking" class="modal-overlay" hidden>
+  <div class="modal-card">
+    <div class="modal-head"><h2 id="booking-modal-title">Nowa rezerwacja</h2><button type="button" class="modal-close" data-close><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"/></svg></button></div>
+    <form id="booking-form">
+      <div class="modal-body">
+        <div class="form-row cols-2">
+          <div class="field"><label for="b-customer">Imię i nazwisko</label><input id="b-customer" required></div>
+          <div class="field"><label for="b-phone">Telefon</label><input id="b-phone" type="tel" required></div>
         </div>
-        <div class="field"><label for="b-notes">Notatki <span style="color:var(--color-text-faint); font-weight:400;">(opcjonalnie)</span></label><input id="b-notes"></div>
+        <div class="form-row"><div class="field"><label for="b-email">E-mail</label><input id="b-email" type="email"></div></div>
+        <div class="form-row cols-2">
+          <div class="field"><label for="b-car">Marka i model auta</label><input id="b-car" required></div>
+          <div class="field"><label for="b-service">Usługa</label><select id="b-service" required></select></div>
+        </div>
+        <div class="form-row cols-2">
+          <div class="field"><label for="b-date">Data</label><input id="b-date" type="date" required></div>
+          <div class="field"><label for="b-price">Cena (zł)</label><input id="b-price" type="number" min="0" step="1" required></div>
+        </div>
+        <div class="form-row cols-2">
+          <div class="field"><label for="b-status">Status</label>
+            <select id="b-status">
+              <option value="nowa">Nowa</option>
+              <option value="potwierdzona">Potwierdzona</option>
+              <option value="zrealizowana">Zrealizowana</option>
+              <option value="anulowana">Anulowana</option>
+            </select>
+          </div>
+          <div class="field"><label for="b-notes">Notatki <span style="color:var(--color-text-faint); font-weight:400;">(opcjonalnie)</span></label><input id="b-notes"></div>
+        </div>
       </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn--danger" id="booking-delete-btn" hidden>Usuń rezerwację</button>
+        <button type="button" class="btn btn--outline" data-close>Anuluj</button>
+        <button type="submit" class="btn btn--primary">Zapisz</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="modal-service" class="modal-overlay" hidden>
+  <div class="modal-card modal-card--sm">
+    <div class="modal-head"><h2 id="service-modal-title">Nowa usługa</h2><button type="button" class="modal-close" data-close><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"/></svg></button></div>
+    <form id="service-form">
+      <div class="modal-body">
+        <div class="form-row"><div class="field"><label for="sv-name">Nazwa usługi</label><input id="sv-name" required></div></div>
+        <div class="form-row"><div class="field"><label for="sv-desc">Opis</label><textarea id="sv-desc" rows="3"></textarea></div></div>
+        <div class="form-row cols-2">
+          <div class="field"><label for="sv-duration">Czas realizacji</label><input id="sv-duration" placeholder="np. 2 h"></div>
+          <div class="field"><label for="sv-price">Cena od (zł)</label><input id="sv-price" type="number" min="0" step="1" required></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn--danger" id="service-delete-btn" hidden>Usuń usługę</button>
+        <button type="button" class="btn btn--outline" data-close>Anuluj</button>
+        <button type="submit" class="btn btn--primary">Zapisz</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="modal-confirm" class="modal-overlay" hidden>
+  <div class="modal-card modal-card--sm">
+    <div class="modal-head"><h2>Potwierdź</h2><button type="button" class="modal-close" data-close><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"/></svg></button></div>
+    <div class="modal-body confirm-body">
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-warning"/></svg>
+      <p id="confirm-text">Czy na pewno chcesz wykonać tę operację?</p>
     </div>
     <div class="modal-foot">
-      <button type="button" class="btn btn--danger" id="booking-delete-btn" hidden>Usuń rezerwację</button>
       <button type="button" class="btn btn--outline" data-close>Anuluj</button>
-      <button type="submit" class="btn btn--primary">Zapisz</button>
+      <button type="button" class="btn btn--danger" id="confirm-ok-btn">Usuń</button>
     </div>
-  </form>
-</dialog>
-
-<dialog id="modal-service" class="modal-card modal-card--sm">
-  <div class="modal-head"><h2 id="service-modal-title">Nowa usługa</h2><button type="button" class="modal-close" data-close><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"/></svg></button></div>
-  <form id="service-form">
-    <div class="modal-body">
-      <div class="form-row"><div class="field"><label for="sv-name">Nazwa usługi</label><input id="sv-name" required></div></div>
-      <div class="form-row"><div class="field"><label for="sv-desc">Opis</label><textarea id="sv-desc" rows="3"></textarea></div></div>
-      <div class="form-row cols-2">
-        <div class="field"><label for="sv-duration">Czas realizacji</label><input id="sv-duration" placeholder="np. 2 h"></div>
-        <div class="field"><label for="sv-price">Cena od (zł)</label><input id="sv-price" type="number" min="0" step="1" required></div>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button type="button" class="btn btn--danger" id="service-delete-btn" hidden>Usuń usługę</button>
-      <button type="button" class="btn btn--outline" data-close>Anuluj</button>
-      <button type="submit" class="btn btn--primary">Zapisz</button>
-    </div>
-  </form>
-</dialog>
-
-<dialog id="modal-confirm" class="modal-card modal-card--sm">
-  <div class="modal-head"><h2>Potwierdź</h2><button type="button" class="modal-close" data-close><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-x"/></svg></button></div>
-  <div class="modal-body confirm-body">
-    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-warning"/></svg>
-    <p id="confirm-text">Czy na pewno chcesz wykonać tę operację?</p>
   </div>
-  <div class="modal-foot">
-    <button type="button" class="btn btn--outline" data-close>Anuluj</button>
-    <button type="button" class="btn btn--danger" id="confirm-ok-btn">Usuń</button>
-  </div>
-</dialog>
+</div>
 
 <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
@@ -828,22 +835,30 @@
     }, 3200);
   }
 
-  // ---------- CONFIRM DIALOG ----------
+  // ---------- MODALS (plain overlay divs — no native <dialog>, so behavior never depends on
+  // browser/iframe support for the top-layer or allow-modals) ----------
+  function openModal(el) { el.hidden = false; }
+  function closeModal(el) { el.hidden = true; }
+
   var confirmDialog = document.getElementById('modal-confirm');
   document.getElementById('confirm-ok-btn').addEventListener('click', function () {
     if (confirmCallback) confirmCallback();
-    confirmDialog.close();
+    closeModal(confirmDialog);
   });
   function askConfirm(text, cb) {
     document.getElementById('confirm-text').textContent = text;
     confirmCallback = cb;
-    confirmDialog.showModal();
+    openModal(confirmDialog);
   }
 
-  // generic dialog close wiring
-  document.querySelectorAll('dialog').forEach(function (dialog) {
-    dialog.querySelectorAll('[data-close]').forEach(function (btn) { btn.addEventListener('click', function () { dialog.close(); }); });
-    dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
+  // generic modal close wiring: close buttons, click-outside, and Escape
+  document.querySelectorAll('.modal-overlay').forEach(function (overlay) {
+    overlay.querySelectorAll('[data-close]').forEach(function (btn) { btn.addEventListener('click', function () { closeModal(overlay); }); });
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(overlay); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.modal-overlay').forEach(function (overlay) { if (!overlay.hidden) closeModal(overlay); });
   });
 
   // ---------- RENDER: DASHBOARD ----------
@@ -1054,7 +1069,7 @@
     document.getElementById('b-status').value = b ? b.status : 'nowa';
     document.getElementById('b-notes').value = b ? (b.notes || '') : '';
     bookingDeleteBtn.hidden = !b;
-    bookingModal.showModal();
+    openModal(bookingModal);
   }
   document.getElementById('add-booking-btn').addEventListener('click', function () { openBookingModal(null); });
 
@@ -1081,7 +1096,7 @@
       toast('Rezerwacja dodana.');
     }
     saveState();
-    bookingModal.close();
+    closeModal(bookingModal);
     renderDashboard(); renderBookings(); renderCustomers(); if (!document.getElementById('view-calendar').hidden) renderCalendar();
   });
 
@@ -1089,7 +1104,7 @@
     askConfirm('Czy na pewno chcesz usunąć tę rezerwację? Tej operacji nie można cofnąć.', function () {
       state.bookings = state.bookings.filter(function (b) { return b.id !== editingBookingId; });
       saveState();
-      bookingModal.close();
+      closeModal(bookingModal);
       toast('Rezerwacja usunięta.');
       renderDashboard(); renderBookings(); renderCustomers();
     });
@@ -1187,7 +1202,7 @@
     document.getElementById('sv-duration').value = s ? s.duration : '';
     document.getElementById('sv-price').value = s ? s.price : '';
     serviceDeleteBtn.hidden = !s;
-    serviceModal.showModal();
+    openModal(serviceModal);
   }
   document.getElementById('add-service-btn').addEventListener('click', function () { openServiceModal(null); });
 
@@ -1209,14 +1224,14 @@
       toast('Usługa dodana.');
     }
     saveState();
-    serviceModal.close();
+    closeModal(serviceModal);
     renderServices(); renderDashboard();
   });
   serviceDeleteBtn.addEventListener('click', function () {
     askConfirm('Czy na pewno chcesz usunąć tę usługę z cennika?', function () {
       state.services = state.services.filter(function (s) { return s.id !== editingServiceId; });
       saveState();
-      serviceModal.close();
+      closeModal(serviceModal);
       toast('Usługa usunięta.');
       renderServices(); renderDashboard();
     });

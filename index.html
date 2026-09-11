@@ -294,6 +294,54 @@
   .showcase-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--color-gold), var(--color-gold-bright)); }
   .showcase-caption { margin-top: 1.1rem; font-size: 0.85rem; color: var(--color-text-faint); text-align: center; }
 
+  .showcase-badge {
+    position: absolute; z-index: 4; display: flex; align-items: center; gap: 0.55rem;
+    padding: 0.6rem 1rem; border-radius: var(--radius-full); background: rgba(10,9,8,0.72);
+    border: 1px solid var(--color-line-strong); backdrop-filter: blur(6px);
+    font-size: 0.78rem; font-weight: 600; color: var(--color-text);
+    opacity: 0; transform: translateY(10px); transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  }
+  .showcase-badge.is-visible { opacity: 1; transform: translateY(0); }
+  .showcase-badge .icon { width: 1.1rem; height: 1.1rem; color: var(--color-gold); flex-shrink: 0; }
+  .showcase-badge--1 { left: 1.25rem; bottom: 1.25rem; }
+  .showcase-badge--2 { right: 1.25rem; top: 4rem; }
+  @media (max-width: 640px) { .showcase-badge span { display: none; } .showcase-badge { padding: 0.6rem; } }
+
+  /* Portfolio comparison grid */
+  .portfolio-lead { margin-top: 4.5rem; text-align: center; }
+  .portfolio-lead h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; color: #FFFDF8; }
+  .portfolio-lead p { margin-top: 0.5rem; font-size: 0.9rem; color: var(--color-text-muted); }
+  .portfolio-grid { display: grid; gap: 1.5rem; margin-top: 2.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .portfolio-grid { grid-template-columns: repeat(4, 1fr); } }
+  .compare-card {
+    border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-bg-card);
+    padding: 1rem; box-shadow: var(--shadow-card); transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  }
+  .compare-card:hover { border-color: var(--color-line-strong); transform: translateY(-4px); }
+  .compare-media {
+    position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 0.9rem; overflow: hidden;
+    background: #0A0908; border: 0; padding: 0; cursor: pointer; display: block;
+  }
+  .compare-layer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .compare-layer--before { background: radial-gradient(circle at 30% 20%, #1c1a17 0%, #0b0a08 75%); }
+  .compare-layer--after { background: radial-gradient(circle at 30% 20%, #221e17 0%, #0b0a08 75%); clip-path: inset(0 100% 0 0); transition: clip-path 0.6s var(--ease-out); }
+  .compare-media:hover .compare-layer--after,
+  .compare-media:focus-visible .compare-layer--after,
+  .compare-media.is-active .compare-layer--after { clip-path: inset(0 0 0 0); }
+  .compare-swatch { width: 62%; height: auto; }
+  .compare-hint {
+    position: absolute; bottom: 0.6rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted);
+    background: rgba(10,9,8,0.65); padding: 0.3rem 0.7rem; border-radius: var(--radius-full);
+    opacity: 1; transition: opacity 0.3s ease; pointer-events: none; white-space: nowrap;
+  }
+  .compare-media:hover .compare-hint,
+  .compare-media:focus-visible .compare-hint,
+  .compare-media.is-active .compare-hint { opacity: 0; }
+  .compare-card h3 { margin-top: 1.1rem; font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; color: #FFFDF8; }
+  .compare-card p { margin-top: 0.4rem; font-size: 0.85rem; line-height: 1.55; color: var(--color-text-muted); }
+
   /* Services */
   .service-grid { display: grid; gap: 1.5rem; margin-top: 3.5rem; grid-template-columns: 1fr; }
   @media (min-width: 640px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -540,6 +588,32 @@
       <circle cx="322" cy="160" r="30" fill="#0A0908" stroke="#C9A961" stroke-width="3"/>
       <circle cx="322" cy="160" r="12" fill="#2E2A22"/>
     </symbol>
+
+    <symbol id="icon-swatch-before" viewBox="0 0 200 200">
+      <rect x="14" y="14" width="172" height="172" rx="18" fill="#302B24" stroke="#544E42" stroke-width="2"/>
+      <g stroke="#5C574C" stroke-width="1.4" fill="none" opacity="0.75">
+        <circle cx="70" cy="70" r="16"/><circle cx="70" cy="70" r="26"/>
+        <circle cx="128" cy="112" r="13"/><circle cx="128" cy="112" r="22"/>
+        <circle cx="100" cy="150" r="10"/>
+        <path d="M40 130 L90 118" stroke-linecap="round"/>
+        <path d="M120 50 L160 62" stroke-linecap="round"/>
+      </g>
+    </symbol>
+
+    <symbol id="icon-swatch-after" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="swatchGloss" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#2E2A22"/>
+          <stop offset="38%" stop-color="#121110"/>
+          <stop offset="50%" stop-color="#E8C877"/>
+          <stop offset="62%" stop-color="#121110"/>
+          <stop offset="100%" stop-color="#0A0908"/>
+        </linearGradient>
+      </defs>
+      <rect x="14" y="14" width="172" height="172" rx="18" fill="url(#swatchGloss)" stroke="#C9A961" stroke-width="2"/>
+      <path d="M34 150 L86 40" stroke="#F3EEE3" stroke-width="10" stroke-linecap="round" opacity="0.42"/>
+      <path d="M120 170 L166 60" stroke="#F3EEE3" stroke-width="5" stroke-linecap="round" opacity="0.22"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -672,9 +746,66 @@
           <div class="showcase-divider" id="showcase-divider" aria-hidden="true"></div>
           <span class="showcase-tag showcase-tag--before">PRZED</span>
           <span class="showcase-tag showcase-tag--after">PO</span>
+          <div class="showcase-badge showcase-badge--1" id="showcase-badge-1" aria-hidden="true">
+            <svg class="icon" focusable="false"><use href="#icon-wand"/></svg>
+            <span>-90% rys i hologramów</span>
+          </div>
+          <div class="showcase-badge showcase-badge--2" id="showcase-badge-2" aria-hidden="true">
+            <svg class="icon" focusable="false"><use href="#icon-droplet"/></svg>
+            <span>Kąt zwilżania wody 110°</span>
+          </div>
         </div>
         <div class="showcase-progress" aria-hidden="true"><div class="showcase-progress-bar" id="showcase-progress-bar"></div></div>
         <p class="showcase-caption">Korekta lakieru 2-etapowa + powłoka ceramiczna 9H · czas realizacji: 3 dni</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="reveal portfolio-lead">
+        <h3>Wybrane realizacje</h3>
+        <p>Najedź kursorem (lub dotknij na telefonie), aby zobaczyć efekt każdej usługi.</p>
+      </div>
+
+      <div class="portfolio-grid stagger reveal">
+        <article class="compare-card">
+          <button type="button" class="compare-media" aria-pressed="false" aria-label="Pokaż efekt: korekta lakieru">
+            <span class="compare-layer compare-layer--before" aria-hidden="true"><svg class="icon compare-swatch" viewBox="0 0 200 200" focusable="false"><use href="#icon-swatch-before"/></svg></span>
+            <span class="compare-layer compare-layer--after" aria-hidden="true"><svg class="icon compare-swatch" viewBox="0 0 200 200" focusable="false"><use href="#icon-swatch-after"/></svg></span>
+            <span class="compare-hint" aria-hidden="true">Najedź / dotknij</span>
+          </button>
+          <h3>Korekta lakieru</h3>
+          <p>Usunięcie rys i hologramów, przywrócenie głębi koloru na całym nadwoziu.</p>
+        </article>
+
+        <article class="compare-card">
+          <button type="button" class="compare-media" aria-pressed="false" aria-label="Pokaż efekt: powłoka ceramiczna">
+            <span class="compare-layer compare-layer--before" aria-hidden="true"><svg class="icon compare-swatch" viewBox="0 0 200 200" focusable="false"><use href="#icon-swatch-before"/></svg></span>
+            <span class="compare-layer compare-layer--after" aria-hidden="true"><svg class="icon compare-swatch" viewBox="0 0 200 200" focusable="false"><use href="#icon-swatch-after"/></svg></span>
+            <span class="compare-hint" aria-hidden="true">Najedź / dotknij</span>
+          </button>
+          <h3>Powłoka ceramiczna</h3>
+          <p>Twarda, hydrofobowa warstwa 9H chroniąca lakier nawet do 5 lat.</p>
+        </article>
+
+        <article class="compare-card">
+          <button type="button" class="compare-media" aria-pressed="false" aria-label="Pokaż efekt: folia PPF">
+            <span class="compare-layer compare-layer--before" aria-hidden="true"><svg class="icon compare-swatch" viewBox="0 0 200 200" focusable="false"><use href="#icon-swatch-before"/></svg></span>
+            <span class="compare-layer compare-layer--after" aria-hidden="true"><svg class="icon compare-swatch" viewBox="0 0 200 200" focusable="false"><use href="#icon-swatch-after"/></svg></span>
+            <span class="compare-hint" aria-hidden="true">Najedź / dotknij</span>
+          </button>
+          <h3>Folia PPF</h3>
+          <p>Niewidzialna ochrona przed odpryskami kamieni i drobnymi rysami.</p>
+        </article>
+
+        <article class="compare-card">
+          <button type="button" class="compare-media" aria-pressed="false" aria-label="Pokaż efekt: detailing wnętrza">
+            <span class="compare-layer compare-layer--before" aria-hidden="true"><svg class="icon compare-swatch" viewBox="0 0 200 200" focusable="false"><use href="#icon-swatch-before"/></svg></span>
+            <span class="compare-layer compare-layer--after" aria-hidden="true"><svg class="icon compare-swatch" viewBox="0 0 200 200" focusable="false"><use href="#icon-swatch-after"/></svg></span>
+            <span class="compare-hint" aria-hidden="true">Najedź / dotknij</span>
+          </button>
+          <h3>Detailing wnętrza</h3>
+          <p>Tapicerka i skóra odświeżone do stanu jak z salonu wystawowego.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -1175,6 +1306,8 @@
   var showcaseAfter = document.getElementById('showcase-after');
   var showcaseDivider = document.getElementById('showcase-divider');
   var showcaseProgressBar = document.getElementById('showcase-progress-bar');
+  var showcaseBadge1 = document.getElementById('showcase-badge-1');
+  var showcaseBadge2 = document.getElementById('showcase-badge-2');
   var heroGlow = document.getElementById('hero-glow');
 
   function clamp(val, min, max) { return Math.max(min, Math.min(max, val)); }
@@ -1184,6 +1317,8 @@
     if (showcaseAfter) showcaseAfter.style.clipPath = 'inset(0 50% 0 0)';
     if (showcaseDivider) showcaseDivider.style.left = '50%';
     if (showcaseProgressBar) showcaseProgressBar.style.width = '50%';
+    if (showcaseBadge1) showcaseBadge1.classList.add('is-visible');
+    if (showcaseBadge2) showcaseBadge2.classList.add('is-visible');
   }
 
   var ticking = false;
@@ -1213,6 +1348,8 @@
         showcaseAfter.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
         showcaseDivider.style.left = pct + '%';
         showcaseProgressBar.style.width = pct + '%';
+        if (showcaseBadge1) showcaseBadge1.classList.toggle('is-visible', progress > 0.15);
+        if (showcaseBadge2) showcaseBadge2.classList.toggle('is-visible', progress > 0.6);
       }
     }
   }
@@ -1253,6 +1390,14 @@
       });
     });
   }
+
+  // Portfolio compare cards: click/tap toggles the before/after reveal (hover already handles pointer devices)
+  document.querySelectorAll('.compare-media').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var active = btn.classList.toggle('is-active');
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  });
 
   // Order form: inline validation + mailto submission
   var form = document.getElementById('order-form');

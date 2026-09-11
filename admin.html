@@ -788,7 +788,14 @@
     appEl.hidden = true;
     loginScreen.hidden = false;
   }
-  if (isAuthed()) showApp();
+  // Note: the isAuthed() check that calls showApp() on load runs at the very end of this
+  // script (after every other section), not here — showApp() triggers renderAll(), which
+  // touches DOM-reference variables (bookingsSearch, customersSearch, etc.) that are only
+  // assigned once their own sections below have run. Calling it this early — which happens
+  // for a returning session (sessionStorage persists e.g. across an artifact republish reload)
+  // — hit those variables while still undefined, threw, and aborted the rest of the script
+  // before it reached the nav-link click listeners further down. Hover still worked (pure
+  // CSS) while every click handler silently never got attached.
 
   loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -1322,6 +1329,10 @@
     renderReviews();
     renderSettings();
   }
+
+  // Runs last, once every section above has assigned its DOM-reference variables — see the
+  // note in the AUTH section for why this can't run any earlier.
+  if (isAuthed()) showApp();
 })();
 </script>
 </body>

@@ -186,8 +186,8 @@
   .demo-strip strong { color: var(--color-gold-bright); }
 
   /* ============ CARDS / KPI ============ */
-  .kpi-grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: 720px) { .kpi-grid { grid-template-columns: repeat(4, 1fr); } }
+  .kpi-grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 720px) { .kpi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   .kpi-card {
     border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-bg-card);
     padding: 1.3rem 1.4rem; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 0.6rem;
@@ -202,8 +202,8 @@
   .kpi-card__delta.down { color: var(--color-red); }
   .kpi-card__delta .icon { width: 0.85rem; height: 0.85rem; }
 
-  .panel-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
-  @media (min-width: 980px) { .panel-grid { grid-template-columns: 1.4fr 1fr; } }
+  .panel-grid { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 980px) { .panel-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); } }
   .panel {
     border: 1px solid var(--color-line); border-radius: var(--radius-lg); background: var(--color-bg-card);
     box-shadow: var(--shadow-card); padding: 1.5rem;
@@ -267,7 +267,7 @@
   /* ============ CALENDAR ============ */
   .calendar-head { display: flex; align-items: center; justify-content: space-between; }
   .calendar-nav { display: flex; align-items: center; gap: 0.5rem; }
-  .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; margin-top: 1rem; }
+  .calendar-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.5rem; margin-top: 1rem; }
   .calendar-dow { text-align: center; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; color: var(--color-text-faint); padding-bottom: 0.4rem; text-transform: uppercase; }
   .calendar-cell {
     min-height: 5.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-line); padding: 0.5rem;
@@ -325,13 +325,22 @@
 
   .sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 55; }
 
-  @media (max-width: 980px) {
+  /* Medium widths (e.g. a browser side panel): keep the sidebar permanently visible, just
+     narrower, rather than collapsing it behind a hamburger a user has to discover. */
+  @media (max-width: 900px) {
+    :root { --sidebar-w: 208px; }
+    .sidebar-brand strong { font-size: 1rem; }
+    .nav-link { padding: 0.65rem 0.6rem; font-size: 0.82rem; }
+    .topbar-search { display: none; }
+  }
+  /* Only genuinely narrow (phone-width) viewports collapse to an off-canvas menu. */
+  @media (max-width: 620px) {
+    :root { --sidebar-w: 264px; }
     .sidebar { transform: translateX(-100%); box-shadow: var(--shadow-soft); }
     .sidebar.is-open { transform: translateX(0); }
     .sidebar-close { display: flex; }
     .app-main { margin-left: 0; }
     .topbar-menu-toggle { display: flex; }
-    .topbar-search { display: none; }
     .sidebar-backdrop.is-open { display: block; }
   }
   @media (max-width: 560px) {

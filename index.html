@@ -197,10 +197,38 @@
     position: absolute; inset: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center;
     background: radial-gradient(circle at 32% 28%, #221F1A 0%, #0D0C0A 70%);
     border: 1px solid var(--color-line-strong); box-shadow: var(--shadow-soft);
+    overflow: hidden;
   }
-  .hero__art-disc .icon { width: 62%; height: 62%; color: var(--color-gold); }
   .hero__art-ring { position: absolute; inset: -10px; border-radius: 50%; border: 1px dashed var(--color-line-strong); animation: spin 40s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Hero orb — abstract mirror-finish paint sphere replacing a literal car render */
+  .hero__orb-sweep {
+    position: absolute; inset: -55%; border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(232,200,119,0.55) 35deg, transparent 85deg, transparent 250deg, rgba(232,200,119,0.24) 298deg, transparent 335deg, transparent 360deg);
+    animation: orbSweep 9s linear infinite; mix-blend-mode: screen;
+  }
+  @keyframes orbSweep { to { transform: rotate(360deg); } }
+  .hero__orb-highlight {
+    position: absolute; top: 13%; left: 19%; width: 34%; height: 20%; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,253,248,0.9), rgba(255,253,248,0) 70%);
+    filter: blur(1px); opacity: 0.85; transform: rotate(-18deg);
+  }
+  .hero__orb-core { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; text-align: center; }
+  .hero__orb-core .icon { width: 2.75rem; height: 2.75rem; color: var(--color-gold); }
+  .hero__orb-core span { font-family: var(--font-sans); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.24em; color: var(--color-text-faint); text-transform: uppercase; }
+
+  .hero__orbit { position: absolute; border-radius: 50%; pointer-events: none; animation: spin 18s linear infinite; }
+  .hero__orbit--1 { inset: -6%; animation-duration: 16s; }
+  .hero__orbit--2 { inset: 6%; animation-duration: 24s; animation-direction: reverse; }
+  .hero__orbit--3 { inset: -15%; animation-duration: 32s; }
+  .hero__mote {
+    position: absolute; top: -3px; left: 50%; transform: translateX(-50%);
+    width: 6px; height: 6px; border-radius: 50%; background: var(--color-gold-bright);
+    box-shadow: 0 0 10px 2px rgba(232,200,119,0.7);
+  }
+  .hero__mote--sparkle { top: -10px; width: auto; height: auto; background: none; box-shadow: none; color: var(--color-gold); }
+  .hero__mote--sparkle .icon { width: 0.9rem; height: 0.9rem; }
 
   /* Reveal */
   .reveal { transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
@@ -588,8 +616,18 @@
 
       <div class="hero__art" aria-hidden="true">
         <div class="hero__art-glow"></div>
+        <div class="hero__orbit hero__orbit--1"><span class="hero__mote"></span></div>
+        <div class="hero__orbit hero__orbit--2"><span class="hero__mote hero__mote--sparkle"><svg class="icon" focusable="false"><use href="#icon-sparkle"/></svg></span></div>
         <div class="hero__art-ring"></div>
-        <div class="hero__art-disc"><svg class="icon" viewBox="0 0 420 200" focusable="false"><use href="#icon-car-after"/></svg></div>
+        <div class="hero__orbit hero__orbit--3"><span class="hero__mote"></span></div>
+        <div class="hero__art-disc">
+          <div class="hero__orb-sweep"></div>
+          <div class="hero__orb-highlight"></div>
+          <div class="hero__orb-core">
+            <svg class="icon" focusable="false"><use href="#icon-mark"/></svg>
+            <span>Lustrzany połysk</span>
+          </div>
+        </div>
         <svg class="icon floater" style="top:-1.5rem; left:-1rem; width:2.25rem; height:2.25rem; animation-duration:10s;" aria-hidden="true" focusable="false"><use href="#icon-mark"/></svg>
         <svg class="icon floater" style="bottom:-1rem; right:-0.5rem; width:1.75rem; height:1.75rem; animation-duration:8s; animation-delay:1.5s;" aria-hidden="true" focusable="false"><use href="#icon-mark"/></svg>
       </div>

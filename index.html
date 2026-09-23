@@ -694,7 +694,7 @@
         </div>
         <div class="form__foot">
           <p>Odpowiadamy najszybciej, jak to możliwe. Pola oznaczone <span class="req" style="color:var(--color-error)">*</span> są wymagane.</p>
-          <button class="btn btn--accent" type="submit">Wyślij zapytanie <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="btn btn--accent" type="submit" id="quote-submit">Wyślij zapytanie <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
         </div>
         <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
       </form>
@@ -814,7 +814,7 @@
   <form class="chat__form" id="chat-form">
     <label for="chat-input" class="sr-only">Twoja wiadomość</label>
     <textarea id="chat-input" rows="1" maxlength="1500" placeholder="Napisz pytanie…" autocomplete="off"></textarea>
-    <button class="chat__send" id="chat-send" type="submit" aria-label="Wyślij wiadomość" disabled><svg aria-hidden="true"><use href="#i-send"/></svg></button>
+    <button class="chat__send" id="chat-send" type="button" aria-label="Wyślij wiadomość" disabled><svg aria-hidden="true"><use href="#i-send"/></svg></button>
   </form>
   <p class="chat__note">Automatyczny asystent. Wiążącą wycenę poda firma: <a href="tel:+48602469964">602 469 964</a></p>
 </section>
@@ -847,7 +847,20 @@
     revealEls.forEach((el) => el.classList.add('is-visible'));
   }
 
-  // Quote form → validate inline, then open a pre-filled e-mail
+  // Wysyłka zgłoszeń na e-mail firmy przez darmowy FormSubmit (formsubmit.co).
+  // Za pierwszym razem FormSubmit wyśle na ten adres e-mail z linkiem aktywacyjnym — trzeba go kliknąć raz.
+  const LEAD_EMAIL = 'arber_gordon@interia.pl';
+  const sendLead = async (subject, fields) => {
+    const res = await fetch('https://formsubmit.co/ajax/' + LEAD_EMAIL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ _subject: subject, _template: 'table', _captcha: 'false', ...fields }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || 'send_failed');
+  };
+
+  // Quote form → validate inline, send via FormSubmit, fall back to a pre-filled e-mail
   const form = document.getElementById('quote-form');
   const status = document.getElementById('form-status');
 
@@ -865,8 +878,11 @@
     input.addEventListener('change', () => { if (input.type === 'checkbox') validateField(input); });
   });
 
-  form.addEventListener('submit', (e) => {
+  const submitBtn = document.getElementById('quote-submit');
+  let sending = false;
+  const handleQuoteForm = async (e) => {
     e.preventDefault();
+    if (sending) return;
     const required = [...form.querySelectorAll('[required]')];
     const invalid = required.filter((input) => !validateField(input));
     if (invalid.length) { invalid[0].focus(); return; }
@@ -886,10 +902,32 @@
       d.message || '—'
     ].join('\n');
     const subject = 'Wycena przeprowadzki — ' + d.from + ' → ' + d.to;
-    window.location.href = 'mailto:arber_gordon@interia.pl?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    status.textContent = 'Otworzyliśmy Twoją pocztę z gotową wiadomością — kliknij „Wyślij”. Jeśli nic się nie otworzyło, zadzwoń: 602 469 964.';
+
+    sending = true;
+    submitBtn.disabled = true;
+    const label = submitBtn.innerHTML;
+    submitBtn.textContent = 'Wysyłanie…';
+    try {
+      await sendLead(subject, {
+        'Imię i nazwisko': d.name, Telefon: d.phone, Skąd: d.from, Dokąd: d.to,
+        Rodzaj: d.type, Termin: d.date || 'elastyczny', 'Co przewozimy': d.message || '—',
+      });
+      form.reset();
+      status.style.cssText = '';
+      status.textContent = 'Dziękujemy! Zgłoszenie zostało wysłane — oddzwonimy z wyceną. Pilne? Zadzwoń: 602 469 964.';
+    } catch (err) {
+      window.location.href = 'mailto:' + LEAD_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      status.style.cssText = 'background:#FFF7ED;color:#9A3412';
+      status.textContent = 'Nie udało się wysłać automatycznie, więc otworzyliśmy Twoją pocztę z gotową wiadomością — kliknij „Wyślij”. Albo zadzwoń: 602 469 964.';
+    }
     status.classList.add('is-visible');
-  });
+    submitBtn.innerHTML = label;
+    submitBtn.disabled = false;
+    sending = false;
+  };
+  form.addEventListener('submit', handleQuoteForm);
+  // Kliknięcie obsługujemy bezpośrednio — działa też tam, gdzie przeglądarka blokuje wysyłanie formularzy (np. podgląd w ramce).
+  submitBtn.addEventListener('click', handleQuoteForm);
   // ── Chat widget (darmowy) ─────────────────────────────────────────
   // Działa w całości w przeglądarce: odpowiada na typowe pytania i prowadzi przez wycenę krok po kroku.
   // Opcjonalnie: wpisz adres wdrożonego Workera z folderu chat-api/ (darmowe Cloudflare Workers AI),
@@ -973,7 +1011,7 @@
       if (quote.step < STEPS.length) { askStep(); return; }
       finishQuote();
     };
-    const finishQuote = () => {
+    const finishQuote = async () => {
       const d = quote.data;
       quote = null;
       const extra = norm(d.extra).startsWith('nie') ? '—' : d.extra;
@@ -983,12 +1021,28 @@
       ].join('\n');
       botSay('Gotowe! Oto Twoje zgłoszenie:\n\n' + summary);
       const text = 'Dzień dobry, proszę o wycenę przeprowadzki.\n' + summary;
-      const subject = 'Wycena przeprowadzki: ' + d.from + ' → ' + d.to;
-      botSay('Wyślij je jednym kliknięciem, a oddzwonimy z wyceną:', [
-        { label: 'Wyślij SMS', href: 'sms:' + PHONE_INTL + '?body=' + encodeURIComponent(text), primary: true },
-        { label: 'Wyślij e-mail', href: 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text) },
-        { label: 'Zadzwoń', href: 'tel:' + PHONE_INTL },
-      ]);
+      const subject = 'Wycena przeprowadzki (czat): ' + d.from + ' → ' + d.to;
+
+      busy = true; send.disabled = true;
+      const typing = showTyping();
+      try {
+        await sendLead(subject, {
+          Skąd: d.from, Dokąd: d.to, Kiedy: d.date, Co: d.size, 'Piętra/winda': d.floors,
+          Dodatkowo: extra, Imię: d.name, Telefon: d.phone, Źródło: 'czat na stronie',
+        });
+        typing.remove();
+        botSay('Zgłoszenie wysłane! Oddzwonimy z wyceną najszybciej, jak to możliwe. Pilna sprawa? Zadzwoń:', [
+          { label: 'Zadzwoń: ' + PHONE, href: 'tel:' + PHONE_INTL, primary: true },
+        ]);
+      } catch (err) {
+        typing.remove();
+        botSay('Nie udało się wysłać zgłoszenia automatycznie. Wyślij je jednym kliknięciem albo zadzwoń:', [
+          { label: 'Zadzwoń', href: 'tel:' + PHONE_INTL, primary: true },
+          { label: 'Wyślij SMS', href: 'sms:' + PHONE_INTL + '?body=' + encodeURIComponent(text) },
+          { label: 'Wyślij e-mail', href: 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text) },
+        ]);
+      }
+      busy = false; send.disabled = !input.value.trim();
     };
 
     // ── UI ──
@@ -1015,6 +1069,13 @@
         el.appendChild(row);
         log.scrollTop = log.scrollHeight;
       }
+    };
+    const showTyping = () => {
+      const el = addMsg('', 'bot');
+      el.classList.add('msg--typing');
+      el.setAttribute('aria-label', 'Asystent pisze…');
+      el.innerHTML = '<i></i><i></i><i></i>';
+      return el;
     };
     const clearChips = () => log.querySelectorAll('.chat__chips').forEach((c) => c.remove());
     const addChips = (labels) => {
@@ -1061,10 +1122,7 @@
       if (text === QUOTE_CHIP || wantsQuote(text)) { startQuote(); return; }
 
       busy = true; send.disabled = true;
-      const typing = addMsg('', 'bot');
-      typing.classList.add('msg--typing');
-      typing.setAttribute('aria-label', 'Asystent pisze…');
-      typing.innerHTML = '<i></i><i></i><i></i>';
+      const typing = showTyping();
 
       let reply = null;
       let offerQuote = false;
@@ -1113,17 +1171,19 @@
       input.style.height = Math.min(input.scrollHeight, 120) + 'px';
     });
     input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit(); }
+      if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); submitChat(); }
     });
-    chatForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+    // Wysyłamy bezpośrednio (bez wysyłania formularza), bo niektóre przeglądarki i podglądy blokują formularze.
+    chatForm.addEventListener('submit', (e) => { e.preventDefault(); submitChat(); });
+    send.addEventListener('click', () => submitChat());
+    function submitChat() {
       const text = input.value.trim();
       if (!text || busy) return;
       input.value = ''; input.style.height = 'auto';
       send.disabled = true;
       input.focus();
       ask(text);
-    });
+    }
   })();
 </script>
 </body>

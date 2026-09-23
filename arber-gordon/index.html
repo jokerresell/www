@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arber-Gordon — przeprowadzki Warszawa</title>
+<meta name="description" content="Arber-Gordon s.c. — przeprowadzki mieszkań, domów i biur w Warszawie i okolicach. Transport mebli, demontaż i montaż, pakowanie. Zadzwoń: 602 469 964.">
+<meta name="theme-color" content="#1E3A8A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E3A8A'/%3E%3Cpath d='M14 40V22h22v18M36 28h8l6 7v5H36' fill='none' stroke='%23fff' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='22' cy='44' r='4' fill='%23F97316'/%3E%3Ccircle cx='44' cy='44' r='4' fill='%23F97316'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MovingCompany",
+  "name": "Arber-Gordon s.c. Arkadiusz Bereda, Igor Gordziejew",
+  "telephone": "+48602469964",
+  "email": "arber_gordon@interia.pl",
+  "taxID": "5213531451",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ul. św. Wincentego 128 lok. 85",
+    "postalCode": "03-291",
+    "addressLocality": "Warszawa",
+    "addressCountry": "PL"
+  },
+  "areaServed": "Warszawa i okolice"
+}
+</script>
+<style>
+  :root {
+    --color-primary: #1E3A8A;
+    --color-primary-600: #1D4ED8;
+    --color-primary-50: #EFF6FF;
+    --color-primary-100: #DBEAFE;
+    --color-accent: #EA580C;
+    --color-accent-hover: #C2410C;
+    --color-on-accent: #FFFFFF;
+    --color-bg: #FFFFFF;
+    --color-bg-soft: #F5F8FC;
+    --color-fg: #0F1B3D;
+    --color-muted-fg: #475569;
+    --color-border: #D5E0F0;
+    --color-card: #FFFFFF;
+    --color-success: #15803D;
+    --color-error: #B91C1C;
+
+    --font-heading: "Poppins", system-ui, sans-serif;
+    --font-body: "Open Sans", system-ui, sans-serif;
+
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+    --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --shadow-sm: 0 1px 2px rgba(15, 27, 61, .06), 0 2px 8px rgba(15, 27, 61, .05);
+    --shadow-md: 0 8px 28px rgba(15, 27, 61, .10);
+    --ease: cubic-bezier(.2, .8, .2, 1);
+    --container: 1160px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--color-fg);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  h1, h2, h3 { font-family: var(--font-heading); line-height: 1.15; margin: 0 0 var(--space-4); letter-spacing: -.01em; text-wrap: balance; }
+  h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); font-weight: 700; }
+  h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; }
+  h3 { font-size: 1.2rem; font-weight: 600; }
+  p { margin: 0 0 var(--space-4); }
+  a { color: var(--color-primary-600); }
+  a:hover { color: var(--color-primary); }
+
+  :focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; border-radius: 6px; }
+
+  .skip-link {
+    position: absolute; left: var(--space-4); top: -60px; z-index: 100;
+    background: var(--color-primary); color: #fff; padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm);
+    transition: top .2s var(--ease);
+  }
+  .skip-link:focus { top: var(--space-4); }
+
+  .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--space-4); }
+  @media (min-width: 768px) { .container { padding: 0 var(--space-8); } }
+
+  .section { padding: var(--space-16) 0; }
+  @media (min-width: 1024px) { .section { padding: var(--space-24) 0; } }
+  .section--soft { background: var(--color-bg-soft); }
+  .section-head { max-width: 680px; margin-bottom: var(--space-12); }
+  .section-head p { color: var(--color-muted-fg); font-size: 1.08rem; }
+  .eyebrow {
+    display: inline-block; font-family: var(--font-heading); font-weight: 600; font-size: .8rem;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--color-accent-hover); margin-bottom: var(--space-3);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+    min-height: 48px; padding: 0 var(--space-6); border-radius: 999px; border: 2px solid transparent;
+    font-family: var(--font-heading); font-weight: 600; font-size: 1rem; text-decoration: none; cursor: pointer;
+    transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .btn:active { transform: translateY(1px) scale(.98); }
+  .btn--accent { background: var(--color-accent); color: var(--color-on-accent); box-shadow: 0 6px 18px rgba(234, 88, 12, .28); }
+  .btn--accent:hover { background: var(--color-accent-hover); color: var(--color-on-accent); }
+  .btn--outline { border-color: currentColor; color: var(--color-primary); background: transparent; }
+  .btn--outline:hover { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  .btn--light { border-color: rgba(255,255,255,.7); color: #fff; }
+  .btn--light:hover { background: #fff; color: var(--color-primary); border-color: #fff; }
+
+  /* Header */
+  .header {
+    position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.92);
+    backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid transparent; transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .header.is-scrolled { border-color: var(--color-border); box-shadow: var(--shadow-sm); }
+  .header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 68px; }
+  .logo { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; color: var(--color-fg); }
+  .logo__mark { width: 40px; height: 40px; flex: none; }
+  .logo__text { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; line-height: 1.1; }
+  .logo__text small { display: block; font-family: var(--font-body); font-weight: 500; font-size: .74rem; color: var(--color-muted-fg); letter-spacing: .04em; }
+  .nav { display: none; }
+  .nav ul { list-style: none; display: flex; gap: var(--space-2); margin: 0; padding: 0; }
+  .nav a {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-3);
+    color: var(--color-fg); text-decoration: none; font-weight: 600; font-size: .95rem; border-radius: 8px;
+    transition: color .2s var(--ease), background-color .2s var(--ease);
+  }
+  .nav a:hover { color: var(--color-primary-600); background: var(--color-primary-50); }
+  .header__cta { display: none; }
+  .header__phone {
+    display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 999px;
+    background: var(--color-accent); color: #fff;
+  }
+  .header__phone svg { width: 22px; height: 22px; }
+  @media (min-width: 960px) {
+    .nav { display: block; }
+    .header__cta { display: inline-flex; }
+    .header__phone { display: none; }
+  }
+
+  /* Hero */
+  .hero {
+    position: relative; color: #fff; overflow: hidden;
+    background:
+      radial-gradient(900px 500px at 85% 20%, rgba(59,130,246,.35), transparent 60%),
+      linear-gradient(160deg, #1E3A8A 0%, #172554 100%);
+  }
+  .hero__inner { display: grid; gap: var(--space-12); padding-block: var(--space-16); align-items: center; }
+  @media (min-width: 960px) { .hero__inner { grid-template-columns: 1.05fr .95fr; padding-block: var(--space-24); } }
+  .hero h1 { color: #fff; }
+  .hero h1 em { font-style: normal; color: #FDBA74; }
+  .hero__lead { font-size: 1.15rem; color: #DBE4F5; max-width: 560px; margin-bottom: var(--space-8); }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-8); }
+  .hero__badges { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); list-style: none; padding: 0; margin: 0; }
+  .hero__badges li { display: flex; align-items: center; gap: var(--space-2); font-weight: 600; font-size: .95rem; color: #E6ECF8; }
+  .hero__badges svg { width: 20px; height: 20px; color: #FDBA74; flex: none; }
+  .hero__art { position: relative; max-width: 560px; justify-self: center; width: 100%; }
+  .hero__card {
+    position: relative; margin: -36px 0 0 var(--space-6); width: max-content; max-width: calc(100% - 48px); background: #fff; color: var(--color-fg);
+    border-radius: var(--radius); box-shadow: var(--shadow-md); padding: var(--space-4) var(--space-6);
+    display: flex; align-items: center; gap: var(--space-3);
+  }
+  .hero__card strong { font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-primary); line-height: 1; }
+  .hero__card div { display: grid; gap: 4px; }
+  .hero__card span { font-size: .85rem; color: var(--color-muted-fg); line-height: 1.3; }
+
+  .truck-wheel { transform-box: fill-box; transform-origin: center; }
+  .road-line { animation: road 1.4s linear infinite; }
+  @keyframes road { to { stroke-dashoffset: -60; } }
+  .truck-body { animation: bob 1.4s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(-2px); } }
+
+  /* Trust strip */
+  .trust { background: #fff; border-bottom: 1px solid var(--color-border); }
+  .trust__list { list-style: none; margin: 0; padding: var(--space-8) 0; display: grid; gap: var(--space-6); grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 900px) { .trust__list { grid-template-columns: repeat(4, 1fr); } }
+  .trust__item { display: flex; gap: var(--space-3); align-items: flex-start; }
+  .trust__icon {
+    width: 44px; height: 44px; border-radius: 12px; flex: none; display: grid; place-items: center;
+    background: var(--color-primary-50); color: var(--color-primary);
+  }
+  .trust__icon svg { width: 22px; height: 22px; }
+  .trust__item strong { display: block; font-family: var(--font-heading); font-weight: 600; font-size: 1rem; }
+  .trust__item span { font-size: .9rem; color: var(--color-muted-fg); line-height: 1.4; display: block; }
+
+  /* Services */
+  .services { display: grid; gap: var(--space-6); grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .services { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .services { grid-template-columns: repeat(3, 1fr); } }
+  .service {
+    background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius);
+    padding: var(--space-8) var(--space-6); box-shadow: var(--shadow-sm);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
+  }
+  .service:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--color-primary-100); }
+  .service__icon {
+    width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; margin-bottom: var(--space-4);
+    background: var(--color-primary); color: #fff;
+  }
+  .service__icon svg { width: 26px; height: 26px; }
+  .service p { color: var(--color-muted-fg); margin: 0; }
+
+  /* Steps */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-6); counter-reset: step; }
+  @media (min-width: 900px) { .steps { grid-template-columns: repeat(3, 1fr); gap: var(--space-8); } }
+  .step { position: relative; background: #fff; border-radius: var(--radius); padding: var(--space-8) var(--space-6); border: 1px solid var(--color-border); }
+  .step__num {
+    counter-increment: step; display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 999px;
+    background: var(--color-accent); color: #fff; font-family: var(--font-heading); font-weight: 700; margin-bottom: var(--space-4);
+  }
+  .step__num::before { content: counter(step); }
+  .step p { color: var(--color-muted-fg); margin-bottom: var(--space-4); }
+  .step a { font-weight: 600; }
+
+  /* Why us */
+  .why { display: grid; gap: var(--space-12); align-items: center; }
+  @media (min-width: 960px) { .why { grid-template-columns: 1fr 1fr; } }
+  .checklist { list-style: none; padding: 0; margin: 0 0 var(--space-8); display: grid; gap: var(--space-4); }
+  .checklist li { display: flex; gap: var(--space-3); }
+  .checklist svg { width: 24px; height: 24px; flex: none; color: var(--color-success); margin-top: 2px; }
+  .checklist strong { display: block; font-family: var(--font-heading); font-weight: 600; }
+  .checklist span { color: var(--color-muted-fg); }
+  .quote-card {
+    background: linear-gradient(160deg, #1E3A8A 0%, #172554 100%); color: #fff; border-radius: calc(var(--radius) + 6px);
+    padding: var(--space-12) var(--space-8); position: relative; overflow: hidden;
+  }
+  .quote-card__mark { width: 44px; height: 44px; color: #FDBA74; margin-bottom: var(--space-4); }
+  .quote-card blockquote { margin: 0 0 var(--space-6); font-family: var(--font-heading); font-size: clamp(1.2rem, 2.2vw, 1.45rem); font-weight: 500; line-height: 1.45; }
+  .quote-card figcaption { color: #C7D3EC; font-size: .92rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; padding: 0; margin: var(--space-6) 0 0; }
+  .tags li { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: var(--space-1) var(--space-3); font-size: .85rem; font-weight: 600; white-space: nowrap; }
+
+  /* Quote form */
+  .quote { display: grid; gap: var(--space-12); }
+  @media (min-width: 960px) { .quote { grid-template-columns: .8fr 1.2fr; } }
+  .quote__aside p { color: var(--color-muted-fg); }
+  .quote__call {
+    display: flex; align-items: center; gap: var(--space-4); padding: var(--space-6); border-radius: var(--radius);
+    background: #fff; border: 1px solid var(--color-border); text-decoration: none; color: var(--color-fg); margin-top: var(--space-6);
+    transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .quote__call:hover { border-color: var(--color-accent); box-shadow: var(--shadow-sm); color: var(--color-fg); }
+  .quote__call-icon { width: 52px; height: 52px; border-radius: 999px; background: var(--color-accent); color: #fff; display: grid; place-items: center; flex: none; }
+  .quote__call-icon svg { width: 24px; height: 24px; }
+  .quote__call small { display: block; color: var(--color-muted-fg); font-size: .85rem; }
+  .quote__call strong { font-family: var(--font-heading); font-size: 1.5rem; }
+
+  .form { background: #fff; border: 1px solid var(--color-border); border-radius: calc(var(--radius) + 4px); padding: var(--space-8) var(--space-6); box-shadow: var(--shadow-md); }
+  @media (min-width: 640px) { .form { padding: var(--space-8); } }
+  .form__grid { display: grid; gap: var(--space-4) var(--space-6); grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .form__grid { grid-template-columns: 1fr 1fr; } .field--full { grid-column: 1 / -1; } }
+  .field label { display: block; font-weight: 600; font-size: .95rem; margin-bottom: var(--space-2); }
+  .field .req { color: var(--color-error); }
+  .field input, .field select, .field textarea {
+    width: 100%; min-height: 48px; padding: var(--space-3) var(--space-4); font: inherit; font-size: 16px; color: var(--color-fg);
+    background: #fff; border: 1.5px solid #B6C4DB; border-radius: var(--radius-sm);
+    transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .field textarea { min-height: 120px; resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--color-primary-600); box-shadow: 0 0 0 4px rgba(29, 78, 216, .15); }
+  .field .hint { font-size: .85rem; color: var(--color-muted-fg); margin-top: var(--space-1); }
+  .field .error { display: none; font-size: .88rem; color: var(--color-error); margin-top: var(--space-1); font-weight: 600; }
+  .field.is-invalid input, .field.is-invalid select, .field.is-invalid textarea { border-color: var(--color-error); }
+  .field.is-invalid .error { display: block; }
+  .checkbox { display: flex; gap: var(--space-3); align-items: flex-start; font-size: .92rem; color: var(--color-muted-fg); cursor: pointer; }
+  .checkbox input { width: 22px; height: 22px; min-height: 0; margin: 2px 0 0; accent-color: var(--color-primary); flex: none; cursor: pointer; }
+  .form__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-6); }
+  .form__foot p { margin: 0; font-size: .88rem; color: var(--color-muted-fg); max-width: 340px; }
+  .form__status { margin-top: var(--space-4); padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); background: #ECFDF3; color: var(--color-success); font-weight: 600; display: none; }
+  .form__status.is-visible { display: block; }
+
+  /* FAQ */
+  .faq { max-width: 820px; }
+  .faq details { border-bottom: 1px solid var(--color-border); }
+  .faq summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4);
+    min-height: 64px; padding: var(--space-4) 0; font-family: var(--font-heading); font-weight: 600; font-size: 1.08rem;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary svg { width: 22px; height: 22px; flex: none; color: var(--color-primary); transition: transform .25s var(--ease); }
+  .faq details[open] summary svg { transform: rotate(45deg); }
+  .faq details p { color: var(--color-muted-fg); padding-bottom: var(--space-4); margin: 0; max-width: 70ch; }
+
+  /* Contact */
+  .contact { display: grid; gap: var(--space-8); }
+  @media (min-width: 960px) { .contact { grid-template-columns: 1fr 1.2fr; align-items: stretch; } }
+  .contact__list { list-style: none; padding: 0; margin: 0 0 var(--space-8); display: grid; gap: var(--space-6); }
+  .contact__list li { display: flex; gap: var(--space-4); }
+  .contact__list .trust__icon { background: var(--color-primary); color: #fff; }
+  .contact__list small { display: block; color: var(--color-muted-fg); font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+  .contact__list a, .contact__list address { font-style: normal; font-weight: 600; font-size: 1.08rem; color: var(--color-fg); text-decoration: none; }
+  .contact__list a:hover { color: var(--color-primary-600); text-decoration: underline; }
+  .map { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border); min-height: 340px; background: var(--color-primary-50); }
+  .map iframe { width: 100%; height: 100%; min-height: 340px; border: 0; display: block; }
+
+  /* CTA band */
+  .cta-band { background: var(--color-accent); color: #fff; }
+  .cta-band__inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-6); padding-block: var(--space-12); }
+  .cta-band h2 { margin: 0 0 var(--space-2); color: #fff; }
+  .cta-band p { margin: 0; color: #FFEDD5; }
+  .cta-band .btn--white { background: #fff; color: var(--color-accent-hover); }
+  .cta-band .btn--white:hover { background: var(--color-primary); color: #fff; }
+
+  /* Footer */
+  .footer { background: #0B1533; color: #B8C4DD; font-size: .92rem; padding: var(--space-12) 0 var(--space-8); }
+  .footer__grid { display: grid; gap: var(--space-8); margin-bottom: var(--space-8); }
+  @media (min-width: 768px) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+  .footer h3 { color: #fff; font-size: 1rem; margin-bottom: var(--space-3); }
+  .footer a { color: #DCE4F3; text-decoration: none; }
+  .footer a:hover { color: #fff; text-decoration: underline; }
+  .footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+  .footer .logo { color: #fff; margin-bottom: var(--space-4); }
+  .footer .logo__text small { color: #97A6C4; }
+  .footer__bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); justify-content: space-between; }
+
+  /* Mobile sticky call bar */
+  .callbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2);
+    padding: var(--space-2) var(--space-3) calc(var(--space-2) + env(safe-area-inset-bottom));
+    background: rgba(255,255,255,.96); border-top: 1px solid var(--color-border); box-shadow: 0 -6px 20px rgba(15,27,61,.08);
+  }
+  .callbar .btn { padding: 0 var(--space-3); font-size: .95rem; }
+  @media (min-width: 960px) { .callbar { display: none; } }
+  @media (max-width: 959px) { body { padding-bottom: 76px; } }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .no-js .reveal { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body class="no-js">
+<a class="skip-link" href="#main">Przejdź do treści</a>
+
+<!-- Reusable SVG icons (Lucide-style, stroke 2) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></symbol>
+    <symbol id="i-sofa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0z"/><path d="M4 18v2M20 18v2"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2M15 18H9M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1E3A8A"/><path d="M8 26V13h14v13M22 17h6l4 5v4H22" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><circle cx="13" cy="28" r="3" fill="#F97316"/><circle cx="27" cy="28" r="3" fill="#F97316"/></symbol>
+  </defs>
+</svg>
+
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a class="logo" href="#top" aria-label="Arber-Gordon — strona główna">
+      <svg class="logo__mark" aria-hidden="true"><use href="#i-logo"/></svg>
+      <span class="logo__text">Arber-Gordon<small>PRZEPROWADZKI · WARSZAWA</small></span>
+    </a>
+    <nav class="nav" aria-label="Główna nawigacja">
+      <ul>
+        <li><a href="#uslugi">Usługi</a></li>
+        <li><a href="#jak-dzialamy">Jak działamy</a></li>
+        <li><a href="#dlaczego-my">Dlaczego my</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--accent header__cta" href="tel:+48602469964"><svg aria-hidden="true"><use href="#i-phone"/></svg>602 469 964</a>
+    <a class="header__phone" href="tel:+48602469964" aria-label="Zadzwoń: 602 469 964"><svg aria-hidden="true"><use href="#i-phone"/></svg></a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+      <div>
+        <span class="eyebrow" style="color:#FDBA74">Firma przeprowadzkowa z Warszawy</span>
+        <h1 id="hero-title">Przeprowadzka bez stresu — <em>przewieziemy, wniesiemy, złożymy.</em></h1>
+        <p class="hero__lead">Arber-Gordon to warszawska firma, która od lat przenosi mieszkania, domy i biura w Warszawie i okolicach. Punktualnie, starannie i w uczciwej cenie ustalonej przed startem.</p>
+        <div class="hero__actions">
+          <a class="btn btn--accent" href="#wycena">Bezpłatna wycena <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--light" href="tel:+48602469964"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zadzwoń teraz</a>
+        </div>
+        <ul class="hero__badges">
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Wycena bez zobowiązań</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Własny transport</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Faktura VAT</li>
+        </ul>
+      </div>
+
+      <div class="hero__art" aria-hidden="true">
+        <svg viewBox="0 0 520 380" fill="none">
+          <circle cx="330" cy="170" r="150" fill="#fff" fill-opacity=".06"/>
+          <!-- city skyline -->
+          <g fill="#fff" fill-opacity=".10">
+            <rect x="40" y="130" width="46" height="170" rx="4"/>
+            <rect x="96" y="90" width="38" height="210" rx="4"/>
+            <path d="M225 300V70l12-26 12 26v230z"/>
+            <rect x="148" y="150" width="60" height="150" rx="4"/>
+            <rect x="262" y="120" width="52" height="180" rx="4"/>
+            <rect x="400" y="140" width="70" height="160" rx="4"/>
+          </g>
+          <!-- road -->
+          <rect x="0" y="300" width="520" height="80" fill="#0B1533" fill-opacity=".55"/>
+          <path class="road-line" d="M0 340h520" stroke="#FDBA74" stroke-width="4" stroke-dasharray="30 30" stroke-opacity=".7"/>
+          <!-- truck -->
+          <g class="truck-body">
+            <rect x="92" y="150" width="236" height="140" rx="10" fill="#fff"/>
+            <rect x="92" y="150" width="236" height="22" rx="10" fill="#E2E8F5"/>
+            <text x="210" y="228" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="700" font-size="26" fill="#1E3A8A" textLength="200" lengthAdjust="spacingAndGlyphs">ARBER-GORDON</text>
+            <text x="210" y="256" text-anchor="middle" font-family="Open Sans, sans-serif" font-weight="600" font-size="15" fill="#EA580C" letter-spacing="3">PRZEPROWADZKI</text>
+            <path d="M336 190h66c6 0 11 3 14 8l28 40c2 3 3 7 3 10v34c0 5-4 8-8 8H336z" fill="#EA580C"/>
+            <path d="M350 204h46l22 32h-68z" fill="#DBEAFE"/>
+            <rect x="336" y="258" width="112" height="10" fill="#C2410C"/>
+            <rect x="438" y="266" width="14" height="12" rx="3" fill="#FDE68A"/>
+            <!-- boxes peeking -->
+            <rect x="110" y="120" width="44" height="34" rx="3" fill="#D6A56A"/>
+            <path d="M110 132h44" stroke="#B07C3F" stroke-width="3"/>
+            <rect x="160" y="128" width="36" height="26" rx="3" fill="#E4B77C"/>
+          </g>
+          <g>
+            <circle class="truck-wheel" cx="150" cy="296" r="24" fill="#0F1B3D"/><circle cx="150" cy="296" r="9" fill="#CBD5E1"/>
+            <circle class="truck-wheel" cx="270" cy="296" r="24" fill="#0F1B3D"/><circle cx="270" cy="296" r="9" fill="#CBD5E1"/>
+            <circle class="truck-wheel" cx="400" cy="296" r="24" fill="#0F1B3D"/><circle cx="400" cy="296" r="9" fill="#CBD5E1"/>
+          </g>
+        </svg>
+        <div class="hero__card">
+          <svg width="28" height="28" style="color:var(--color-accent);flex:none"><use href="#i-pin"/></svg>
+          <div><strong>Warszawa</strong><span>i okolice — dojeżdżamy<br>na każdą dzielnicę</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Najważniejsze informacje">
+    <div class="container">
+      <ul class="trust__list">
+        <li class="trust__item"><span class="trust__icon"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><div><strong>Punktualnie</strong><span>Przyjeżdżamy o umówionej godzinie</span></div></li>
+        <li class="trust__item"><span class="trust__icon"><svg aria-hidden="true"><use href="#i-shield"/></svg></span><div><strong>Bezpiecznie</strong><span>Koce, folie i pasy do każdego mebla</span></div></li>
+        <li class="trust__item"><span class="trust__icon"><svg aria-hidden="true"><use href="#i-wallet"/></svg></span><div><strong>Uczciwa cena</strong><span>Wycena przed startem, bez niespodzianek</span></div></li>
+        <li class="trust__item"><span class="trust__icon"><svg aria-hidden="true"><use href="#i-file"/></svg></span><div><strong>Legalna firma</strong><span>NIP 521-353-14-51 · faktury VAT</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="uslugi" aria-labelledby="uslugi-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Usługi</span>
+        <h2 id="uslugi-title">Wszystko, czego potrzebujesz przy przeprowadzce</h2>
+        <p>Od jednej kanapy po całe biuro. Dobierzemy ekipę i samochód do skali zlecenia.</p>
+      </div>
+      <div class="services">
+        <article class="service reveal">
+          <div class="service__icon"><svg aria-hidden="true"><use href="#i-home"/></svg></div>
+          <h3>Przeprowadzki mieszkań i domów</h3>
+          <p>Kompleksowo: znoszenie, transport i wnoszenie — także w blokach bez windy.</p>
+        </article>
+        <article class="service reveal">
+          <div class="service__icon"><svg aria-hidden="true"><use href="#i-building"/></svg></div>
+          <h3>Przeprowadzki biur i firm</h3>
+          <p>Sprawnie, w terminie dopasowanym do Twojej pracy — również w weekendy.</p>
+        </article>
+        <article class="service reveal">
+          <div class="service__icon"><svg aria-hidden="true"><use href="#i-sofa"/></svg></div>
+          <h3>Transport mebli i AGD</h3>
+          <p>Nowa szafa ze sklepu, lodówka czy pralka — przewieziemy i wniesiemy na miejsce.</p>
+        </article>
+        <article class="service reveal">
+          <div class="service__icon"><svg aria-hidden="true"><use href="#i-wrench"/></svg></div>
+          <h3>Demontaż i montaż mebli</h3>
+          <p>Rozkręcamy przed wyjazdem i składamy na miejscu, żeby od razu dało się mieszkać.</p>
+        </article>
+        <article class="service reveal">
+          <div class="service__icon"><svg aria-hidden="true"><use href="#i-box"/></svg></div>
+          <h3>Pakowanie i zabezpieczenie</h3>
+          <p>Kartony, folia bąbelkowa i koce — delikatne rzeczy dojadą w całości.</p>
+        </article>
+        <article class="service reveal">
+          <div class="service__icon"><svg aria-hidden="true"><use href="#i-truck"/></svg></div>
+          <h3>Transport poza Warszawę</h3>
+          <p>Przeprowadzki z i do Warszawy na trasach krajowych — zapytaj o termin.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="jak-dzialamy" aria-labelledby="kroki-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Jak działamy</span>
+        <h2 id="kroki-title">Trzy kroki do nowego adresu</h2>
+        <p>Prosto i przejrzyście — wiesz, ile zapłacisz, zanim cokolwiek podniesiemy.</p>
+      </div>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__num" aria-hidden="true"></span>
+          <h3>Opisz przeprowadzkę</h3>
+          <p>Zadzwoń lub wypełnij formularz: skąd, dokąd, kiedy i mniej więcej ile rzeczy.</p>
+          <a href="#wycena">Wypełnij formularz</a>
+        </li>
+        <li class="step reveal">
+          <span class="step__num" aria-hidden="true"></span>
+          <h3>Otrzymaj wycenę</h3>
+          <p>Oddzwonimy z konkretną propozycją terminu i ceny. Bez ukrytych kosztów.</p>
+          <a href="tel:+48602469964">602 469 964</a>
+        </li>
+        <li class="step reveal">
+          <span class="step__num" aria-hidden="true"></span>
+          <h3>My przewozimy, Ty odpoczywasz</h3>
+          <p>Ekipa przyjeżdża na czas, zabezpiecza, przewozi i ustawia wszystko na miejscu.</p>
+          <a href="#dlaczego-my">Dlaczego my?</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="dlaczego-my" aria-labelledby="why-title">
+    <div class="container why">
+      <div class="reveal">
+        <span class="eyebrow">Dlaczego Arber-Gordon</span>
+        <h2 id="why-title">Mała firma, która pilnuje szczegółów</h2>
+        <p style="color:var(--color-muted-fg)">Za firmą stoją jej właściciele — Arkadiusz Bereda i Igor Gordziejew. Znamy Warszawę, jej ciasne klatki schodowe i korki, więc planujemy przeprowadzkę tak, żeby wszystko poszło gładko.</p>
+        <ul class="checklist">
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><strong>Kontakt bezpośrednio z właścicielem</strong><span>Rozmawiasz z osobą, która odpowiada za zlecenie.</span></div></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><strong>Doświadczona, zgrana ekipa</strong><span>Wiemy, jak wnieść szafę na czwarte piętro bez windy.</span></div></li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg><div><strong>Elastyczne terminy</strong><span>Również wczesne poranki i weekendy.</span></div></li>
+        </ul>
+        <a class="btn btn--outline" href="#wycena">Zapytaj o termin</a>
+      </div>
+      <figure class="quote-card reveal" style="margin:0">
+        <svg class="quote-card__mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.2 6C4.3 6 2 8.4 2 11.3V18h7v-7H5.2c0-1.8 1.3-3.2 3-3.2V6zm11 0c-2.9 0-5.2 2.4-5.2 5.3V18h7v-7h-3.8c0-1.8 1.3-3.2 3-3.2V6z"/></svg>
+        <blockquote>Punktualni, profesjonalni, świetnie zorganizowani i dobrze wyposażeni. Ceny bardzo atrakcyjne — pod każdym względem lepiej niż konkurencja.</blockquote>
+        <figcaption>Streszczenie opinii klienta z katalogu firm</figcaption>
+        <ul class="tags" aria-label="Za co chwalą nas klienci">
+          <li>Punktualność</li><li>Profesjonalizm</li><li>Organizacja</li><li>Atrakcyjne ceny</li>
+        </ul>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="wycena" aria-labelledby="wycena-title">
+    <div class="container quote">
+      <div class="quote__aside reveal">
+        <span class="eyebrow">Bezpłatna wycena</span>
+        <h2 id="wycena-title">Ile będzie kosztować Twoja przeprowadzka?</h2>
+        <p>Podaj kilka informacji, a przygotujemy wycenę. Formularz otworzy gotową wiadomość e-mail w Twojej poczcie — wystarczy kliknąć „Wyślij”.</p>
+        <p>Wolisz porozmawiać? Zadzwoń — najszybciej ustalimy szczegóły przez telefon.</p>
+        <a class="quote__call" href="tel:+48602469964">
+          <span class="quote__call-icon"><svg aria-hidden="true"><use href="#i-phone"/></svg></span>
+          <span><small>Zadzwoń do nas</small><strong>602 469 964</strong></span>
+        </a>
+      </div>
+
+      <form class="form reveal" id="quote-form" novalidate>
+        <div class="form__grid">
+          <div class="field">
+            <label for="f-name">Imię i nazwisko <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name">
+            <p class="error" id="e-name">Podaj imię, żebyśmy wiedzieli, jak się zwracać.</p>
+          </div>
+          <div class="field">
+            <label for="f-phone">Telefon <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9 +()\-]{9,}" aria-describedby="e-phone">
+            <p class="error" id="e-phone">Podaj numer telefonu (min. 9 cyfr).</p>
+          </div>
+          <div class="field">
+            <label for="f-from">Skąd (adres / dzielnica) <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-from" name="from" type="text" autocomplete="street-address" required aria-describedby="e-from">
+            <p class="error" id="e-from">Wpisz adres lub dzielnicę początkową.</p>
+          </div>
+          <div class="field">
+            <label for="f-to">Dokąd <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-to" name="to" type="text" required aria-describedby="e-to">
+            <p class="error" id="e-to">Wpisz adres lub miasto docelowe.</p>
+          </div>
+          <div class="field">
+            <label for="f-type">Rodzaj przeprowadzki</label>
+            <select id="f-type" name="type">
+              <option>Mieszkanie / dom</option>
+              <option>Biuro / firma</option>
+              <option>Transport pojedynczych mebli / AGD</option>
+              <option>Inne</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-date">Preferowany termin</label>
+            <input id="f-date" name="date" type="date">
+            <p class="hint">Jeśli termin jest elastyczny — zostaw puste.</p>
+          </div>
+          <div class="field field--full">
+            <label for="f-msg">Co przewozimy?</label>
+            <textarea id="f-msg" name="message" placeholder="Np. mieszkanie 2 pokoje, 3. piętro bez windy, szafa do rozkręcenia, ok. 20 kartonów"></textarea>
+          </div>
+          <div class="field field--full">
+            <label class="checkbox" for="f-consent">
+              <input id="f-consent" name="consent" type="checkbox" required aria-describedby="e-consent">
+              <span>Wyrażam zgodę na kontakt w sprawie wyceny przeprowadzki.</span>
+            </label>
+            <p class="error" id="e-consent">Potrzebujemy zgody, żeby się z Tobą skontaktować.</p>
+          </div>
+        </div>
+        <div class="form__foot">
+          <p>Odpowiadamy najszybciej, jak to możliwe. Pola oznaczone <span class="req" style="color:var(--color-error)">*</span> są wymagane.</p>
+          <button class="btn btn--accent" type="submit">Wyślij zapytanie <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </div>
+        <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">FAQ</span>
+        <h2 id="faq-title">Najczęstsze pytania</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>Od czego zależy cena przeprowadzki?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <p>Głównie od ilości rzeczy, odległości, pięter i dostępu do windy oraz od tego, czy potrzebny jest demontaż mebli lub pakowanie. Dlatego zawsze podajemy cenę po krótkiej rozmowie — przed rozpoczęciem pracy.</p>
+        </details>
+        <details>
+          <summary>Z jakim wyprzedzeniem trzeba zarezerwować termin?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <p>Najlepiej kilka dni wcześniej, a w okresach największego ruchu (koniec miesiąca, wakacje) — z tygodniowym wyprzedzeniem. Zawsze warto jednak zadzwonić, bo czasem uda się znaleźć termin od ręki.</p>
+        </details>
+        <details>
+          <summary>Czy muszę sam spakować rzeczy?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <p>Nie musisz. Możemy przywieźć materiały i pomóc przy pakowaniu. Meble zawsze zabezpieczamy kocami i folią.</p>
+        </details>
+        <details>
+          <summary>Czy wystawiacie faktury?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <p>Tak. Jesteśmy zarejestrowaną spółką cywilną (NIP 521-353-14-51) i wystawiamy faktury VAT — zarówno dla osób prywatnych, jak i firm.</p>
+        </details>
+        <details>
+          <summary>Czy jeździcie poza Warszawę?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <p>Tak — obsługujemy Warszawę i okolice, a przeprowadzki na dłuższych trasach realizujemy po wcześniejszym ustaleniu terminu.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-label="Zadzwoń">
+    <div class="container cta-band__inner">
+      <div>
+        <h2>Planujesz przeprowadzkę?</h2>
+        <p>Zadzwoń — wycena jest bezpłatna i do niczego nie zobowiązuje.</p>
+      </div>
+      <a class="btn btn--white" href="tel:+48602469964"><svg aria-hidden="true"><use href="#i-phone"/></svg>602 469 964</a>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt" aria-labelledby="kontakt-title">
+    <div class="container contact">
+      <div class="reveal">
+        <span class="eyebrow">Kontakt</span>
+        <h2 id="kontakt-title">Porozmawiajmy o Twojej przeprowadzce</h2>
+        <ul class="contact__list">
+          <li><span class="trust__icon"><svg aria-hidden="true"><use href="#i-phone"/></svg></span><div><small>Telefon</small><a href="tel:+48602469964">602 469 964</a></div></li>
+          <li><span class="trust__icon"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><div><small>E-mail</small><a href="mailto:arber_gordon@interia.pl">arber_gordon@interia.pl</a></div></li>
+          <li><span class="trust__icon"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><div><small>Adres firmy</small><address>ul. św. Wincentego 128 lok. 85<br>03-291 Warszawa (Targówek)</address></div></li>
+        </ul>
+        <p style="color:var(--color-muted-fg);font-size:.92rem;margin:0">„ARBER-GORDON” s.c. Arkadiusz Bereda, Igor Gordziejew<br>NIP 521-353-14-51 · REGON 141869875</p>
+      </div>
+      <div class="map reveal">
+        <iframe title="Mapa — ul. św. Wincentego 128, Warszawa" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=%C5%9Bw.%20Wincentego%20128%2C%2003-291%20Warszawa&z=15&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a class="logo" href="#top" aria-label="Arber-Gordon — do góry strony">
+          <svg class="logo__mark" aria-hidden="true"><use href="#i-logo"/></svg>
+          <span class="logo__text">Arber-Gordon<small>PRZEPROWADZKI · WARSZAWA</small></span>
+        </a>
+        <p style="margin:0;max-width:340px">Przeprowadzki mieszkań, domów i biur, transport mebli i AGD. Warszawa i okolice.</p>
+      </div>
+      <div>
+        <h3>Na skróty</h3>
+        <ul>
+          <li><a href="#uslugi">Usługi</a></li>
+          <li><a href="#jak-dzialamy">Jak działamy</a></li>
+          <li><a href="#wycena">Bezpłatna wycena</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Kontakt</h3>
+        <ul>
+          <li><a href="tel:+48602469964">602 469 964</a></li>
+          <li><a href="mailto:arber_gordon@interia.pl">arber_gordon@interia.pl</a></li>
+          <li>ul. św. Wincentego 128/85<br>03-291 Warszawa</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> „ARBER-GORDON” s.c. Arkadiusz Bereda, Igor Gordziejew</span>
+      <span>NIP 521-353-14-51 · REGON 141869875</span>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a class="btn btn--accent" href="tel:+48602469964"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zadzwoń</a>
+  <a class="btn btn--outline" href="#wycena">Wycena</a>
+</div>
+
+<script>
+  document.body.classList.remove('no-js');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Header shadow on scroll
+  const header = document.querySelector('.header');
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    revealEls.forEach((el) => io.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  // Quote form → validate inline, then open a pre-filled e-mail
+  const form = document.getElementById('quote-form');
+  const status = document.getElementById('form-status');
+
+  const validateField = (input) => {
+    const field = input.closest('.field');
+    const valid = input.type === 'checkbox' ? input.checked : input.checkValidity() && input.value.trim() !== '';
+    field.classList.toggle('is-invalid', !valid);
+    input.setAttribute('aria-invalid', String(!valid));
+    return valid;
+  };
+
+  form.querySelectorAll('[required]').forEach((input) => {
+    input.addEventListener('blur', () => { if (input.value || input.type === 'checkbox') validateField(input); });
+    input.addEventListener('input', () => { if (input.closest('.field').classList.contains('is-invalid')) validateField(input); });
+    input.addEventListener('change', () => { if (input.type === 'checkbox') validateField(input); });
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const required = [...form.querySelectorAll('[required]')];
+    const invalid = required.filter((input) => !validateField(input));
+    if (invalid.length) { invalid[0].focus(); return; }
+
+    const d = Object.fromEntries(new FormData(form));
+    const body = [
+      'Dzień dobry, proszę o wycenę przeprowadzki.',
+      '',
+      'Imię i nazwisko: ' + d.name,
+      'Telefon: ' + d.phone,
+      'Skąd: ' + d.from,
+      'Dokąd: ' + d.to,
+      'Rodzaj: ' + d.type,
+      'Termin: ' + (d.date || 'elastyczny'),
+      '',
+      'Co przewozimy:',
+      d.message || '—'
+    ].join('\n');
+    const subject = 'Wycena przeprowadzki — ' + d.from + ' → ' + d.to;
+    window.location.href = 'mailto:arber_gordon@interia.pl?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    status.textContent = 'Otworzyliśmy Twoją pocztę z gotową wiadomością — kliknij „Wyślij”. Jeśli nic się nie otworzyło, zadzwoń: 602 469 964.';
+    status.classList.add('is-visible');
+  });
+</script>
+</body>
+</html>

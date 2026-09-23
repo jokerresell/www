@@ -1,20 +1,32 @@
-# Czat AI dla strony Arber-Gordon
+# Czat dla strony Arber-Gordon (darmowy)
 
-Mały serwer (Cloudflare Worker), który łączy okienko czatu na stronie z modelem Claude.
-Klucz API zostaje na serwerze i nigdy nie trafia do przeglądarki.
+Czat na stronie działa w dwóch trybach. Oba są darmowe.
 
-Bez tego serwera czat na stronie też działa, ale odpowiada tylko z wbudowanej bazy
-gotowych odpowiedzi (ceny, terminy, pakowanie, faktury, kontakt).
+## 1. Tryb wbudowany (domyślny, bez konfiguracji)
 
-## Uruchomienie (ok. 10 minut)
+Działa w całości w przeglądarce, bez serwera i bez kosztów:
 
-1. Załóż darmowe konto na https://dash.cloudflare.com i klucz API na https://console.anthropic.com.
+- odpowiada na typowe pytania: ceny, terminy, pakowanie, faktury, piętra i windy, trasy, kontakt,
+- prowadzi klienta przez **wycenę krok po kroku**: skąd, dokąd, kiedy, co, piętra, dodatkowe usługi, imię, telefon,
+- na końcu daje przyciski **Wyślij SMS**, **Wyślij e-mail** i **Zadzwoń** z gotowym zgłoszeniem do firmy.
+
+Nic nie trzeba robić: wystarczy opublikować `index.html`.
+
+## 2. Tryb AI (opcjonalny, też darmowy): Cloudflare Workers AI
+
+Ten folder to mały serwer, który odpowiada na dowolne pytania modelem językowym
+(Llama 3.3 70B) na **darmowym planie Cloudflare**. Plan daje dzienny limit
+10 000 „neuronów”, czyli mniej więcej 80 odpowiedzi dziennie. Po wyczerpaniu limitu
+czat na stronie sam wraca do trybu wbudowanego. Nie trzeba podawać karty płatniczej.
+
+### Uruchomienie (ok. 10 minut)
+
+1. Załóż darmowe konto na https://dash.cloudflare.com.
 2. W tym folderze:
 
    ```bash
    npm install
    npx wrangler login
-   npx wrangler secret put ANTHROPIC_API_KEY   # wklej klucz, gdy poprosi
    ```
 
 3. W `wrangler.toml` wpisz w `ALLOWED_ORIGINS` adres, pod którym działa strona
@@ -28,12 +40,11 @@ gotowych odpowiedzi (ceny, terminy, pakowanie, faktury, kontakt).
    Wrangler wypisze adres w stylu `https://arber-gordon-chat.<konto>.workers.dev`.
 5. W `index.html` wpisz ten adres w stałą `CHAT_API_URL` (szukaj `const CHAT_API_URL = ''`).
 
-Jeśli serwer będzie niedostępny, czat sam przełączy się na wbudowane odpowiedzi.
+### Co warto wiedzieć
 
-## Co warto wiedzieć
-
-- **Wiedza asystenta** jest w `SYSTEM_PROMPT` w `src/index.js`. Zmieniasz usługi, dane albo zasady? Popraw ten tekst i wdróż ponownie.
-- **Asystent nie podaje cen ani nie potwierdza terminów.** Zawsze kieruje do telefonu lub formularza wyceny.
-- **Koszty:** każda wiadomość to płatne zapytanie do API Anthropic. Warto ustawić miesięczny limit wydatków w konsoli Anthropic.
-- **Ograniczenia:** serwer przyjmuje maksymalnie 20 ostatnich wiadomości po 1500 znaków.
-- **Test lokalny:** `npx wrangler dev`. Klucz do testów wpisz do pliku `.dev.vars` jako `ANTHROPIC_API_KEY=...`. Plik jest ignorowany przez git.
+- **Wiedza asystenta** jest w `SYSTEM_PROMPT` w `src/index.js`. Po zmianie wdróż ponownie (`npx wrangler deploy`).
+- **Asystent nie podaje cen ani nie potwierdza terminów.** Kieruje do telefonu lub wyceny w czacie.
+- **Wycena krok po kroku zawsze działa lokalnie**, także przy włączonym AI.
+- **Płatny Claude (opcjonalnie):** jeśli kiedyś zechcesz lepszych odpowiedzi, ustaw
+  `npx wrangler secret put ANTHROPIC_API_KEY`. Serwer użyje wtedy Claude zamiast Workers AI (płatnie, za każde zapytanie).
+- **Test lokalny:** `npx wrangler dev`.

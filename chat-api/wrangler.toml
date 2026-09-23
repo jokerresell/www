@@ -7,5 +7,9 @@ compatibility_flags = ["nodejs_compat"]
 # Adres strony, która może korzystać z czatu (CORS). Kilka adresów oddziel przecinkami.
 ALLOWED_ORIGINS = "https://arber-gordon.pl,https://www.arber-gordon.pl"
 
-# Klucz API ustaw jako sekret (nie wpisuj go tutaj):
+# Opcjonalnie (płatnie) — Claude zamiast Workers AI. Klucz ustaw jako sekret:
 #   npx wrangler secret put ANTHROPIC_API_KEY
+
+# Darmowe Cloudflare Workers AI (limit dzienny w planie Free).
+[ai]
+binding = "AI"

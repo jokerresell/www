@@ -44,20 +44,59 @@ function json(body, status, headers) {
   });
 }
 
-// Accept only a clean, alternating user/assistant text history from the browser.
+// Accept only plain user/assistant text from the browser; merge consecutive turns of the same role.
 function sanitizeMessages(input) {
   if (!Array.isArray(input) || input.length === 0) return null;
-  const messages = input.slice(-MAX_TURNS).map((m) => ({
-    role: m && m.role === "assistant" ? "assistant" : "user",
-    content: String((m && m.content) || "").slice(0, MAX_CHARS).trim(),
-  }));
+  const messages = [];
+  for (const m of input.slice(-MAX_TURNS)) {
+    const role = m && m.role === "assistant" ? "assistant" : "user";
+    const content = String((m && m.content) || "").slice(0, MAX_CHARS).trim();
+    if (!content) continue;
+    const prev = messages[messages.length - 1];
+    if (prev && prev.role === role) prev.content += "\n\n" + content;
+    else messages.push({ role, content });
+  }
   while (messages.length && messages[0].role !== "user") messages.shift();
   if (!messages.length || messages[messages.length - 1].role !== "user") return null;
-  if (messages.some((m) => !m.content)) return null;
-  for (let i = 1; i < messages.length; i++) {
-    if (messages[i].role === messages[i - 1].role) return null;
-  }
   return messages;
+}
+
+// Free: Cloudflare Workers AI (10 000 neurons/day on the Workers Free plan, ~80 replies).
+const WORKERS_AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+
+async function replyWithWorkersAI(env, messages) {
+  const out = await env.AI.run(WORKERS_AI_MODEL, {
+    messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+    max_tokens: 400,
+  });
+  return String((out && out.response) || "").trim();
+}
+
+// Optional, paid: Claude API — used only when the ANTHROPIC_API_KEY secret is set.
+async function replyWithClaude(env, messages) {
+  const client = new Anthropic({
+    apiKey: env.ANTHROPIC_API_KEY,
+    ...(env.ANTHROPIC_BASE_URL ? { baseURL: env.ANTHROPIC_BASE_URL } : {}),
+  });
+  const response = await client.beta.messages.create({
+    model: "claude-opus-5",
+    // Deliberately short chat replies.
+    max_tokens: 1024,
+    output_config: { effort: "low" },
+    // Re-run a safety-classifier decline on Anthropic's recommended fallback model.
+    betas: ["server-side-fallback-2026-07-01"],
+    fallbacks: "default",
+    system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
+    messages,
+  });
+  if (response.stop_reason === "refusal") {
+    return "Na to pytanie nie mogę odpowiedzieć. W sprawie przeprowadzki zadzwoń: 602 469 964.";
+  }
+  return response.content
+    .filter((block) => block.type === "text")
+    .map((block) => block.text)
+    .join("")
+    .trim();
 }
 
 export default {
@@ -76,45 +115,18 @@ export default {
     const messages = sanitizeMessages(body && body.messages);
     if (!messages) return json({ error: "invalid_messages" }, 400, cors);
 
-    const client = new Anthropic({
-      apiKey: env.ANTHROPIC_API_KEY,
-      ...(env.ANTHROPIC_BASE_URL ? { baseURL: env.ANTHROPIC_BASE_URL } : {}),
-    });
-
     try {
-      const response = await client.beta.messages.create({
-        model: "claude-opus-5",
-        // Deliberately short chat replies.
-        max_tokens: 1024,
-        output_config: { effort: "low" },
-        // Re-run a safety-classifier decline on Anthropic's recommended fallback model.
-        betas: ["server-side-fallback-2026-07-01"],
-        fallbacks: "default",
-        system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
-        messages,
-      });
-
-      if (response.stop_reason === "refusal") {
-        return json({ reply: "Na to pytanie nie mogę odpowiedzieć. W sprawie przeprowadzki zadzwoń: 602 469 964." }, 200, cors);
-      }
-
-      const reply = response.content
-        .filter((block) => block.type === "text")
-        .map((block) => block.text)
-        .join("")
-        .trim();
-
-      return json({ reply: reply || "Przepraszam, nie udało mi się odpowiedzieć. Zadzwoń: 602 469 964." }, 200, cors);
+      const reply = env.ANTHROPIC_API_KEY
+        ? await replyWithClaude(env, messages)
+        : await replyWithWorkersAI(env, messages);
+      if (!reply) return json({ error: "empty_reply" }, 502, cors);
+      return json({ reply }, 200, cors);
     } catch (err) {
-      if (err instanceof Anthropic.RateLimitError) {
-        return json({ error: "rate_limited" }, 429, cors);
-      }
-      if (err instanceof Anthropic.APIError) {
-        console.error("Anthropic API error", err.status, err.message);
-        return json({ error: "upstream_error" }, 502, cors);
-      }
-      console.error("Unexpected error", err);
-      return json({ error: "internal_error" }, 500, cors);
+      // The browser falls back to built-in answers on any non-2xx response
+      // (e.g. the free daily Workers AI allocation is used up).
+      if (err instanceof Anthropic.RateLimitError) return json({ error: "rate_limited" }, 429, cors);
+      console.error("Chat error", err && err.status, err && err.message);
+      return json({ error: "upstream_error" }, 502, cors);
     }
   },
 };

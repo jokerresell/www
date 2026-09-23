@@ -1,0 +1,11 @@
+name = "arber-gordon-chat"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Adres strony, która może korzystać z czatu (CORS). Kilka adresów oddziel przecinkami.
+ALLOWED_ORIGINS = "https://arber-gordon.pl,https://www.arber-gordon.pl"
+
+# Klucz API ustaw jako sekret (nie wpisuj go tutaj):
+#   npx wrangler secret put ANTHROPIC_API_KEY

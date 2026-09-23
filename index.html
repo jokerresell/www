@@ -325,6 +325,67 @@
   .footer .logo__text small { color: #97A6C4; }
   .footer__bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); justify-content: space-between; }
 
+
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  /* AI chat widget */
+  .chat-fab {
+    position: fixed; right: var(--space-4); bottom: calc(88px + env(safe-area-inset-bottom)); z-index: 70;
+    display: inline-flex; align-items: center; gap: var(--space-2); min-height: 56px; padding: 0 var(--space-4) 0 var(--space-3);
+    border: 0; border-radius: 999px; cursor: pointer; background: var(--color-primary); color: #fff;
+    font-family: var(--font-heading); font-weight: 600; font-size: .95rem; box-shadow: 0 10px 28px rgba(15,27,61,.28);
+    transition: transform .2s var(--ease), background-color .2s var(--ease);
+  }
+  .chat-fab:hover { background: var(--color-primary-600); transform: translateY(-2px); }
+  .chat-fab svg { width: 30px; height: 30px; flex: none; }
+  .chat-fab[aria-expanded="true"] { display: none; }
+  @media (max-width: 639px) { .chat-fab { width: 56px; padding: 0; justify-content: center; } .chat-fab svg { width: 40px; height: 40px; } .chat-fab__label { display: none; } }
+  @media (min-width: 960px) { .chat-fab { bottom: var(--space-6); right: var(--space-6); } }
+
+  .chat {
+    position: fixed; z-index: 80; right: 0; bottom: 0; left: 0; height: min(640px, 100dvh);
+    display: flex; flex-direction: column; background: #fff; border-radius: 18px 18px 0 0;
+    box-shadow: 0 -10px 40px rgba(15,27,61,.25); overflow: hidden;
+    transform: translateY(16px); opacity: 0; visibility: hidden;
+    transition: transform .25s var(--ease), opacity .2s var(--ease), visibility 0s linear .25s;
+  }
+  .chat.is-open { transform: none; opacity: 1; visibility: visible; transition: transform .25s var(--ease), opacity .2s var(--ease); }
+  @media (min-width: 640px) {
+    .chat { left: auto; right: var(--space-6); bottom: var(--space-6); width: 390px; height: min(600px, calc(100dvh - 48px)); border-radius: 18px; border: 1px solid var(--color-border); }
+  }
+  .chat__head { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4); background: linear-gradient(160deg, #1E3A8A 0%, #172554 100%); color: #fff; }
+  .chat__avatar { width: 40px; height: 40px; flex: none; }
+  .chat__title { flex: 1; min-width: 0; }
+  .chat__title strong { display: block; white-space: nowrap; font-family: var(--font-heading); font-size: 1rem; line-height: 1.2; }
+  .chat__status { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; color: #C7D3EC; }
+  .chat__status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #4ADE80; }
+  .chat__badge { font-size: .68rem; font-weight: 700; letter-spacing: .08em; padding: 2px 8px; border-radius: 999px; background: rgba(253,186,116,.2); color: #FDBA74; margin-left: 6px; vertical-align: 2px; }
+  .chat__close { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border: 0; border-radius: 10px; background: transparent; color: #fff; cursor: pointer; transition: background-color .2s var(--ease); }
+  .chat__close:hover { background: rgba(255,255,255,.12); }
+  .chat__close svg { width: 22px; height: 22px; }
+
+  .chat__log { flex: 1; overflow-y: auto; padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); background: var(--color-bg-soft); overscroll-behavior: contain; }
+  .msg { max-width: 85%; padding: var(--space-3) var(--space-4); border-radius: 16px; font-size: .95rem; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; }
+  .msg--bot { align-self: flex-start; background: #fff; border: 1px solid var(--color-border); border-bottom-left-radius: 4px; }
+  .msg--user { align-self: flex-end; background: var(--color-primary); color: #fff; border-bottom-right-radius: 4px; }
+  .msg--typing { display: inline-flex; gap: 5px; align-items: center; }
+  .msg--typing i { width: 7px; height: 7px; border-radius: 50%; background: #94A3B8; animation: typing 1s infinite ease-in-out; }
+  .msg--typing i:nth-child(2) { animation-delay: .15s; } .msg--typing i:nth-child(3) { animation-delay: .3s; }
+  @keyframes typing { 0%, 60%, 100% { transform: none; opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+  .chat__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .chat__chip { min-height: 36px; padding: 0 var(--space-3); border-radius: 999px; border: 1.5px solid var(--color-primary-100); background: #fff; color: var(--color-primary); font: 600 .85rem var(--font-body); cursor: pointer; transition: background-color .2s var(--ease), border-color .2s var(--ease); }
+  .chat__chip:hover { background: var(--color-primary-50); border-color: var(--color-primary-600); }
+
+  .chat__form { display: flex; gap: var(--space-2); align-items: flex-end; padding: var(--space-3); border-top: 1px solid var(--color-border); background: #fff; }
+  .chat__form textarea { flex: 1; min-height: 44px; max-height: 120px; resize: none; padding: 10px var(--space-3); font: inherit; font-size: 16px; line-height: 1.4; color: var(--color-fg); border: 1.5px solid #B6C4DB; border-radius: 12px; }
+  .chat__form textarea:focus { outline: none; border-color: var(--color-primary-600); box-shadow: 0 0 0 4px rgba(29,78,216,.15); }
+  .chat__send { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border: 0; border-radius: 12px; background: var(--color-accent); color: #fff; cursor: pointer; transition: background-color .2s var(--ease); }
+  .chat__send:hover { background: var(--color-accent-hover); }
+  .chat__send:disabled { background: #CBD5E1; cursor: not-allowed; }
+  .chat__send svg { width: 20px; height: 20px; }
+  .chat__note { margin: 0; padding: 0 var(--space-3) var(--space-2); background: #fff; font-size: .75rem; color: var(--color-muted-fg); text-align: center; }
+  .chat__note a { color: inherit; font-weight: 600; }
+
   /* Mobile sticky call bar */
   .callbar {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2);
@@ -369,6 +430,10 @@
     <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#fff"/><rect x="10" y="13" width="20" height="16" rx="5" fill="#1E3A8A"/><circle cx="16" cy="21" r="2.2" fill="#FDBA74"/><circle cx="24" cy="21" r="2.2" fill="#FDBA74"/><path d="M20 13V9" stroke="#1E3A8A" stroke-width="2.2" stroke-linecap="round"/><circle cx="20" cy="8" r="2" fill="#EA580C"/></symbol>
     <symbol id="i-logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="#1E3A8A"/><path d="M8 26V13h14v13M22 17h6l4 5v4H22" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><circle cx="13" cy="28" r="3" fill="#F97316"/><circle cx="27" cy="28" r="3" fill="#F97316"/></symbol>
   </defs>
 </svg>
@@ -728,6 +793,28 @@
   </div>
 </footer>
 
+<button class="chat-fab" id="chat-fab" type="button" aria-label="Zapytaj asystenta AI" aria-expanded="false" aria-controls="chat">
+  <svg aria-hidden="true"><use href="#i-bot"/></svg><span class="chat-fab__label">Zapytaj asystenta</span>
+</button>
+
+<section class="chat" id="chat" role="dialog" aria-modal="false" aria-labelledby="chat-title" hidden>
+  <header class="chat__head">
+    <svg class="chat__avatar" aria-hidden="true"><use href="#i-bot"/></svg>
+    <div class="chat__title">
+      <strong id="chat-title">Asystent Arber-Gordon <span class="chat__badge">AI</span></strong>
+      <span class="chat__status">Odpowiada od razu</span>
+    </div>
+    <button class="chat__close" id="chat-close" type="button" aria-label="Zamknij czat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+  </header>
+  <div class="chat__log" id="chat-log" role="log" aria-live="polite" aria-label="Rozmowa z asystentem"></div>
+  <form class="chat__form" id="chat-form">
+    <label for="chat-input" class="sr-only">Twoja wiadomość</label>
+    <textarea id="chat-input" rows="1" maxlength="1500" placeholder="Napisz pytanie…" autocomplete="off"></textarea>
+    <button class="chat__send" id="chat-send" type="submit" aria-label="Wyślij wiadomość" disabled><svg aria-hidden="true"><use href="#i-send"/></svg></button>
+  </form>
+  <p class="chat__note">Asystent AI może się mylić. Wiążącą wycenę poda firma: <a href="tel:+48602469964">602 469 964</a></p>
+</section>
+
 <div class="callbar">
   <a class="btn btn--accent" href="tel:+48602469964"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zadzwoń</a>
   <a class="btn btn--outline" href="#wycena">Wycena</a>
@@ -799,6 +886,142 @@
     status.textContent = 'Otworzyliśmy Twoją pocztę z gotową wiadomością — kliknij „Wyślij”. Jeśli nic się nie otworzyło, zadzwoń: 602 469 964.';
     status.classList.add('is-visible');
   });
+  // ── AI chat widget ────────────────────────────────────────────────
+  // Adres wdrożonego Cloudflare Workera z folderu chat-api/ (np. https://arber-gordon-chat.<konto>.workers.dev).
+  // Dopóki jest pusty, asystent odpowiada z wbudowanej bazy odpowiedzi.
+  const CHAT_API_URL = '';
+
+  (() => {
+    const fab = document.getElementById('chat-fab');
+    const panel = document.getElementById('chat');
+    const closeBtn = document.getElementById('chat-close');
+    const log = document.getElementById('chat-log');
+    const chatForm = document.getElementById('chat-form');
+    const input = document.getElementById('chat-input');
+    const send = document.getElementById('chat-send');
+    const history = [];
+    let busy = false;
+    let started = false;
+
+    const PHONE = '602 469 964';
+    const norm = (t) => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ł/g, 'l');
+    const LOCAL = [
+      { k: ['cen', 'koszt', 'ile', 'kosztuje', 'placi', 'drogo', 'tanio', 'stawk', 'cennik'], a: 'Cena zależy od ilości rzeczy, odległości, pięter i windy oraz tego, czy trzeba rozkręcić meble. Wycena jest bezpłatna: zadzwoń pod ' + PHONE + ' albo wypełnij formularz „Bezpłatna wycena” na tej stronie, a oddzwonimy z konkretną kwotą.' },
+      { k: ['termin', 'kiedy', 'wolne', 'weekend', 'sobot', 'niedziel', 'jutro', 'dzisiaj', 'wyprzedz', 'rezerw'], a: 'Najlepiej zarezerwować kilka dni wcześniej, a na koniec miesiąca i w wakacje około tydzień wcześniej. Czasem da się znaleźć termin od ręki, więc warto zadzwonić: ' + PHONE + '.' },
+      { k: ['pakow', 'karton', 'folia', 'zabezpiecz', 'pudel'], a: 'Tak, pomagamy w pakowaniu. Możemy przywieźć kartony i folię, a meble zawsze zabezpieczamy kocami i folią.' },
+      { k: ['faktur', 'vat', 'nip', 'paragon', 'firma jest'], a: 'Tak, wystawiamy faktury VAT osobom prywatnym i firmom. NIP: 521-353-14-51.' },
+      { k: ['poza', 'inne miasto', 'krakow', 'gdansk', 'poznan', 'wroclaw', 'lodz', 'polsk', 'daleko', 'trasa', 'kilometr'], a: 'Obsługujemy Warszawę i okolice. Dłuższe trasy po Polsce też realizujemy, po wcześniejszym ustaleniu terminu. Zadzwoń: ' + PHONE + '.' },
+      { k: ['biur', 'firm', 'lokal', 'sklep', 'magazyn'], a: 'Przewozimy też biura i firmy, w terminie dopasowanym do Waszej pracy, również w weekendy. Opisz, co trzeba przewieźć, a przygotujemy wycenę.' },
+      { k: ['mebl', 'szaf', 'kanap', 'lozk', 'montaz', 'demontaz', 'skrec', 'rozkrec', 'agd', 'lodowk', 'pralk'], a: 'Przewozimy meble i AGD, a meble rozkręcamy przed wyjazdem i skręcamy na miejscu. Napisz, co trzeba przewieźć i skąd dokąd, albo zadzwoń: ' + PHONE + '.' },
+      { k: ['pieter', 'winda', 'windy', 'schod'], a: 'Nie ma problemu, przenosimy też w blokach bez windy. Przy wycenie podaj piętro i to, czy jest winda, bo to wpływa na czas pracy.' },
+      { k: ['kontakt', 'telefon', 'numer', 'mail', 'adres', 'gdzie', 'zadzwon', 'dzwon'], a: 'Telefon: ' + PHONE + '\nE-mail: arber_gordon@interia.pl\nAdres: ul. św. Wincentego 128 lok. 85, 03-291 Warszawa (Targówek).' },
+      { k: ['dzien dobry', 'czesc', 'hej', 'witam', 'siema', 'dobry wieczor'], a: 'Dzień dobry! W czym mogę pomóc? Możesz zapytać o cenę, termin, pakowanie albo opisać swoją przeprowadzkę.' },
+      { k: ['dziek', 'dzieki'], a: 'Proszę bardzo! Gdyby coś jeszcze przyszło Ci do głowy, pytaj. Wycenę najszybciej ustalisz pod numerem ' + PHONE + '.' },
+    ];
+    const localAnswer = (text) => {
+      const t = norm(text);
+      const hit = LOCAL.find((e) => e.k.some((k) => t.includes(k)));
+      return hit ? hit.a : 'Dobre pytanie! Tu najlepiej pomoże rozmowa z nami: zadzwoń pod ' + PHONE + ' albo napisz na arber_gordon@interia.pl. Mogę też odpowiedzieć na pytania o ceny, terminy, pakowanie czy faktury.';
+    };
+
+    const addMsg = (text, who) => {
+      const el = document.createElement('div');
+      el.className = 'msg msg--' + who;
+      el.textContent = text;
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+      return el;
+    };
+
+    const addChips = () => {
+      const wrap = document.createElement('div');
+      wrap.className = 'chat__chips';
+      ['Ile kosztuje przeprowadzka?', 'Jak szybko macie termin?', 'Czy pomagacie w pakowaniu?', 'Czy wystawiacie faktury?'].forEach((q) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'chat__chip'; b.textContent = q;
+        b.addEventListener('click', () => { wrap.remove(); ask(q); });
+        wrap.appendChild(b);
+      });
+      log.appendChild(wrap);
+    };
+
+    const ask = async (text) => {
+      if (busy || !text.trim()) return;
+      busy = true; send.disabled = true;
+      addMsg(text, 'user');
+      history.push({ role: 'user', content: text });
+
+      const typing = addMsg('', 'bot');
+      typing.classList.add('msg--typing');
+      typing.setAttribute('aria-label', 'Asystent pisze…');
+      typing.innerHTML = '<i></i><i></i><i></i>';
+
+      let reply;
+      if (CHAT_API_URL) {
+        try {
+          const res = await fetch(CHAT_API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: history.slice(-20) }),
+          });
+          const data = await res.json();
+          if (!res.ok || !data.reply) throw new Error(data.error || res.status);
+          reply = data.reply;
+        } catch (err) {
+          reply = localAnswer(text);
+        }
+      } else {
+        await new Promise((r) => setTimeout(r, 500));
+        reply = localAnswer(text);
+      }
+
+      typing.remove();
+      addMsg(reply, 'bot');
+      history.push({ role: 'assistant', content: reply });
+      busy = false; send.disabled = !input.value.trim();
+    };
+
+    const open = () => {
+      panel.hidden = false;
+      requestAnimationFrame(() => panel.classList.add('is-open'));
+      fab.setAttribute('aria-expanded', 'true');
+      if (!started) {
+        started = true;
+        addMsg('Dzień dobry! Jestem asystentem firmy Arber-Gordon. Pomogę z pytaniami o przeprowadzkę, ceny i terminy. W czym mogę pomóc?', 'bot');
+        addChips();
+      }
+      input.focus();
+    };
+    const close = () => {
+      panel.classList.remove('is-open');
+      fab.setAttribute('aria-expanded', 'false');
+      setTimeout(() => { if (!panel.classList.contains('is-open')) panel.hidden = true; }, 260);
+      fab.focus();
+    };
+
+    fab.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && panel.classList.contains('is-open')) close(); });
+
+    input.addEventListener('input', () => {
+      send.disabled = busy || !input.value.trim();
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit(); }
+    });
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text || busy) return;
+      input.value = ''; input.style.height = 'auto';
+      const chips = log.querySelector('.chat__chips');
+      if (chips) chips.remove();
+      input.focus();
+      ask(text);
+    });
+  })();
 </script>
 </body>
 </html>

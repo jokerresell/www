@@ -889,7 +889,7 @@
         </details>
         <details>
           <summary>Co zrobić, gdy mam szkodę?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-          <div class="answer">Zadzwoń pod 605 377 853. Powiemy, jakie zdjęcia i dokumenty zebrać, pomożemy zgłosić szkodę u ubezpieczyciela i będziemy na bieżąco śledzić sprawę.</div>
+          <div class="answer">Zadzwoń pod <span data-bz="phone">605 377 853</span>. Powiemy, jakie zdjęcia i dokumenty zebrać, pomożemy zgłosić szkodę u ubezpieczyciela i będziemy na bieżąco śledzić sprawę.</div>
         </details>
         <details>
           <summary>Czy moje OC odnowi się automatycznie?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
@@ -924,7 +924,7 @@
           </li>
           <li>
             <span class="trust-icon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span>
-            <dl><dt>Godziny otwarcia</dt><dd>pon.–pt. 9:00–17:00<br>sob. po umówieniu</dd></dl>
+            <dl><dt>Godziny otwarcia</dt><dd><span data-bz="hours1">pon.–pt. 9:00–17:00</span><br><span data-bz="hours2">sob. po umówieniu</span></dd></dl>
           </li>
         </ul>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Moniuszki+87a+Krosno" target="_blank" rel="noopener">
@@ -1044,7 +1044,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year">2026</span> Na każdą kieszeń – Ubezpieczenia Benedykt Znój</span>
-      <span>Projekt demonstracyjny strony internetowej</span>
+      <span>Projekt demonstracyjny strony internetowej · <a href="admin.html">Panel agencji</a></span>
     </div>
   </div>
 </footer>
@@ -1111,6 +1111,27 @@
     el.addEventListener('change', function () { if (el.hasAttribute('aria-invalid')) check(el); });
   });
 
+  // Hand submissions to the admin panel (demo: same-browser storage)
+  var toInbox = function (form) {
+    var v = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+    var entry;
+    if (form.id === 'quote-form') {
+      entry = { source: 'Szybka wycena', name: v('q-name'), phone: v('q-phone'), type: (form.querySelector('[name="typ"]:checked') || {}).value || 'Inne' };
+    } else {
+      var topic = v('c-topic');
+      var map = { 'OC/AC': 'OC/AC', 'domu': 'Dom', 'życie': 'Życie', 'turystyczne': 'Podróż', 'firmy': 'Firma', 'rolne': 'Rolne', 'wznowieniu': 'OC/AC', 'szkody': 'Inne' };
+      var type = 'Inne';
+      Object.keys(map).some(function (k) { if (topic.indexOf(k) !== -1) { type = map[k]; return true; } return false; });
+      entry = { source: /wznowieniu/.test(topic) ? 'Przypomnienie OC' : 'Formularz kontaktowy', name: v('c-name'), phone: v('c-phone'), email: v('c-email'), type: type, message: topic + (v('c-msg') ? ' — ' + v('c-msg') : '') };
+      if (/wznowieniu/.test(topic) && v('oc-end')) entry.ocEnd = v('oc-end');
+    }
+    entry.created = new Date().toISOString();
+    try {
+      var box = JSON.parse(localStorage.getItem('bz-inbox') || '[]');
+      box.push(entry); localStorage.setItem('bz-inbox', JSON.stringify(box));
+    } catch (e) {}
+  };
+
   var wireForm = function (form, ids, summary) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -1138,6 +1159,7 @@
       var btn = form.querySelector('[type="submit"]');
       btn.disabled = true; btn.textContent = 'Wysyłanie…';
       setTimeout(function () {
+        toInbox(form);
         form.classList.add('is-sent');
         form.querySelector('.form-success').focus();
       }, 700);
@@ -1193,6 +1215,28 @@
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Content edited in the admin panel (demo: same-browser storage)
+  try {
+    var c = JSON.parse(localStorage.getItem('bz-content') || 'null');
+    if (c) {
+      var escHtml = function (t) { return t.replace(/[&<>"]/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]; }); };
+      if (c.hero) document.getElementById('hero-title').innerHTML = escHtml(c.hero).replace(/(na każdą kieszeń)/i, '<em>$1</em>');
+      if (c.lead) document.querySelector('.hero-lead').textContent = c.lead;
+      if (c.phone) {
+        var tel = 'tel:+48' + c.phone.replace(/\D/g, '').replace(/^48(?=\d{9}$)/, '');
+        document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+          a.href = tel;
+          if (/^\s*[\d\s+]+\s*$/.test(a.textContent)) a.textContent = c.phone;
+        });
+        document.querySelectorAll('.header-call-label, [data-bz="phone"]').forEach(function (el) { el.textContent = c.phone; });
+        document.querySelectorAll('.header-call .sr-only').forEach(function (el) { el.textContent = 'Zadzwoń: ' + c.phone; });
+      }
+      if (c.email) document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) { a.href = 'mailto:' + c.email; a.textContent = c.email; });
+      if (c.hours1) document.querySelector('[data-bz="hours1"]').textContent = c.hours1;
+      if (c.hours2) document.querySelector('[data-bz="hours2"]').textContent = c.hours2;
+    }
+  } catch (e) {}
 })();
 </script>
 </body>

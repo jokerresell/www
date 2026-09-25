@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel agencji — Na każdą kieszeń</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#082F49">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 8 13v17c0 15 10 26 24 30 14-4 24-15 24-30V13Z' fill='%230369A1'/%3E%3Cpath d='m21 32 8 8 14-16' fill='none' stroke='%23fff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #0369A1;
+    --color-primary-hover: #075985;
+    --color-navy: #0C4A6E;
+    --color-navy-deep: #082F49;
+    --color-accent: #16A34A;
+    --color-bg: #F1F5F9;
+    --color-surface: #FFFFFF;
+    --color-text: #1E293B;
+    --color-muted: #475569;
+    --color-subtle: #64748B;
+    --color-border: #E2E8F0;
+    --color-border-strong: #CBD5E1;
+    --color-row-hover: #F0F9FF;
+    --color-destructive: #DC2626;
+    --status-new-bg: #E0F2FE;     --status-new-fg: #075985;
+    --status-contact-bg: #FEF3C7; --status-contact-fg: #92400E;
+    --status-offer-bg: #EDE9FE;   --status-offer-fg: #5B21B6;
+    --status-won-bg: #DCFCE7;     --status-won-fg: #166534;
+    --status-lost-bg: #F1F5F9;    --status-lost-fg: #475569;
+    --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-serif: "IBM Plex Serif", Georgia, serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 2px rgba(15,23,42,.06), 0 4px 16px -8px rgba(15,23,42,.12);
+    --sidebar-w: 248px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-sans); font-size: 15px; line-height: 1.5; color: var(--color-text); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, p, ul, dl, dd { margin: 0; }
+  ul { padding: 0; list-style: none; }
+  a { color: var(--color-primary); }
+  button { font: inherit; cursor: pointer; }
+  input, select, textarea { font: inherit; color: inherit; }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; } }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+  .icon { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-sm { width: 16px; height: 16px; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 40px; padding: 0 1rem; border-radius: var(--radius-sm); border: 1px solid transparent; font-weight: 600; font-size: .9375rem; text-decoration: none; transition: background-color .15s ease, border-color .15s ease, color .15s ease; white-space: nowrap; }
+  .btn-primary { background: var(--color-primary); color: #fff; }
+  .btn-primary:hover { background: var(--color-primary-hover); }
+  .btn-secondary { background: #fff; color: var(--color-text); border-color: var(--color-border-strong); }
+  .btn-secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .btn-ghost { background: transparent; color: var(--color-muted); }
+  .btn-ghost:hover { background: var(--color-bg); color: var(--color-text); }
+  .btn-danger { background: #fff; color: var(--color-destructive); border-color: #FECACA; }
+  .btn-danger:hover { background: #FEF2F2; }
+  .btn-icon { width: 40px; padding: 0; }
+  .btn:disabled { opacity: .55; cursor: not-allowed; }
+
+  /* Form controls */
+  .control { width: 100%; min-height: 42px; padding: .5rem .75rem; border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: #fff; transition: border-color .15s ease, box-shadow .15s ease; }
+  .control:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(3,105,161,.2); }
+  textarea.control { min-height: 96px; resize: vertical; }
+  .label { display: block; font-weight: 600; font-size: .875rem; margin-bottom: .3rem; color: var(--color-text); }
+  .help { font-size: .8125rem; color: var(--color-subtle); margin-top: .3rem; }
+  .field + .field { margin-top: 1rem; }
+
+  /* ---------- Login ---------- */
+  .login { min-height: 100vh; display: grid; place-items: center; padding: 1.5rem; background: linear-gradient(160deg, var(--color-navy-deep), var(--color-navy) 55%, var(--color-primary)); }
+  .login-card { width: 100%; max-width: 400px; background: #fff; border-radius: 18px; padding: 2rem; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); }
+  .login-brand { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.5rem; }
+  .login-brand svg { width: 44px; height: 44px; }
+  .login-brand strong { display: block; font-family: var(--font-serif); font-size: 1.125rem; color: var(--color-navy-deep); }
+  .login-brand span { font-size: .8125rem; color: var(--color-subtle); }
+  .login h1 { font-size: 1.375rem; color: var(--color-navy-deep); }
+  .login p.lead { color: var(--color-muted); margin: .25rem 0 1.25rem; }
+  .login .btn { width: 100%; min-height: 46px; margin-top: 1.25rem; }
+  .demo-note { margin-top: 1rem; padding: .75rem .9rem; border-radius: var(--radius-sm); background: #F0F9FF; border: 1px solid #BAE6FD; font-size: .8125rem; color: var(--color-navy); }
+  .field-error { color: var(--color-destructive); font-size: .8125rem; margin-top: .3rem; }
+
+  /* ---------- App shell ---------- */
+  .app { display: grid; grid-template-columns: var(--sidebar-w) 1fr; min-height: 100vh; }
+  .sidebar { background: var(--color-navy-deep); color: #CBD5E1; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+  .sb-brand { display: flex; align-items: center; gap: .65rem; padding: 1.25rem 1.25rem 1rem; color: #fff; text-decoration: none; }
+  .sb-brand svg { width: 36px; height: 36px; flex: none; }
+  .sb-brand strong { display: block; font-family: var(--font-serif); font-size: 1rem; line-height: 1.2; }
+  .sb-brand span { font-size: .75rem; color: #7DD3FC; }
+  .sb-nav { padding: .5rem .75rem; display: grid; gap: 2px; }
+  .sb-nav a { display: flex; align-items: center; gap: .7rem; min-height: 44px; padding: 0 .75rem; border-radius: var(--radius-sm); color: #CBD5E1; text-decoration: none; font-weight: 500; transition: background-color .15s ease, color .15s ease; }
+  .sb-nav a:hover { background: rgba(255,255,255,.06); color: #fff; }
+  .sb-nav a[aria-current="page"] { background: rgba(14,165,233,.18); color: #fff; box-shadow: inset 3px 0 0 #38BDF8; }
+  .sb-count { margin-left: auto; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: #0EA5E9; color: #fff; font-size: .75rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+  .sb-count.warn { background: #F59E0B; color: #1E293B; }
+  .sb-foot { margin-top: auto; padding: 1rem 1.25rem; border-top: 1px solid rgba(255,255,255,.08); display: grid; gap: .5rem; }
+  .sb-user { display: flex; align-items: center; gap: .65rem; }
+  .avatar { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(145deg, #0EA5E9, #0369A1); color: #fff; font-weight: 700; font-size: .875rem; display: flex; align-items: center; justify-content: center; flex: none; }
+  .sb-user strong { display: block; color: #fff; font-size: .875rem; }
+  .sb-user span { font-size: .75rem; color: #94A3B8; }
+  .sb-foot a, .sb-foot button { display: flex; align-items: center; gap: .55rem; min-height: 40px; padding: 0 .5rem; margin: 0 -.5rem; border-radius: var(--radius-sm); color: #CBD5E1; text-decoration: none; background: none; border: 0; font-size: .875rem; }
+  .sb-foot a:hover, .sb-foot button:hover { background: rgba(255,255,255,.06); color: #fff; }
+
+  .main { min-width: 0; display: flex; flex-direction: column; }
+  .topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: .75rem; min-height: 64px; padding: 0 1.5rem; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-border); }
+  .topbar h1 { font-size: 1.125rem; font-weight: 600; color: var(--color-navy-deep); }
+  .topbar-actions { margin-left: auto; display: flex; gap: .5rem; align-items: center; }
+  .menu-btn { display: none; }
+  .content { padding: 1.5rem; max-width: 1280px; width: 100%; }
+  .demo-banner { display: flex; gap: .6rem; align-items: flex-start; font-size: .8125rem; color: var(--color-navy); background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: var(--radius-sm); padding: .6rem .8rem; margin-bottom: 1.25rem; }
+
+  @media (max-width: 900px) {
+    .app { grid-template-columns: 1fr; }
+    .sidebar { position: fixed; inset: 0 auto 0 0; width: min(280px, 85vw); z-index: 40; transform: translateX(-100%); transition: transform .25s ease; }
+    .app.nav-open .sidebar { transform: none; box-shadow: 20px 0 40px rgba(0,0,0,.3); }
+    .scrim { position: fixed; inset: 0; background: rgba(8,47,73,.45); z-index: 35; }
+    .menu-btn { display: inline-flex; }
+    .content, .topbar { padding-left: 1rem; padding-right: 1rem; }
+    .hide-sm { display: none; }
+  }
+
+  /* Cards / KPIs */
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); box-shadow: var(--shadow); }
+  .card-head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); }
+  .card-head h2 { font-size: 1rem; font-weight: 600; color: var(--color-navy-deep); }
+  .card-body { padding: 1.25rem; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1rem; }
+  .kpi { padding: 1rem 1.25rem; display: flex; gap: .9rem; align-items: flex-start; }
+  .kpi-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .kpi-label { font-size: .8125rem; color: var(--color-muted); font-weight: 500; }
+  .kpi-value { font-size: 1.75rem; font-weight: 700; color: var(--color-navy-deep); line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .kpi-sub { font-size: .8125rem; color: var(--color-subtle); }
+  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1rem; }
+  @media (max-width: 1100px) { .kpis { grid-template-columns: repeat(2, 1fr); } .grid-2 { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .kpis { grid-template-columns: 1fr; } }
+
+  /* Lists */
+  .list-row { display: flex; align-items: center; gap: .9rem; padding: .8rem 1.25rem; border-top: 1px solid var(--color-border); }
+  .list-row:first-child { border-top: 0; }
+  .list-row .grow { flex: 1; min-width: 0; }
+  .list-row strong { display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .list-row .meta { font-size: .8125rem; color: var(--color-subtle); }
+  button.list-row { width: 100%; text-align: left; background: none; border: 0; border-top: 1px solid var(--color-border); color: inherit; transition: background-color .15s ease; }
+  button.list-row:hover { background: var(--color-row-hover); }
+  .type-dot { width: 36px; height: 36px; border-radius: 10px; background: #E0F2FE; color: var(--color-primary); display: flex; align-items: center; justify-content: center; flex: none; }
+  .empty { padding: 2rem 1.25rem; text-align: center; color: var(--color-subtle); }
+
+  /* Badges */
+  .badge { display: inline-flex; align-items: center; gap: .35rem; height: 24px; padding: 0 .6rem; border-radius: 999px; font-size: .75rem; font-weight: 600; white-space: nowrap; }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .st-nowe { background: var(--status-new-bg); color: var(--status-new-fg); }
+  .st-kontakt { background: var(--status-contact-bg); color: var(--status-contact-fg); }
+  .st-oferta { background: var(--status-offer-bg); color: var(--status-offer-fg); }
+  .st-wygrane { background: var(--status-won-bg); color: var(--status-won-fg); }
+  .st-przegrane { background: var(--status-lost-bg); color: var(--status-lost-fg); }
+  .days { font-weight: 700; font-variant-numeric: tabular-nums; border-radius: var(--radius-sm); padding: .2rem .5rem; font-size: .8125rem; white-space: nowrap; }
+  .days.late { background: #FEE2E2; color: #991B1B; }
+  .days.soon { background: #FEF3C7; color: #92400E; }
+  .days.ok { background: #DCFCE7; color: #166534; }
+
+  /* Toolbar & table */
+  .toolbar { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; padding: 1rem 1.25rem; border-bottom: 1px solid var(--color-border); }
+  .search { position: relative; flex: 1 1 240px; }
+  .search .icon { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--color-subtle); pointer-events: none; }
+  .search .control { padding-left: 2.3rem; }
+  .toolbar select.control { width: auto; min-width: 150px; }
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; padding: .75rem 1.25rem; border-bottom: 1px solid var(--color-border); }
+  .chip { min-height: 34px; padding: 0 .8rem; border-radius: 999px; border: 1px solid var(--color-border-strong); background: #fff; font-size: .8125rem; font-weight: 600; color: var(--color-muted); }
+  .chip[aria-pressed="true"] { background: var(--color-navy-deep); border-color: var(--color-navy-deep); color: #fff; }
+  .chip .n { opacity: .7; margin-left: .25rem; font-variant-numeric: tabular-nums; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+  th { position: sticky; top: 0; background: #F8FAFC; text-align: left; font-weight: 600; font-size: .75rem; letter-spacing: .04em; text-transform: uppercase; color: var(--color-subtle); padding: .65rem 1rem; border-bottom: 1px solid var(--color-border); white-space: nowrap; }
+  th button { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit; display: inline-flex; gap: .25rem; align-items: center; }
+  td { padding: .75rem 1rem; border-bottom: 1px solid var(--color-border); vertical-align: middle; }
+  tbody tr { cursor: pointer; transition: background-color .12s ease; }
+  tbody tr:hover { background: var(--color-row-hover); }
+  td .name { font-weight: 600; color: var(--color-text); }
+  td .sub { font-size: .8125rem; color: var(--color-subtle); }
+  .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .new-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #0EA5E9; margin-right: .4rem; vertical-align: middle; }
+
+  /* Mobile cards instead of table */
+  .lead-cards { display: none; }
+  @media (max-width: 720px) {
+    .table-wrap { display: none; }
+    .lead-cards { display: block; }
+  }
+
+  /* Drawer */
+  .drawer-scrim { position: fixed; inset: 0; background: rgba(8,47,73,.4); z-index: 60; }
+  .drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(460px, 100vw); background: #fff; z-index: 61; display: flex; flex-direction: column; box-shadow: -20px 0 40px -10px rgba(8,47,73,.35); animation: slideIn .22s ease; }
+  @keyframes slideIn { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .drawer-head { display: flex; align-items: flex-start; gap: .75rem; padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--color-border); }
+  .drawer-head h2 { font-size: 1.125rem; color: var(--color-navy-deep); }
+  .drawer-head .meta { font-size: .8125rem; color: var(--color-subtle); }
+  .drawer-body { padding: 1.25rem; overflow-y: auto; flex: 1; }
+  .drawer-foot { padding: 1rem 1.25rem; border-top: 1px solid var(--color-border); display: flex; gap: .5rem; justify-content: space-between; }
+  .quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: 1.25rem; }
+  .dl { display: grid; grid-template-columns: 120px 1fr; gap: .5rem 1rem; font-size: .875rem; margin-bottom: 1.25rem; }
+  .dl dt { color: var(--color-subtle); }
+  .dl dd { font-weight: 500; overflow-wrap: anywhere; }
+  .timeline { border-left: 2px solid var(--color-border); margin-left: .35rem; padding-left: 1rem; display: grid; gap: .75rem; margin-top: .5rem; }
+  .timeline li { position: relative; font-size: .875rem; }
+  .timeline li::before { content: ""; position: absolute; left: calc(-1rem - 6px); top: .45rem; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--color-primary); }
+  .timeline .when { font-size: .75rem; color: var(--color-subtle); }
+  .section-title { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-subtle); margin: 1.25rem 0 .5rem; }
+
+  /* Settings / content editor */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-grid .full { grid-column: 1 / -1; }
+  @media (max-width: 720px) { .form-grid { grid-template-columns: 1fr; } }
+  .save-bar { display: flex; gap: .5rem; justify-content: flex-end; align-items: center; padding: 1rem 1.25rem; border-top: 1px solid var(--color-border); flex-wrap: wrap; }
+  .save-bar .status { margin-right: auto; font-size: .8125rem; color: var(--color-subtle); }
+  .switch-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 0; border-top: 1px solid var(--color-border); }
+  .switch-row:first-child { border-top: 0; padding-top: 0; }
+  .switch-row strong { display: block; font-weight: 600; }
+  .switch-row span { font-size: .8125rem; color: var(--color-subtle); }
+  .switch { position: relative; width: 46px; height: 26px; flex: none; }
+  .switch input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; z-index: 1; }
+  .switch .track { position: absolute; inset: 0; border-radius: 999px; background: var(--color-border-strong); transition: background-color .15s ease; }
+  .switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .15s ease; }
+  .switch input:checked + .track { background: var(--color-accent); }
+  .switch input:checked + .track::after { transform: translateX(20px); }
+  .switch input:focus-visible + .track { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+  /* Toast */
+  .toasts { position: fixed; left: 1rem; bottom: 1rem; z-index: 80; display: grid; gap: .5rem; }
+  @media (max-width: 900px) { .toasts { left: 1rem; right: 1rem; bottom: auto; top: 1rem; } .toast { max-width: none; } }
+  .toast { display: flex; align-items: center; gap: .6rem; background: var(--color-navy-deep); color: #fff; padding: .75rem 1rem; border-radius: var(--radius-sm); box-shadow: 0 10px 30px -10px rgba(0,0,0,.5); font-size: .875rem; animation: toastIn .2s ease; max-width: 360px; }
+  .toast .icon { color: #4ADE80; }
+  @keyframes toastIn { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.7 1.1Z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+  <symbol id="i-sms" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  <symbol id="i-sort" viewBox="0 0 24 24"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10l-2.7-3.6A2 2 0 0 0 13.7 6H8.3a2 2 0 0 0-1.6.8L4 10.5 2.6 11A2 2 0 0 0 2 12.6V16c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17h6"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2Z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2Z"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-wheat" viewBox="0 0 24 24"><path d="M2 22 16 8"/><path d="M3.5 12.5 5 11l1.5 1.5a3.5 3.5 0 0 1 0 5L5 19l-1.5-1.5a3.5 3.5 0 0 1 0-5Z"/><path d="M7.5 8.5 9 7l1.5 1.5a3.5 3.5 0 0 1 0 5L9 15l-1.5-1.5a3.5 3.5 0 0 1 0-5Z"/><path d="M11.5 4.5 13 3l1.5 1.5a3.5 3.5 0 0 1 0 5L13 11l-1.5-1.5a3.5 3.5 0 0 1 0-5Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5Z"/><path d="M14 2v6h6"/></symbol>
+  <symbol id="brand" viewBox="0 0 48 48"><path d="M24 3 6 10v12c0 11.5 7.7 20 18 23 10.3-3 18-11.5 18-23V10Z" fill="#0369A1" stroke="none"/><path d="m17 24 5 5 9-10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- ============ LOGIN ============ -->
+<section class="login" id="login-view" aria-labelledby="login-title">
+  <form class="login-card" id="login-form" novalidate>
+    <div class="login-brand">
+      <svg aria-hidden="true"><use href="#brand"/></svg>
+      <div><strong>Na każdą kieszeń</strong><span>Panel agencji</span></div>
+    </div>
+    <h1 id="login-title">Zaloguj się</h1>
+    <p class="lead">Zarządzaj zgłoszeniami i treścią strony.</p>
+    <div class="field">
+      <label class="label" for="login-user">Login</label>
+      <input class="control" id="login-user" name="login" autocomplete="username" value="benedykt">
+    </div>
+    <div class="field">
+      <label class="label" for="login-pass">Hasło</label>
+      <input class="control" id="login-pass" name="haslo" type="password" autocomplete="current-password" aria-describedby="login-err">
+      <p class="field-error" id="login-err" hidden>Wpisz hasło.</p>
+    </div>
+    <button class="btn btn-primary" type="submit">Zaloguj się</button>
+    <p class="demo-note"><strong>Wersja demonstracyjna:</strong> wpisz dowolne hasło. W wersji produkcyjnej logowanie jest zabezpieczone po stronie serwera.</p>
+  </form>
+</section>
+
+<!-- ============ APP ============ -->
+<div class="app" id="app" hidden>
+  <aside class="sidebar" id="sidebar" aria-label="Menu panelu">
+    <a class="sb-brand" href="#pulpit">
+      <svg aria-hidden="true"><use href="#brand"/></svg>
+      <div><strong>Na każdą kieszeń</strong><span>Panel agencji</span></div>
+    </a>
+    <nav class="sb-nav" aria-label="Sekcje panelu">
+      <a href="#pulpit" data-view="pulpit"><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg>Pulpit</a>
+      <a href="#zgloszenia" data-view="zgloszenia"><svg class="icon" aria-hidden="true"><use href="#i-inbox"/></svg>Zgłoszenia<span class="sb-count" id="count-new" hidden></span></a>
+      <a href="#przypomnienia" data-view="przypomnienia"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg>Przypomnienia OC<span class="sb-count warn" id="count-oc" hidden></span></a>
+      <a href="#tresc" data-view="tresc"><svg class="icon" aria-hidden="true"><use href="#i-edit"/></svg>Treść strony</a>
+      <a href="#ustawienia" data-view="ustawienia"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>Ustawienia</a>
+    </nav>
+    <div class="sb-foot">
+      <div class="sb-user"><span class="avatar" aria-hidden="true">BZ</span><div><strong>Benedykt Znój</strong><span>Administrator</span></div></div>
+      <a href="index.html" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-external"/></svg>Zobacz stronę<span class="sr-only"> (nowa karta)</span></a>
+      <button type="button" id="logout"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-logout"/></svg>Wyloguj</button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="btn btn-ghost btn-icon menu-btn" id="menu-btn" type="button" aria-label="Otwórz menu" aria-controls="sidebar" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+      <h1 id="view-title">Pulpit</h1>
+      <div class="topbar-actions">
+        <button class="btn btn-primary" type="button" id="add-lead-btn"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-plus"/></svg><span class="hide-sm">Dodaj klienta</span><span class="sr-only">Dodaj klienta</span></button>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+      <p class="demo-banner" role="note"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-info"/></svg><span>Wersja demonstracyjna. Dane klientów są przykładowe i zapisują się tylko w tej przeglądarce. Zgłoszenia wysłane z formularzy na stronie (otwartej w tej samej przeglądarce) pojawiają się tutaj automatycznie.</span></p>
+
+      <!-- Pulpit -->
+      <section data-panel="pulpit" aria-label="Pulpit">
+        <div class="kpis" id="kpis"></div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h2>Najnowsze zgłoszenia</h2><a class="btn btn-ghost" href="#zgloszenia">Wszystkie</a></div>
+            <div id="recent-list"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Kończące się polisy OC</h2><a class="btn btn-ghost" href="#przypomnienia">Wszystkie</a></div>
+            <div id="oc-soon-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Zgłoszenia -->
+      <section data-panel="zgloszenia" aria-label="Zgłoszenia" hidden>
+        <div class="card">
+          <div class="toolbar">
+            <label class="search"><span class="sr-only">Szukaj klienta</span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-search"/></svg><input class="control" id="lead-search" type="search" placeholder="Szukaj po nazwisku lub telefonie"></label>
+            <label><span class="sr-only">Rodzaj ubezpieczenia</span>
+              <select class="control" id="lead-type"><option value="">Wszystkie rodzaje</option></select>
+            </label>
+            <button class="btn btn-secondary" type="button" id="export-csv"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-download"/></svg>Eksport CSV</button>
+          </div>
+          <div class="chips" id="status-chips" role="group" aria-label="Filtruj po statusie"></div>
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">Lista zgłoszeń</caption>
+              <thead><tr>
+                <th scope="col"><button type="button" data-sort="name">Klient<svg class="icon icon-sm" aria-hidden="true"><use href="#i-sort"/></svg></button></th>
+                <th scope="col">Rodzaj</th>
+                <th scope="col">Źródło</th>
+                <th scope="col"><button type="button" data-sort="created">Data<svg class="icon icon-sm" aria-hidden="true"><use href="#i-sort"/></svg></button></th>
+                <th scope="col">Status</th>
+              </tr></thead>
+              <tbody id="lead-rows"></tbody>
+            </table>
+          </div>
+          <div class="lead-cards" id="lead-cards"></div>
+          <p class="empty" id="lead-empty" hidden>Brak zgłoszeń dla wybranych filtrów.</p>
+        </div>
+      </section>
+
+      <!-- Przypomnienia -->
+      <section data-panel="przypomnienia" aria-label="Przypomnienia OC" hidden>
+        <div class="card">
+          <div class="card-head">
+            <h2>Polisy do wznowienia</h2>
+            <span class="kpi-sub">Posortowane od najpilniejszych</span>
+          </div>
+          <div id="oc-list"></div>
+        </div>
+      </section>
+
+      <!-- Treść strony -->
+      <section data-panel="tresc" aria-label="Treść strony" hidden>
+        <form class="card" id="content-form" novalidate>
+          <div class="card-head"><h2>Dane kontaktowe i teksty na stronie</h2></div>
+          <div class="card-body form-grid">
+            <div class="field full">
+              <label class="label" for="cf-hero">Nagłówek na stronie głównej</label>
+              <input class="control" id="cf-hero" name="hero">
+              <p class="help">Fragment „na każdą kieszeń” zostanie automatycznie wyróżniony kolorem.</p>
+            </div>
+            <div class="field full">
+              <label class="label" for="cf-lead">Tekst pod nagłówkiem</label>
+              <textarea class="control" id="cf-lead" name="lead" rows="3"></textarea>
+            </div>
+            <div class="field">
+              <label class="label" for="cf-phone">Telefon</label>
+              <input class="control" id="cf-phone" name="phone" type="tel" inputmode="tel">
+            </div>
+            <div class="field">
+              <label class="label" for="cf-email">E-mail</label>
+              <input class="control" id="cf-email" name="email" type="email">
+            </div>
+            <div class="field">
+              <label class="label" for="cf-hours1">Godziny otwarcia (dni robocze)</label>
+              <input class="control" id="cf-hours1" name="hours1">
+            </div>
+            <div class="field">
+              <label class="label" for="cf-hours2">Godziny otwarcia (weekend)</label>
+              <input class="control" id="cf-hours2" name="hours2">
+            </div>
+          </div>
+          <div class="save-bar">
+            <span class="status" id="content-status">Zmiany są widoczne na stronie po jej odświeżeniu.</span>
+            <button class="btn btn-ghost" type="button" id="content-reset">Przywróć domyślne</button>
+            <a class="btn btn-secondary" href="index.html" target="_blank" rel="noopener"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-external"/></svg>Podgląd</a>
+            <button class="btn btn-primary" type="submit">Zapisz zmiany</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Ustawienia -->
+      <section data-panel="ustawienia" aria-label="Ustawienia" hidden>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h2>Powiadomienia</h2></div>
+            <div class="card-body" id="notif-settings"></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2>Dane demonstracyjne</h2></div>
+            <div class="card-body">
+              <p style="color:var(--color-muted)">Przywraca przykładowych klientów i usuwa zmiany wprowadzone w tej przeglądarce.</p>
+              <button class="btn btn-danger" type="button" id="reset-demo" style="margin-top:1rem">Przywróć dane przykładowe</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Drawer -->
+<div class="drawer-scrim" id="drawer-scrim" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden></aside>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var KEY = 'bz-admin-v1', INBOX = 'bz-inbox', CONTENT = 'bz-content', SESSION = 'bz-session';
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+    del: function (k) { try { localStorage.removeItem(k); } catch (e) {} }
+  };
+
+  var TYPES = {
+    'OC/AC': { icon: 'i-car' }, 'Dom': { icon: 'i-home' }, 'Życie': { icon: 'i-heart' },
+    'Podróż': { icon: 'i-plane' }, 'Firma': { icon: 'i-briefcase' }, 'Rolne': { icon: 'i-wheat' }, 'Inne': { icon: 'i-file' }
+  };
+  var STATUSES = [
+    { id: 'nowe', label: 'Nowe' }, { id: 'kontakt', label: 'W kontakcie' }, { id: 'oferta', label: 'Oferta wysłana' },
+    { id: 'wygrane', label: 'Polisa zawarta' }, { id: 'przegrane', label: 'Rezygnacja' }
+  ];
+  var statusLabel = function (id) { return (STATUSES.find(function (s) { return s.id === id; }) || {}).label || id; };
+
+  var DAY = 86400000;
+  var today = function () { var d = new Date(); d.setHours(0, 0, 0, 0); return d; };
+  var iso = function (offsetDays, h) { var d = today(); d.setTime(d.getTime() + offsetDays * DAY); d.setHours(h || 10, (offsetDays * 17) % 60); return d.toISOString(); };
+  var dateOnly = function (offsetDays) { var d = new Date(today().getTime() + offsetDays * DAY); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+
+  function seed() {
+    return [
+      { id: 's1', name: 'Anna Kowalczyk', phone: '601 234 567', email: 'anna.k@example.pl', type: 'OC/AC', source: 'Szybka wycena', created: iso(0, 9), status: 'nowe', ocEnd: dateOnly(12), message: 'Skoda Octavia 2018, obecnie OC w innym towarzystwie.', notes: [] },
+      { id: 's2', name: 'Marek Wójcik', phone: '692 345 678', email: '', type: 'Rolne', source: 'Telefon', created: iso(-1, 14), status: 'kontakt', ocEnd: '', message: 'Gospodarstwo 18 ha, budynki + OC rolnika.', notes: [{ at: iso(-1, 15), text: 'Umówiona wizyta w czwartek.' }] },
+      { id: 's3', name: 'Katarzyna Lis', phone: '508 111 222', email: 'k.lis@example.pl', type: 'Dom', source: 'Formularz kontaktowy', created: iso(-2, 11), status: 'oferta', ocEnd: '', message: 'Mieszkanie 54 m², polisa pod kredyt.', notes: [{ at: iso(-1, 10), text: 'Wysłane 3 warianty mailem.' }] },
+      { id: 's4', name: 'Piotr Nowak', phone: '667 890 123', email: '', type: 'OC/AC', source: 'Przypomnienie OC', created: iso(-3, 16), status: 'nowe', ocEnd: dateOnly(5), message: 'Proszę o przypomnienie i porównanie ofert.', notes: [] },
+      { id: 's5', name: 'Firma Stolbud s.c.', phone: '13 432 10 10', email: 'biuro@example.pl', type: 'Firma', source: 'Formularz kontaktowy', created: iso(-5, 12), status: 'kontakt', ocEnd: '', message: 'OC działalności + 3 auta dostawcze.', notes: [] },
+      { id: 's6', name: 'Joanna Mazur', phone: '785 222 333', email: 'jmazur@example.pl', type: 'Podróż', source: 'Szybka wycena', created: iso(-6, 18), status: 'wygrane', ocEnd: '', message: 'Narty we Włoszech, 4 osoby.', notes: [{ at: iso(-4, 11), text: 'Polisa wystawiona.' }] },
+      { id: 's7', name: 'Tomasz Zając', phone: '604 555 777', email: '', type: 'OC/AC', source: 'Telefon', created: iso(-8, 10), status: 'wygrane', ocEnd: dateOnly(358), message: 'Pakiet OC + AC + Assistance.', notes: [] },
+      { id: 's8', name: 'Ewa Król', phone: '511 909 808', email: 'ewa.krol@example.pl', type: 'Życie', source: 'Formularz kontaktowy', created: iso(-10, 13), status: 'przegrane', ocEnd: '', message: 'Polisa rodzinna.', notes: [{ at: iso(-7, 9), text: 'Zostaje przy polisie z pracy.' }] },
+      { id: 's9', name: 'Grzegorz Dudek', phone: '698 123 321', email: '', type: 'OC/AC', source: 'Przypomnienie OC', created: iso(-12, 15), status: 'kontakt', ocEnd: dateOnly(-2), message: '', notes: [] },
+      { id: 's10', name: 'Magdalena Pawlak', phone: '722 444 111', email: 'm.pawlak@example.pl', type: 'OC/AC', source: 'Przypomnienie OC', created: iso(-20, 11), status: 'nowe', ocEnd: dateOnly(26), message: 'Dwa samochody w rodzinie.', notes: [] }
+    ];
+  }
+
+  var state = {
+    leads: store.get(KEY, null) || seed(),
+    filter: { q: '', type: '', status: '' },
+    sort: { key: 'created', dir: -1 }
+  };
+  var save = function () { store.set(KEY, state.leads); };
+
+  // Pull submissions made on the public page
+  function pullInbox() {
+    var inbox = store.get(INBOX, []);
+    if (!inbox.length) return 0;
+    inbox.forEach(function (x) {
+      state.leads.unshift({
+        id: 'w' + Date.now() + Math.random().toString(36).slice(2, 6),
+        name: x.name || 'Bez nazwy', phone: x.phone || '', email: x.email || '',
+        type: TYPES[x.type] ? x.type : 'Inne', source: x.source || 'Strona www',
+        created: x.created || new Date().toISOString(), status: 'nowe',
+        ocEnd: x.ocEnd || '', message: x.message || '', notes: [], fresh: true
+      });
+    });
+    store.del(INBOX); save();
+    return inbox.length;
+  }
+
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var fmtDate = function (s) { var d = new Date(s); return d.toLocaleDateString('pl-PL', { day: 'numeric', month: 'short' }) + ', ' + d.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' }); };
+  var relDate = function (s) {
+    var d = new Date(s); var diff = Math.round((today() - new Date(d.getFullYear(), d.getMonth(), d.getDate())) / DAY);
+    var t = d.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' });
+    if (diff === 0) return 'dziś, ' + t; if (diff === 1) return 'wczoraj, ' + t;
+    return d.toLocaleDateString('pl-PL', { day: 'numeric', month: 'short' });
+  };
+  var daysTo = function (ymd) { return Math.round((new Date(ymd + 'T00:00') - today()) / DAY); };
+  var dayWord = function (n) { n = Math.abs(n); return n === 1 ? 'dzień' : 'dni'; };
+  var daysBadge = function (n) {
+    var cls = n < 0 ? 'late' : n <= 30 ? 'soon' : 'ok';
+    var txt = n < 0 ? Math.abs(n) + ' ' + dayWord(n) + ' po terminie' : n === 0 ? 'dziś' : 'za ' + n + ' ' + dayWord(n);
+    return '<span class="days ' + cls + '">' + txt + '</span>';
+  };
+  var badge = function (st) { return '<span class="badge st-' + st + '">' + statusLabel(st) + '</span>'; };
+  var typeIcon = function (t) { return '<span class="type-dot" aria-hidden="true"><svg class="icon"><use href="#' + (TYPES[t] || TYPES.Inne).icon + '"/></svg></span>'; };
+  var telHref = function (p) { return 'tel:' + String(p).replace(/[^\d+]/g, ''); };
+
+  function toast(msg) {
+    var el = document.createElement('div'); el.className = 'toast';
+    el.innerHTML = '<svg class="icon icon-sm" aria-hidden="true"><use href="#i-check"/></svg><span>' + esc(msg) + '</span>';
+    $('#toasts').appendChild(el);
+    setTimeout(function () { el.remove(); }, 3200);
+  }
+
+  // ---------- Login ----------
+  function showApp() { $('#login-view').hidden = true; $('#app').hidden = false; route(); }
+  $('#login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pass = $('#login-pass');
+    if (!pass.value) { $('#login-err').hidden = false; pass.setAttribute('aria-invalid', 'true'); pass.focus(); return; }
+    try { sessionStorage.setItem(SESSION, '1'); } catch (err) {}
+    showApp();
+  });
+  $('#logout').addEventListener('click', function () {
+    try { sessionStorage.removeItem(SESSION); } catch (err) {}
+    $('#app').hidden = true; $('#login-view').hidden = false; $('#login-pass').value = ''; $('#login-pass').focus();
+  });
+
+  // ---------- Routing ----------
+  var TITLES = { pulpit: 'Pulpit', zgloszenia: 'Zgłoszenia', przypomnienia: 'Przypomnienia OC', tresc: 'Treść strony', ustawienia: 'Ustawienia' };
+  function route() {
+    var v = (location.hash || '#pulpit').slice(1); if (!TITLES[v]) v = 'pulpit';
+    var added = pullInbox();
+    if (added) toast(added === 1 ? 'Nowe zgłoszenie ze strony' : 'Nowe zgłoszenia ze strony: ' + added);
+    $$('[data-panel]').forEach(function (p) { p.hidden = p.dataset.panel !== v; });
+    $$('.sb-nav a').forEach(function (a) { if (a.dataset.view === v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    $('#view-title').textContent = TITLES[v];
+    document.title = TITLES[v] + ' — Panel agencji';
+    setNav(false);
+    renderAll();
+  }
+  window.addEventListener('hashchange', route);
+  window.addEventListener('focus', function () { if (!$('#app').hidden && store.get(INBOX, []).length) route(); });
+
+  // Mobile nav
+  function setNav(open) {
+    $('#app').classList.toggle('nav-open', open);
+    $('#scrim').hidden = !open;
+    $('#menu-btn').setAttribute('aria-expanded', String(open));
+  }
+  $('#menu-btn').addEventListener('click', function () { setNav(!$('#app').classList.contains('nav-open')); });
+  $('#scrim').addEventListener('click', function () { setNav(false); });
+
+  // ---------- Render ----------
+  function ocLeads() {
+    return state.leads.filter(function (l) { return l.ocEnd && l.status !== 'przegrane'; })
+      .map(function (l) { return { l: l, d: daysTo(l.ocEnd) }; })
+      .sort(function (a, b) { return a.d - b.d; });
+  }
+
+  function renderAll() {
+    var nNew = state.leads.filter(function (l) { return l.status === 'nowe'; }).length;
+    var oc = ocLeads(); var nOc = oc.filter(function (x) { return x.d <= 30; }).length;
+    var cn = $('#count-new'); cn.hidden = !nNew; cn.textContent = nNew;
+    var co = $('#count-oc'); co.hidden = !nOc; co.textContent = nOc;
+    renderDashboard(nNew, oc);
+    renderLeads();
+    renderOc(oc);
+  }
+
+  function renderDashboard(nNew, oc) {
+    var weekAgo = today().getTime() - 6 * DAY;
+    var week = state.leads.filter(function (l) { return new Date(l.created).getTime() >= weekAgo; }).length;
+    var closed = state.leads.filter(function (l) { return l.status === 'wygrane' || l.status === 'przegrane'; });
+    var won = closed.filter(function (l) { return l.status === 'wygrane'; }).length;
+    var rate = closed.length ? Math.round(won / closed.length * 100) : 0;
+    var soon = oc.filter(function (x) { return x.d <= 30; }).length;
+    var kpi = function (icon, bg, fg, label, value, sub) {
+      return '<div class="card kpi"><span class="kpi-icon" style="background:' + bg + ';color:' + fg + '"><svg class="icon" aria-hidden="true"><use href="#' + icon + '"/></svg></span><div><p class="kpi-label">' + label + '</p><p class="kpi-value">' + value + '</p><p class="kpi-sub">' + sub + '</p></div></div>';
+    };
+    $('#kpis').innerHTML =
+      kpi('i-inbox', '#E0F2FE', '#0369A1', 'Nowe zgłoszenia', nNew, 'czekają na kontakt') +
+      kpi('i-clock', '#FEF3C7', '#B45309', 'Polisy OC do 30 dni', soon, 'do wznowienia') +
+      kpi('i-trend', '#DCFCE7', '#15803D', 'Skuteczność', rate + '%', won + ' z ' + closed.length + ' zamkniętych') +
+      kpi('i-file', '#EDE9FE', '#6D28D9', 'Zgłoszenia (7 dni)', week, 'ze wszystkich źródeł');
+
+    var recent = state.leads.slice().sort(function (a, b) { return new Date(b.created) - new Date(a.created); }).slice(0, 5);
+    $('#recent-list').innerHTML = recent.map(function (l) {
+      return '<button type="button" class="list-row" data-open="' + l.id + '">' + typeIcon(l.type) +
+        '<span class="grow"><strong>' + (l.fresh ? '<span class="new-dot" aria-hidden="true"></span>' : '') + esc(l.name) + '</strong><span class="meta">' + esc(l.type) + ' · ' + relDate(l.created) + '</span></span>' + badge(l.status) + '</button>';
+    }).join('') || '<p class="empty">Brak zgłoszeń.</p>';
+
+    $('#oc-soon-list').innerHTML = oc.filter(function (x) { return x.d <= 30; }).slice(0, 5).map(function (x) {
+      return '<button type="button" class="list-row" data-open="' + x.l.id + '"><span class="grow"><strong>' + esc(x.l.name) + '</strong><span class="meta">koniec: ' + new Date(x.l.ocEnd + 'T00:00').toLocaleDateString('pl-PL') + '</span></span>' + daysBadge(x.d) + '</button>';
+    }).join('') || '<p class="empty">Żadna polisa nie kończy się w ciągu 30 dni.</p>';
+  }
+
+  function filteredLeads(ignoreStatus) {
+    var f = state.filter, q = f.q.toLowerCase().replace(/\s/g, '');
+    return state.leads.filter(function (l) {
+      if (f.type && l.type !== f.type) return false;
+      if (!ignoreStatus && f.status && l.status !== f.status) return false;
+      if (q && (l.name + l.phone + l.email).toLowerCase().replace(/\s/g, '').indexOf(q) === -1) return false;
+      return true;
+    });
+  }
+
+  function renderLeads() {
+    var base = filteredLeads(true);
+    var chips = [{ id: '', label: 'Wszystkie' }].concat(STATUSES);
+    $('#status-chips').innerHTML = chips.map(function (s) {
+      var n = s.id ? base.filter(function (l) { return l.status === s.id; }).length : base.length;
+      return '<button type="button" class="chip" data-status="' + s.id + '" aria-pressed="' + (state.filter.status === s.id) + '">' + s.label + '<span class="n">' + n + '</span></button>';
+    }).join('');
+
+    var rows = filteredLeads(false).sort(function (a, b) {
+      var k = state.sort.key, x = a[k], y = b[k];
+      if (k === 'created') { x = new Date(x); y = new Date(y); } else { x = String(x).toLowerCase(); y = String(y).toLowerCase(); }
+      return (x > y ? 1 : x < y ? -1 : 0) * state.sort.dir;
+    });
+    $('#lead-rows').innerHTML = rows.map(function (l) {
+      return '<tr data-open="' + l.id + '" tabindex="0">' +
+        '<td><div class="name">' + (l.fresh ? '<span class="new-dot" aria-label="nowe"></span>' : '') + esc(l.name) + '</div><div class="sub num">' + esc(l.phone) + '</div></td>' +
+        '<td>' + esc(l.type) + '</td><td class="sub">' + esc(l.source) + '</td>' +
+        '<td class="num">' + relDate(l.created) + '</td><td>' + badge(l.status) + '</td></tr>';
+    }).join('');
+    $('#lead-cards').innerHTML = rows.map(function (l) {
+      return '<button type="button" class="list-row" data-open="' + l.id + '">' + typeIcon(l.type) +
+        '<span class="grow"><strong>' + esc(l.name) + '</strong><span class="meta">' + esc(l.type) + ' · ' + relDate(l.created) + '</span></span>' + badge(l.status) + '</button>';
+    }).join('');
+    $('#lead-empty').hidden = rows.length > 0;
+    $$('th [data-sort]').forEach(function (b) {
+      var th = b.closest('th');
+      if (b.dataset.sort === state.sort.key) th.setAttribute('aria-sort', state.sort.dir === 1 ? 'ascending' : 'descending'); else th.removeAttribute('aria-sort');
+    });
+  }
+
+  function renderOc(oc) {
+    $('#oc-list').innerHTML = oc.map(function (x) {
+      var l = x.l;
+      return '<div class="list-row">' + typeIcon('OC/AC') +
+        '<span class="grow"><strong>' + esc(l.name) + '</strong><span class="meta num">' + esc(l.phone) + ' · koniec: ' + new Date(l.ocEnd + 'T00:00').toLocaleDateString('pl-PL') + '</span></span>' +
+        daysBadge(x.d) +
+        '<a class="btn btn-secondary btn-icon" href="' + telHref(l.phone) + '" aria-label="Zadzwoń do: ' + esc(l.name) + '"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-phone"/></svg></a>' +
+        '<button type="button" class="btn btn-secondary btn-icon" data-sms="' + l.id + '" aria-label="Wyślij SMS z przypomnieniem do: ' + esc(l.name) + '"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-sms"/></svg></button>' +
+        '<button type="button" class="btn btn-ghost hide-sm" data-open="' + l.id + '">Szczegóły</button></div>';
+    }).join('') || '<p class="empty">Brak polis z datą końca. Dodaj datę w szczegółach klienta.</p>';
+  }
+
+  // ---------- Events ----------
+  document.addEventListener('click', function (e) {
+    var o = e.target.closest('[data-open]'); if (o) { openDrawer(o.dataset.open); return; }
+    var c = e.target.closest('[data-status]'); if (c && c.classList.contains('chip')) { state.filter.status = c.dataset.status; renderLeads(); return; }
+    var s = e.target.closest('[data-sort]');
+    if (s) { var k = s.dataset.sort; state.sort = { key: k, dir: state.sort.key === k ? -state.sort.dir : (k === 'created' ? -1 : 1) }; renderLeads(); return; }
+    var m = e.target.closest('[data-sms]');
+    if (m) {
+      var l = state.leads.find(function (x) { return x.id === m.dataset.sms; });
+      l.notes.push({ at: new Date().toISOString(), text: 'Wysłano SMS z przypomnieniem o końcu OC.' }); save();
+      toast('SMS do: ' + l.name + ' (demo — w wersji produkcyjnej wysyłany przez bramkę SMS)');
+    }
+  });
+  $('#lead-rows').addEventListener('keydown', function (e) {
+    var tr = e.target.closest('tr[data-open]'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openDrawer(tr.dataset.open); }
+  });
+  $('#lead-search').addEventListener('input', function (e) { state.filter.q = e.target.value; renderLeads(); });
+  var typeSel = $('#lead-type');
+  Object.keys(TYPES).forEach(function (t) { var o = document.createElement('option'); o.value = t; o.textContent = t; typeSel.appendChild(o); });
+  typeSel.addEventListener('change', function (e) { state.filter.type = e.target.value; renderLeads(); });
+
+  $('#export-csv').addEventListener('click', function () {
+    var cols = ['name', 'phone', 'email', 'type', 'source', 'created', 'status', 'ocEnd', 'message'];
+    var head = ['Klient', 'Telefon', 'E-mail', 'Rodzaj', 'Źródło', 'Data', 'Status', 'Koniec OC', 'Wiadomość'];
+    var q = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; };
+    var csv = [head.map(q).join(';')].concat(filteredLeads(false).map(function (l) {
+      return cols.map(function (c) { return q(c === 'status' ? statusLabel(l[c]) : c === 'created' ? fmtDate(l[c]) : l[c]); }).join(';');
+    })).join('\r\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'zgloszenia-' + dateOnly(0) + '.csv'; a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    toast('Pobrano plik CSV');
+  });
+
+  // ---------- Drawer ----------
+  var lastFocus = null;
+  function closeDrawer() {
+    $('#drawer').hidden = true; $('#drawer-scrim').hidden = true;
+    if (lastFocus && document.body.contains(lastFocus)) lastFocus.focus();
+  }
+  function openDrawer(id) {
+    var isNew = id === 'new';
+    var l = isNew ? { id: 'm' + Date.now(), name: '', phone: '', email: '', type: 'OC/AC', source: 'Telefon', created: new Date().toISOString(), status: 'nowe', ocEnd: '', message: '', notes: [] }
+                  : state.leads.find(function (x) { return x.id === id; });
+    if (!l) return;
+    if (l.fresh) { delete l.fresh; save(); renderAll(); }
+    lastFocus = document.activeElement;
+    var d = $('#drawer');
+    d.innerHTML =
+      '<div class="drawer-head"><div style="flex:1;min-width:0"><h2 id="drawer-title">' + (isNew ? 'Nowy klient' : esc(l.name)) + '</h2>' +
+        (isNew ? '' : '<p class="meta">' + esc(l.source) + ' · ' + fmtDate(l.created) + '</p>') + '</div>' +
+        '<button type="button" class="btn btn-ghost btn-icon" data-close aria-label="Zamknij"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button></div>' +
+      '<form class="drawer-body" id="lead-form" novalidate>' +
+        (isNew ? '' :
+          '<div class="quick-actions">' +
+          '<a class="btn btn-primary" href="' + telHref(l.phone) + '"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-phone"/></svg>Zadzwoń</a>' +
+          (l.email ? '<a class="btn btn-secondary" href="mailto:' + esc(l.email) + '"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-mail"/></svg>E-mail</a>'
+                   : '<button type="button" class="btn btn-secondary" data-sms="' + l.id + '"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-sms"/></svg>SMS</button>') +
+          '</div>' +
+          (l.message ? '<p class="section-title">Wiadomość od klienta</p><p style="background:#F8FAFC;border:1px solid var(--color-border);border-radius:8px;padding:.75rem;font-size:.875rem">' + esc(l.message) + '</p>' : '')) +
+        '<p class="section-title">Dane</p>' +
+        '<div class="field"><label class="label" for="lf-name">Imię i nazwisko / firma</label><input class="control" id="lf-name" value="' + esc(l.name) + '" required aria-describedby="lf-name-err"><p class="field-error" id="lf-name-err" hidden>Podaj nazwę klienta.</p></div>' +
+        '<div class="form-grid" style="margin-top:1rem">' +
+          '<div class="field"><label class="label" for="lf-phone">Telefon</label><input class="control" id="lf-phone" type="tel" value="' + esc(l.phone) + '"></div>' +
+          '<div class="field" style="margin-top:0"><label class="label" for="lf-email">E-mail</label><input class="control" id="lf-email" type="email" value="' + esc(l.email) + '"></div>' +
+          '<div class="field" style="margin-top:0"><label class="label" for="lf-type">Rodzaj</label><select class="control" id="lf-type">' + Object.keys(TYPES).map(function (t) { return '<option' + (t === l.type ? ' selected' : '') + '>' + t + '</option>'; }).join('') + '</select></div>' +
+          '<div class="field" style="margin-top:0"><label class="label" for="lf-status">Status</label><select class="control" id="lf-status">' + STATUSES.map(function (s) { return '<option value="' + s.id + '"' + (s.id === l.status ? ' selected' : '') + '>' + s.label + '</option>'; }).join('') + '</select></div>' +
+          '<div class="field full" style="margin-top:0"><label class="label" for="lf-oc">Koniec polisy OC</label><input class="control" id="lf-oc" type="date" value="' + esc(l.ocEnd) + '"><p class="help">Klient pojawi się w „Przypomnieniach OC”.</p></div>' +
+        '</div>' +
+        '<p class="section-title">Notatki</p>' +
+        '<div class="field"><label class="sr-only" for="lf-note">Nowa notatka</label><textarea class="control" id="lf-note" rows="2" placeholder="np. Oddzwonić w piątek po 15:00"></textarea></div>' +
+        (l.notes.length ? '<ul class="timeline">' + l.notes.slice().reverse().map(function (n) { return '<li><span class="when">' + fmtDate(n.at) + '</span><br>' + esc(n.text) + '</li>'; }).join('') + '</ul>' : '') +
+      '</form>' +
+      '<div class="drawer-foot">' +
+        (isNew ? '<span></span>' : '<button type="button" class="btn btn-danger" data-delete>Usuń</button>') +
+        '<div style="display:flex;gap:.5rem"><button type="button" class="btn btn-secondary" data-close>Anuluj</button><button type="submit" form="lead-form" class="btn btn-primary">Zapisz</button></div>' +
+      '</div>';
+    d.hidden = false; $('#drawer-scrim').hidden = false;
+    (isNew ? $('#lf-name') : $('[data-close]', d)).focus();
+
+    $$('[data-close]', d).forEach(function (b) { b.addEventListener('click', closeDrawer); });
+    var del = $('[data-delete]', d);
+    if (del) del.addEventListener('click', function () {
+      if (!confirm('Usunąć klienta „' + l.name + '”?')) return;
+      state.leads = state.leads.filter(function (x) { return x.id !== l.id; }); save(); closeDrawer(); renderAll(); toast('Usunięto klienta');
+    });
+    $('#lead-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = $('#lf-name').value.trim();
+      if (!name) { $('#lf-name-err').hidden = false; $('#lf-name').setAttribute('aria-invalid', 'true'); $('#lf-name').focus(); return; }
+      var prevStatus = l.status;
+      l.name = name; l.phone = $('#lf-phone').value.trim(); l.email = $('#lf-email').value.trim();
+      l.type = $('#lf-type').value; l.status = $('#lf-status').value; l.ocEnd = $('#lf-oc').value;
+      if (!isNew && prevStatus !== l.status) l.notes.push({ at: new Date().toISOString(), text: 'Status: ' + statusLabel(prevStatus) + ' → ' + statusLabel(l.status) });
+      var note = $('#lf-note').value.trim(); if (note) l.notes.push({ at: new Date().toISOString(), text: note });
+      if (isNew) state.leads.unshift(l);
+      save(); closeDrawer(); renderAll(); toast(isNew ? 'Dodano klienta' : 'Zapisano zmiany');
+    });
+  }
+  $('#drawer-scrim').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { if (!$('#drawer').hidden) closeDrawer(); else if ($('#app').classList.contains('nav-open')) setNav(false); }
+    if (e.key === 'Tab' && !$('#drawer').hidden) {
+      var f = $$('#drawer a[href], #drawer button, #drawer input, #drawer select, #drawer textarea').filter(function (x) { return !x.disabled; });
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  $('#add-lead-btn').addEventListener('click', function () { openDrawer('new'); });
+
+  // ---------- Content editor ----------
+  var DEFAULT_CONTENT = {
+    hero: 'Dobra ochrona na każdą kieszeń — bez przepłacania i drobnego druku.',
+    lead: 'Samochód, dom, zdrowie, firma czy gospodarstwo — dobieramy polisę do Twoich potrzeb i budżetu, a potem jesteśmy obok, gdy trzeba zgłosić szkodę.',
+    phone: '605 377 853', email: 'benyz@o2.pl', hours1: 'pon.–pt. 9:00–17:00', hours2: 'sob. po umówieniu'
+  };
+  function fillContent() {
+    var c = Object.assign({}, DEFAULT_CONTENT, store.get(CONTENT, {}));
+    Object.keys(DEFAULT_CONTENT).forEach(function (k) { $('#cf-' + k).value = c[k]; });
+  }
+  fillContent();
+  $('#content-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var c = {}; Object.keys(DEFAULT_CONTENT).forEach(function (k) { c[k] = $('#cf-' + k).value.trim() || DEFAULT_CONTENT[k]; });
+    store.set(CONTENT, c);
+    $('#content-status').textContent = 'Zapisano ' + new Date().toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' }) + '. Odśwież stronę, aby zobaczyć zmiany.';
+    toast('Zapisano treść strony');
+  });
+  $('#content-reset').addEventListener('click', function () { store.del(CONTENT); fillContent(); toast('Przywrócono domyślną treść'); });
+
+  // ---------- Settings ----------
+  var NOTIF = [
+    { id: 'n-mail', title: 'E-mail o nowym zgłoszeniu', desc: 'Wiadomość na benyz@o2.pl po każdym formularzu', on: true },
+    { id: 'n-sms-agent', title: 'SMS o nowym zgłoszeniu', desc: 'Krótka informacja na telefon agenta', on: false },
+    { id: 'n-oc', title: 'Automatyczne przypomnienia OC', desc: 'SMS do klienta 30 i 7 dni przed końcem polisy', on: true },
+    { id: 'n-daily', title: 'Poranne podsumowanie', desc: 'Codziennie o 8:00 lista spraw na dziś', on: false }
+  ];
+  var ns = store.get('bz-notif', {});
+  $('#notif-settings').innerHTML = NOTIF.map(function (n) {
+    var on = n.id in ns ? ns[n.id] : n.on;
+    return '<div class="switch-row"><div><strong id="' + n.id + '-l">' + n.title + '</strong><span>' + n.desc + '</span></div>' +
+      '<span class="switch"><input type="checkbox" role="switch" id="' + n.id + '" aria-labelledby="' + n.id + '-l"' + (on ? ' checked' : '') + '><span class="track"></span></span></div>';
+  }).join('');
+  $('#notif-settings').addEventListener('change', function (e) {
+    ns[e.target.id] = e.target.checked; store.set('bz-notif', ns);
+    toast((e.target.checked ? 'Włączono: ' : 'Wyłączono: ') + $('#' + e.target.id + '-l').textContent);
+  });
+  $('#reset-demo').addEventListener('click', function () {
+    if (!confirm('Przywrócić dane przykładowe? Zmiany z tej przeglądarki zostaną usunięte.')) return;
+    state.leads = seed(); save(); store.del(CONTENT); store.del('bz-notif'); fillContent();
+    toast('Przywrócono dane przykładowe'); location.hash = '#pulpit'; renderAll();
+  });
+
+  // ---------- Boot ----------
+  var logged = false; try { logged = sessionStorage.getItem(SESSION) === '1'; } catch (e) {}
+  if (logged) showApp(); else $('#login-pass').focus();
+})();
+</script>
+</body>
+</html>

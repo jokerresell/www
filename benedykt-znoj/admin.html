@@ -85,6 +85,7 @@
   .login .btn { width: 100%; min-height: 46px; margin-top: 1.25rem; }
   .demo-note { margin-top: 1rem; padding: .75rem .9rem; border-radius: var(--radius-sm); background: #F0F9FF; border: 1px solid #BAE6FD; font-size: .8125rem; color: var(--color-navy); }
   .field-error { color: var(--color-destructive); font-size: .8125rem; margin-top: .3rem; }
+  .nojs-warning { margin-bottom: 1.25rem; padding: .85rem 1rem; border-radius: var(--radius-sm); background: #FEF2F2; border: 1px solid #FECACA; color: #7F1D1D; font-size: .875rem; }
 
   /* ---------- App shell ---------- */
   .app { display: grid; grid-template-columns: var(--sidebar-w) 1fr; min-height: 100vh; }
@@ -273,11 +274,12 @@
 
 <!-- ============ LOGIN ============ -->
 <section class="login" id="login-view" aria-labelledby="login-title">
-  <form class="login-card" id="login-form" novalidate>
+  <form class="login-card" id="login-form" action="javascript:void(0)" novalidate>
     <div class="login-brand">
       <svg aria-hidden="true"><use href="#brand"/></svg>
       <div><strong>Na każdą kieszeń</strong><span>Panel agencji</span></div>
     </div>
+    <p class="nojs-warning" id="nojs-warning" role="alert"><strong>Panel nie może się uruchomić.</strong> Ten podgląd pliku nie obsługuje JavaScriptu (tak jest np. w podglądzie plików na telefonie lub w aplikacji pocztowej). Otwórz plik <code>admin.html</code> w przeglądarce: Chrome, Edge, Safari lub Firefox.</p>
     <h1 id="login-title">Zaloguj się</h1>
     <p class="lead">Zarządzaj zgłoszeniami i treścią strony.</p>
     <div class="field">
@@ -286,11 +288,10 @@
     </div>
     <div class="field">
       <label class="label" for="login-pass">Hasło</label>
-      <input class="control" id="login-pass" name="haslo" type="password" autocomplete="current-password" aria-describedby="login-err">
-      <p class="field-error" id="login-err" hidden>Wpisz hasło.</p>
+      <input class="control" id="login-pass" name="haslo" type="password" autocomplete="current-password" value="demo">
     </div>
     <button class="btn btn-primary" type="submit">Zaloguj się</button>
-    <p class="demo-note"><strong>Wersja demonstracyjna:</strong> wpisz dowolne hasło. W wersji produkcyjnej logowanie jest zabezpieczone po stronie serwera.</p>
+    <p class="demo-note"><strong>Wersja demonstracyjna:</strong> po prostu kliknij „Zaloguj się”. W wersji produkcyjnej logowanie jest zabezpieczone po stronie serwera.</p>
   </form>
 </section>
 
@@ -450,6 +451,14 @@
 <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
 <script>
+document.getElementById('nojs-warning').hidden = true;
+window.addEventListener('error', function (e) {
+  var w = document.getElementById('nojs-warning');
+  w.innerHTML = '<strong>Coś poszło nie tak.</strong> Odśwież stronę albo otwórz plik w innej przeglądarce (Chrome, Edge). Szczegóły: ' + String(e.message).replace(/</g, '&lt;');
+  w.hidden = false;
+  document.getElementById('login-view').hidden = false;
+  document.getElementById('app').hidden = true;
+});
 (function () {
   var KEY = 'bz-admin-v1', INBOX = 'bz-inbox', CONTENT = 'bz-content', SESSION = 'bz-session';
   var store = {
@@ -544,8 +553,6 @@
   function showApp() { $('#login-view').hidden = true; $('#app').hidden = false; route(); }
   $('#login-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    var pass = $('#login-pass');
-    if (!pass.value) { $('#login-err').hidden = false; pass.setAttribute('aria-invalid', 'true'); pass.focus(); return; }
     try { sessionStorage.setItem(SESSION, '1'); } catch (err) {}
     showApp();
   });
@@ -832,7 +839,7 @@
 
   // ---------- Boot ----------
   var logged = false; try { logged = sessionStorage.getItem(SESSION) === '1'; } catch (e) {}
-  if (logged) showApp(); else $('#login-pass').focus();
+  if (logged) showApp(); else $('#login-form [type=submit]').focus();
 })();
 </script>
 </body>

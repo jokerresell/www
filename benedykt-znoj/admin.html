@@ -137,16 +137,26 @@
   .kpi-label { font-size: .8125rem; color: var(--color-muted); font-weight: 500; }
   .kpi-value { font-size: 1.75rem; font-weight: 700; color: var(--color-navy-deep); line-height: 1.2; font-variant-numeric: tabular-nums; }
   .kpi-sub { font-size: .8125rem; color: var(--color-subtle); }
-  .grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1rem; }
-  @media (max-width: 1100px) { .kpis { grid-template-columns: repeat(2, 1fr); } .grid-2 { grid-template-columns: 1fr; } }
-  @media (max-width: 480px) { .kpis { grid-template-columns: 1fr; } }
+  .grid-2 { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1rem; }
+  .grid-2 > *, .kpis > * { min-width: 0; }
+  @media (max-width: 1100px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .grid-2 { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 480px) { .kpis { grid-template-columns: minmax(0, 1fr); } }
 
   /* Lists */
   .list-row { display: flex; align-items: center; gap: .9rem; padding: .8rem 1.25rem; border-top: 1px solid var(--color-border); }
   .list-row:first-child { border-top: 0; }
   .list-row .grow { flex: 1; min-width: 0; }
   .list-row strong { display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .list-row .meta { font-size: .8125rem; color: var(--color-subtle); }
+  .list-row .meta { display: block; font-size: .8125rem; color: var(--color-subtle); }
+  .name-link { display: block; max-width: 100%; padding: 0; border: 0; background: none; font-weight: 600; color: var(--color-text); text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .name-link:hover { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
+  .oc-actions { display: flex; align-items: center; gap: .5rem; flex: none; }
+  @media (max-width: 600px) {
+    .oc-row { flex-wrap: wrap; row-gap: .6rem; }
+    .oc-row .grow { flex: 1 1 calc(100% - 52px); }
+    .oc-row .oc-actions { width: 100%; padding-left: calc(36px + .9rem); }
+    .oc-row .oc-actions .days { margin-right: auto; }
+  }
   button.list-row { width: 100%; text-align: left; background: none; border: 0; border-top: 1px solid var(--color-border); color: inherit; transition: background-color .15s ease; }
   button.list-row:hover { background: var(--color-row-hover); }
   .type-dot { width: 36px; height: 36px; border-radius: 10px; background: #E0F2FE; color: var(--color-primary); display: flex; align-items: center; justify-content: center; flex: none; }
@@ -572,6 +582,7 @@ window.addEventListener('error', function (e) {
     $('#view-title').textContent = TITLES[v];
     document.title = TITLES[v] + ' — Panel agencji';
     setNav(false);
+    if (!$('#drawer').hidden) { $('#drawer').hidden = true; $('#drawer-scrim').hidden = true; }
     renderAll();
   }
   window.addEventListener('hashchange', route);
@@ -673,12 +684,12 @@ window.addEventListener('error', function (e) {
   function renderOc(oc) {
     $('#oc-list').innerHTML = oc.map(function (x) {
       var l = x.l;
-      return '<div class="list-row">' + typeIcon('OC/AC') +
-        '<span class="grow"><strong>' + esc(l.name) + '</strong><span class="meta num">' + esc(l.phone) + ' · koniec: ' + new Date(l.ocEnd + 'T00:00').toLocaleDateString('pl-PL') + '</span></span>' +
-        daysBadge(x.d) +
+      return '<div class="list-row oc-row">' + typeIcon('OC/AC') +
+        '<span class="grow"><button type="button" class="name-link" data-open="' + l.id + '">' + esc(l.name) + '</button><span class="meta num">' + esc(l.phone) + ' · koniec: ' + new Date(l.ocEnd + 'T00:00').toLocaleDateString('pl-PL') + '</span></span>' +
+        '<span class="oc-actions">' + daysBadge(x.d) +
         '<a class="btn btn-secondary btn-icon" href="' + telHref(l.phone) + '" aria-label="Zadzwoń do: ' + esc(l.name) + '"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-phone"/></svg></a>' +
         '<button type="button" class="btn btn-secondary btn-icon" data-sms="' + l.id + '" aria-label="Wyślij SMS z przypomnieniem do: ' + esc(l.name) + '"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-sms"/></svg></button>' +
-        '<button type="button" class="btn btn-ghost hide-sm" data-open="' + l.id + '">Szczegóły</button></div>';
+        '<button type="button" class="btn btn-ghost hide-sm" data-open="' + l.id + '">Szczegóły</button></span></div>';
     }).join('') || '<p class="empty">Brak polis z datą końca. Dodaj datę w szczegółach klienta.</p>';
   }
 

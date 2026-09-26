@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pizza Zone Jasło — pizza i burgery z dowozem</title>
+<meta name="description" content="Pizza Zone Jasło — chrupiące ciasto, świeże dodatki, pizza i burgery z dowozem. ul. Stroma 3, Jasło. Zadzwoń: 537 000 285.">
+<meta name="theme-color" content="#DC2626">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23DC2626'/%3E%3Cpath d='M32 10 L54 50 H10 Z' fill='%23FACC15'/%3E%3Ccircle cx='28' cy='36' r='4' fill='%23B91C1C'/%3E%3Ccircle cx='38' cy='42' r='3.5' fill='%23B91C1C'/%3E%3Ccircle cx='32' cy='26' r='3' fill='%23B91C1C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Design system: "Pizza Zone" — Vibrant & Block-based, appetizing red + warm gold */
+    --color-primary: #DC2626;
+    --color-primary-dark: #B91C1C;
+    --color-on-primary: #FFFFFF;
+    --color-gold: #FACC15;
+    --color-accent: #A16207;
+    --color-basil: #15803D;
+    --color-background: #FEF2F2;
+    --color-cream: #FFF8EE;
+    --color-foreground: #450A0A;
+    --color-ink: #1A0606;
+    --color-ink-soft: #2A0C0C;
+    --color-card: #FFFFFF;
+    --color-muted-fg: #7A3B3B;
+    --color-border: #FECACA;
+    --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: Karla, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --radius: 1.25rem;
+    --radius-full: 999px;
+    --shadow-block: 6px 6px 0 var(--color-ink);
+    --shadow-block-sm: 4px 4px 0 var(--color-ink);
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+    --ease-back: cubic-bezier(.34, 1.56, .64, 1);
+    --container: 1240px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; overflow-x: clip; }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    background: var(--color-cream);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  h1, h2, h3, p, figure, blockquote, dl, dd { margin: 0; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .skip-link {
+    position: absolute; left: 1rem; top: -100px; z-index: 100;
+    background: var(--color-gold); color: var(--color-ink);
+    padding: .75rem 1rem; border-radius: 8px; font-weight: 700;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 1.25rem; }
+  @media (min-width: 768px) { .container { padding: 0 2rem; } }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: .95;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 3px; background: currentColor; border-radius: 2px; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    min-height: 52px; padding: .85rem 1.6rem;
+    font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: .04em; text-decoration: none;
+    border-radius: var(--radius-full);
+    border: 3px solid var(--color-ink);
+    cursor: pointer;
+    transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out), background-color .2s;
+  }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .btn-primary { background: var(--color-primary); color: var(--color-on-primary); box-shadow: var(--shadow-block-sm); }
+  .btn-primary:hover { background: var(--color-primary-dark); transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--color-ink); }
+  .btn-primary:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--color-ink); }
+  .btn-gold { background: var(--color-gold); color: var(--color-ink); box-shadow: var(--shadow-block-sm); }
+  .btn-gold:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--color-ink); }
+  .btn-gold:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--color-ink); }
+  .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
+  .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    transition: background-color .25s, box-shadow .25s, backdrop-filter .25s;
+  }
+  .site-header.is-scrolled {
+    background: rgba(26, 6, 6, .92);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 0 var(--color-primary);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; color: #fff; }
+  .logo { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; }
+  .logo-mark { width: 44px; height: 44px; }
+  .logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; text-transform: uppercase; letter-spacing: -.01em; line-height: 1; }
+  .logo-text span { color: var(--color-gold); }
+  .logo-text small { display: block; font-size: .625rem; letter-spacing: .3em; opacity: .75; margin-top: 3px; }
+
+  .menu-toggle {
+    width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--color-primary); border: 2px solid var(--color-ink); color: #fff;
+  }
+  .menu-toggle svg { width: 24px; height: 24px; }
+  .nav-links { display: none; gap: .25rem; align-items: center; }
+  .nav-links a {
+    font-weight: 700; text-decoration: none; padding: .6rem .9rem; border-radius: var(--radius-full);
+    transition: background-color .2s, color .2s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,.12); }
+  .nav-cta { display: none; }
+  @media (min-width: 960px) {
+    .nav-links { display: flex; }
+    .nav-cta { display: inline-flex; min-height: 46px; padding: .6rem 1.2rem; }
+    .menu-toggle { display: none; }
+  }
+
+
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 60; background: var(--color-primary); color: #fff;
+    display: flex; flex-direction: column; padding: 1.25rem;
+    transform: translateY(-100%); visibility: hidden;
+    transition: transform .35s var(--ease-out), visibility 0s linear .35s;
+  }
+  .mobile-menu.is-open { transform: none; visibility: visible; transition: transform .35s var(--ease-out); }
+  .mobile-menu-head { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+  .mobile-menu nav { margin-top: 2rem; display: flex; flex-direction: column; gap: .25rem; }
+  .mobile-menu nav a {
+    font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(2rem, 9vw, 3rem); text-decoration: none; line-height: 1.15; padding: .25rem 0;
+  }
+  .mobile-menu .btn { margin-top: auto; }
+  .close-btn { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: var(--color-ink); color: #fff; }
+  .close-btn svg { width: 24px; height: 24px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(circle at 80% 40%, rgba(220, 38, 38, .55), transparent 55%),
+      radial-gradient(circle at 10% 90%, rgba(250, 204, 21, .18), transparent 40%),
+      var(--color-ink);
+    color: #fff;
+    padding: 120px 0 72px;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .08;
+    background-image: radial-gradient(#fff 1px, transparent 1.4px);
+    background-size: 22px 22px;
+  }
+  .hero-grid { position: relative; z-index: 1; display: grid; gap: 2.5rem; align-items: center; }
+  @media (min-width: 960px) {
+    .hero { padding: 140px 0 96px; min-height: 100vh; display: flex; align-items: center; }
+    .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 3rem; }
+  }
+  .hero .eyebrow { color: var(--color-gold); }
+  .hero h1 { font-size: clamp(3.25rem, 11vw, 7.5rem); margin: 1rem 0 1.25rem; }
+  .hero h1 .outline { color: transparent; -webkit-text-stroke: 2px #fff; }
+  .hero h1 .hl { color: var(--color-gold); }
+  .hero-lead { font-size: clamp(1.1rem, 2.2vw, 1.3rem); max-width: 34rem; color: rgba(255,255,255,.85); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2rem; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 1.5rem 2rem; margin-top: 2.5rem; }
+  .hero-meta div { display: flex; align-items: center; gap: .6rem; font-weight: 700; }
+  .hero-meta svg { width: 22px; height: 22px; color: var(--color-gold); flex: none; }
+  .hero-meta .muted { font-weight: 500; color: rgba(255,255,255,.7); display: block; font-size: .875rem; }
+
+  .open-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .35rem .85rem; border-radius: var(--radius-full);
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    font-size: .875rem; font-weight: 700;
+  }
+  .open-dot { width: 10px; height: 10px; border-radius: 50%; background: #9CA3AF; }
+  .open-badge.is-open .open-dot { background: #22C55E; box-shadow: 0 0 0 0 rgba(34,197,94,.6); animation: ping 2s infinite; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.6); } 80%,100% { box-shadow: 0 0 0 10px rgba(34,197,94,0); } }
+
+  .hero-art { position: relative; aspect-ratio: 1; max-width: 560px; width: 100%; margin: 0 auto; }
+  .pizza-spin { width: 100%; height: 100%; animation: spin 60s linear infinite; filter: drop-shadow(0 30px 40px rgba(0,0,0,.5)); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .sticker {
+    position: absolute; display: grid; place-items: center; text-align: center;
+    font-family: var(--font-display); font-weight: 700; text-transform: uppercase; line-height: 1;
+    border: 3px solid var(--color-ink); box-shadow: var(--shadow-block-sm);
+  }
+  .sticker-rating {
+    top: 2%; right: 0; width: 120px; height: 120px; border-radius: 50%;
+    background: var(--color-gold); color: var(--color-ink); transform: rotate(12deg);
+    animation: bob 4s ease-in-out infinite;
+  }
+  .sticker-rating strong { font-size: 2.25rem; display: block; }
+  .sticker-rating small { font-size: .7rem; letter-spacing: .06em; }
+  .sticker-hot {
+    bottom: 6%; left: -2%; padding: .8rem 1.1rem; border-radius: 14px;
+    background: var(--color-primary); color: #fff; transform: rotate(-8deg); font-size: 1.05rem;
+    animation: bob 4s ease-in-out infinite .8s;
+  }
+  @keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+  @media (max-width: 480px) {
+    .sticker-rating { width: 96px; height: 96px; }
+    .sticker-rating strong { font-size: 1.75rem; }
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee {
+    background: var(--color-gold); color: var(--color-ink);
+    border-block: 3px solid var(--color-ink);
+    overflow: hidden; transform: rotate(-1.2deg); margin: -14px -10px 0; position: relative; z-index: 2;
+  }
+  .marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+  .marquee-track span {
+    display: inline-flex; align-items: center; gap: 1.5rem; padding: .9rem 1.5rem;
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .marquee-track svg { width: 22px; height: 22px; color: var(--color-primary); }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ---------- Sections ---------- */
+  section { position: relative; }
+  .section { padding: 96px 0; }
+  @media (min-width: 960px) { .section { padding: 128px 0; } }
+  .section-head { display: grid; gap: 1rem; margin-bottom: 3rem; }
+  @media (min-width: 960px) { .section-head { grid-template-columns: 1.2fr 1fr; align-items: end; gap: 3rem; } }
+  .section-head h2 { font-size: clamp(2.5rem, 7vw, 5rem); }
+  .section-head p { font-size: 1.15rem; color: var(--color-muted-fg); max-width: 32rem; }
+  .eyebrow-red { color: var(--color-primary); }
+
+  /* ---------- Menu ---------- */
+  .menu-controls { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+  .tabs, .sizes {
+    display: inline-flex; gap: .35rem; padding: .35rem; background: #fff;
+    border: 3px solid var(--color-ink); border-radius: var(--radius-full); box-shadow: var(--shadow-block-sm);
+  }
+  .tab, .size {
+    min-height: 44px; padding: .5rem 1.15rem; border-radius: var(--radius-full);
+    font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: .9rem; letter-spacing: .03em;
+    transition: background-color .2s, color .2s;
+  }
+  .tab:hover, .size:hover { background: var(--color-background); }
+  .tab[aria-selected="true"], .size[aria-pressed="true"] { background: var(--color-primary); color: #fff; }
+  .sizes-label { font-weight: 700; margin-right: .5rem; }
+  .size-wrap { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; }
+
+  .menu-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+  .dish {
+    position: relative; display: flex; flex-direction: column; gap: .85rem;
+    background: var(--color-card); border: 3px solid var(--color-ink); border-radius: var(--radius);
+    padding: 1.5rem; box-shadow: var(--shadow-block);
+    transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+  }
+  .dish:hover { transform: translate(-3px, -3px) rotate(-.4deg); box-shadow: 9px 9px 0 var(--color-ink); }
+  .dish-top { display: flex; align-items: center; gap: 1rem; }
+  .dish-icon {
+    width: 64px; height: 64px; flex: none; border-radius: 50%;
+    display: grid; place-items: center; background: var(--color-background); border: 2px solid var(--color-border);
+  }
+  .dish-icon svg { width: 44px; height: 44px; }
+  .dish h3 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 1.35rem; line-height: 1.1; }
+  .dish p { color: var(--color-muted-fg); font-size: 1rem; flex: 1; }
+  .dish-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: .85rem; border-top: 2px dashed var(--color-border); }
+  .price { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; color: var(--color-primary); }
+  .price small { font-size: .9rem; color: var(--color-muted-fg); font-weight: 500; }
+  .tag {
+    position: absolute; top: -14px; right: 1.1rem;
+    padding: .25rem .7rem; border-radius: var(--radius-full); border: 2px solid var(--color-ink);
+    font-family: var(--font-display); font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em;
+  }
+  .tag-hit { background: var(--color-gold); color: var(--color-ink); }
+  .tag-hot { background: var(--color-primary); color: #fff; }
+  .tag-veg { background: var(--color-basil); color: #fff; }
+  .dish-add {
+    min-height: 44px; min-width: 44px; padding: .5rem 1rem; border-radius: var(--radius-full);
+    background: var(--color-ink); color: #fff; font-weight: 700; font-size: .9rem; text-decoration: none;
+    display: inline-flex; align-items: center; gap: .4rem; transition: background-color .2s;
+  }
+  .dish-add:hover { background: var(--color-primary); }
+  .dish-add svg { width: 18px; height: 18px; }
+  .menu-note { margin-top: 2rem; color: var(--color-muted-fg); font-size: .95rem; }
+  .menu-panel[hidden] { display: none; }
+
+  /* ---------- Steps (funnel) ---------- */
+  .steps-section { background: var(--color-primary); color: #fff; overflow: hidden; }
+  .steps-section .section-head p { color: rgba(255,255,255,.85); }
+  .steps-section .eyebrow { color: var(--color-gold); }
+  .steps { display: grid; gap: 1.5rem; counter-reset: step; }
+  @media (min-width: 900px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  .step {
+    position: relative; padding: 2rem 1.75rem; border-radius: var(--radius);
+    background: var(--color-ink); border: 3px solid var(--color-ink); box-shadow: 8px 8px 0 var(--color-primary-dark);
+  }
+  .step-num {
+    font-family: var(--font-display); font-weight: 700; font-size: 5rem; line-height: .8;
+    color: transparent; -webkit-text-stroke: 2px var(--color-gold);
+  }
+  .step h3 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 1.5rem; margin: 1.25rem 0 .5rem; }
+  .step p { color: rgba(255,255,255,.78); }
+  .step svg.step-icon { position: absolute; top: 1.75rem; right: 1.75rem; width: 44px; height: 44px; color: var(--color-gold); }
+  .steps-cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; align-items: center; }
+  .steps-cta .phone-big { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 6vw, 3.5rem); text-decoration: none; letter-spacing: -.02em; }
+  .steps-cta .phone-big:hover { color: var(--color-gold); }
+
+  /* ---------- Why / Bento ---------- */
+  .bento { display: grid; gap: 1.25rem; }
+  @media (min-width: 900px) {
+    .bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(220px, auto); }
+    .b-wide { grid-column: span 2; }
+    .b-tall { grid-row: span 2; }
+  }
+  .b {
+    border: 3px solid var(--color-ink); border-radius: var(--radius); padding: 1.75rem;
+    box-shadow: var(--shadow-block); display: flex; flex-direction: column; gap: .75rem;
+    background: #fff;
+  }
+  .b svg.b-icon { width: 48px; height: 48px; }
+  .b h3 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 1.45rem; line-height: 1.1; }
+  .b p { color: var(--color-muted-fg); }
+  .b-red { background: var(--color-primary); color: #fff; }
+  .b-red p { color: rgba(255,255,255,.85); }
+  .b-gold { background: var(--color-gold); color: var(--color-ink); }
+  .b-gold p { color: #5b3a06; }
+  .b-ink { background: var(--color-ink); color: #fff; }
+  .b-ink p { color: rgba(255,255,255,.75); }
+  .big-stat { font-family: var(--font-display); font-weight: 700; font-size: clamp(4rem, 10vw, 7rem); line-height: .85; letter-spacing: -.04em; }
+  .stars { display: flex; gap: .2rem; color: var(--color-gold); }
+  .stars svg { width: 26px; height: 26px; }
+  .b-tall .quote { font-size: 1.2rem; font-weight: 600; line-height: 1.5; margin-top: auto; }
+  .b-tall cite { font-style: normal; font-weight: 700; color: var(--color-gold); font-size: .95rem; }
+
+  /* ---------- Info: hours + map ---------- */
+  .info-section { background: var(--color-ink); color: #fff; }
+  .info-section .section-head p { color: rgba(255,255,255,.75); }
+  .info-section .eyebrow { color: var(--color-gold); }
+  .info-grid { display: grid; gap: 1.5rem; }
+  @media (min-width: 960px) { .info-grid { grid-template-columns: 1fr 1.25fr; } }
+  .card-dark {
+    background: var(--color-ink-soft); border: 2px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 1.75rem;
+  }
+  .card-dark h3 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 1.35rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: .6rem; }
+  .card-dark h3 svg { width: 26px; height: 26px; color: var(--color-gold); }
+  .hours { display: grid; }
+  .hours li { display: flex; justify-content: space-between; gap: 1rem; padding: .75rem .9rem; border-radius: 10px; font-variant-numeric: tabular-nums; }
+  .hours li:nth-child(odd) { background: rgba(255,255,255,.03); }
+  .hours li.is-today { background: var(--color-primary); font-weight: 700; }
+  .hours .closed { color: #FCA5A5; font-weight: 700; }
+  .hours li.is-today .closed { color: #fff; }
+  .contact-list { display: grid; gap: 1rem; margin-top: 1.5rem; }
+  .contact-list a, .contact-list div {
+    display: flex; align-items: center; gap: .9rem; text-decoration: none; font-weight: 700; font-size: 1.1rem;
+    padding: .9rem 1rem; border-radius: 14px; background: rgba(255,255,255,.05); border: 2px solid transparent;
+    transition: border-color .2s, background-color .2s;
+  }
+  .contact-list a:hover { border-color: var(--color-gold); background: rgba(250,204,21,.08); }
+  .contact-list svg { width: 24px; height: 24px; color: var(--color-gold); flex: none; }
+  .contact-list small { display: block; font-weight: 500; font-size: .85rem; color: rgba(255,255,255,.65); }
+  .map-wrap {
+    position: relative; border-radius: var(--radius); overflow: hidden; border: 3px solid var(--color-gold);
+    min-height: 380px; background: var(--color-ink-soft);
+  }
+  .map-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(.2) contrast(1.05); }
+  .map-pin {
+    position: absolute; left: 1rem; bottom: 1rem; z-index: 1;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta { background: var(--color-gold); border-top: 3px solid var(--color-ink); overflow: hidden; }
+  .final-inner { display: grid; gap: 2rem; align-items: center; padding: 88px 0; }
+  @media (min-width: 900px) { .final-inner { grid-template-columns: 1.4fr 1fr; } }
+  .final-cta h2 { font-size: clamp(2.75rem, 8vw, 6rem); color: var(--color-ink); }
+  .final-cta h2 span { color: var(--color-primary); }
+  .final-cta p { font-size: 1.2rem; color: #5b3a06; margin-top: 1rem; max-width: 30rem; }
+  .final-actions { display: flex; flex-direction: column; gap: 1rem; }
+  @media (min-width: 900px) { .final-actions { align-items: flex-end; } }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--color-ink); color: rgba(255,255,255,.75); padding: 56px 0 110px; }
+  @media (min-width: 960px) { footer { padding-bottom: 56px; } }
+  .footer-grid { display: grid; gap: 2rem; }
+  @media (min-width: 768px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+  footer h4 { margin: 0 0 1rem; font-family: var(--font-display); text-transform: uppercase; color: #fff; font-size: 1rem; letter-spacing: .06em; }
+  footer ul { display: grid; gap: .5rem; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--color-gold); }
+  .socials { display: flex; gap: .75rem; margin-top: 1.25rem; }
+  .socials a {
+    width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center;
+    background: rgba(255,255,255,.08); color: #fff; transition: background-color .2s, color .2s;
+  }
+  .socials a:hover { background: var(--color-primary); color: #fff; }
+  .socials svg { width: 22px; height: 22px; }
+  .footer-bottom { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.12); font-size: .9rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+
+  /* ---------- Mobile sticky order bar ---------- */
+  .order-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+    background: rgba(26,6,6,.95); backdrop-filter: blur(8px);
+    border-top: 3px solid var(--color-primary);
+    display: flex; gap: .75rem;
+    transform: translateY(110%); transition: transform .3s var(--ease-out);
+  }
+  .order-bar.is-visible { transform: none; }
+  .order-bar .btn { flex: 1; min-height: 50px; padding: .6rem 1rem; font-size: .95rem; }
+  @media (min-width: 960px) { .order-bar { display: none; } }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(24px) scale(.98); transition: opacity .55s var(--ease-out), transform .55s var(--ease-back); }
+  .reveal.is-in { opacity: 1; transform: none; }
+  .no-js .reveal { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body class="no-js">
+<a class="skip-link" href="#main">Przejdź do treści</a>
+
+<!-- SVG sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></symbol>
+    <symbol id="i-wheat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.33-.04-1.56-.14-2.86-.14C11.93 2 10 3.66 10 6.7v2.8H7v4h3V22h4v-8.5Z"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <!-- Food glyphs -->
+    <symbol id="f-pizza" viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#E8A33D"/><circle cx="24" cy="24" r="17" fill="#FDE68A"/><circle cx="18" cy="18" r="3.5" fill="#DC2626"/><circle cx="30" cy="20" r="3.5" fill="#DC2626"/><circle cx="22" cy="30" r="3.5" fill="#DC2626"/><circle cx="31" cy="31" r="2.5" fill="#DC2626"/><path d="M13 25c1-1 2-1 3 0" stroke="#15803D" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="f-pizza-veg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#E8A33D"/><circle cx="24" cy="24" r="17" fill="#FEF3C7"/><ellipse cx="18" cy="19" rx="4" ry="2.5" fill="#15803D" transform="rotate(-30 18 19)"/><ellipse cx="30" cy="28" rx="4" ry="2.5" fill="#15803D" transform="rotate(20 30 28)"/><circle cx="29" cy="18" r="3" fill="#EF4444"/><circle cx="19" cy="30" r="3" fill="#EF4444"/><circle cx="24" cy="24" r="1.8" fill="#1F2937"/></symbol>
+    <symbol id="f-pizza-hot" viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#E8A33D"/><circle cx="24" cy="24" r="17" fill="#FCA5A5"/><circle cx="17" cy="20" r="3.2" fill="#991B1B"/><circle cx="29" cy="17" r="3.2" fill="#991B1B"/><circle cx="31" cy="30" r="3.2" fill="#991B1B"/><circle cx="19" cy="31" r="3.2" fill="#991B1B"/><path d="M22 24c2-3 5-3 6 0" stroke="#15803D" stroke-width="2.2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="f-burger" viewBox="0 0 48 48"><path d="M8 20c0-8 7-12 16-12s16 4 16 12Z" fill="#E8A33D"/><circle cx="18" cy="13" r="1" fill="#FEF3C7"/><circle cx="26" cy="12" r="1" fill="#FEF3C7"/><circle cx="31" cy="15" r="1" fill="#FEF3C7"/><path d="M6 22h36l-3 3H9Z" fill="#15803D"/><rect x="7" y="25" width="34" height="5" rx="2.5" fill="#FACC15"/><rect x="8" y="29" width="32" height="6" rx="3" fill="#7C2D12"/><path d="M8 36h32c0 3-2 5-5 5H13c-3 0-5-2-5-5Z" fill="#E8A33D"/></symbol>
+    <symbol id="f-fries" viewBox="0 0 48 48"><path d="M16 8h3v16h-3zM21 5h3v19h-3zM26 7h3v17h-3zM31 10h3v14h-3z" fill="#FACC15"/><path d="M11 20h26l-3 22H14Z" fill="#DC2626"/><path d="M18 28a6 6 0 0 0 12 0" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="f-drink" viewBox="0 0 48 48"><path d="M13 12h22l-3 30H16Z" fill="#DC2626"/><path d="M14 20h20l-.8 8H14.8Z" fill="#fff"/><path d="M26 12 30 3" stroke="#1A0606" stroke-width="2.5" stroke-linecap="round"/><rect x="11" y="9" width="26" height="4" rx="2" fill="#1A0606"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header" id="top">
+  <div class="container nav">
+    <a href="#top" class="logo" aria-label="Pizza Zone Jasło — strona główna">
+      <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#DC2626" stroke="#1A0606" stroke-width="3"/>
+        <path d="M32 12 L52 50 H12 Z" fill="#FACC15" stroke="#1A0606" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M12 50 H52" stroke="#E8A33D" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="28" cy="38" r="4" fill="#B91C1C"/><circle cx="38" cy="42" r="3.5" fill="#B91C1C"/><circle cx="33" cy="28" r="3" fill="#B91C1C"/>
+      </svg>
+      <span class="logo-text">Pizza <span>Zone</span><small>Jasło</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Główna nawigacja">
+      <a href="#menu">Menu</a>
+      <a href="#zamow">Jak zamówić</a>
+      <a href="#dlaczego">Dlaczego my</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="btn btn-gold nav-cta" href="tel:+48537000285"><svg aria-hidden="true"><use href="#i-phone"/></svg>537 000 285</a>
+    <button class="menu-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg aria-hidden="true"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu nawigacji">
+  <div class="mobile-menu-head">
+    <span class="logo-text">Pizza <span style="color:var(--color-gold)">Zone</span></span>
+    <button class="close-btn" type="button" aria-label="Zamknij menu"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <nav aria-label="Nawigacja mobilna">
+    <a href="#menu">Menu</a>
+    <a href="#zamow">Jak zamówić</a>
+    <a href="#dlaczego">Dlaczego my</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <a class="btn btn-gold" href="tel:+48537000285"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zadzwoń: 537 000 285</a>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div>
+        <span class="open-badge" id="open-badge" aria-live="polite"><span class="open-dot" aria-hidden="true"></span><span id="open-text">Sprawdzam godziny…</span></span>
+        <h1 class="display" id="hero-title">Wejdź<br>w <span class="hl">strefę</span><br><span class="outline">pizzy</span></h1>
+        <p class="hero-lead">Chrupiące ciasto, gęsty sos z pomidorów i ciągnący się ser. Pizza i burgery prosto z pieca na ul. Stromej — z dowozem po Jaśle.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:+48537000285"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów teraz</a>
+          <a class="btn btn-ghost" href="#menu">Zobacz menu<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="hero-meta">
+          <div><svg aria-hidden="true"><use href="#i-truck"/></svg><span>Dowóz<span class="muted">na terenie Jasła</span></span></div>
+          <div><svg aria-hidden="true"><use href="#i-pin"/></svg><span>ul. Stroma 3<span class="muted">38-200 Jasło</span></span></div>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <svg class="pizza-spin" viewBox="0 0 400 400">
+          <defs>
+            <radialGradient id="crust" cx="50%" cy="50%" r="50%">
+              <stop offset="82%" stop-color="#F3B65A"/><stop offset="92%" stop-color="#D98A2B"/><stop offset="100%" stop-color="#9A5412"/>
+            </radialGradient>
+            <radialGradient id="sauce" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#E23B2E"/><stop offset="100%" stop-color="#B42318"/>
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="200" r="190" fill="url(#crust)"/>
+          <circle cx="200" cy="200" r="160" fill="url(#sauce)"/>
+          <!-- cheese blobs -->
+          <g fill="#FEF3C7" opacity=".95">
+            <path d="M110 150c20-30 60-35 80-20s10 40-15 50-80 5-65-30z"/>
+            <path d="M220 110c30-10 70 5 75 35s-25 40-50 35-55-55-25-70z"/>
+            <path d="M250 230c25-5 60 15 55 45s-40 40-65 30-20-70 10-75z"/>
+            <path d="M120 250c15-25 60-25 75 0s-5 55-35 55-55-30-40-55z"/>
+            <path d="M175 185c15-15 45-10 50 10s-15 35-35 30-30-25-15-40z"/>
+          </g>
+          <!-- pepperoni -->
+          <g fill="#9F1D1D" stroke="#7F1414" stroke-width="3">
+            <circle cx="140" cy="140" r="22"/><circle cx="255" cy="130" r="22"/><circle cx="290" cy="215" r="20"/>
+            <circle cx="235" cy="290" r="22"/><circle cx="140" cy="275" r="21"/><circle cx="105" cy="205" r="18"/>
+            <circle cx="200" cy="200" r="20"/><circle cx="190" cy="95" r="16"/><circle cx="195" cy="315" r="16"/>
+          </g>
+          <g fill="#C2410C" opacity=".6">
+            <circle cx="134" cy="134" r="5"/><circle cx="262" cy="124" r="5"/><circle cx="284" cy="208" r="4"/><circle cx="228" cy="284" r="5"/><circle cx="194" cy="194" r="4"/>
+          </g>
+          <!-- basil -->
+          <g fill="#15803D">
+            <ellipse cx="170" cy="160" rx="14" ry="7" transform="rotate(-35 170 160)"/>
+            <ellipse cx="265" cy="175" rx="14" ry="7" transform="rotate(25 265 175)"/>
+            <ellipse cx="175" cy="245" rx="14" ry="7" transform="rotate(60 175 245)"/>
+            <ellipse cx="275" cy="265" rx="12" ry="6" transform="rotate(-20 275 265)"/>
+            <ellipse cx="120" cy="175" rx="11" ry="5.5" transform="rotate(10 120 175)"/>
+          </g>
+          <!-- slice cuts -->
+          <g stroke="#9A5412" stroke-width="3" opacity=".35">
+            <line x1="200" y1="10" x2="200" y2="390"/><line x1="10" y1="200" x2="390" y2="200"/>
+            <line x1="66" y1="66" x2="334" y2="334"/><line x1="334" y1="66" x2="66" y2="334"/>
+          </g>
+        </svg>
+        <div class="sticker sticker-rating"><div><strong>4.8</strong><small>/5 ocen<br>klientów</small></div></div>
+        <div class="sticker sticker-hot">Prosto<br>z pieca!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Pizza <svg><use href="#i-star"/></svg> Burgery <svg><use href="#i-star"/></svg> Dowóz po Jaśle <svg><use href="#i-star"/></svg> Świeże ciasto <svg><use href="#i-star"/></svg> ul. Stroma 3 <svg><use href="#i-star"/></svg></span>
+      <span>Pizza <svg><use href="#i-star"/></svg> Burgery <svg><use href="#i-star"/></svg> Dowóz po Jaśle <svg><use href="#i-star"/></svg> Świeże ciasto <svg><use href="#i-star"/></svg> ul. Stroma 3 <svg><use href="#i-star"/></svg></span>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <section class="section" id="menu" aria-labelledby="menu-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow eyebrow-red">Nasze menu</span>
+          <h2 class="display" id="menu-title">Wybierz<br>swoją strefę</h2>
+        </div>
+        <p>Klasyki, ostre propozycje i soczyste burgery. Wybierz rozmiar pizzy — ceny zmienią się automatycznie.</p>
+      </div>
+
+      <div class="menu-controls">
+        <div class="tabs" role="tablist" aria-label="Kategorie menu">
+          <button class="tab" role="tab" id="tab-pizza" aria-selected="true" aria-controls="panel-pizza">Pizza</button>
+          <button class="tab" role="tab" id="tab-burgery" aria-selected="false" aria-controls="panel-burgery" tabindex="-1">Burgery</button>
+          <button class="tab" role="tab" id="tab-dodatki" aria-selected="false" aria-controls="panel-dodatki" tabindex="-1">Dodatki</button>
+        </div>
+        <div class="size-wrap" id="size-wrap">
+          <span class="sizes-label" id="size-label">Rozmiar:</span>
+          <div class="sizes" role="group" aria-labelledby="size-label">
+            <button class="size" type="button" data-size="0" aria-pressed="false">32 cm</button>
+            <button class="size" type="button" data-size="1" aria-pressed="true">42 cm</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-panel" role="tabpanel" id="panel-pizza" aria-labelledby="tab-pizza">
+        <ul class="menu-grid">
+          <li class="dish reveal">
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-pizza"/></svg></span><h3>Margherita</h3></div>
+            <p>Sos pomidorowy, mozzarella, świeża bazylia, oliwa.</p>
+            <div class="dish-foot"><span class="price" data-prices="24,34">34 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów Margheritę telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+          <li class="dish reveal">
+            <span class="tag tag-hit">Hit</span>
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-pizza"/></svg></span><h3>Pepperoni Zone</h3></div>
+            <p>Podwójne pepperoni, mozzarella, sos pomidorowy, oregano.</p>
+            <div class="dish-foot"><span class="price" data-prices="31,43">43 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów Pepperoni Zone telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+          <li class="dish reveal">
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-pizza"/></svg></span><h3>Capricciosa</h3></div>
+            <p>Szynka, pieczarki, mozzarella, sos pomidorowy.</p>
+            <div class="dish-foot"><span class="price" data-prices="29,40">40 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów Capricciosę telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+          <li class="dish reveal">
+            <span class="tag tag-hot">Ostra</span>
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-pizza-hot"/></svg></span><h3>Diavola</h3></div>
+            <p>Pikantne salami, jalapeño, czerwona cebula, chili, mozzarella.</p>
+            <div class="dish-foot"><span class="price" data-prices="32,44">44 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów Diavolę telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+          <li class="dish reveal">
+            <span class="tag tag-veg">Wege</span>
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-pizza-veg"/></svg></span><h3>Vege Garden</h3></div>
+            <p>Papryka, oliwki, pomidorki, szpinak, cebula, mozzarella.</p>
+            <div class="dish-foot"><span class="price" data-prices="30,41">41 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów Vege Garden telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+          <li class="dish reveal">
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-pizza"/></svg></span><h3>Quattro Formaggi</h3></div>
+            <p>Mozzarella, gorgonzola, parmezan, cheddar, sos śmietanowy.</p>
+            <div class="dish-foot"><span class="price" data-prices="33,45">45 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów Quattro Formaggi telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu-panel" role="tabpanel" id="panel-burgery" aria-labelledby="tab-burgery" hidden>
+        <ul class="menu-grid">
+          <li class="dish">
+            <span class="tag tag-hit">Hit</span>
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-burger"/></svg></span><h3>Zone Classic</h3></div>
+            <p>Wołowina 100%, cheddar, sałata, pomidor, ogórek, sos domowy.</p>
+            <div class="dish-foot"><span class="price">32 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów Zone Classic telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+          <li class="dish">
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-burger"/></svg></span><h3>Bacon BBQ</h3></div>
+            <p>Wołowina, chrupiący boczek, cheddar, prażona cebula, sos BBQ.</p>
+            <div class="dish-foot"><span class="price">36 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów Bacon BBQ telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+          <li class="dish">
+            <span class="tag tag-hot">Ostry</span>
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-burger"/></svg></span><h3>Hot Zone</h3></div>
+            <p>Wołowina, jalapeño, pepper jack, sos sriracha-mayo.</p>
+            <div class="dish-foot"><span class="price">35 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów Hot Zone telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu-panel" role="tabpanel" id="panel-dodatki" aria-labelledby="tab-dodatki" hidden>
+        <ul class="menu-grid">
+          <li class="dish">
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-fries"/></svg></span><h3>Frytki</h3></div>
+            <p>Złociste, chrupiące, z solą morską.</p>
+            <div class="dish-foot"><span class="price">12 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów frytki telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+          <li class="dish">
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-fries"/></svg></span><h3>Sosy</h3></div>
+            <p>Czosnkowy, pomidorowy, BBQ, ostry.</p>
+            <div class="dish-foot"><span class="price">4 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów sosy telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+          <li class="dish">
+            <div class="dish-top"><span class="dish-icon"><svg aria-hidden="true"><use href="#f-drink"/></svg></span><h3>Napoje</h3></div>
+            <p>Zimne napoje gazowane i soki, 0,5 l.</p>
+            <div class="dish-foot"><span class="price">8 zł</span><a class="dish-add" href="tel:+48537000285" aria-label="Zamów napoje telefonicznie"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zamów</a></div>
+          </li>
+        </ul>
+      </div>
+
+      <p class="menu-note">Pełne, aktualne menu i ceny potwierdzisz przy zamówieniu telefonicznym.</p>
+    </div>
+  </section>
+
+  <!-- STEPS (funnel) -->
+  <section class="section steps-section" id="zamow" aria-labelledby="steps-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Szybko i prosto</span>
+          <h2 class="display" id="steps-title">3 kroki<br>do pizzy</h2>
+        </div>
+        <p>Bez aplikacji i bez logowania. Jeden telefon i gorąca pizza jest w drodze.</p>
+      </div>
+      <ol class="steps">
+        <li class="step reveal">
+          <svg class="step-icon" aria-hidden="true"><use href="#i-list"/></svg>
+          <div class="step-num" aria-hidden="true">01</div>
+          <h3>Wybierz</h3>
+          <p>Przejrzyj menu i wybierz pizzę, burgera albo zestaw dla całej ekipy.</p>
+        </li>
+        <li class="step reveal">
+          <svg class="step-icon" aria-hidden="true"><use href="#i-phone"/></svg>
+          <div class="step-num" aria-hidden="true">02</div>
+          <h3>Zadzwoń</h3>
+          <p>Podaj zamówienie i adres. Powiemy Ci od razu, kiedy będzie gotowe.</p>
+        </li>
+        <li class="step reveal">
+          <svg class="step-icon" aria-hidden="true"><use href="#i-truck"/></svg>
+          <div class="step-num" aria-hidden="true">03</div>
+          <h3>Zajadaj</h3>
+          <p>Dowieziemy pod drzwi albo odbierz osobiście na ul. Stromej 3.</p>
+        </li>
+      </ol>
+      <div class="steps-cta reveal">
+        <a class="phone-big" href="tel:+48537000285">537 000 285</a>
+        <a class="btn btn-gold" href="tel:+48537000285"><svg aria-hidden="true"><use href="#i-phone"/></svg>Dzwonię</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section" id="dlaczego" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow eyebrow-red">Dlaczego Pizza Zone</span>
+          <h2 class="display" id="why-title">Smak, który<br>się pamięta</h2>
+        </div>
+        <p>Nie kombinujemy. Dobre ciasto, porządne składniki i pizza, która wychodzi z pieca prosto do Ciebie.</p>
+      </div>
+
+      <div class="bento">
+        <div class="b b-ink b-wide b-tall reveal">
+          <div class="stars" aria-label="Ocena 4,8 na 5">
+            <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+          </div>
+          <div class="big-stat">4.8<span style="font-size:.4em;color:var(--color-gold)">/5</span></div>
+          <p>Średnia ocena na podstawie ponad 150 opinii klientów.</p>
+          <blockquote class="quote">„Świetne ciasto i znakomite dodatki, które idealnie do siebie pasują.”
+            <footer><cite>— opinia klienta</cite></footer>
+          </blockquote>
+        </div>
+        <div class="b b-red b-wide reveal">
+          <svg class="b-icon" aria-hidden="true" style="color:var(--color-gold)"><use href="#i-wheat"/></svg>
+          <h3>Ciasto, które robi robotę</h3>
+          <p>Wyrastające powoli, cienkie w środku i chrupiące na brzegach.</p>
+        </div>
+        <div class="b b-gold reveal">
+          <svg class="b-icon" aria-hidden="true" style="color:var(--color-primary)"><use href="#i-flame"/></svg>
+          <h3>Prosto z pieca</h3>
+          <p>Pieczemy na zamówienie — nic nie czeka pod lampą.</p>
+        </div>
+        <div class="b reveal">
+          <svg class="b-icon" aria-hidden="true" style="color:var(--color-basil)"><use href="#i-leaf"/></svg>
+          <h3>Świeże dodatki</h3>
+          <p>Warzywa, sery i mięsa dobierane tak, żeby grały razem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="section info-section" id="kontakt" aria-labelledby="info-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Godziny i dojazd</span>
+          <h2 class="display" id="info-title">Wpadaj<br>na Stromą</h2>
+        </div>
+        <p>Zamów z dowozem, odbierz osobiście albo zjedz na miejscu.</p>
+      </div>
+
+      <div class="info-grid">
+        <div class="card-dark reveal">
+          <h3><svg aria-hidden="true"><use href="#i-clock"/></svg>Godziny otwarcia</h3>
+          <ul class="hours" id="hours">
+            <li data-day="1"><span>Poniedziałek</span><span class="closed">nieczynne</span></li>
+            <li data-day="2"><span>Wtorek</span><span>10:00 – 22:00</span></li>
+            <li data-day="3"><span>Środa</span><span>10:00 – 22:00</span></li>
+            <li data-day="4"><span>Czwartek</span><span>10:00 – 22:00</span></li>
+            <li data-day="5"><span>Piątek</span><span>11:00 – 23:00</span></li>
+            <li data-day="6"><span>Sobota</span><span>11:00 – 23:00</span></li>
+            <li data-day="0"><span>Niedziela</span><span>13:00 – 22:00</span></li>
+          </ul>
+          <div class="contact-list">
+            <a href="tel:+48537000285"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>537 000 285<small>Zamówienia i dowóz</small></span></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Stroma+3+Jas%C5%82o" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg><span>ul. Stroma 3, Jasło<small>Nawiguj w Mapach Google</small></span></a>
+          </div>
+        </div>
+        <div class="map-wrap reveal">
+          <iframe title="Mapa dojazdu do Pizza Zone, ul. Stroma 3, Jasło" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=Stroma%203%2C%20Jas%C5%82o&z=16&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" aria-labelledby="final-title">
+    <div class="container final-inner">
+      <div class="reveal">
+        <h2 class="display" id="final-title">Głodny?<br><span>Dzwoń.</span></h2>
+        <p>Gorąca pizza w Jaśle jest dosłownie jeden telefon stąd.</p>
+      </div>
+      <div class="final-actions reveal">
+        <a class="btn btn-primary" href="tel:+48537000285"><svg aria-hidden="true"><use href="#i-phone"/></svg>537 000 285</a>
+        <a class="btn btn-gold" href="#menu">Wróć do menu<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <span class="logo-text" style="color:#fff">Pizza <span style="color:var(--color-gold)">Zone</span><small>Jasło</small></span>
+        <p style="margin-top:1rem;max-width:26rem">Pizza i burgery z pieca, z dowozem po Jaśle. Wpadaj na Stromą 3.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/p/PIZZA-ZONE-61556128018569/" target="_blank" rel="noopener" aria-label="Pizza Zone na Facebooku"><svg aria-hidden="true"><use href="#i-fb"/></svg></a>
+          <a href="https://www.tiktok.com/@pizza.zone.jaslo" target="_blank" rel="noopener" aria-label="Pizza Zone na TikToku"><svg aria-hidden="true"><use href="#i-tiktok"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Na skróty</h4>
+        <ul>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#zamow">Jak zamówić</a></li>
+          <li><a href="#dlaczego">Dlaczego my</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+48537000285">537 000 285</a></li>
+          <li>ul. Stroma 3, 38-200 Jasło</li>
+          <li>Pon: nieczynne</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Pizza Zone Jasło</span>
+      <a href="#top">Do góry ↑</a>
+    </div>
+  </div>
+</footer>
+
+<div class="order-bar" id="order-bar">
+  <a class="btn btn-primary" href="tel:+48537000285"><svg aria-hidden="true"><use href="#i-phone"/></svg>Zadzwoń</a>
+  <a class="btn btn-gold" href="#menu"><svg aria-hidden="true"><use href="#i-bag"/></svg>Menu</a>
+</div>
+
+<script>
+(() => {
+  document.body.classList.remove('no-js');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Header + mobile order bar on scroll */
+  const header = document.querySelector('.site-header');
+  const bar = document.getElementById('order-bar');
+  const onScroll = () => {
+    const y = window.scrollY;
+    header.classList.toggle('is-scrolled', y > 20);
+    bar.classList.toggle('is-visible', y > window.innerHeight * 0.6);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Mobile menu */
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const closeBtn = menu.querySelector('.close-btn');
+  const setMenu = (open) => {
+    menu.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    (open ? closeBtn : toggle).focus();
+  };
+  toggle.addEventListener('click', () => setMenu(true));
+  closeBtn.addEventListener('click', () => setMenu(false));
+  menu.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('is-open')) setMenu(false); });
+
+  /* Menu tabs (WAI-ARIA tabs pattern) */
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  const sizeWrap = document.getElementById('size-wrap');
+  const selectTab = (tab) => {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    sizeWrap.style.visibility = tab.id === 'tab-pizza' ? 'visible' : 'hidden';
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectTab(tab));
+    tab.addEventListener('keydown', e => {
+      const dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!dir) return;
+      e.preventDefault();
+      const next = tabs[(i + dir + tabs.length) % tabs.length];
+      next.focus(); selectTab(next);
+    });
+  });
+
+  /* Size toggle updates prices */
+  const sizeBtns = document.querySelectorAll('.size');
+  sizeBtns.forEach(btn => btn.addEventListener('click', () => {
+    sizeBtns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    const idx = +btn.dataset.size;
+    document.querySelectorAll('[data-prices]').forEach(el => {
+      el.textContent = el.dataset.prices.split(',')[idx] + ' zł';
+    });
+  }));
+
+  /* Open-now indicator (Europe/Warsaw) */
+  const HOURS = { 0: [13, 22], 1: null, 2: [10, 22], 3: [10, 22], 4: [10, 22], 5: [11, 23], 6: [11, 23] };
+  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Warsaw', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+  const get = t => parts.find(p => p.type === t).value;
+  const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(get('weekday'));
+  const h = +get('hour') % 24 + (+get('minute')) / 60;
+  const today = HOURS[day];
+  const isOpen = !!today && h >= today[0] && h < today[1];
+  const badge = document.getElementById('open-badge');
+  const txt = document.getElementById('open-text');
+  badge.classList.toggle('is-open', isOpen);
+  if (isOpen) {
+    txt.textContent = `Otwarte teraz · do ${today[1]}:00`;
+  } else {
+    let next = null;
+    for (let k = 0; k < 7; k++) {
+      const d = (day + k) % 7, r = HOURS[d];
+      if (r && (k > 0 || h < r[0])) { next = { k, d, r }; break; }
+    }
+    const names = ['w niedzielę','w poniedziałek','we wtorek','w środę','w czwartek','w piątek','w sobotę'];
+    txt.textContent = next
+      ? `Zamknięte · otwieramy ${next.k === 0 ? 'dziś' : next.k === 1 ? 'jutro' : names[next.d]} o ${next.r[0]}:00`
+      : 'Zamknięte';
+  }
+  const todayRow = document.querySelector(`#hours li[data-day="${day}"]`);
+  if (todayRow) { todayRow.classList.add('is-today'); todayRow.setAttribute('aria-current', 'date'); }
+
+  /* Scroll reveal with stagger — position-based so jumps/anchor links never leave content hidden */
+  const pending = new Set(document.querySelectorAll('.reveal'));
+  const reveal = () => {
+    const limit = window.innerHeight * 0.92;
+    const batch = [...pending].filter(el => el.getBoundingClientRect().top < limit);
+    batch.forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i, 5) * 60 + 'ms';
+      el.classList.add('is-in');
+      pending.delete(el);
+    });
+    if (!pending.size) window.removeEventListener('scroll', onReveal);
+  };
+  let ticking = false;
+  const onReveal = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; reveal(); });
+  };
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    pending.forEach(el => el.classList.add('is-in'));
+  } else {
+    window.addEventListener('scroll', onReveal, { passive: true });
+    window.addEventListener('resize', onReveal, { passive: true });
+    reveal();
+  }
+})();
+</script>
+</body>
+</html>

@@ -3,334 +3,248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ART CAFÉ galeria marzenie — Łańcut, ul. Zamkowa 4</title>
-<meta name="description" content="ART CAFÉ galeria marzenie w Łańcucie: autorskie proziaki, dobra kawa, regionalny kraft i sztuka artystów z całej Europy. ul. Zamkowa 4, codziennie od 10:00.">
-<meta name="theme-color" content="#FFD23F">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='2' y='2' width='60' height='60' rx='12' fill='%23FFD23F' stroke='%23111' stroke-width='4'/%3E%3Ctext x='32' y='44' font-family='Arial Black,Arial' font-weight='900' font-size='30' text-anchor='middle' fill='%23111'%3EA%3C/text%3E%3C/svg%3E">
+<title>ART CAFÉ galeria marzenie — kawiarnia w Łańcucie</title>
+<meta name="description" content="ART CAFÉ galeria marzenie — kawiarnia w sercu Łańcuta, ul. Zamkowa 4. Aromatyczna kawa, autorskie proziaki, domowe desery i regionalne piwo rzemieślnicze w otoczeniu sztuki. Codziennie od 10:00.">
+<meta name="theme-color" content="#3B2A20">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%233B2A20'/%3E%3Cpath d='M18 26h24v10a12 12 0 0 1-12 12h0a12 12 0 0 1-12-12z' fill='%23FBF6EE'/%3E%3Cpath d='M42 29h3a5 5 0 0 1 0 10h-4' fill='none' stroke='%23FBF6EE' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Karla:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #FFF8EC;
-    --ink: #111111;
-    --pink: #FF6FB1;
-    --yellow: #FFD23F;
-    --blue: #3A55F5;
-    --green: #22B573;
-    --orange: #FF7A2F;
-    --lilac: #C9B8FF;
-    --muted: #4A4A4A;
-    --b: 3px solid var(--ink);
-    --shadow: 6px 6px 0 var(--ink);
-    --shadow-sm: 4px 4px 0 var(--ink);
-    --shadow-lg: 10px 10px 0 var(--ink);
-    --r: 20px;
-    --display: "Syne", "Arial Black", system-ui, sans-serif;
-    --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --spring: cubic-bezier(.34, 1.56, .64, 1);
-    --container: 1280px;
+    --cream: #FBF6EE;
+    --latte: #F1E6D6;
+    --foam: #FFFDF9;
+    --espresso: #2E211A;
+    --coffee: #5A3E2E;
+    --text-soft: #6B5647;
+    --line: #E6D8C4;
+    --accent: #A8502B;       /* terracotta, 5.3:1 on cream */
+    --accent-dark: #8A3F1F;
+    --caramel: #D9A15B;
+    --sage: #6E7F5C;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: Karla, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --hand: Caveat, "Segoe Print", cursive;
+    --radius: 22px;
+    --shadow: 0 24px 50px -24px rgba(46, 33, 26, .35);
+    --ease: cubic-bezier(.22, 1, .36, 1);
+    --container: 1200px;
   }
   *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
-  body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font: 500 1.0625rem/1.6 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden;
-    background-image: radial-gradient(rgba(17,17,17,.09) 1.2px, transparent 1.2px);
-    background-size: 22px 22px;
-  }
-  h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: .98; margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { margin: 0; background: var(--cream); color: var(--espresso); font: 400 1.0625rem/1.7 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.12; margin: 0; text-wrap: balance; }
   p { margin: 0; text-wrap: pretty; }
   a { color: inherit; }
-  img, svg { display: block; max-width: 100%; }
-  :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; border-radius: 8px; }
+  img { display: block; max-width: 100%; }
+  svg { display: block; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
   .container { max-width: var(--container); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
-  .skip { position: absolute; left: 16px; top: -60px; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; z-index: 100; }
+  .skip { position: absolute; left: 16px; top: -60px; background: var(--espresso); color: var(--cream); padding: 10px 16px; border-radius: 10px; z-index: 100; }
   .skip:focus { top: 12px; }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-  /* ---------- buttons ---------- */
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    min-height: 54px; padding: 0 24px; border: var(--b); border-radius: 999px;
-    background: var(--yellow); color: var(--ink); box-shadow: var(--shadow-sm);
-    font: 800 1rem/1 var(--sans); text-decoration: none; cursor: pointer;
-    transition: transform .18s ease, box-shadow .18s ease, background-color .2s;
-  }
-  .btn svg { width: 20px; height: 20px; }
-  .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
-  .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
-  .btn.pink { background: var(--pink); }
-  .btn.white { background: #fff; }
-  .btn.ink { background: var(--ink); color: #fff; box-shadow: 4px 4px 0 var(--pink); }
-  .btn.ink:hover { box-shadow: 6px 6px 0 var(--pink); }
+  .eyebrow { font: 700 .8rem/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+  .hand { font-family: var(--hand); font-weight: 700; color: var(--accent); }
+  .h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); margin-top: 14px; }
+  .h2 em { font-style: italic; font-weight: 500; color: var(--accent); }
+  .lead { color: var(--text-soft); font-size: 1.1rem; margin-top: 16px; max-width: 54ch; }
 
-  .chip {
-    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: var(--b); border-radius: 999px;
-    background: #fff; font: 800 .8rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; box-shadow: 3px 3px 0 var(--ink);
-  }
-  .chip i { width: 10px; height: 10px; border-radius: 50%; background: var(--green); border: 2px solid var(--ink); }
-  .chip i.closed { background: var(--orange); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; font: 700 1rem/1 var(--sans); text-decoration: none; cursor: pointer; border: 2px solid transparent; transition: background-color .2s, color .2s, border-color .2s, transform .2s var(--ease), box-shadow .2s; }
+  .btn svg { width: 18px; height: 18px; }
+  .btn:active { transform: scale(.97); }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 12px 24px -12px rgba(168, 80, 43, .8); }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-outline { border-color: var(--espresso); color: var(--espresso); }
+  .btn-outline:hover { background: var(--espresso); color: var(--cream); }
+  .btn-light { background: var(--cream); color: var(--espresso); }
+  .btn-light:hover { background: #fff; }
+
+  /* photo with graceful fallback */
+  .ph { position: relative; overflow: hidden; background: linear-gradient(135deg, #E9D6BD, #C9A27E); }
+  .ph::before { content: ""; position: absolute; inset: 0; margin: auto; width: 56px; height: 56px; opacity: .45;
+    background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232E211A' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 2v2M14 2v2M6 2v2'/%3E%3Cpath d='M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1'/%3E%3C/svg%3E"); }
+  .ph img { position: relative; width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease), opacity .4s; }
+  .ph img.broken { opacity: 0; }
 
   /* ---------- header ---------- */
-  .header { position: sticky; top: 0; z-index: 50; padding: 14px 0; }
-  .bar {
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    background: #fff; border: var(--b); border-radius: 999px; box-shadow: var(--shadow-sm);
-    padding: 8px 8px 8px 12px;
-  }
-  .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
-  .logo-badge { width: 44px; height: 44px; border-radius: 50%; border: var(--b); background: var(--yellow); display: grid; place-items: center; font: 800 1.3rem/1 var(--display); }
-  .logo b { font: 800 1.2rem/1 var(--display); letter-spacing: -.01em; }
-  .logo small { display: block; font: 700 .72rem/1.2 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-  .nav { display: flex; align-items: center; gap: 4px; }
-  .nav a { text-decoration: none; font-weight: 800; font-size: .95rem; padding: 12px 16px; border-radius: 999px; transition: background-color .2s; }
-  .nav a:hover { background: var(--lilac); }
-  .nav .btn { min-height: 48px; margin-left: 6px; }
-  .nav .btn:hover { background: var(--pink); }
-  .burger { display: none; width: 48px; height: 48px; border: var(--b); border-radius: 50%; background: var(--yellow); cursor: pointer; place-items: center; }
+  .header { position: sticky; top: 0; z-index: 50; background: rgba(251, 246, 238, .9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: box-shadow .3s; }
+  .header.scrolled { box-shadow: 0 1px 0 var(--line), 0 10px 30px -20px rgba(46,33,26,.3); }
+  .header .container { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 16px; }
+  .logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark { width: 42px; height: 42px; flex: none; }
+  .logo b { display: block; font: 700 1.25rem/1 var(--serif); letter-spacing: .02em; }
+  .logo small { display: block; font: 700 1.05rem/1 var(--hand); color: var(--accent); margin-top: 2px; }
+  .nav { display: flex; align-items: center; gap: 2px; }
+  .nav a { text-decoration: none; font-weight: 600; padding: 12px 14px; border-radius: 999px; transition: background-color .2s; }
+  .nav a:hover { background: var(--latte); }
+  .nav .btn { margin-left: 8px; min-height: 46px; padding: 0 20px; color: #fff; }
+  .nav .btn:hover { background: var(--accent-dark); }
+  .burger { display: none; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: var(--foam); cursor: pointer; place-items: center; color: var(--espresso); }
   .burger svg { width: 22px; height: 22px; }
 
   /* ---------- hero ---------- */
-  .hero { padding: clamp(28px, 5vw, 60px) 0 clamp(60px, 8vw, 100px); position: relative; }
-  .hero-top { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 22px; }
-  .hero h1 { font-size: clamp(3.4rem, 11.5vw, 10.5rem); text-transform: uppercase; line-height: .86; letter-spacing: -.04em; }
-  .hero h1 .row { display: flex; align-items: center; gap: .18em; flex-wrap: wrap; }
-  .hero h1 .hl { background: var(--pink); border: var(--b); border-radius: .2em; padding: 0 .12em; box-shadow: var(--shadow); display: inline-block; transform: rotate(-2deg); margin: .04em 0; }
-  .hero h1 .hl.y { background: var(--yellow); transform: rotate(1.5deg); }
-  .hero h1 .pill-img { display: inline-block; width: 1.9em; height: .82em; border: var(--b); border-radius: 999px; overflow: hidden; background: var(--blue); box-shadow: var(--shadow-sm); }
-  .hero h1 .pill-img svg { width: 100%; height: 100%; }
-  .hero-bottom { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-top: clamp(28px, 4vw, 48px); }
-  .hero-lead { font-size: clamp(1.1rem, 1.6vw, 1.3rem); font-weight: 600; max-width: 38ch; }
-  .hero-lead mark { background: var(--yellow); padding: 0 4px; border-radius: 4px; }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: flex-end; }
+  .hero { padding: clamp(32px, 6vw, 72px) 0 clamp(64px, 8vw, 110px); }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(36px, 6vw, 80px); align-items: center; }
+  .open-pill { display: inline-flex; align-items: center; gap: 10px; background: var(--foam); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px 8px 12px; font-weight: 600; font-size: .95rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #3E9B5B; box-shadow: 0 0 0 4px rgba(62,155,91,.18); }
+  .dot.closed { background: #C0612F; box-shadow: 0 0 0 4px rgba(192,97,47,.18); }
+  .hero h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); margin-top: 22px; letter-spacing: -.01em; }
+  .hero h1 em { font-style: italic; font-weight: 500; color: var(--accent); }
+  .hero .lead { font-size: clamp(1.1rem, 1.5vw, 1.22rem); }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .hero-facts { display: flex; flex-wrap: wrap; gap: 14px 30px; margin-top: 40px; padding-top: 26px; border-top: 1px solid var(--line); color: var(--text-soft); font-weight: 500; }
+  .hero-facts span { display: inline-flex; align-items: center; gap: 10px; }
+  .hero-facts svg { width: 22px; height: 22px; color: var(--accent); flex: none; }
 
-  .badge-spin { position: absolute; right: clamp(16px, 6vw, 90px); top: clamp(10px, 4vw, 40px); width: clamp(110px, 13vw, 170px); aspect-ratio: 1; }
-  .badge-spin .ring { width: 100%; height: 100%; animation: spin 16s linear infinite; }
-  .badge-spin .center { position: absolute; inset: 28%; border-radius: 50%; background: var(--green); border: var(--b); display: grid; place-items: center; }
-  .badge-spin .center svg { width: 48%; height: 48%; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .collage { position: relative; aspect-ratio: 1 / 1.02; }
+  .collage .main { position: absolute; inset: 0 0 12% 14%; border-radius: 200px 200px var(--radius) var(--radius); box-shadow: var(--shadow); }
+  .collage .small { position: absolute; left: 0; bottom: 0; width: 44%; aspect-ratio: 1; border-radius: 50%; border: 8px solid var(--cream); box-shadow: var(--shadow); }
+  .collage .note { position: absolute; right: -6px; bottom: 4%; background: var(--foam); padding: 12px 18px 14px; border-radius: 14px; box-shadow: var(--shadow); transform: rotate(-4deg); font: 700 1.5rem/1.1 var(--hand); color: var(--accent); }
+  .collage .note small { display: block; font: 500 .85rem/1.3 var(--sans); color: var(--text-soft); margin-top: 4px; }
+  .steam { position: absolute; left: 20%; top: 38%; width: 60px; opacity: .0; }
 
-  .stickers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: clamp(36px, 5vw, 56px); }
-  .sticker {
-    border: var(--b); border-radius: var(--r); padding: 20px; box-shadow: var(--shadow); background: #fff;
-    display: flex; flex-direction: column; gap: 14px; min-height: 170px; justify-content: space-between;
-    transition: transform .35s var(--spring);
-  }
-  .sticker.in:nth-child(odd) { transform: rotate(-1.5deg); }
-  .sticker.in:nth-child(even) { transform: rotate(1.2deg); }
-  .sticker.in:hover { transform: rotate(0) translateY(-6px); }
-  .sticker .ico { width: 52px; height: 52px; border: var(--b); border-radius: 14px; display: grid; place-items: center; background: #fff; }
-  .sticker .ico svg { width: 26px; height: 26px; }
-  .sticker b { font: 800 1.35rem/1.05 var(--display); }
-  .sticker span { font-size: .92rem; font-weight: 600; }
+  /* ---------- offer cards ---------- */
+  .section { padding: clamp(72px, 10vw, 128px) 0; }
+  .center-head { text-align: center; max-width: 720px; margin: 0 auto clamp(40px, 5vw, 60px); }
+  .center-head .lead { margin-inline: auto; }
+  .offer { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .offer-card { background: var(--foam); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); transition: transform .4s var(--ease), box-shadow .4s; display: flex; flex-direction: column; }
+  .offer-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .offer-card:hover img { transform: scale(1.06); }
+  .offer-card .ph { aspect-ratio: 4 / 3.4; }
+  .offer-card .body { padding: 22px 22px 26px; }
+  .offer-card h3 { font-size: 1.4rem; }
+  .offer-card p { color: var(--text-soft); margin-top: 8px; font-size: .98rem; }
 
-  /* ---------- ticker ---------- */
-  .tickers { overflow: hidden; padding: 20px 0; }
-  .ticker { border-block: var(--b); background: var(--ink); color: var(--paper); transform: rotate(-1.5deg); margin: 0 -20px; }
-  .ticker.alt { background: var(--yellow); color: var(--ink); transform: rotate(1.2deg); margin-top: -14px; position: relative; z-index: -1; }
-  .ticker-track { display: flex; width: max-content; animation: tick 30s linear infinite; }
-  .ticker.alt .ticker-track { animation-direction: reverse; }
-  .ticker span { display: inline-flex; align-items: center; gap: 26px; padding: 16px 13px; font: 800 clamp(1.3rem, 2.6vw, 2rem)/1 var(--display); text-transform: uppercase; white-space: nowrap; }
-  .ticker span::after { content: ""; width: 18px; height: 18px; background: var(--pink); border: 2px solid currentColor; border-radius: 50%; }
-  @keyframes tick { to { transform: translateX(-50%); } }
-
-  /* ---------- section base ---------- */
-  .section { padding: clamp(80px, 11vw, 140px) 0; }
-  .kicker { display: inline-block; font: 800 .82rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; background: var(--ink); color: #fff; padding: 9px 14px; border-radius: 999px; }
-  .title { font-size: clamp(2.6rem, 6.6vw, 5.4rem); text-transform: uppercase; margin-top: 18px; letter-spacing: -.03em; }
-  .title .u { background: linear-gradient(transparent 62%, var(--yellow) 62%); padding: 0 .05em; }
-  .head { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px 56px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
-  .head p { font-size: 1.1rem; font-weight: 600; color: var(--muted); }
-
-  /* ---------- about bento ---------- */
-  .bento { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(150px, auto); gap: 18px; }
-  .tile { border: var(--b); border-radius: var(--r); box-shadow: var(--shadow); padding: clamp(20px, 2.6vw, 32px); position: relative; overflow: hidden; background: #fff; transition: transform .3s var(--spring), box-shadow .3s; }
-  .tile.in:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
-  .tile h3 { font-size: clamp(1.5rem, 2.4vw, 2.1rem); text-transform: uppercase; }
-  .tile p { margin-top: 12px; font-weight: 600; }
-  .t-story { grid-column: span 4; grid-row: span 2; background: var(--lilac); display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
-  .t-story .quote { font: 800 clamp(1.8rem, 3.6vw, 3.1rem)/1.1 var(--display); text-transform: uppercase; letter-spacing: -.02em; margin: 0; }
-  .t-story .quote em { font-style: normal; background: #fff; border: var(--b); border-radius: 12px; padding: 0 .15em; }
-  .t-story p { max-width: 58ch; font-size: 1.05rem; }
-  .t-art { grid-column: span 2; grid-row: span 2; background: var(--blue); color: #fff; padding: 0; display: flex; flex-direction: column; }
-  .t-art svg { flex: 1; width: 100%; min-height: 220px; }
-  .t-art .cap { margin: 0; padding: 16px 22px; border-top: var(--b); background: var(--ink); font-weight: 700; font-size: .92rem; }
-  .t-num { grid-column: span 2; background: var(--yellow); display: flex; flex-direction: column; justify-content: space-between; gap: 10px; }
-  .t-num .n { font: 800 clamp(2.8rem, 5vw, 4.2rem)/.9 var(--display); letter-spacing: -.04em; text-transform: uppercase; }
-  .t-half { grid-column: span 2; }
-  .t-pink { background: var(--pink); }
-  .t-green { background: var(--green); }
+  /* ---------- proziak story ---------- */
+  .story { background: var(--latte); }
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 6vw, 80px); align-items: center; }
+  .story .ph { aspect-ratio: 4 / 4.4; border-radius: var(--radius); box-shadow: var(--shadow); }
+  .story .photo-wrap { position: relative; }
+  .story .badge { position: absolute; right: -18px; top: 26px; width: 128px; height: 128px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; text-align: center; font: 700 1.45rem/1 var(--hand); transform: rotate(10deg); box-shadow: var(--shadow); padding: 12px; }
+  .ticks { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; }
+  .ticks li { display: flex; gap: 14px; align-items: flex-start; }
+  .ticks svg { width: 26px; height: 26px; flex: none; color: var(--accent); background: var(--foam); border-radius: 50%; padding: 5px; }
+  .ticks b { display: block; }
+  .ticks span { color: var(--text-soft); font-size: .98rem; }
 
   /* ---------- menu ---------- */
-  .menu { background: var(--ink); color: var(--paper); border-block: var(--b); }
-  .menu .head p { color: #CFCFCF; }
-  .menu .title .u { background: linear-gradient(transparent 62%, var(--pink) 62%); }
-  .menu .kicker { background: var(--yellow); color: var(--ink); }
-  .cats { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
-  .cat {
-    min-height: 52px; padding: 0 22px; border: 3px solid var(--paper); border-radius: 999px; background: transparent; color: var(--paper);
-    font: 800 1rem/1 var(--sans); cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
-    transition: transform .2s var(--spring), background-color .2s, color .2s;
-  }
-  .cat svg { width: 20px; height: 20px; }
-  .cat:hover { transform: translateY(-3px) rotate(-1deg); }
-  .cat[aria-selected="true"] { background: var(--yellow); color: var(--ink); border-color: var(--yellow); box-shadow: 4px 4px 0 var(--pink); }
-  .menu :focus-visible { outline-color: var(--yellow); }
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .cards[hidden] { display: none; }
-  .card {
-    background: var(--paper); color: var(--ink); border: var(--b); border-radius: var(--r); padding: 24px; box-shadow: 6px 6px 0 var(--pink);
-    display: flex; flex-direction: column; gap: 10px; transition: transform .3s var(--spring);
-    animation: pop .5s var(--spring) both; animation-delay: calc(var(--i, 0) * 60ms);
-  }
-  .card:hover { transform: translateY(-6px) rotate(-.8deg); }
-  .card:nth-child(3n+2) { box-shadow: 6px 6px 0 var(--yellow); }
-  .card:nth-child(3n+3) { box-shadow: 6px 6px 0 var(--green); }
-  .card h3 { font-size: 1.45rem; text-transform: uppercase; }
-  .card p { font-weight: 600; color: var(--muted); font-size: .96rem; }
-  .card .tag { align-self: flex-start; font: 800 .72rem/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; padding: 7px 10px; border: 2px solid var(--ink); border-radius: 999px; background: var(--yellow); }
-  .card.big { grid-column: span 2; background: var(--yellow); flex-direction: row; align-items: center; gap: 28px; }
-  .card.big .tag { background: #fff; }
-  .card.big h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
-  .card.big p { color: var(--ink); }
-  .card.big svg { width: clamp(100px, 12vw, 150px); flex: none; }
-  @keyframes pop { from { opacity: 0; transform: translateY(18px) scale(.96); } }
-  .menu-note { margin-top: 32px; font-weight: 600; color: #CFCFCF; display: flex; gap: 10px; align-items: flex-start; }
-  .menu-note svg { width: 22px; height: 22px; flex: none; color: var(--yellow); }
+  .menu-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(36px, 6vw, 80px); align-items: start; }
+  .menu-aside { position: sticky; top: 110px; }
+  .menu-aside .ph { aspect-ratio: 4 / 3; border-radius: var(--radius); margin-top: 28px; box-shadow: var(--shadow); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .tab { min-height: 46px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--line); background: var(--foam); color: var(--espresso); font: 600 .98rem/1 var(--sans); cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+  .tab:hover { border-color: var(--coffee); }
+  .tab[aria-selected="true"] { background: var(--espresso); color: var(--cream); border-color: var(--espresso); }
+  .menu-card { background: var(--foam); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 3vw, 36px); }
+  .menu-card[hidden] { display: none; }
+  .menu-card h3 { font-size: 1.6rem; display: flex; align-items: baseline; gap: 12px; }
+  .menu-card h3 .hand { font-size: 1.3rem; font-weight: 500; }
+  .item { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 18px 0; border-bottom: 1px dashed var(--line); animation: fade .45s var(--ease) both; animation-delay: calc(var(--i, 0) * 50ms); }
+  .item:last-of-type { border-bottom: 0; padding-bottom: 0; }
+  .item b { font: 600 1.15rem/1.3 var(--serif); }
+  .item p { grid-column: 1 / -1; color: var(--text-soft); font-size: .96rem; }
+  .item .tag { align-self: center; font: 700 .72rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: #F6E3D6; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+  .menu-note { display: flex; gap: 10px; margin-top: 18px; color: var(--text-soft); font-size: .95rem; }
+  .menu-note svg { width: 20px; height: 20px; flex: none; margin-top: 3px; color: var(--accent); }
 
-  .mood { margin-top: clamp(56px, 7vw, 88px); border: 3px solid var(--paper); border-radius: 28px; padding: clamp(22px, 3.5vw, 40px); display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
-  .mood h3 { font-size: clamp(1.8rem, 3.4vw, 2.8rem); text-transform: uppercase; }
-  .mood h3 span { color: var(--yellow); }
-  .mood-opts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-  .mood-opts button { min-height: 48px; padding: 0 18px; border-radius: 999px; border: 2px solid var(--paper); background: transparent; color: var(--paper); font: 700 .95rem/1 var(--sans); cursor: pointer; transition: background-color .2s, color .2s, transform .2s var(--spring); }
-  .mood-opts button:hover { transform: translateY(-2px); }
-  .mood-opts button[aria-pressed="true"] { background: var(--pink); color: var(--ink); border-color: var(--pink); }
-  .mood-out { background: var(--paper); color: var(--ink); border: var(--b); border-radius: var(--r); padding: 26px; box-shadow: 8px 8px 0 var(--yellow); min-height: 190px; }
-  .mood-out small { font: 800 .75rem/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-  .mood-out b { display: block; font: 800 clamp(1.6rem, 2.6vw, 2.2rem)/1 var(--display); text-transform: uppercase; margin: 10px 0 8px; }
-  .mood-out.swap { animation: pop .45s var(--spring); }
+  /* ---------- art ---------- */
+  .art { background: var(--foam); border-block: 1px solid var(--line); }
+  .art-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 120px; gap: 16px; }
+  .art-grid .ph { border-radius: 18px; }
+  .art-grid .ph:hover img { transform: scale(1.05); }
+  .a1 { grid-column: 1 / span 5; grid-row: span 3; }
+  .a2 { grid-column: 6 / span 4; grid-row: span 2; }
+  .a3 { grid-column: 10 / span 3; grid-row: span 2; }
+  .a-text { grid-column: 6 / span 7; grid-row: span 2; background: var(--latte); border-radius: 18px; padding: clamp(20px, 3vw, 34px); display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+  .a-text p { color: var(--text-soft); }
+  .a-text .quote { font: italic 500 clamp(1.25rem, 2vw, 1.6rem)/1.35 var(--serif); color: var(--espresso); }
 
-  /* ---------- gallery ---------- */
-  .gallery-strip {
-    display: grid; grid-auto-flow: column; grid-auto-columns: clamp(250px, 30vw, 360px); gap: 24px;
-    overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 10px 34px; scrollbar-width: thin; scrollbar-color: var(--ink) transparent;
-    overscroll-behavior-x: contain;
-  }
-  .art { scroll-snap-align: start; margin: 0; }
-  .art .canvas { border: var(--b); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 4 / 5; transition: transform .35s var(--spring); background: #fff; }
-  .art:nth-child(odd) .canvas { transform: rotate(-1.2deg); }
-  .art:nth-child(even) .canvas { transform: rotate(1.2deg); }
-  .art:hover .canvas { transform: rotate(0) scale(1.02); }
-  .art svg { width: 100%; height: 100%; }
-  .art figcaption { margin-top: 16px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
-  .art figcaption b { font: 800 1.15rem/1.15 var(--display); text-transform: uppercase; }
-  .art figcaption span { font-size: .85rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
-  .strip-ctrl { display: flex; gap: 12px; }
-  .strip-ctrl button { width: 54px; height: 54px; border: var(--b); border-radius: 50%; background: #fff; box-shadow: var(--shadow-sm); cursor: pointer; display: grid; place-items: center; transition: transform .18s, box-shadow .18s, background-color .2s; }
-  .strip-ctrl button:hover { background: var(--yellow); }
-  .strip-ctrl button:active { transform: translate(4px, 4px); box-shadow: none; }
-  .strip-ctrl svg { width: 22px; height: 22px; }
-  .artist-cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; border: var(--b); border-radius: var(--r); background: var(--green); padding: clamp(20px, 3vw, 32px); box-shadow: var(--shadow); }
-  .artist-cta p { font: 800 clamp(1.3rem, 2.4vw, 1.9rem)/1.1 var(--display); text-transform: uppercase; max-width: 26ch; }
-
-  /* ---------- events ---------- */
-  .events { display: grid; gap: 16px; }
-  .event {
-    display: grid; grid-template-columns: 200px 1fr auto; gap: 24px; align-items: center; text-decoration: none;
-    border: var(--b); border-radius: var(--r); padding: 22px 26px; background: #fff; box-shadow: var(--shadow-sm);
-    transition: transform .25s var(--spring), background-color .25s, box-shadow .25s;
-  }
-  .event.in:hover { transform: translateX(8px); box-shadow: var(--shadow); }
-  .event:nth-child(1):hover { background: var(--pink); }
-  .event:nth-child(2):hover { background: var(--yellow); }
-  .event:nth-child(3):hover { background: var(--lilac); }
-  .event .when { font: 800 .85rem/1.2 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
-  .event h3 { font-size: clamp(1.5rem, 3vw, 2.4rem); text-transform: uppercase; }
-  .event p { font-weight: 600; color: var(--muted); margin-top: 6px; }
-  .event:hover p { color: var(--ink); }
-  .event .arrow { width: 56px; height: 56px; border: var(--b); border-radius: 50%; display: grid; place-items: center; background: var(--paper); transition: transform .3s var(--spring); }
-  .event:hover .arrow { transform: rotate(-45deg); }
-  .event .arrow svg { width: 24px; height: 24px; }
+  /* ---------- evenings ---------- */
+  .evening { background: var(--espresso); color: var(--cream); position: relative; overflow: hidden; }
+  .evening-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(36px, 6vw, 80px); align-items: center; }
+  .evening .eyebrow { color: var(--caramel); }
+  .evening .h2 em { color: var(--caramel); }
+  .evening .lead { color: #D8C7B5; }
+  .evening .ph { aspect-ratio: 1; border-radius: 50%; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
+  .ev-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; }
+  .ev { border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 18px; }
+  .ev svg { width: 26px; height: 26px; color: var(--caramel); }
+  .ev b { display: block; font: 600 1.1rem/1.3 var(--serif); margin-top: 12px; }
+  .ev span { font-size: .92rem; color: #D8C7B5; }
+  .evening :focus-visible { outline-color: var(--caramel); }
 
   /* ---------- visit ---------- */
-  .visit-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+  .visit-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(24px, 4vw, 48px); align-items: stretch; }
   .visit-grid > * { min-width: 0; }
-  .v-addr { grid-column: span 5; background: var(--pink); }
-  .v-hours { grid-column: span 7; background: #fff; }
-  .v-map { grid-column: span 12; padding: 0; min-height: 380px; background: var(--lilac); }
-  .v-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(1.1); }
-  .v-addr .big { font: 800 clamp(2rem, 4vw, 3.2rem)/1 var(--display); text-transform: uppercase; margin: 14px 0 22px; }
-  .v-addr .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-  .hours { width: 100%; border-collapse: collapse; margin-top: 10px; }
-  .hours td { padding: 11px 0; border-bottom: 2px dashed rgba(17,17,17,.2); font-weight: 700; }
-  .hours tr:last-child td { border-bottom: 0; }
+  .visit-card { background: var(--foam); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(24px, 3.5vw, 40px); }
+  .v-row { display: flex; gap: 16px; }
+  .v-row + .v-row { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .v-row > svg { width: 24px; height: 24px; flex: none; color: var(--accent); margin-top: 4px; }
+  .v-row h3 { font: 700 .8rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 10px; }
+  .v-row .big { font: 600 1.35rem/1.35 var(--serif); }
+  .v-row a { color: var(--accent); font-weight: 600; text-underline-offset: 4px; overflow-wrap: anywhere; }
+  .hours { width: 100%; border-collapse: collapse; }
+  .hours td { padding: 6px 0; }
   .hours td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
-  .hours tr.today td { font-weight: 800; }
-  .hours tr.today td:first-child > span { background: var(--yellow); border: 2px solid var(--ink); border-radius: 999px; padding: 4px 12px; }
-  .hours .late { font: 800 .7rem/1 var(--sans); font-style: normal; letter-spacing: .08em; text-transform: uppercase; background: var(--blue); color: #fff; padding: 5px 8px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
-  .label { font: 800 .8rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+  .hours tr.today td { font-weight: 700; color: var(--accent); }
+  .hours tr.today td:first-child::after { content: " · dziś"; font-weight: 500; }
+  .visit-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .map { position: relative; border-radius: var(--radius); overflow: hidden; min-height: 440px; background: var(--latte); border: 1px solid var(--line); }
+  .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: sepia(.25) saturate(.9); }
 
   /* ---------- footer ---------- */
-  .footer { background: var(--yellow); border-top: var(--b); padding: clamp(56px, 8vw, 90px) 0 32px; overflow: hidden; }
-  .footer-big { font: 800 clamp(3rem, 11vw, 10rem)/.88 var(--display); text-transform: uppercase; letter-spacing: -.05em; }
-  .footer-big span { -webkit-text-stroke: 3px var(--ink); color: transparent; display: block; }
-  .footer-row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; margin-top: 40px; padding-top: 24px; border-top: var(--b); font-weight: 700; }
-  .socials { display: flex; gap: 12px; }
-  .socials a { width: 52px; height: 52px; border: var(--b); border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 3px 3px 0 var(--ink); transition: transform .2s var(--spring), background-color .2s; }
-  .socials a:hover { transform: translateY(-3px) rotate(-6deg); background: var(--pink); }
-  .socials svg { width: 22px; height: 22px; }
+  .footer { background: var(--latte); padding: 56px 0 36px; }
+  .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .footer-top p { font: italic 500 clamp(1.5rem, 3vw, 2.2rem)/1.2 var(--serif); }
+  .footer-top p span { font: 700 1.2em/1 var(--hand); font-style: normal; color: var(--accent); }
+  .socials { display: flex; gap: 10px; }
+  .socials a { width: 48px; height: 48px; border-radius: 50%; background: var(--foam); border: 1px solid var(--line); display: grid; place-items: center; transition: background-color .2s, color .2s; }
+  .socials a:hover { background: var(--espresso); color: var(--cream); }
+  .socials svg { width: 20px; height: 20px; }
+  .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 22px; color: var(--text-soft); font-size: .92rem; }
 
   /* ---------- reveal ---------- */
-  .rv { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .8s var(--spring); transition-delay: var(--d, 0ms); }
+  .rv { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0ms); }
   .rv.in { opacity: 1; transform: none; }
   .no-js .rv { opacity: 1; transform: none; }
 
   /* ---------- responsive ---------- */
   @media (max-width: 1024px) {
-    .stickers { grid-template-columns: repeat(2, 1fr); }
-    .bento { grid-template-columns: repeat(2, 1fr); }
-    .t-story { grid-column: span 2; grid-row: auto; }
-    .t-art { grid-column: span 1; grid-row: span 2; }
-    .t-num, .t-half { grid-column: span 1; }
-    .cards { grid-template-columns: repeat(2, 1fr); }
-    .mood { grid-template-columns: 1fr; }
-    .v-addr, .v-hours { grid-column: span 12; }
-    .head { grid-template-columns: 1fr; }
+    .offer { grid-template-columns: repeat(2, 1fr); }
+    .menu-wrap { grid-template-columns: 1fr; }
+    .menu-aside { position: static; }
+    .menu-aside .ph { display: none; }
+    .ev-list { grid-template-columns: 1fr; }
   }
   @media (max-width: 860px) {
     .burger { display: grid; }
-    .nav {
-      position: absolute; left: clamp(16px, 4vw, 40px); right: clamp(16px, 4vw, 40px); top: calc(100% + 8px);
-      flex-direction: column; align-items: stretch; background: #fff; border: var(--b); border-radius: 24px; box-shadow: var(--shadow); padding: 12px;
-      opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .2s, transform .25s var(--spring), visibility .2s;
-    }
+    .nav { position: absolute; top: 76px; left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--cream); padding: 12px 16px 20px; border-bottom: 1px solid var(--line); box-shadow: 0 20px 30px -20px rgba(46,33,26,.3); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .2s, transform .25s var(--ease), visibility .2s; }
     .nav.open { opacity: 1; visibility: visible; transform: none; }
-    .nav a { padding: 14px 16px; font-size: 1.1rem; }
-    .nav .btn { margin: 6px 0 0; min-height: 54px; }
-    .hero-bottom { grid-template-columns: 1fr; }
-    .hero-cta { justify-content: flex-start; }
-    .badge-spin { top: auto; bottom: 16px; right: 16px; width: 104px; }
-    .event { grid-template-columns: 1fr auto; }
-    .event .when { grid-column: 1 / -1; }
+    .nav a { padding: 14px 16px; font-size: 1.05rem; }
+    .nav .btn { margin: 8px 0 0; min-height: 52px; }
+    .hero-grid, .story-grid, .evening-grid, .visit-grid { grid-template-columns: 1fr; }
+    .collage { max-width: 520px; width: 100%; margin-inline: auto; }
+    .story .badge { right: 10px; }
+    .evening .ph { max-width: 360px; margin-inline: auto; width: 100%; }
+    .art-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+    .a1 { grid-column: 1 / -1; grid-row: span 2; }
+    .a2, .a3 { grid-column: span 1; grid-row: span 1; }
+    .a-text { grid-column: 1 / -1; grid-row: auto; }
+    .map { min-height: 320px; }
   }
-  @media (max-width: 600px) {
-    .stickers { grid-template-columns: 1fr 1fr; gap: 14px; }
-    .sticker { min-height: 150px; padding: 16px; }
-    .sticker b { font-size: 1.1rem; }
-    .bento { grid-template-columns: 1fr; }
-    .t-story, .t-art, .t-num, .t-half { grid-column: auto; grid-row: auto; }
-    .cards { grid-template-columns: 1fr; }
-    .card.big { grid-column: auto; flex-direction: column; align-items: flex-start; }
+  @media (max-width: 560px) {
+    .offer { grid-template-columns: 1fr; }
     .hero-cta .btn { flex: 1 1 100%; }
-    .logo small { display: none; }
-    .badge-spin { display: none; }
-    .v-map { min-height: 300px; }
-    .footer-big span { -webkit-text-stroke-width: 2px; }
+    .collage .note { font-size: 1.25rem; right: 0; }
+    .logo small { font-size: .95rem; }
   }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
-    .ticker-track, .badge-spin .ring { animation: none !important; }
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
     .rv { opacity: 1; transform: none; }
   }
 </style>
@@ -340,297 +254,252 @@
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-    <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
-    <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2M14 2v2M6 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/></symbol>
-    <symbol id="i-beer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 12v6M13 12v6"/><path d="M14 7.5c-1 0-1.44.5-3 .5s-2-.5-3-.5-1.72.5-2.5.5a2.5 2.5 0 0 1 0-5c.78 0 1.57.5 2.5.5S9.44 2 11 2s2 1.5 3 1.5 1.72-.5 2.5-.5a2.5 2.5 0 0 1 0 5c-.78 0-1.5-.5-2.5-.5Z"/><path d="M5 8v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/></symbol>
-    <symbol id="i-wheat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/></symbol>
-    <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".6" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".6" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".6" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".6" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.55-2.5 5.55-5.55C21.96 6.01 17.46 2 12 2Z"/></symbol>
-    <symbol id="i-cake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20M7 8v3M12 8v3M17 8v3M7 4h.01M12 4h.01M17 4h.01"/></symbol>
-    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
-    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
-    <symbol id="i-fb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
-    <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
-    <symbol id="i-nav" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2z"/></symbol>
-    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
-    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-castle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 20v-9H2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2Z"/><path d="M18 11V4H6v7M15 22v-4a3 3 0 0 0-6 0v4M22 11V9M2 11V9M6 4V2M18 4V2M10 4V2M14 4V2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+    <symbol id="i-beer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 12v6M13 12v6"/><path d="M14 7.5c-1 0-1.44.5-3 .5s-2-.5-3-.5-1.72.5-2.5.5a2.5 2.5 0 0 1 0-5c.78 0 1.57.5 2.5.5S9.44 2 11 2s2 1.5 3 1.5 1.72-.5 2.5-.5a2.5 2.5 0 0 1 0 5c-.78 0-1.5-.5-2.5-.5Z"/><path d="M5 8v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".6" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".6" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".6" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".6" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.55-2.5 5.55-5.55C21.96 6.01 17.46 2 12 2Z"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   </defs>
 </svg>
 
-<header class="header">
+<header class="header" id="header">
   <div class="container" style="position:relative">
-    <div class="bar">
-      <a href="#top" class="logo" aria-label="ART CAFÉ galeria marzenie — na górę strony">
-        <span class="logo-badge" aria-hidden="true">A</span>
-        <span><b>ART CAFÉ</b><small>galeria marzenie</small></span>
-      </a>
-      <nav class="nav" id="nav" aria-label="Główna nawigacja">
-        <a href="#o-nas">O nas</a>
-        <a href="#menu">Menu</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#wydarzenia">Wydarzenia</a>
-        <a class="btn" href="#odwiedz">Wpadnij!</a>
-      </nav>
-      <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Otwórz menu"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
-    </div>
+    <a href="#top" class="logo" aria-label="ART CAFÉ galeria marzenie — strona główna">
+      <svg class="logo-mark" viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="21" fill="#2E211A"/><path d="M11 17h17v7a8 8 0 0 1-8 8h-1a8 8 0 0 1-8-8z" fill="#FBF6EE"/><path d="M28 19h2.5a3.5 3.5 0 0 1 0 7H28" fill="none" stroke="#FBF6EE" stroke-width="2"/><path d="M16 13c-1-2 1-3 0-5M21 13c-1-2 1-3 0-5" stroke="#D9A15B" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+      <span><b>ART CAFÉ</b><small>galeria marzenie</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Główna nawigacja">
+      <a href="#oferta">Oferta</a>
+      <a href="#menu">Menu</a>
+      <a href="#sztuka">Sztuka</a>
+      <a href="#wieczory">Wieczory</a>
+      <a class="btn btn-primary" href="#odwiedz">Jak dojechać</a>
+    </nav>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Otwórz menu"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
 </header>
 
 <main id="main">
+  <!-- HERO -->
   <section class="hero" id="top" aria-labelledby="h1">
-    <div class="container" style="position:relative">
-      <div class="hero-top rv">
-        <span class="chip"><i id="dot" aria-hidden="true"></i><span id="status">Codziennie od 10:00</span></span>
-        <span class="chip" style="background:var(--lilac)">ul. Zamkowa 4 · Łańcut</span>
-      </div>
-
-      <h1 id="h1">
-        <span class="row rv" style="--d:60ms">Kawa<span class="pill-img" aria-hidden="true"><svg viewBox="0 0 190 80" preserveAspectRatio="xMidYMid slice"><rect width="190" height="80" fill="#3A55F5"/><circle cx="50" cy="40" r="30" fill="#FF6FB1"/><rect x="92" y="14" width="52" height="52" fill="#FFD23F" transform="rotate(12 118 40)"/><circle cx="165" cy="22" r="10" fill="#22B573"/></svg></span></span>
-        <span class="row rv" style="--d:140ms"><span class="hl">sztuka</span></span>
-        <span class="row rv" style="--d:220ms">i <span class="hl y">proziak</span></span>
-      </h1>
-
-      <div class="hero-bottom">
-        <p class="hero-lead rv" style="--d:300ms">Kawiarnia w samym sercu Łańcuta, <mark>zbudowana z pasji do sztuki</mark>. Autorski proziak, porządna kawa, regionalny kraft — i ściany pełne prac artystów z całej Europy.</p>
-        <div class="hero-cta rv" style="--d:360ms">
-          <a class="btn pink" href="#menu">Co dziś zjem? <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn white" href="#galeria">Zobacz galerię</a>
+    <div class="container hero-grid">
+      <div>
+        <span class="open-pill rv"><i class="dot" id="dot" aria-hidden="true"></i><span id="status">Zapraszamy codziennie od 10:00</span></span>
+        <h1 id="h1" class="rv" style="--d:80ms">Dobra kawa, ciepły proziak i&nbsp;<em>trochę sztuki</em> w&nbsp;sercu Łańcuta</h1>
+        <p class="lead rv" style="--d:160ms">Kawiarnia przy ulicy Zamkowej, która powstała z pasji do sztuki. Wpadnij na aromatyczną kawę, nasz autorski proziak albo domowe ciasto — i posiedź chwilę wśród obrazów artystów z całej Europy.</p>
+        <div class="hero-cta rv" style="--d:240ms">
+          <a class="btn btn-primary" href="#menu">Zobacz menu <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-outline" href="#odwiedz">Godziny i dojazd</a>
+        </div>
+        <div class="hero-facts rv" style="--d:320ms">
+          <span><svg aria-hidden="true"><use href="#i-pin"/></svg>ul. Zamkowa 4, Łańcut</span>
+          <span><svg aria-hidden="true"><use href="#i-castle"/></svg>kilka kroków od Zamku</span>
         </div>
       </div>
 
-      <div class="badge-spin" aria-hidden="true">
-        <svg class="ring" viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><circle cx="100" cy="100" r="97" fill="#fff" stroke="#111" stroke-width="4"/><text font-family="Syne, Arial Black, sans-serif" font-weight="800" font-size="18" letter-spacing="2.6" fill="#111"><textPath href="#circ">ART CAFÉ ✺ GALERIA MARZENIE ✺ ŁAŃCUT ✺</textPath></text></svg>
-        <div class="center" style="color:#111"><svg viewBox="0 0 24 24"><use href="#i-coffee"/></svg></div>
-      </div>
-
-      <div class="stickers">
-        <div class="sticker rv" style="background:var(--yellow)"><span class="ico"><svg aria-hidden="true"><use href="#i-wheat"/></svg></span><div><b>Autorski proziak</b><br><span>podkarpacki klasyk po naszemu</span></div></div>
-        <div class="sticker rv" style="--d:70ms;background:var(--pink)"><span class="ico"><svg aria-hidden="true"><use href="#i-coffee"/></svg></span><div><b>Aromatyczna kawa</b><br><span>od espresso po alternatywę</span></div></div>
-        <div class="sticker rv" style="--d:140ms;background:var(--green)"><span class="ico"><svg aria-hidden="true"><use href="#i-beer"/></svg></span><div><b>Regionalny kraft</b><br><span>browary z Podkarpacia</span></div></div>
-        <div class="sticker rv" style="--d:210ms;background:var(--lilac)"><span class="ico"><svg aria-hidden="true"><use href="#i-palette"/></svg></span><div><b>Sztuka z Europy</b><br><span>wystawy, które się zmieniają</span></div></div>
+      <div class="collage rv" style="--d:120ms">
+        <div class="ph main"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=75" alt="Przytulne wnętrze kawiarni ze stolikami i ciepłym światłem" width="1000" height="1100" fetchpriority="high"></div>
+        <div class="ph small"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=75" alt="Filiżanka kawy z latte art" width="600" height="600"></div>
+        <div class="note">prosto z blachy!<small>autorskie proziaki codziennie</small></div>
       </div>
     </div>
   </section>
 
-  <div class="tickers" aria-hidden="true">
-    <div class="ticker"><div class="ticker-track">
-      <span>Proziaki</span><span>Kawa</span><span>Sztuka</span><span>Kraft</span><span>Wernisaże</span><span>Zamkowa 4</span>
-      <span>Proziaki</span><span>Kawa</span><span>Sztuka</span><span>Kraft</span><span>Wernisaże</span><span>Zamkowa 4</span>
-    </div></div>
-    <div class="ticker alt"><div class="ticker-track">
-      <span>Galeria marzenie</span><span>Łańcut</span><span>Pt–Sob do północy</span><span>Galeria marzenie</span><span>Łańcut</span><span>Pt–Sob do północy</span>
-      <span>Galeria marzenie</span><span>Łańcut</span><span>Pt–Sob do północy</span><span>Galeria marzenie</span><span>Łańcut</span><span>Pt–Sob do północy</span>
-    </div></div>
-  </div>
-
-  <section class="section" id="o-nas" aria-labelledby="about-t">
+  <!-- OFFER -->
+  <section class="section" id="oferta" aria-labelledby="offer-t" style="padding-top:0">
     <div class="container">
-      <div class="head">
-        <div>
-          <span class="kicker rv">O nas</span>
-          <h2 class="title rv" id="about-t">Nie jesteśmy <span class="u">zwykłą</span> kawiarnią</h2>
-        </div>
-        <p class="rv">Jesteśmy galerią, w której można zamówić kawę. Albo kawiarnią, w której można kupić obraz. Jak wolisz.</p>
+      <div class="center-head">
+        <span class="eyebrow rv">Co u nas znajdziesz</span>
+        <h2 class="h2 rv" id="offer-t">Na kawę, na śniadanie, <em>na dłużej</em></h2>
+        <p class="lead rv">Małe miejsce z dużym sercem. Wszystko, czego potrzeba na dobrą przerwę w ciągu dnia — i na miły wieczór.</p>
       </div>
-
-      <div class="bento">
-        <article class="tile t-story rv">
-          <p class="quote">Przychodzisz na <em>kawę</em>. Zostajesz na <em>wystawę</em>.</p>
-          <p>ART CAFÉ galeria marzenie powstała z pasji do sztuki — przy ulicy Zamkowej, kilka kroków od łańcuckiego Zamku. Każda ściana to płótno dla artystów z Polski i całej Europy, a każdy stolik to dobre miejsce na rozmowę o tym, co właśnie widzisz.</p>
+      <div class="offer">
+        <article class="offer-card rv">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=75" alt="Kawa w filiżance na drewnianym stole" loading="lazy" width="700" height="600"></div>
+          <div class="body"><h3>Kawa</h3><p>Espresso, flat white, cappuccino i kawa z alternatywy — parzone z dbałością o każdy detal.</p></div>
         </article>
-        <article class="tile t-art rv" style="--d:80ms">
-          <svg viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="320" fill="#3A55F5"/><circle cx="210" cy="90" r="64" fill="#FFD23F" stroke="#111" stroke-width="4"/><path d="M30 320V190h30v-24h20v24h30v-60h20v-22h20v22h20v60h30v-24h20v24h30v130z" fill="#111"/><rect x="36" y="40" width="80" height="80" rx="40" fill="#FF6FB1" stroke="#111" stroke-width="4"/><path d="M0 250c50-20 100 20 150 0s100-20 150 0" stroke="#FFF8EC" stroke-width="5" fill="none"/></svg>
-          <p class="cap">Zamek w Łańcucie — rzut beretem od nas</p>
+        <article class="offer-card rv" style="--d:80ms">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=75" alt="Świeże wypieki na desce" loading="lazy" width="700" height="600"></div>
+          <div class="body"><h3>Proziaki</h3><p>Nasza specjalność: podkarpacki placek z blachy w autorskich wersjach — na słodko i na wytrawnie.</p></div>
         </article>
-        <article class="tile t-num rv">
-          <span class="label">Artyści z</span>
-          <span class="n">całej Europy</span>
-          <p style="margin:0">Malarstwo, grafika, fotografia. Wiele prac można kupić.</p>
+        <article class="offer-card rv" style="--d:160ms">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=75" alt="Kawałek domowego ciasta" loading="lazy" width="700" height="600"></div>
+          <div class="body"><h3>Domowe desery</h3><p>Ciasto dnia, sernik, szarlotka na ciepło — idealne do popołudniowej kawy.</p></div>
         </article>
-        <article class="tile t-half t-pink rv" style="--d:80ms">
-          <h3>Proziak, jakiego nie znasz</h3>
-          <p>Tradycyjny placek na sodzie z blachy — w autorskich wersjach, na słodko i na wytrawnie.</p>
-        </article>
-        <article class="tile t-half t-green rv" style="--d:160ms">
-          <h3>Weekend do północy</h3>
-          <p>W piątki i soboty zostajemy do 00:00. Kraft, muzyka, sztuka nocą.</p>
+        <article class="offer-card rv" style="--d:240ms">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=700&q=75" alt="Szklanki piwa rzemieślniczego" loading="lazy" width="700" height="600"></div>
+          <div class="body"><h3>Regionalny kraft</h3><p>Piwa z podkarpackich browarów rzemieślniczych — na spokojny wieczór w dobrym towarzystwie.</p></div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section menu" id="menu" aria-labelledby="menu-t">
+  <!-- PROZIAK STORY -->
+  <section class="section story" aria-labelledby="story-t">
+    <div class="container story-grid">
+      <div class="photo-wrap rv">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=75" alt="Ciepłe pieczywo prosto z pieca" loading="lazy" width="900" height="990"></div>
+        <div class="badge">specjalność domu</div>
+      </div>
+      <div>
+        <span class="eyebrow rv">Autorski proziak</span>
+        <h2 class="h2 rv" id="story-t">Smak Podkarpacia <em>w naszym wydaniu</em></h2>
+        <p class="lead rv">Proziak to tradycyjny placek na sodzie, pieczony na blasze — prosty, ciepły i pachnący domem. U nas podajemy go w autorskich wersjach, których nie znajdziesz nigdzie indziej.</p>
+        <ul class="ticks">
+          <li class="rv"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Klasyczny</b><span>z masłem i szczyptą soli, jak u babci</span></div></li>
+          <li class="rv" style="--d:80ms"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Na wytrawnie</b><span>z serem, ziołami i sezonowymi dodatkami</span></div></li>
+          <li class="rv" style="--d:160ms"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Na słodko</b><span>z konfiturą, twarożkiem i miodem</span></div></li>
+        </ul>
+        <p class="rv" style="margin-top:30px"><a class="btn btn-primary" href="#menu">Zobacz w menu <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="section" id="menu" aria-labelledby="menu-t">
+    <div class="container menu-wrap">
+      <div class="menu-aside">
+        <span class="eyebrow rv">Menu</span>
+        <h2 class="h2 rv" id="menu-t">Co dziś <em>zamówisz?</em></h2>
+        <p class="lead rv">Krótka karta, za to dopracowana. Desery i dodatki zmieniamy sezonowo — o propozycje dnia zapytaj przy barze.</p>
+        <div class="ph rv"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=75" alt="Kawa przelewowa i ziarna kawy" loading="lazy" width="800" height="600"></div>
+      </div>
+      <div class="rv">
+        <div class="tabs" role="tablist" aria-label="Kategorie menu">
+          <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Kawa i napoje</button>
+          <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Proziaki</button>
+          <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Desery</button>
+          <button class="tab" role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Wieczorem</button>
+        </div>
+
+        <div class="menu-card" role="tabpanel" id="p1" aria-labelledby="t1">
+          <h3>Kawa i napoje <span class="hand">na każdą porę</span></h3>
+          <div class="item" style="--i:0"><b>Espresso</b><p>Krótkie, intensywne, z karmelową nutą.</p></div>
+          <div class="item" style="--i:1"><b>Cappuccino</b><p>Klasyczne proporcje i gęsta mleczna pianka.</p></div>
+          <div class="item" style="--i:2"><b>Flat white</b><span class="tag">polecamy</span><p>Podwójne espresso z aksamitnym mlekiem.</p></div>
+          <div class="item" style="--i:3"><b>Latte</b><p>Łagodne i kremowe, także na napoju roślinnym.</p></div>
+          <div class="item" style="--i:4"><b>Kawa z alternatywy</b><p>Drip lub aeropress z sezonowych ziaren.</p></div>
+          <div class="item" style="--i:5"><b>Czekolada na gorąco</b><p>Gęsta, prawdziwa czekolada.</p></div>
+          <div class="item" style="--i:6"><b>Herbaty i lemoniady</b><p>Herbaty liściaste i domowe lemoniady sezonowe.</p></div>
+        </div>
+
+        <div class="menu-card" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+          <h3>Proziaki <span class="hand">prosto z blachy</span></h3>
+          <div class="item" style="--i:0"><b>Proziak klasyczny</b><p>Z masłem i dobrą solą.</p></div>
+          <div class="item" style="--i:1"><b>Proziak wytrawny</b><span class="tag">bestseller</span><p>Z serem, ziołami i sezonowymi dodatkami.</p></div>
+          <div class="item" style="--i:2"><b>Proziak na słodko</b><p>Z domową konfiturą, twarożkiem i miodem.</p></div>
+          <div class="item" style="--i:3"><b>Proziak sezonowy</b><p>Kompozycja zmieniana co kilka tygodni.</p></div>
+        </div>
+
+        <div class="menu-card" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+          <h3>Desery <span class="hand">domowe</span></h3>
+          <div class="item" style="--i:0"><b>Ciasto dnia</b><p>Codziennie inne — sprawdź w witrynie.</p></div>
+          <div class="item" style="--i:1"><b>Sernik</b><p>Kremowy, na kruchym spodzie.</p></div>
+          <div class="item" style="--i:2"><b>Szarlotka na ciepło</b><span class="tag">jesienią</span><p>Z gałką lodów waniliowych.</p></div>
+        </div>
+
+        <div class="menu-card" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+          <h3>Wieczorem <span class="hand">pt i sob do północy</span></h3>
+          <div class="item" style="--i:0"><b>Piwa regionalne</b><span class="tag">z Podkarpacia</span><p>Rotacyjny wybór z browarów rzemieślniczych.</p></div>
+          <div class="item" style="--i:1"><b>Wino</b><p>Czerwone lub białe, na kieliszki.</p></div>
+          <div class="item" style="--i:2"><b>Deska przekąsek</b><p>Sery, wędliny i proziaki do podziału.</p></div>
+        </div>
+
+        <p class="menu-note"><svg aria-hidden="true"><use href="#i-info"/></svg>Aktualne ceny i pełna karta dostępne na miejscu. Masz alergię? Daj nam znać — chętnie doradzimy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ART -->
+  <section class="section art" id="sztuka" aria-labelledby="art-t">
     <div class="container">
-      <div class="head">
-        <div>
-          <span class="kicker rv">Menu</span>
-          <h2 class="title rv" id="menu-t">Zjedz <span class="u">dzieło</span> sztuki</h2>
-        </div>
-        <p class="rv">Krótka karta, dopracowana w każdym detalu. Sezonowo zmieniamy desery i dodatki — o dzisiejsze propozycje zapytaj przy barze.</p>
+      <div class="center-head">
+        <span class="eyebrow rv">Galeria marzenie</span>
+        <h2 class="h2 rv" id="art-t">Kawa w otoczeniu <em>sztuki</em></h2>
+        <p class="lead rv">Na naszych ścianach wiszą prace artystów z Polski i całej Europy. Wystawy się zmieniają, więc za każdym razem jest tu trochę inaczej.</p>
       </div>
-
-      <div class="cats rv" role="tablist" aria-label="Kategorie menu">
-        <button class="cat" role="tab" id="t1" aria-controls="p1" aria-selected="true"><svg aria-hidden="true"><use href="#i-wheat"/></svg>Proziaki</button>
-        <button class="cat" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-coffee"/></svg>Kawa &amp; napoje</button>
-        <button class="cat" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-cake"/></svg>Na słodko</button>
-        <button class="cat" role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1"><svg aria-hidden="true"><use href="#i-moon"/></svg>Wieczór</button>
-      </div>
-
-      <div class="cards" role="tabpanel" id="p1" aria-labelledby="t1">
-        <article class="card big" style="--i:0">
-          <svg viewBox="0 0 150 150" aria-hidden="true"><circle cx="75" cy="75" r="72" fill="#FF6FB1" stroke="#111" stroke-width="4"/><ellipse cx="75" cy="86" rx="48" ry="30" fill="#C98A3E" stroke="#111" stroke-width="4"/><ellipse cx="75" cy="78" rx="48" ry="30" fill="#F1C27D" stroke="#111" stroke-width="4"/><path d="M48 74c10-8 22-9 30-9M82 88c12 0 20-4 24-9" stroke="#111" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="60" cy="88" r="3.5" fill="#111"/><circle cx="96" cy="70" r="3" fill="#111"/></svg>
-          <div>
-            <span class="tag">Specjalność domu</span>
-            <h3 style="margin-top:12px">Autorski proziak ART CAFÉ</h3>
-            <p style="margin-top:8px">Podkarpacki placek na sodzie, pieczony na blasze — w naszej autorskiej wersji. Tego nie zjesz nigdzie indziej.</p>
-          </div>
-        </article>
-        <article class="card" style="--i:1"><span class="tag">bestseller</span><h3>Proziak wytrawny</h3><p>Z wędzonym serem, ziołami i sezonowymi dodatkami.</p></article>
-        <article class="card" style="--i:2"><h3>Proziak klasyczny</h3><p>Z masłem i dobrą solą — tak, jak robiły babcie.</p></article>
-        <article class="card" style="--i:3"><h3>Proziak na słodko</h3><p>Z domowymi konfiturami, twarożkiem i miodem.</p></article>
-        <article class="card" style="--i:4"><span class="tag">sezonowy</span><h3>Proziak miesiąca</h3><p>Kompozycja zmieniana co kilka tygodni — jak nasze wystawy.</p></article>
-      </div>
-
-      <div class="cards" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
-        <article class="card" style="--i:0"><h3>Espresso</h3><p>Krótkie, gęste, z karmelową słodyczą.</p></article>
-        <article class="card" style="--i:1"><span class="tag">polecamy</span><h3>Flat white</h3><p>Podwójne espresso i aksamitne mleko. Latte art w cenie — to w końcu galeria.</p></article>
-        <article class="card" style="--i:2"><h3>Cappuccino</h3><p>Klasyczne proporcje, gęsta pianka. Może być na roślinnym.</p></article>
-        <article class="card" style="--i:3"><h3>Alternatywa</h3><p>Drip lub aeropress z ziaren sezonowych — zapytaj baristę.</p></article>
-        <article class="card" style="--i:4"><h3>Czekolada</h3><p>Gęsta, prawdziwa, na gorąco. Idealna po spacerze po parku.</p></article>
-        <article class="card" style="--i:5"><h3>Lemoniady &amp; herbaty</h3><p>Domowe lemoniady sezonowe i herbaty liściaste.</p></article>
-      </div>
-
-      <div class="cards" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
-        <article class="card" style="--i:0"><h3>Ciasto dnia</h3><p>Codziennie inne, zawsze domowe. Sprawdź witrynę.</p></article>
-        <article class="card" style="--i:1"><h3>Sernik</h3><p>Kremowy, na kruchym spodzie, z sezonowym musem.</p></article>
-        <article class="card" style="--i:2"><h3>Szarlotka na ciepło</h3><p>Z gałką lodów waniliowych.</p></article>
-        <article class="card" style="--i:3"><span class="tag">limitowany</span><h3>Deser wystawowy</h3><p>Deser inspirowany aktualną wystawą. Serio.</p></article>
-      </div>
-
-      <div class="cards" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
-        <article class="card" style="--i:0"><span class="tag">z Podkarpacia</span><h3>Kraft regionalny</h3><p>Rotacyjny wybór z rzemieślniczych browarów regionu.</p></article>
-        <article class="card" style="--i:1"><h3>Wino</h3><p>Kieliszek do rozmowy o sztuce.</p></article>
-        <article class="card" style="--i:2"><h3>Deska na wspólny stół</h3><p>Sery, wędliny, proziaki — dla całej ekipy.</p></article>
-      </div>
-
-      <p class="menu-note rv"><svg aria-hidden="true"><use href="#i-info"/></svg>Aktualne ceny i pełną kartę znajdziesz na miejscu. Alergie? Powiedz nam — doradzimy.</p>
-
-      <div class="mood rv">
-        <div>
-          <h3>Nie wiesz, co zamówić? <span>Wybierz nastrój.</span></h3>
-          <div class="mood-opts" role="group" aria-label="Twój nastrój">
-            <button type="button" aria-pressed="false" data-m="0">Potrzebuję energii</button>
-            <button type="button" aria-pressed="false" data-m="1">Mam ochotę na słodko</button>
-            <button type="button" aria-pressed="false" data-m="2">Jestem głodny/a</button>
-            <button type="button" aria-pressed="false" data-m="3">Wieczór z ekipą</button>
-            <button type="button" aria-pressed="false" data-m="4">Chcę czegoś nowego</button>
-          </div>
-        </div>
-        <div class="mood-out" id="moodOut" aria-live="polite">
-          <small>Nasza rada</small>
-          <b>Kliknij nastrój</b>
-          <p>A my podpowiemy, co najlepiej do niego pasuje.</p>
+      <div class="art-grid">
+        <div class="ph a1 rv"><img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=75" alt="Wnętrze kawiarni z obrazami na ścianach" loading="lazy" width="900" height="700"></div>
+        <div class="ph a2 rv" style="--d:80ms"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=700&q=75" alt="Obraz olejny w ciepłych barwach" loading="lazy" width="700" height="500"></div>
+        <div class="ph a3 rv" style="--d:160ms"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=75" alt="Latte na stoliku" loading="lazy" width="600" height="500"></div>
+        <div class="a-text rv" style="--d:120ms">
+          <p class="quote">„Przychodzisz na kawę, a wychodzisz z nowym ulubionym obrazem.”</p>
+          <p>Wiele prezentowanych prac można kupić — zapytaj obsługę. Jesteś artystą i chcesz u nas wystawić? <a href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">Napisz do nas</a>.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="galeria" aria-labelledby="gal-t">
-    <div class="container">
-      <div class="head">
-        <div>
-          <span class="kicker rv">Galeria marzenie</span>
-          <h2 class="title rv" id="gal-t">Ściany, które <span class="u">żyją</span></h2>
+  <!-- EVENINGS -->
+  <section class="section evening" id="wieczory" aria-labelledby="ev-t">
+    <div class="container evening-grid">
+      <div>
+        <span class="eyebrow rv">Piątki i soboty do północy</span>
+        <h2 class="h2 rv" id="ev-t">Wieczorem jest <em>jeszcze przytulniej</em></h2>
+        <p class="lead rv">Kiedy za oknem robi się ciemno, zapalamy lampki, nalewamy regionalny kraft i zostajemy dłużej. Idealne miejsce na spotkanie ze znajomymi.</p>
+        <div class="ev-list">
+          <div class="ev rv"><svg aria-hidden="true"><use href="#i-palette"/></svg><b>Wernisaże</b><span>otwarcia nowych wystaw</span></div>
+          <div class="ev rv" style="--d:80ms"><svg aria-hidden="true"><use href="#i-beer"/></svg><b>Wieczory z kraftem</b><span>piwa z Podkarpacia</span></div>
+          <div class="ev rv" style="--d:160ms"><svg aria-hidden="true"><use href="#i-users"/></svg><b>Spotkania prywatne</b><span>urodziny, małe przyjęcia</span></div>
         </div>
-        <div class="rv" style="display:flex;flex-direction:column;gap:20px">
-          <p>Wystawy zmieniają się regularnie — malarstwo, grafika i fotografia artystów z całej Europy. Przewiń, a potem przyjdź zobaczyć na żywo.</p>
-          <div class="strip-ctrl">
-            <button type="button" id="prev" aria-label="Poprzednie prace"><svg aria-hidden="true"><use href="#i-left"/></svg></button>
-            <button type="button" id="next" aria-label="Następne prace"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          </div>
-        </div>
+        <p class="rv" style="margin-top:30px"><a class="btn btn-light" href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Wydarzenia na Facebooku</a></p>
       </div>
-
-      <div class="gallery-strip" id="strip" tabindex="0" role="region" aria-label="Przykładowe prace z galerii, przewijane poziomo">
-        <figure class="art"><div class="canvas"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="500" fill="#FFD23F"/><circle cx="200" cy="200" r="120" fill="#FF6FB1" stroke="#111" stroke-width="6"/><rect y="330" width="400" height="170" fill="#3A55F5"/><path d="M0 360c70-24 130 24 200 0s130-24 200 0" stroke="#FFF8EC" stroke-width="8" fill="none"/><path d="M0 410c70-24 130 24 200 0s130-24 200 0" stroke="#111" stroke-width="5" fill="none"/></svg></div><figcaption><b>Słońce nad Wisłokiem</b><span>akryl</span></figcaption></figure>
-        <figure class="art"><div class="canvas"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="500" fill="#111"/><rect x="40" y="40" width="160" height="300" fill="#FF7A2F"/><circle cx="280" cy="150" r="80" fill="#FFD23F"/><rect x="200" y="300" width="170" height="160" fill="#22B573"/><path d="M40 40l320 420" stroke="#FFF8EC" stroke-width="5"/><path d="M80 380h100v24a36 36 0 0 1-36 36h-28a36 36 0 0 1-36-36z" fill="#FFF8EC"/></svg></div><figcaption><b>Kompozycja z filiżanką</b><span>olej</span></figcaption></figure>
-        <figure class="art"><div class="canvas"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="500" fill="#C9B8FF"/><circle cx="200" cy="190" r="90" fill="#3A55F5" stroke="#111" stroke-width="6"/><path d="M70 500c0-110 58-170 130-170s130 60 130 170z" fill="#3A55F5" stroke="#111" stroke-width="6"/><path d="M168 180h14M218 180h14M180 220c12 10 28 10 40 0" stroke="#FFF8EC" stroke-width="7" stroke-linecap="round"/><circle cx="320" cy="80" r="30" fill="#FF6FB1" stroke="#111" stroke-width="5"/></svg></div><figcaption><b>Portret w błękicie</b><span>linoryt</span></figcaption></figure>
-        <figure class="art"><div class="canvas"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="500" fill="#FF6FB1"/><path d="M40 500V330h40v-30h24v30h40v-90h24v-26h24v26h24v90h40v-30h24v30h40v-48h24v-20h16v20h24v218z" fill="#111"/><circle cx="300" cy="110" r="56" fill="#FFF8EC" stroke="#111" stroke-width="6"/><g fill="#111"><circle cx="70" cy="80" r="5"/><circle cx="150" cy="140" r="4"/><circle cx="110" cy="210" r="5"/></g></svg></div><figcaption><b>Zamek nocą</b><span>gwasz</span></figcaption></figure>
-        <figure class="art"><div class="canvas"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="500" fill="#FFF8EC"/><g stroke="#111" stroke-width="6"><rect x="40" y="70" width="50" height="340" rx="25" fill="#22B573"/><rect x="120" y="150" width="50" height="260" rx="25" fill="#22B573"/><rect x="200" y="40" width="50" height="370" rx="25" fill="#22B573"/><circle cx="320" cy="140" r="46" fill="#FF7A2F"/><rect x="280" y="330" width="100" height="80" fill="#FFD23F"/></g><path d="M0 440h400" stroke="#111" stroke-width="6"/></svg></div><figcaption><b>Rytm ogrodu</b><span>technika mieszana</span></figcaption></figure>
-        <figure class="art"><div class="canvas"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="500" fill="#3A55F5"/><g stroke="#111" stroke-width="6"><rect x="60" y="60" width="130" height="130" fill="#FFD23F"/><rect x="210" y="60" width="130" height="130" rx="65" fill="#FF6FB1"/><rect x="60" y="210" width="130" height="130" rx="65" fill="#FFF8EC"/><rect x="210" y="210" width="130" height="130" fill="#22B573"/><rect x="60" y="360" width="280" height="80" rx="40" fill="#FF7A2F"/></g></svg></div><figcaption><b>Bauhaus w Łańcucie</b><span>sitodruk</span></figcaption></figure>
-      </div>
-
-      <div class="artist-cta rv">
-        <p>Jesteś artystą? Twoje prace mogą zawisnąć u nas.</p>
-        <a class="btn ink" href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener">Napisz do nas <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
+      <div class="ph rv" style="--d:120ms"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=75" alt="Wieczorne wnętrze lokalu w ciepłym świetle" loading="lazy" width="800" height="800"></div>
     </div>
   </section>
 
-  <section class="section" id="wydarzenia" aria-labelledby="ev-t" style="padding-top:0">
+  <!-- VISIT -->
+  <section class="section" id="odwiedz" aria-labelledby="v-t">
     <div class="container">
-      <div class="head">
-        <div>
-          <span class="kicker rv">Wydarzenia</span>
-          <h2 class="title rv" id="ev-t">Dzieje się <span class="u">u nas</span></h2>
-        </div>
-        <p class="rv">Terminy wernisaży i wieczorów ogłaszamy na Facebooku — obserwuj, żeby niczego nie przegapić.</p>
-      </div>
-      <div class="events">
-        <a class="event rv" href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener">
-          <span class="when">Cyklicznie</span>
-          <div><h3>Wernisaże</h3><p>Otwarcia wystaw z udziałem artystów. Wino, rozmowy, pierwsze spojrzenia.</p></div>
-          <span class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
-        </a>
-        <a class="event rv" style="--d:80ms" href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener">
-          <span class="when">Pt &amp; Sob · do 00:00</span>
-          <div><h3>Wieczory w galerii</h3><p>Kraft z Podkarpacia, muzyka i sztuka nocą.</p></div>
-          <span class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
-        </a>
-        <a class="event rv" style="--d:160ms" href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener">
-          <span class="when">Na zamówienie</span>
-          <div><h3>Imprezy prywatne</h3><p>Urodziny, kameralne przyjęcia, spotkania firmowe — wśród obrazów.</p></div>
-          <span class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="odwiedz" aria-labelledby="v-t" style="padding-top:0">
-    <div class="container">
-      <div class="head">
-        <div>
-          <span class="kicker rv">Odwiedź nas</span>
-          <h2 class="title rv" id="v-t">Wpadaj <span class="u">śmiało</span></h2>
-        </div>
-        <p class="rv">Idealny przystanek przed zwiedzaniem Zamku albo po nim. Albo zamiast — nie oceniamy.</p>
+      <div class="center-head">
+        <span class="eyebrow rv">Odwiedź nas</span>
+        <h2 class="h2 rv" id="v-t">Do zobaczenia <em>przy Zamkowej</em></h2>
+        <p class="lead rv">Świetny przystanek przed zwiedzaniem Zamku w Łańcucie albo po nim.</p>
       </div>
       <div class="visit-grid">
-        <div class="tile v-addr rv">
-          <span class="label">Adres</span>
-          <p class="big">ul. Zamkowa 4<br>37-100 Łańcut</p>
-          <div class="actions">
-            <a class="btn white" href="https://www.google.com/maps/dir/?api=1&amp;destination=Zamkowa+4,+37-100+%C5%81a%C5%84cut" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-nav"/></svg>Wyznacz trasę</a>
-            <a class="btn ink" href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Facebook</a>
+        <div class="visit-card rv">
+          <div class="v-row">
+            <svg aria-hidden="true"><use href="#i-pin"/></svg>
+            <div><h3>Adres</h3><p class="big">ul. Zamkowa 4<br>37-100 Łańcut</p></div>
+          </div>
+          <div class="v-row">
+            <svg aria-hidden="true"><use href="#i-clock"/></svg>
+            <div style="flex:1">
+              <h3>Godziny otwarcia</h3>
+              <table class="hours" id="hours">
+                <caption class="sr-only">Godziny otwarcia</caption>
+                <tbody>
+                  <tr data-day="1"><td>Poniedziałek</td><td>10:00 – 21:00</td></tr>
+                  <tr data-day="2"><td>Wtorek</td><td>10:00 – 21:00</td></tr>
+                  <tr data-day="3"><td>Środa</td><td>10:00 – 21:00</td></tr>
+                  <tr data-day="4"><td>Czwartek</td><td>10:00 – 21:00</td></tr>
+                  <tr data-day="5"><td>Piątek</td><td>10:00 – 00:00</td></tr>
+                  <tr data-day="6"><td>Sobota</td><td>10:00 – 00:00</td></tr>
+                  <tr data-day="0"><td>Niedziela</td><td>10:00 – 21:00</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="v-row">
+            <svg aria-hidden="true"><use href="#i-fb"/></svg>
+            <div><h3>Kontakt</h3><p><a href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener">facebook.com/artcafegaleriamarzenie</a></p></div>
+          </div>
+          <div class="visit-cta">
+            <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=Zamkowa+4,+37-100+%C5%81a%C5%84cut" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-nav"/></svg>Wyznacz trasę</a>
+            <a class="btn btn-outline" href="https://www.tripadvisor.com/Restaurant_Review-g1956003-d23217914-Reviews-ART_CAFE_galeria_marzenie-Lancut_Subcarpathian_Province_Southern_Poland.html" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>Opinie gości</a>
           </div>
         </div>
-        <div class="tile v-hours rv" style="--d:80ms">
-          <span class="label">Godziny otwarcia</span>
-          <table class="hours" id="hours">
-            <caption class="sr-only">Godziny otwarcia ART CAFÉ</caption>
-            <tbody>
-              <tr data-day="1"><td><span>Poniedziałek</span></td><td>10:00 – 21:00</td></tr>
-              <tr data-day="2"><td><span>Wtorek</span></td><td>10:00 – 21:00</td></tr>
-              <tr data-day="3"><td><span>Środa</span></td><td>10:00 – 21:00</td></tr>
-              <tr data-day="4"><td><span>Czwartek</span></td><td>10:00 – 21:00</td></tr>
-              <tr data-day="5"><td><span>Piątek</span><em class="late">długo</em></td><td>10:00 – 00:00</td></tr>
-              <tr data-day="6"><td><span>Sobota</span><em class="late">długo</em></td><td>10:00 – 00:00</td></tr>
-              <tr data-day="0"><td><span>Niedziela</span></td><td>10:00 – 21:00</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="tile v-map rv">
-          <iframe title="Mapa dojazdu: ul. Zamkowa 4, Łańcut" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Zamkowa%204%2C%2037-100%20%C5%81a%C5%84cut&amp;z=16&amp;output=embed"></iframe>
+        <div class="map rv" style="--d:100ms">
+          <iframe title="Mapa: ART CAFÉ, ul. Zamkowa 4, Łańcut" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Zamkowa%204%2C%2037-100%20%C5%81a%C5%84cut&amp;z=16&amp;output=embed"></iframe>
         </div>
       </div>
     </div>
@@ -639,13 +508,16 @@
 
 <footer class="footer">
   <div class="container">
-    <p class="footer-big">Do zobaczenia <span>na kawie</span></p>
-    <div class="footer-row">
-      <span>© <span id="year">2026</span> ART CAFÉ galeria marzenie · ul. Zamkowa 4, Łańcut</span>
+    <div class="footer-top">
+      <p>Wpadnij na kawę — <span>czekamy!</span></p>
       <div class="socials">
         <a href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener" aria-label="ART CAFÉ na Facebooku"><svg aria-hidden="true"><use href="#i-fb"/></svg></a>
         <a href="https://www.tripadvisor.com/Restaurant_Review-g1956003-d23217914-Reviews-ART_CAFE_galeria_marzenie-Lancut_Subcarpathian_Province_Southern_Poland.html" target="_blank" rel="noopener" aria-label="Opinie na Tripadvisor"><svg aria-hidden="true"><use href="#i-star"/></svg></a>
       </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> ART CAFÉ galeria marzenie · ul. Zamkowa 4, 37-100 Łańcut</span>
+      <a href="#top" style="color:inherit">Wróć na górę ↑</a>
     </div>
   </div>
 </footer>
@@ -654,6 +526,17 @@
 (() => {
   document.body.classList.remove('no-js');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // hide broken photos -> warm placeholder shows through
+  document.querySelectorAll('.ph img').forEach(img => {
+    const fail = () => img.classList.add('broken');
+    if (img.complete && img.naturalWidth === 0 && img.currentSrc) fail();
+    img.addEventListener('error', fail);
+  });
+
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', scrollY > 10);
+  onScroll(); addEventListener('scroll', onScroll, { passive: true });
 
   const burger = document.getElementById('burger'), nav = document.getElementById('nav');
   const setNav = open => {
@@ -688,28 +571,6 @@
     });
   });
 
-  const moods = [
-    ['Flat white + proziak klasyczny', 'Podwójne espresso postawi na nogi, a proziak z masłem da paliwo na zwiedzanie Zamku.'],
-    ['Czekolada + ciasto dnia', 'Gęsta czekolada na gorąco i domowe ciasto z witryny. Terapia zatwierdzona.'],
-    ['Proziak wytrawny', 'Nasz bestseller: wędzony ser, zioła, sezonowe dodatki. Syci jak należy.'],
-    ['Kraft + deska na wspólny stół', 'Piwa z Podkarpacia i deska dla całej ekipy. W pt i sob siedzimy do północy.'],
-    ['Alternatywa + deser wystawowy', 'Kawa z dripa z sezonowych ziaren i deser inspirowany aktualną wystawą.']
-  ];
-  const out = document.getElementById('moodOut');
-  const mbtns = document.querySelectorAll('.mood-opts button');
-  mbtns.forEach(b => b.addEventListener('click', () => {
-    mbtns.forEach(x => x.setAttribute('aria-pressed', x === b));
-    const [t, d] = moods[+b.dataset.m];
-    out.querySelector('b').textContent = t;
-    out.querySelector('p').textContent = d;
-    out.classList.remove('swap'); void out.offsetWidth; out.classList.add('swap');
-  }));
-
-  const strip = document.getElementById('strip');
-  const step = () => strip.querySelector('.art').getBoundingClientRect().width + 24;
-  document.getElementById('prev').addEventListener('click', () => strip.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }));
-  document.getElementById('next').addEventListener('click', () => strip.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }));
-
   const hrs = { 0: [10, 21], 1: [10, 21], 2: [10, 21], 3: [10, 21], 4: [10, 21], 5: [10, 24], 6: [10, 24] };
   try {
     const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Warsaw', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
@@ -719,8 +580,8 @@
     document.querySelector(`#hours tr[data-day="${day}"]`)?.classList.add('today');
     const [o, c] = hrs[day];
     const st = document.getElementById('status'), dot = document.getElementById('dot');
-    if (h >= o && h < c) st.textContent = `Otwarte teraz · do ${c === 24 ? '00:00' : c + ':00'}`;
-    else { st.textContent = h < o ? `Otwieramy o ${o}:00` : 'Zamknięte · jutro od 10:00'; dot.classList.add('closed'); }
+    if (h >= o && h < c) st.textContent = `Teraz otwarte · zapraszamy do ${c === 24 ? '00:00' : c + ':00'}`;
+    else { st.textContent = h < o ? `Otwieramy dziś o ${o}:00` : 'Teraz zamknięte · jutro od 10:00'; dot.classList.add('closed'); }
   } catch (e) {}
 
   document.getElementById('year').textContent = new Date().getFullYear();

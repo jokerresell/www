@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make-up Studio Permanent by Klaudia Gilar — Mielec</title>
+<meta name="description" content="Makijaż permanentny w Mielcu: brwi pudrowe, usta, kreski i remover. Naturalne efekty, sterylne warunki, indywidualna konsultacja. Make-up Studio Permanent by Klaudia Gilar.">
+<meta name="theme-color" content="#2B211D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232B211D'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='28' fill='%23D9B98C'%3EKG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Warm nude + espresso + muted gold (design system: premium dark + gold accent, beauty/spa) */
+    --color-bg: #FBF7F3;
+    --color-bg-alt: #F4ECE4;
+    --color-card: #FFFFFF;
+    --color-fg: #2B211D;
+    --color-fg-soft: #5C4D45;
+    --color-muted-fg: #6E5E55;
+    --color-border: #E6D9CD;
+    --color-nude: #E9D3C3;
+    --color-blush: #D8A99A;
+    --color-rose: #A85D52;
+    --color-accent: #8C6A3F;          /* gold, AA on light bg */
+    --color-accent-light: #D9B98C;    /* gold on dark bg */
+    --color-dark: #2B211D;
+    --color-on-dark: #F7EFE8;
+    --color-success: #3F6B4E;
+    --color-error: #B3261E;
+
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+    --radius-full: 999px;
+    --shadow-card: 0 18px 40px -24px rgba(43, 33, 29, .35);
+    --shadow-soft: 0 30px 60px -30px rgba(43, 33, 29, .45);
+    --container: 1200px;
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+  button { font: inherit; cursor: pointer; }
+  input, select, textarea { font: inherit; color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .skip-link {
+    position: absolute; left: 16px; top: -60px; z-index: 100;
+    background: var(--color-dark); color: var(--color-on-dark);
+    padding: 12px 18px; border-radius: var(--radius-sm); text-decoration: none;
+    transition: top .2s var(--ease-out);
+  }
+  .skip-link:focus { top: 16px; }
+
+  .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+  @media (min-width: 768px) { .container { padding: 0 32px; } }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: .78rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+
+  .h-display {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.05; letter-spacing: -.01em;
+  }
+  .h-section {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; letter-spacing: -.005em;
+    text-wrap: balance;
+  }
+  .h-display em, .h-section em { font-style: italic; color: var(--color-rose); }
+  .lead { font-size: 1.1rem; color: var(--color-fg-soft); max-width: 60ch; }
+
+  section { padding: 88px 0; }
+  @media (min-width: 1024px) { section { padding: 120px 0; } }
+  .section-head { display: grid; gap: 16px; margin-bottom: 48px; max-width: 720px; }
+  .section-head.center { margin-inline: auto; text-align: center; justify-items: center; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 48px; padding: 0 26px; border-radius: var(--radius-full);
+    font-weight: 500; font-size: .95rem; letter-spacing: .02em; text-decoration: none;
+    border: 1px solid transparent;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s var(--ease-out), box-shadow .2s ease;
+  }
+  .btn svg { width: 18px; height: 18px; transition: transform .2s var(--ease-out); }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--color-dark); color: var(--color-on-dark); }
+  .btn-primary:hover { background: #45352E; box-shadow: var(--shadow-card); }
+  .btn-ghost { border-color: var(--color-fg); color: var(--color-fg); background: transparent; }
+  .btn-ghost:hover { background: var(--color-fg); color: var(--color-on-dark); }
+  .btn-gold { background: var(--color-accent-light); color: var(--color-dark); }
+  .btn-gold:hover { background: #E6CBA3; }
+
+  /* Header */
+  .site-header {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    transition: background-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease;
+  }
+  .site-header.scrolled {
+    background: rgba(251, 247, 243, .86);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    box-shadow: 0 1px 0 var(--color-border);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand-mark {
+    width: 42px; height: 42px; border-radius: 50%; flex: none;
+    display: grid; place-items: center;
+    background: var(--color-dark); color: var(--color-accent-light);
+    font-family: var(--font-display); font-style: italic; font-size: 1.05rem;
+  }
+  .brand-text { display: grid; line-height: 1.15; }
+  .brand-text strong { font-family: var(--font-display); font-weight: 500; font-size: 1.08rem; }
+  .brand-text span { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--color-muted-fg); }
+  .nav-links { display: none; gap: 32px; }
+  .nav-links a {
+    position: relative; text-decoration: none; font-size: .92rem; color: var(--color-fg-soft);
+    padding: 10px 0; transition: color .2s ease;
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px;
+    background: var(--color-accent); transform: scaleX(0); transform-origin: left;
+    transition: transform .25s var(--ease-out);
+  }
+  .nav-links a:hover { color: var(--color-fg); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta { display: none; }
+  .menu-toggle {
+    width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--color-border);
+    background: var(--color-card); display: grid; place-items: center; color: var(--color-fg);
+  }
+  .menu-toggle svg { width: 22px; height: 22px; }
+  @media (min-width: 960px) {
+    .nav-links { display: flex; }
+    .nav-cta { display: inline-flex; }
+    .menu-toggle { display: none; }
+  }
+
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 60; background: var(--color-dark); color: var(--color-on-dark);
+    display: flex; flex-direction: column; padding: 20px;
+    opacity: 0; visibility: hidden; transform: translateY(-8px);
+    transition: opacity .25s ease, transform .3s var(--ease-out), visibility 0s linear .3s;
+  }
+  .mobile-menu.open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+  .mobile-menu .top { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+  .mobile-menu .menu-toggle { background: transparent; border-color: rgba(247, 239, 232, .25); color: var(--color-on-dark); }
+  .mobile-menu nav { margin-top: 40px; display: grid; gap: 4px; }
+  .mobile-menu nav a {
+    font-family: var(--font-display); font-size: 2rem; text-decoration: none;
+    padding: 10px 0; border-bottom: 1px solid rgba(247, 239, 232, .12);
+  }
+  .mobile-menu .btn { margin-top: auto; }
+
+  /* Hero */
+  .hero { padding: 132px 0 72px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; width: 720px; height: 720px; right: -260px; top: -200px;
+    background: radial-gradient(circle, rgba(216, 169, 154, .35), transparent 65%);
+    pointer-events: none;
+  }
+  .hero-grid { display: grid; gap: 56px; align-items: center; position: relative; }
+  @media (min-width: 960px) {
+    .hero { padding: 168px 0 120px; }
+    .hero-grid { grid-template-columns: 1.1fr .9fr; gap: 72px; }
+  }
+  .hero-copy { display: grid; gap: 26px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero-meta { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 22px; padding-top: 12px; border-top: 1px solid var(--color-border); }
+  .hero-meta div { display: grid; }
+  .hero-meta strong { font-family: var(--font-display); font-size: clamp(1.4rem, 5vw, 1.8rem); font-weight: 400; }
+  .hero-meta span { font-size: .78rem; line-height: 1.35; color: var(--color-muted-fg); }
+
+  .hero-visual { position: relative; aspect-ratio: 4 / 5; max-width: 480px; width: 100%; margin: 0 auto; }
+  .hero-arch {
+    position: absolute; inset: 0; border-radius: 240px 240px var(--radius-lg) var(--radius-lg);
+    background: linear-gradient(165deg, #EFDCCD 0%, #DDB8A6 55%, #C79683 100%);
+    overflow: hidden; box-shadow: var(--shadow-soft);
+  }
+  .hero-arch svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-badge {
+    position: absolute; left: -12px; bottom: 36px;
+    background: var(--color-card); border-radius: var(--radius-md); padding: 14px 18px;
+    box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 12px;
+    animation: float 6s ease-in-out infinite;
+  }
+  .hero-badge .stars { display: flex; gap: 2px; color: var(--color-accent); }
+  .hero-badge .stars svg { width: 14px; height: 14px; }
+  .hero-badge p { font-size: .8rem; color: var(--color-muted-fg); line-height: 1.3; }
+  .hero-badge strong { display: block; color: var(--color-fg); font-size: .95rem; }
+  .hero-seal {
+    position: absolute; right: -8px; top: 40px; width: 112px; height: 112px;
+    animation: spin 28s linear infinite;
+  }
+  @media (min-width: 600px) { .hero-badge { left: -32px; } .hero-seal { right: -28px; } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Marquee */
+  .marquee { background: var(--color-dark); color: var(--color-on-dark); padding: 18px 0; overflow: hidden; }
+  .marquee-track { display: flex; gap: 48px; width: max-content; animation: marquee 36s linear infinite; }
+  .marquee-track span {
+    font-family: var(--font-display); font-style: italic; font-size: 1.3rem; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 48px;
+  }
+  .marquee-track span::after { content: "✦"; font-style: normal; color: var(--color-accent-light); font-size: .9rem; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* Services */
+  .services-grid { display: grid; gap: 20px; }
+  @media (min-width: 700px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
+  .service {
+    background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+    padding: 30px 26px; display: flex; flex-direction: column; gap: 16px;
+    transition: transform .3s var(--ease-out), box-shadow .3s ease, border-color .3s ease;
+  }
+  .service:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--color-blush); }
+  .service-icon {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--color-bg-alt);
+    display: grid; place-items: center; color: var(--color-rose);
+  }
+  .service-icon svg { width: 36px; height: 36px; }
+  .service h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.45rem; line-height: 1.2; }
+  .service p { color: var(--color-fg-soft); font-size: .95rem; }
+  .service ul { display: grid; gap: 8px; font-size: .9rem; color: var(--color-fg-soft); }
+  .service li { display: flex; gap: 10px; align-items: flex-start; }
+  .service li svg { width: 16px; height: 16px; flex: none; margin-top: 5px; color: var(--color-accent); }
+  .service-foot {
+    margin-top: auto; padding-top: 18px; border-top: 1px dashed var(--color-border);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  }
+  .price { font-family: var(--font-display); font-size: 1.5rem; }
+  .price small { font-family: var(--font-sans); font-size: .75rem; color: var(--color-muted-fg); margin-right: 4px; }
+  .duration { font-size: .8rem; color: var(--color-muted-fg); display: inline-flex; gap: 6px; align-items: center; }
+  .duration svg { width: 14px; height: 14px; }
+  .services-note { margin-top: 28px; font-size: .88rem; color: var(--color-muted-fg); text-align: center; }
+
+  /* Before/after */
+  .ba { background: var(--color-bg-alt); }
+  .ba-grid { display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 960px) { .ba-grid { grid-template-columns: .9fr 1.1fr; gap: 80px; } }
+  .ba-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .ba-tab {
+    min-height: 44px; padding: 0 20px; border-radius: var(--radius-full);
+    border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-fg-soft);
+    font-size: .9rem; transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .ba-tab:hover { border-color: var(--color-fg-soft); }
+  .ba-tab[aria-selected="true"] { background: var(--color-dark); color: var(--color-on-dark); border-color: var(--color-dark); }
+  .ba-compare {
+    position: relative; aspect-ratio: 16 / 11; border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: var(--shadow-soft); background: #EBD6C8; user-select: none; touch-action: pan-y;
+  }
+  .ba-layer { position: absolute; inset: 0; }
+  .ba-layer svg { width: 100%; height: 100%; }
+  .ba-after { clip-path: inset(0 0 0 var(--pos, 50%)); }
+  .ba-label {
+    position: absolute; top: 16px; padding: 6px 14px; border-radius: var(--radius-full);
+    background: rgba(43, 33, 29, .78); color: var(--color-on-dark);
+    font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .ba-label.before { left: 16px; }
+  .ba-label.after { right: 16px; }
+  .ba-handle {
+    position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; margin-left: -1px;
+    background: #fff; pointer-events: none;
+  }
+  .ba-handle::after {
+    content: ""; position: absolute; top: 50%; left: 50%; width: 48px; height: 48px; transform: translate(-50%, -50%);
+    border-radius: 50%; background: #fff; box-shadow: var(--shadow-card);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232B211D' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 6-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E");
+    background-size: 22px; background-repeat: no-repeat; background-position: center;
+  }
+  .ba-range {
+    position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize;
+  }
+  .ba-compare:has(.ba-range:focus-visible) { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+  .ba-caption { margin-top: 16px; font-size: .85rem; color: var(--color-muted-fg); text-align: center; }
+
+  /* Process */
+  .steps { display: grid; gap: 20px; counter-reset: step; }
+  @media (min-width: 768px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .step { position: relative; padding: 32px 0 0; border-top: 1px solid var(--color-fg); display: grid; gap: 12px; }
+  .step::before {
+    counter-increment: step; content: "0" counter(step);
+    font-family: var(--font-display); font-style: italic; font-size: 2.6rem; line-height: 1; color: var(--color-blush);
+  }
+  .step h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; }
+  .step p { color: var(--color-fg-soft); font-size: .95rem; }
+
+  /* About */
+  .about { background: var(--color-dark); color: var(--color-on-dark); position: relative; overflow: hidden; }
+  .about .eyebrow { color: var(--color-accent-light); }
+  .about .h-section em { color: var(--color-accent-light); }
+  .about .lead { color: rgba(247, 239, 232, .78); }
+  .about-grid { display: grid; gap: 56px; align-items: center; }
+  @media (min-width: 960px) { .about-grid { grid-template-columns: .85fr 1.15fr; gap: 88px; } }
+  .about-portrait {
+    position: relative; aspect-ratio: 4 / 5; max-width: 420px; width: 100%; margin: 0 auto;
+    border-radius: var(--radius-lg); overflow: hidden;
+    background: linear-gradient(170deg, #4A3931, #2B211D 70%);
+    border: 1px solid rgba(217, 185, 140, .3);
+  }
+  .about-portrait svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .about-portrait figcaption {
+    position: absolute; left: 20px; right: 20px; bottom: 20px; padding: 16px 18px;
+    background: rgba(251, 247, 243, .1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(247, 239, 232, .18); border-radius: var(--radius-md);
+  }
+  .about-portrait figcaption strong { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; display: block; }
+  .about-portrait figcaption span { font-size: .82rem; color: rgba(247, 239, 232, .75); }
+  .about-copy { display: grid; gap: 24px; }
+  .signature { font-family: var(--font-display); font-style: italic; font-size: 2rem; color: var(--color-accent-light); }
+  .values { display: grid; gap: 16px; margin-top: 8px; }
+  @media (min-width: 600px) { .values { grid-template-columns: repeat(3, 1fr); } }
+  .value { border: 1px solid rgba(247, 239, 232, .16); border-radius: var(--radius-md); padding: 20px; display: grid; gap: 8px; }
+  .value svg { width: 26px; height: 26px; color: var(--color-accent-light); }
+  .value h3 { font-size: .98rem; font-weight: 600; }
+  .value p { font-size: .88rem; color: rgba(247, 239, 232, .72); line-height: 1.55; }
+
+  /* Testimonials */
+  .reviews-grid { display: grid; gap: 20px; }
+  @media (min-width: 900px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
+  .review {
+    background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+    padding: 30px; display: flex; flex-direction: column; gap: 18px;
+  }
+  .review .stars { display: flex; gap: 3px; color: var(--color-accent); }
+  .review .stars svg { width: 16px; height: 16px; }
+  .review blockquote { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.5; }
+  .review footer { margin-top: auto; display: flex; align-items: center; gap: 12px; font-size: .88rem; }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--color-nude); color: var(--color-fg); font-weight: 600; font-size: .85rem;
+  }
+  .review footer span { color: var(--color-muted-fg); display: block; font-size: .8rem; }
+
+  /* FAQ */
+  .faq-grid { display: grid; gap: 48px; }
+  @media (min-width: 960px) { .faq-grid { grid-template-columns: .8fr 1.2fr; gap: 80px; } }
+  .faq-list { display: grid; border-top: 1px solid var(--color-border); }
+  .faq-item { border-bottom: 1px solid var(--color-border); }
+  .faq-item summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    padding: 22px 0; font-family: var(--font-display); font-size: 1.2rem; min-height: 44px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary .plus {
+    flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--color-border);
+    display: grid; place-items: center; transition: transform .3s var(--ease-out), background-color .2s ease;
+  }
+  .faq-item summary .plus svg { width: 16px; height: 16px; }
+  .faq-item[open] summary .plus { transform: rotate(45deg); background: var(--color-bg-alt); }
+  .faq-item .answer { padding: 0 52px 24px 0; color: var(--color-fg-soft); }
+
+  /* Booking */
+  .booking { background: var(--color-bg-alt); }
+  .booking-card {
+    display: grid; background: var(--color-card); border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+  @media (min-width: 960px) { .booking-card { grid-template-columns: .9fr 1.1fr; } }
+  .booking-info {
+    background: var(--color-dark); color: var(--color-on-dark); padding: 40px 28px; display: grid; gap: 28px; align-content: start;
+  }
+  @media (min-width: 768px) { .booking-info { padding: 56px 48px; } }
+  .booking-info .eyebrow { color: var(--color-accent-light); }
+  .booking-info .h-section em { color: var(--color-accent-light); }
+  .contact-list { display: grid; gap: 18px; }
+  .contact-list li { display: flex; gap: 14px; align-items: flex-start; }
+  .contact-list .ic {
+    width: 44px; height: 44px; border-radius: 50%; flex: none; display: grid; place-items: center;
+    border: 1px solid rgba(247, 239, 232, .2); color: var(--color-accent-light);
+  }
+  .contact-list .ic svg { width: 20px; height: 20px; }
+  .contact-list small { display: block; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(247, 239, 232, .6); }
+  .contact-list a, .contact-list p { text-decoration: none; font-size: 1rem; }
+  .contact-list a:hover { color: var(--color-accent-light); }
+  .hours { display: grid; gap: 6px; font-size: .92rem; padding-top: 20px; border-top: 1px solid rgba(247, 239, 232, .14); }
+  .hours div { display: flex; justify-content: space-between; gap: 16px; }
+  .hours dt { color: rgba(247, 239, 232, .7); }
+
+  .booking-form { padding: 40px 28px; display: grid; gap: 20px; }
+  @media (min-width: 768px) { .booking-form { padding: 56px 48px; } }
+  .booking-form h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.7rem; }
+  .form-row { display: grid; gap: 20px; }
+  @media (min-width: 600px) { .form-row.two { grid-template-columns: 1fr 1fr; } }
+  .field { display: grid; gap: 6px; }
+  .field label, .field legend { font-size: .85rem; font-weight: 500; color: var(--color-fg); padding: 0; }
+  .field .req { color: var(--color-rose); }
+  .field input, .field select, .field textarea {
+    width: 100%; min-height: 50px; padding: 12px 16px; font-size: 16px;
+    border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-bg);
+    transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+  }
+  .field textarea { min-height: 110px; resize: vertical; }
+  .field input:hover, .field select:hover, .field textarea:hover { border-color: #CDB9A8; }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--color-accent); background: #fff; box-shadow: 0 0 0 3px rgba(140, 106, 63, .18);
+  }
+  .field.invalid input, .field.invalid select { border-color: var(--color-error); }
+  .field .error { font-size: .8rem; color: var(--color-error); display: none; }
+  .field.invalid .error { display: block; }
+  .field .hint { font-size: .8rem; color: var(--color-muted-fg); }
+  fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .chip { position: relative; }
+  .chip input { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+  .chip span {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; cursor: pointer;
+    border: 1px solid var(--color-border); border-radius: var(--radius-full); font-size: .9rem; color: var(--color-fg-soft);
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .chip span:hover { border-color: var(--color-fg-soft); }
+  .chip input:checked + span { background: var(--color-dark); color: var(--color-on-dark); border-color: var(--color-dark); }
+  .chip input:focus-visible + span { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .consent { display: flex; gap: 12px; align-items: flex-start; font-size: .85rem; color: var(--color-fg-soft); }
+  .consent input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--color-dark); flex: none; }
+  .form-status {
+    display: none; align-items: center; gap: 12px; padding: 14px 18px; border-radius: var(--radius-sm);
+    background: #E8F1EA; color: var(--color-success); font-size: .92rem;
+  }
+  .form-status.show { display: flex; }
+  .form-status svg { width: 20px; height: 20px; flex: none; }
+  .btn[aria-busy="true"] { opacity: .75; pointer-events: none; }
+  .spinner { width: 18px; height: 18px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin .8s linear infinite; display: none; }
+  .btn[aria-busy="true"] .spinner { display: block; }
+  .btn[aria-busy="true"] .arrow { display: none; }
+
+  /* Footer */
+  .site-footer { background: var(--color-dark); color: rgba(247, 239, 232, .75); padding: 56px 0 32px; font-size: .9rem; }
+  .footer-top { display: grid; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(247, 239, 232, .12); }
+  @media (min-width: 768px) { .footer-top { grid-template-columns: 1.4fr 1fr 1fr; } }
+  .site-footer .brand-text strong { color: var(--color-on-dark); }
+  .site-footer .brand-text span { color: rgba(247, 239, 232, .6); }
+  .site-footer .brand-mark { background: var(--color-accent-light); color: var(--color-dark); }
+  .site-footer h4 { color: var(--color-on-dark); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
+  .site-footer ul { display: grid; gap: 4px; }
+  .site-footer ul a { text-decoration: none; display: inline-block; padding: 6px 0; transition: color .2s ease; }
+  .site-footer ul a:hover { color: var(--color-accent-light); }
+  .socials { display: flex; gap: 10px; margin-top: 18px; }
+  .socials a {
+    width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+    border: 1px solid rgba(247, 239, 232, .2); transition: background-color .2s ease, color .2s ease;
+  }
+  .socials a:hover { background: var(--color-accent-light); color: var(--color-dark); }
+  .socials svg { width: 20px; height: 20px; }
+  .footer-bottom { padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: .8rem; }
+
+  /* Sticky mobile CTA */
+  .mobile-cta {
+    position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 40;
+    transform: translateY(140%); transition: transform .35s var(--ease-out);
+    box-shadow: var(--shadow-soft);
+  }
+  .mobile-cta.show { transform: none; }
+  @media (min-width: 960px) { .mobile-cta { display: none; } }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
+  .reveal.in { opacity: 1; transform: none; }
+  .no-js .reveal { opacity: 1; transform: none; }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body class="no-js">
+<a class="skip-link" href="#main">Przejdź do treści</a>
+
+<!-- Reusable SVG symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h10"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></g></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><path d="M12 8.5 13.2 11l2.3 1-2.3 1L12 15.5 10.8 13l-2.3-1 2.3-1z"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header" id="top">
+  <div class="container nav">
+    <a class="brand" href="#top" aria-label="Make-up Studio Permanent by Klaudia Gilar — strona główna">
+      <span class="brand-mark" aria-hidden="true">KG</span>
+      <span class="brand-text"><strong>Klaudia Gilar</strong><span>Make-up Studio Permanent</span></span>
+    </a>
+    <nav aria-label="Główna nawigacja">
+      <ul class="nav-links">
+        <li><a href="#uslugi">Usługi</a></li>
+        <li><a href="#efekty">Efekty</a></li>
+        <li><a href="#o-mnie">O mnie</a></li>
+        <li><a href="#opinie">Opinie</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="#rezerwacja">Umów konsultację</a>
+    <button class="menu-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
+      <svg aria-hidden="true"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="top">
+    <span class="brand-text"><strong>Klaudia Gilar</strong><span style="color:rgba(247,239,232,.6)">Make-up Studio Permanent</span></span>
+    <button class="menu-toggle" type="button" aria-label="Zamknij menu" data-menu-close>
+      <svg aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Menu mobilne">
+    <a href="#uslugi">Usługi</a>
+    <a href="#efekty">Efekty</a>
+    <a href="#o-mnie">O mnie</a>
+    <a href="#opinie">Opinie</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn-gold" href="#rezerwacja">Umów konsultację <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Makijaż permanentny · Mielec</span>
+        <h1 class="h-display" id="hero-title">Budź się <em>piękna</em>,<br>każdego dnia.</h1>
+        <p class="lead">Naturalne brwi pudrowe, subtelnie podkreślone usta i delikatne kreski — dopasowane do rysów Twojej twarzy. Bez przerysowania, z dbałością o każdy detal.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#rezerwacja">Umów bezpłatną konsultację <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#uslugi">Zobacz cennik</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>8+</strong><span>lat doświadczenia</span></div>
+          <div><strong>2 500+</strong><span>wykonanych zabiegów</span></div>
+          <div><strong>4,9</strong><span>średnia ocen klientek</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-arch">
+          <!-- Abstract face line-art: brows, eye, lips -->
+          <svg viewBox="0 0 400 500" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="lip" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#B8665B"/><stop offset="1" stop-color="#9A4E45"/></linearGradient>
+              <linearGradient id="brow" x1="0" x2="1"><stop offset="0" stop-color="#5A3F33" stop-opacity=".25"/><stop offset=".45" stop-color="#5A3F33" stop-opacity=".85"/><stop offset="1" stop-color="#4A3129"/></linearGradient>
+            </defs>
+            <path d="M200 70c-88 0-140 78-140 180 0 118 64 200 140 200s140-82 140-200C340 148 288 70 200 70z" fill="#F3E2D5" opacity=".55"/>
+            <path d="M92 196c22-20 52-26 86-18" stroke="url(#brow)" stroke-width="11" stroke-linecap="round" fill="none"/>
+            <path d="M308 196c-22-20-52-26-86-18" stroke="url(#brow)" stroke-width="11" stroke-linecap="round" fill="none"/>
+            <path d="M104 232c16-14 46-16 66 0" stroke="#3A2A24" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M104 232c20 12 46 12 66 0" stroke="#3A2A24" stroke-width="1.4" fill="none" opacity=".6"/>
+            <path d="M170 232l12-6" stroke="#2B211D" stroke-width="3" stroke-linecap="round"/>
+            <path d="M296 232c-16-14-46-16-66 0" stroke="#3A2A24" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M296 232c-20 12-46 12-66 0" stroke="#3A2A24" stroke-width="1.4" fill="none" opacity=".6"/>
+            <path d="M230 232l-12-6" stroke="#2B211D" stroke-width="3" stroke-linecap="round"/>
+            <path d="M200 250c-4 30-10 50-18 62 10 6 26 6 36 0" stroke="#8E6A5A" stroke-width="2" stroke-linecap="round" fill="none" opacity=".7"/>
+            <path d="M152 362c16-10 30-16 40-12 4 1 6 2 8 2s4-1 8-2c10-4 24 2 40 12-14 4-30 6-48 6s-34-2-48-6z" fill="url(#lip)"/>
+            <path d="M152 362c14 20 30 30 48 30s34-10 48-30c-14 4-30 6-48 6s-34-2-48-6z" fill="#C27A6E"/>
+            <path d="M170 372c10 4 20 5 30 5" stroke="#F1CFC4" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+          </svg>
+        </div>
+        <div class="hero-badge">
+          <div>
+            <div class="stars" aria-hidden="true">
+              <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
+            </div>
+            <p><strong>Zaufało mi ponad 1 800 klientek</strong>z Mielca i okolic</p>
+          </div>
+        </div>
+        <svg class="hero-seal" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <defs><path id="circ" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+          <circle cx="60" cy="60" r="58" fill="#2B211D"/>
+          <text font-family="Inter, sans-serif" font-size="10" letter-spacing="3.2" fill="#D9B98C"><textPath href="#circ">NATURALNIE · PIĘKNIE · TRWALE · </textPath></text>
+          <text x="60" y="67" text-anchor="middle" font-family="Playfair Display, serif" font-style="italic" font-size="22" fill="#F7EFE8">KG</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Brwi pudrowe</span><span>Ombre brows</span><span>Usta akwarelowe</span><span>Kreska dekoracyjna</span><span>Zagęszczenie linii rzęs</span><span>Remover</span><span>Korekty</span>
+      <span>Brwi pudrowe</span><span>Ombre brows</span><span>Usta akwarelowe</span><span>Kreska dekoracyjna</span><span>Zagęszczenie linii rzęs</span><span>Remover</span><span>Korekty</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="uslugi" aria-labelledby="uslugi-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Usługi i cennik</span>
+        <h2 class="h-section" id="uslugi-title">Makijaż, który <em>nie spływa</em> — ani w upale, ani na basenie.</h2>
+        <p class="lead">Każdy zabieg poprzedza konsultacja i rysunek wstępny. Pigment i technikę dobieram indywidualnie do typu skóry i Twoich oczekiwań.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service reveal">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 24c7-7 17-9 30-6"/><path d="M8 22.5l2-3M12 20.5l2-3.2M16 19.2l1.8-3.2M20 18.4l1.6-3M24 18.2l1.2-2.8M28 18.4l1-2.6" opacity=".6"/></svg>
+          </div>
+          <h3>Brwi pudrowe</h3>
+          <p>Efekt delikatnie przypudrowanych brwi z miękkim przejściem — najpopularniejsza i najbardziej naturalna technika.</p>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Rysunek dopasowany do rysów</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Trwałość 1,5–3 lata</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Dopigmentowanie w cenie</li>
+          </ul>
+          <div class="service-foot">
+            <span class="price"><small>od</small>1 100 zł</span>
+            <span class="duration"><svg aria-hidden="true"><use href="#i-clock"/></svg>ok. 2,5 h</span>
+          </div>
+        </article>
+
+        <article class="service reveal">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M5 20c4-3 8-6 11-6 2 0 3 1 4 1s2-1 4-1c3 0 7 3 11 6-4 1-9 2-15 2s-11-1-15-2z"/><path d="M5 20c4 5 9 8 15 8s11-3 15-8"/></svg>
+          </div>
+          <h3>Usta akwarelowe</h3>
+          <p>Subtelnie wyrównany kontur i świeży, soczysty kolor. Wygląda jak ulubiony balsam koloryzujący.</p>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Korekta asymetrii</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Trwałość 2–3 lata</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Dopigmentowanie w cenie</li>
+          </ul>
+          <div class="service-foot">
+            <span class="price"><small>od</small>1 200 zł</span>
+            <span class="duration"><svg aria-hidden="true"><use href="#i-clock"/></svg>ok. 3 h</span>
+          </div>
+        </article>
+
+        <article class="service reveal">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 22c7-8 21-8 28 0"/><path d="M5 22c7 6 21 6 28 0"/><path d="M33 22l4-3" stroke-width="2.2"/><circle cx="19" cy="22" r="3.2"/></svg>
+          </div>
+          <h3>Kreski i rzęsy</h3>
+          <p>Zagęszczenie linii rzęs lub elegancka kreska dekoracyjna — oko wygląda na wypoczęte bez tuszu.</p>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Wariant subtelny lub wyrazisty</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Trwałość 3–5 lat</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Dopigmentowanie w cenie</li>
+          </ul>
+          <div class="service-foot">
+            <span class="price"><small>od</small>800 zł</span>
+            <span class="duration"><svg aria-hidden="true"><use href="#i-clock"/></svg>ok. 2 h</span>
+          </div>
+        </article>
+
+        <article class="service reveal">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30c6-10 18-18 26-22"/><path d="M12 10a8 8 0 0 0 8 8M28 26a6 6 0 0 0-6-6" opacity=".6"/><circle cx="10" cy="30" r="2"/></svg>
+          </div>
+          <h3>Remover i korekty</h3>
+          <p>Bezpieczne usuwanie lub rozjaśnianie starego makijażu permanentnego oraz odświeżenie koloru.</p>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Metoda bezlaserowa</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Odświeżenie po 12+ mies.</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Korekta prac z innych salonów</li>
+          </ul>
+          <div class="service-foot">
+            <span class="price"><small>od</small>350 zł</span>
+            <span class="duration"><svg aria-hidden="true"><use href="#i-clock"/></svg>ok. 1–1,5 h</span>
+          </div>
+        </article>
+      </div>
+      <p class="services-note">Konsultacja przed zabiegiem jest bezpłatna. Ceny orientacyjne — ostateczną wycenę ustalamy podczas spotkania.</p>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="ba" id="efekty" aria-labelledby="efekty-title">
+    <div class="container ba-grid">
+      <div class="section-head reveal" style="margin-bottom:0">
+        <span class="eyebrow">Przed i po</span>
+        <h2 class="h-section" id="efekty-title">Zobacz, jak <em>subtelna</em> może być różnica.</h2>
+        <p class="lead">Przesuń suwak, aby porównać efekt. Stawiam na naturalność — tak, by nikt nie zgadł, że to makijaż permanentny.</p>
+        <div class="ba-tabs" role="tablist" aria-label="Wybierz zabieg">
+          <button class="ba-tab" role="tab" aria-selected="true" aria-controls="ba-panel" data-ba="brows">Brwi</button>
+          <button class="ba-tab" role="tab" aria-selected="false" aria-controls="ba-panel" data-ba="lips" tabindex="-1">Usta</button>
+          <button class="ba-tab" role="tab" aria-selected="false" aria-controls="ba-panel" data-ba="eyes" tabindex="-1">Kreska</button>
+        </div>
+      </div>
+
+      <div class="reveal" id="ba-panel" role="tabpanel">
+        <div class="ba-compare" style="--pos:50%">
+          <div class="ba-layer ba-before" data-layer="before"></div>
+          <div class="ba-layer ba-after" data-layer="after"></div>
+          <span class="ba-label before">Przed</span>
+          <span class="ba-label after">Po</span>
+          <div class="ba-handle" aria-hidden="true"></div>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Porównanie przed i po — przesuń, aby odsłonić efekt">
+        </div>
+        <p class="ba-caption" id="ba-caption">Brwi pudrowe — bezpośrednio po zabiegu kolor jest intensywniejszy, po wygojeniu jaśnieje o ok. 30%.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section aria-labelledby="proces-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Jak przebiega zabieg</span>
+        <h2 class="h-section" id="proces-title">Od konsultacji do <em>efektu</em> w czterech krokach.</h2>
+      </div>
+      <ol class="steps">
+        <li class="step reveal">
+          <h3>Konsultacja</h3>
+          <p>Rozmawiamy o Twoich oczekiwaniach, sprawdzamy przeciwwskazania i dobieramy kolor pigmentu.</p>
+        </li>
+        <li class="step reveal">
+          <h3>Rysunek wstępny</h3>
+          <p>Kształt rysuję ręcznie, mierząc proporcje twarzy. Pracę zaczynamy dopiero, gdy jesteś w 100% zadowolona.</p>
+        </li>
+        <li class="step reveal">
+          <h3>Zabieg</h3>
+          <p>Pod znieczuleniem miejscowym, jednorazowymi igłami, w sterylnych warunkach. Bez pośpiechu.</p>
+        </li>
+        <li class="step reveal">
+          <h3>Dopigmentowanie</h3>
+          <p>Po 4–8 tygodniach spotykamy się ponownie, aby dopracować detale. Wizyta jest wliczona w cenę.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="o-mnie" aria-labelledby="o-mnie-title">
+    <div class="container about-grid">
+      <figure class="about-portrait reveal">
+        <svg viewBox="0 0 400 500" aria-hidden="true" focusable="false">
+          <circle cx="200" cy="180" r="72" fill="#5E4A40"/>
+          <path d="M128 176c0-54 34-88 72-88s72 34 72 88c-8-30-34-50-72-50s-64 20-72 50z" fill="#3B2C25"/>
+          <path d="M92 500c0-92 48-160 108-160s108 68 108 160z" fill="#5E4A40"/>
+          <path d="M150 360c16 16 32 24 50 24s34-8 50-24" stroke="#D9B98C" stroke-width="1.5" fill="none" opacity=".6"/>
+          <g stroke="#D9B98C" stroke-width="1" opacity=".35" fill="none">
+            <circle cx="200" cy="200" r="150"/><circle cx="200" cy="200" r="180"/>
+          </g>
+        </svg>
+        <figcaption><strong>Klaudia Gilar</strong><span>Linergistka · certyfikowana specjalistka PMU</span></figcaption>
+      </figure>
+
+      <div class="about-copy reveal">
+        <span class="eyebrow">O mnie</span>
+        <h2 class="h-section" id="o-mnie-title">Cześć, jestem Klaudia — <em>podkreślam</em>, zamiast zmieniać.</h2>
+        <p class="lead">Makijaż permanentny to moja pasja od ponad ośmiu lat. Regularnie szkolę się u najlepszych linergistek w Polsce i za granicą, a w moim studiu w Mielcu każda klientka ma dla siebie tyle czasu, ile potrzebuje.</p>
+        <p class="lead">Wierzę, że dobry makijaż permanentny to taki, którego nikt nie zauważa — widać tylko, że wyglądasz świeżo i wypoczęcie.</p>
+        <p class="signature" aria-hidden="true">Klaudia</p>
+        <div class="values">
+          <div class="value">
+            <svg aria-hidden="true"><use href="#i-shield"/></svg>
+            <h3>Sterylność</h3>
+            <p>Jednorazowe igły, autoklaw i atestowane pigmenty.</p>
+          </div>
+          <div class="value">
+            <svg aria-hidden="true"><use href="#i-sparkle"/></svg>
+            <h3>Naturalność</h3>
+            <p>Kształt i kolor dobrane do Twojej urody.</p>
+          </div>
+          <div class="value">
+            <svg aria-hidden="true"><use href="#i-heart"/></svg>
+            <h3>Komfort</h3>
+            <p>Kameralne studio i opieka także po zabiegu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="opinie" aria-labelledby="opinie-title">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Opinie klientek</span>
+        <h2 class="h-section" id="opinie-title">Słowa, które <em>cieszą</em> najbardziej.</h2>
+      </div>
+      <div class="reviews-grid">
+        <figure class="review reveal">
+          <div class="stars" role="img" aria-label="Ocena 5 na 5">
+            <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+          </div>
+          <blockquote>„Bałam się efektu »namalowanych« brwi, a wyszły tak naturalne, że znajomi pytają, czy zaczęłam je zapuszczać.”</blockquote>
+          <figcaption><footer><span class="avatar" aria-hidden="true">AM</span><div>Anna M.<span>Brwi pudrowe</span></div></footer></figcaption>
+        </figure>
+        <figure class="review reveal">
+          <div class="stars" role="img" aria-label="Ocena 5 na 5">
+            <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+          </div>
+          <blockquote>„Pełen profesjonalizm i cudowna atmosfera. Usta wyglądają świeżo cały dzień, a zabieg był naprawdę do zniesienia.”</blockquote>
+          <figcaption><footer><span class="avatar" aria-hidden="true">KW</span><div>Karolina W.<span>Usta akwarelowe</span></div></footer></figcaption>
+        </figure>
+        <figure class="review reveal">
+          <div class="stars" role="img" aria-label="Ocena 5 na 5">
+            <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+          </div>
+          <blockquote>„Klaudia uratowała moje brwi po nieudanym zabiegu w innym salonie. Remover i nowy kształt — jestem zachwycona!”</blockquote>
+          <figcaption><footer><span class="avatar" aria-hidden="true">JS</span><div>Joanna S.<span>Remover + brwi</span></div></footer></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" aria-labelledby="faq-title" style="padding-top:0">
+    <div class="container faq-grid">
+      <div class="section-head reveal">
+        <span class="eyebrow">Najczęstsze pytania</span>
+        <h2 class="h-section" id="faq-title">Wszystko, co warto <em>wiedzieć</em> przed zabiegiem.</h2>
+        <p class="lead">Nie znalazłaś odpowiedzi? Napisz lub zadzwoń — chętnie porozmawiam.</p>
+      </div>
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>Czy zabieg boli?<span class="plus" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p class="answer">Stosuję znieczulenie miejscowe, dlatego większość klientek odczuwa jedynie lekkie drapanie lub mrowienie. Zawsze możesz poprosić o przerwę.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Jak przygotować się do wizyty?<span class="plus" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p class="answer">Na 24 h przed zabiegiem unikaj alkoholu i kawy, a na 2 tygodnie — opalania i peelingów w okolicy zabiegowej. Przy ustach warto profilaktycznie przyjąć lek przeciwwirusowy (po konsultacji z lekarzem).</p>
+        </details>
+        <details class="faq-item">
+          <summary>Jak długo trwa gojenie?<span class="plus" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p class="answer">Naskórek goi się ok. 7–10 dni, pełna stabilizacja koloru następuje po ok. 4 tygodniach. Otrzymasz ode mnie szczegółową instrukcję pielęgnacji i preparat do domu.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy są przeciwwskazania?<span class="plus" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p class="answer">Tak — m.in. ciąża i karmienie piersią, cukrzyca nieustabilizowana, choroby autoimmunologiczne w fazie zaostrzenia, leczenie przeciwkrzepliwe czy kuracja retinoidami. Wszystko omówimy na konsultacji.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Jak długo utrzymuje się efekt?<span class="plus" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+          <p class="answer">W zależności od obszaru, typu skóry i stylu życia — od 1,5 do nawet 5 lat. Odświeżenie koloru co 12–18 miesięcy pozwala utrzymać efekt jak po pierwszym zabiegu.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking" id="rezerwacja" aria-labelledby="rezerwacja-title">
+    <div class="container">
+      <div class="booking-card reveal">
+        <div class="booking-info">
+          <span class="eyebrow">Rezerwacja</span>
+          <h2 class="h-section" id="rezerwacja-title">Umów się na <em>bezpłatną</em> konsultację.</h2>
+          <ul class="contact-list">
+            <li><span class="ic" aria-hidden="true"><svg><use href="#i-pin"/></svg></span><div><small>Adres</small><p>ul. Przykładowa 12, 39-300 Mielec</p></div></li>
+            <li><span class="ic" aria-hidden="true"><svg><use href="#i-phone"/></svg></span><div><small>Telefon</small><a href="tel:+48000000000">+48 000 000 000</a></div></li>
+            <li><span class="ic" aria-hidden="true"><svg><use href="#i-mail"/></svg></span><div><small>E-mail</small><a href="mailto:kontakt@example.com">kontakt@example.com</a></div></li>
+          </ul>
+          <dl class="hours">
+            <div><dt>Poniedziałek – Piątek</dt><dd>9:00 – 18:00</dd></div>
+            <div><dt>Sobota</dt><dd>9:00 – 14:00</dd></div>
+            <div><dt>Niedziela</dt><dd>nieczynne</dd></div>
+          </dl>
+        </div>
+
+        <form class="booking-form" id="booking-form" novalidate>
+          <h3>Wyślij zgłoszenie</h3>
+          <p class="hint" style="margin-top:-12px;color:var(--color-muted-fg);font-size:.9rem">Oddzwonię w ciągu 24 godzin, aby ustalić dogodny termin.</p>
+
+          <fieldset class="field">
+            <legend>Interesujący Cię zabieg</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="service" value="brwi" checked><span>Brwi</span></label>
+              <label class="chip"><input type="radio" name="service" value="usta"><span>Usta</span></label>
+              <label class="chip"><input type="radio" name="service" value="kreska"><span>Kreska</span></label>
+              <label class="chip"><input type="radio" name="service" value="remover"><span>Remover</span></label>
+              <label class="chip"><input type="radio" name="service" value="nie-wiem"><span>Jeszcze nie wiem</span></label>
+            </div>
+          </fieldset>
+
+          <div class="form-row two">
+            <div class="field">
+              <label for="name">Imię <span class="req" aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="given-name" required aria-describedby="name-err">
+              <span class="error" id="name-err">Podaj swoje imię.</span>
+            </div>
+            <div class="field">
+              <label for="phone">Telefon <span class="req" aria-hidden="true">*</span></label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9 +()\-]{9,}" aria-describedby="phone-err">
+              <span class="error" id="phone-err">Podaj poprawny numer telefonu (min. 9 cyfr).</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="date">Preferowany termin</label>
+            <select id="date" name="date">
+              <option>Jak najszybciej</option>
+              <option>W ciągu 2 tygodni</option>
+              <option>W przyszłym miesiącu</option>
+              <option>Termin elastyczny</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="msg">Wiadomość</label>
+            <textarea id="msg" name="msg" aria-describedby="msg-hint"></textarea>
+            <span class="hint" id="msg-hint">Np. czy masz już wykonany makijaż permanentny, jaki efekt Cię interesuje.</span>
+          </div>
+
+          <div class="field">
+            <label class="consent"><input type="checkbox" id="consent" required aria-describedby="consent-err"><span>Wyrażam zgodę na kontakt w celu umówienia wizyty. <span class="req" aria-hidden="true">*</span></span></label>
+            <span class="error" id="consent-err">Zgoda jest wymagana, abym mogła się z Tobą skontaktować.</span>
+          </div>
+
+          <button class="btn btn-primary" type="submit" style="justify-self:start">
+            <span class="spinner" aria-hidden="true"></span>
+            Wyślij zgłoszenie <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </button>
+          <div class="form-status" id="form-status" role="status" aria-live="polite">
+            <svg aria-hidden="true"><use href="#i-check"/></svg>
+            <span>Dziękuję! Zgłoszenie zostało wysłane (demo). Odezwę się wkrótce.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">KG</span>
+          <span class="brand-text"><strong>Klaudia Gilar</strong><span>Make-up Studio Permanent</span></span>
+        </a>
+        <p style="margin-top:16px;max-width:36ch">Naturalny makijaż permanentny brwi, ust i oczu w sercu Mielca.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg aria-hidden="true"><use href="#i-facebook"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#uslugi">Usługi i cennik</a></li>
+          <li><a href="#efekty">Przed i po</a></li>
+          <li><a href="#o-mnie">O mnie</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+48000000000">+48 000 000 000</a></li>
+          <li><a href="mailto:kontakt@example.com">kontakt@example.com</a></li>
+          <li><a href="#rezerwacja">Mielec, ul. Przykładowa 12</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Make-up Studio Permanent by Klaudia Gilar</span>
+      <span>Strona demonstracyjna — dane kontaktowe, ceny i opinie są przykładowe.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="btn btn-primary mobile-cta" href="#rezerwacja" id="mobile-cta">Umów konsultację <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+
+<script>
+(function () {
+  document.body.classList.remove('no-js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Header state + sticky mobile CTA
+  var header = document.querySelector('.site-header');
+  var cta = document.getElementById('mobile-cta');
+  var booking = document.getElementById('rezerwacja');
+  function onScroll() {
+    var y = window.scrollY;
+    header.classList.toggle('scrolled', y > 20);
+    var b = booking.getBoundingClientRect();
+    var nearBooking = b.top < window.innerHeight && b.bottom > 0;
+    cta.classList.toggle('show', y > window.innerHeight * 0.8 && !nearBooking);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile menu
+  var menu = document.getElementById('mobile-menu');
+  var openBtn = document.querySelector('[data-menu-open]');
+  var closeBtn = document.querySelector('[data-menu-close]');
+  function openMenu() {
+    menu.hidden = false;
+    requestAnimationFrame(function () { menu.classList.add('open'); });
+    openBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeMenu(returnFocus) {
+    menu.classList.remove('open');
+    openBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setTimeout(function () { menu.hidden = true; }, reduce ? 0 : 300);
+    if (returnFocus) openBtn.focus();
+  }
+  openBtn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', function () { closeMenu(true); });
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { closeMenu(false); }); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(true);
+  });
+
+  // Reveal on scroll
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    items.forEach(function (el, i) {
+      var sib = el.parentElement.querySelectorAll(':scope > .reveal');
+      var idx = Array.prototype.indexOf.call(sib, el);
+      el.style.transitionDelay = Math.min(idx, 4) * 80 + 'ms';
+      io.observe(el);
+    });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Before/after illustrations
+  var scenes = {
+    brows: {
+      caption: 'Brwi pudrowe — bezpośrednio po zabiegu kolor jest intensywniejszy, po wygojeniu jaśnieje o ok. 30%.',
+      before: '<path d="M60 150c50-40 130-52 210-30" stroke="#8C6B5C" stroke-width="5" stroke-linecap="round" fill="none" opacity=".45" stroke-dasharray="3 9"/><path d="M90 136c30-18 70-26 110-24" stroke="#8C6B5C" stroke-width="3" stroke-linecap="round" fill="none" opacity=".4"/>',
+      after: '<defs><linearGradient id="bg1" x1="0" x2="1"><stop offset="0" stop-color="#5A3F33" stop-opacity=".2"/><stop offset=".5" stop-color="#5A3F33" stop-opacity=".85"/><stop offset="1" stop-color="#3F2A22"/></linearGradient></defs><path d="M60 156c46-44 130-60 214-30-6 10-14 14-24 14-50-12-110-6-162 26-10 6-22 2-28-10z" fill="url(#bg1)"/>'
+    },
+    lips: {
+      caption: 'Usta akwarelowe — wyrównany kontur i świeży kolor, który po wygojeniu wygląda jak naturalny odcień ust.',
+      before: '<path d="M60 150c30-22 56-34 76-28 8 2 12 4 14 4s6-2 14-4c20-6 46 6 76 28-30 8-60 12-90 12s-60-4-90-12z" fill="#C9998A"/><path d="M60 150c26 34 58 50 90 50s64-16 90-50c-30 8-60 12-90 12s-60-4-90-12z" fill="#D2A697"/>',
+      after: '<defs><linearGradient id="lg1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#B8665B"/><stop offset="1" stop-color="#9A4E45"/></linearGradient></defs><path d="M56 150c32-24 58-36 78-30 8 2 14 5 16 5s8-3 16-5c20-6 46 6 78 30-30 9-62 13-94 13s-64-4-94-13z" fill="url(#lg1)"/><path d="M56 150c28 36 60 54 94 54s66-18 94-54c-30 9-62 13-94 13s-64-4-94-13z" fill="#C0776B"/><path d="M110 176c14 6 28 8 40 8" stroke="#F1CFC4" stroke-width="3" stroke-linecap="round" opacity=".6"/>'
+    },
+    eyes: {
+      caption: 'Kreska dekoracyjna — optycznie zagęszcza linię rzęs i unosi spojrzenie, bez codziennego malowania.',
+      before: '<path d="M60 160c50-44 150-44 200 0" stroke="#6E5044" stroke-width="3" stroke-linecap="round" fill="none"/><path d="M60 160c50 32 150 32 200 0" stroke="#6E5044" stroke-width="1.6" fill="none" opacity=".6"/><circle cx="160" cy="158" r="22" fill="#6E5044" opacity=".75"/>',
+      after: '<path d="M60 160c50-44 150-44 200 0" stroke="#2B211D" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M256 156l34-22" stroke="#2B211D" stroke-width="6" stroke-linecap="round"/><path d="M60 160c50 32 150 32 200 0" stroke="#6E5044" stroke-width="1.6" fill="none" opacity=".6"/><circle cx="160" cy="158" r="22" fill="#6E5044" opacity=".75"/>'
+    }
+  };
+  var skin = function (tone) {
+    return '<rect width="320" height="220" fill="' + tone + '"/><ellipse cx="160" cy="110" rx="220" ry="160" fill="#F3E2D5" opacity=".35"/>';
+  };
+  var beforeEl = document.querySelector('[data-layer="before"]');
+  var afterEl = document.querySelector('[data-layer="after"]');
+  var caption = document.getElementById('ba-caption');
+  function renderScene(key) {
+    var s = scenes[key];
+    var wrap = function (inner) { return '<svg viewBox="0 0 320 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">' + inner + '</svg>'; };
+    beforeEl.innerHTML = wrap(skin('#E6CDBD') + s.before);
+    afterEl.innerHTML = wrap(skin('#EBD3C4') + s.after);
+    caption.textContent = s.caption;
+  }
+  renderScene('brows');
+
+  var compare = document.querySelector('.ba-compare');
+  var range = document.querySelector('.ba-range');
+  range.addEventListener('input', function () { compare.style.setProperty('--pos', range.value + '%'); });
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.ba-tab'));
+  function selectTab(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    renderScene(tab.dataset.ba);
+    range.value = 50; compare.style.setProperty('--pos', '50%');
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { selectTab(t); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      var next = tabs[(i + d + tabs.length) % tabs.length];
+      next.focus(); selectTab(next);
+    });
+  });
+
+  // Form validation (on blur + submit)
+  var form = document.getElementById('booking-form');
+  var status = document.getElementById('form-status');
+  function validate(input) {
+    var field = input.closest('.field');
+    var ok = input.checkValidity();
+    field.classList.toggle('invalid', !ok);
+    input.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    return ok;
+  }
+  var required = form.querySelectorAll('[required]');
+  required.forEach(function (inp) {
+    inp.addEventListener('blur', function () { if (inp.value || inp.type === 'checkbox') validate(inp); });
+    inp.addEventListener('input', function () { if (inp.closest('.field').classList.contains('invalid')) validate(inp); });
+    inp.addEventListener('change', function () { if (inp.type === 'checkbox') validate(inp); });
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var firstBad = null;
+    required.forEach(function (inp) { if (!validate(inp) && !firstBad) firstBad = inp; });
+    if (firstBad) { firstBad.focus(); return; }
+    var btn = form.querySelector('button[type="submit"]');
+    btn.setAttribute('aria-busy', 'true');
+    status.classList.remove('show');
+    setTimeout(function () {
+      btn.removeAttribute('aria-busy');
+      form.reset();
+      status.classList.add('show');
+    }, 1100);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

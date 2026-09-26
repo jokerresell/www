@@ -181,6 +181,8 @@
   .mi-row .price:empty { display: none; }
   .mi-row:has(.price:empty) .lead-dots { display: none; }
   .mi p:empty { display: none; }
+  .mi-row .vol { font: 500 .85rem/1 var(--sans); color: var(--text-soft); margin-left: 8px; white-space: nowrap; }
+  .mi-row .price { color: var(--accent-dark); }
   .mi p { color: var(--text-soft); font-size: .95rem; margin-top: 3px; }
   .badge-s { display: inline-flex; align-items: center; gap: 5px; margin-left: 6px; font: 700 .68rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: #F6E3D6; padding: 5px 8px; border-radius: 999px; vertical-align: 2px; white-space: nowrap; }
   .badge-s.star { background: var(--espresso); color: #F6D48F; }
@@ -408,6 +410,11 @@
     <symbol id="i-wheat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/></symbol>
     <symbol id="i-cake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20M7 8v3M12 8v3M17 8v3M7 4h.01M12 4h.01M17 4h.01"/></symbol>
     <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+    <symbol id="i-mug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14l-1.6 16.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8Z"/><path d="M6 9h12"/></symbol>
+    <symbol id="i-wine" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8M12 15v7"/><path d="M7 2h10l.6 5a5.6 5.6 0 0 1-11.2 0Z"/></symbol>
+    <symbol id="i-snack" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-2 11a2 2 0 0 1-2 1.6H8A2 2 0 0 1 6 20Z"/><path d="M8 9a4 4 0 0 1 8 0M9 13v4M12 13v4M15 13v4"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   </defs>
@@ -437,7 +444,7 @@
       <div>
         <span class="open-pill rv"><i class="dot" id="dot" aria-hidden="true"></i><span id="status">Zapraszamy codziennie od 10:00</span></span>
         <h1 id="h1" class="rv" style="--d:80ms">Dobra kawa, ciepły proziak i&nbsp;<em class="scribble">trochę sztuki<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14C40 6 90 4 196 10"/></svg></em> w&nbsp;sercu Łańcuta</h1>
-        <p class="lead rv" style="--d:160ms">Kawiarnia przy ulicy Zamkowej, która powstała z pasji do sztuki. Wpadnij na aromatyczną kawę, nasz autorski proziak albo domowe ciasto — i posiedź chwilę wśród obrazów artystów z całej Europy.</p>
+        <p class="lead rv" style="--d:160ms">Kawiarnia przy ulicy Zamkowej, która powstała z pasji do sztuki. Wpadnij na aromatyczną kawę, śniadanie, autorskiego proziaka albo szprycera w ogródku — i posiedź chwilę wśród obrazów artystów z całej Europy.</p>
         <div class="hero-cta rv" style="--d:240ms">
           <a class="btn btn-primary" href="#menu">Zobacz menu <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn btn-outline" href="#odwiedz">Godziny i dojazd</a>
@@ -458,8 +465,8 @@
   </section>
 
   <div class="words" aria-hidden="true"><div class="words-track">
-    <span>świeżo parzona kawa</span><span>proziaki prosto z blachy</span><span>domowe ciasta</span><span>sztuka na ścianach</span><span>kraft z Podkarpacia</span><span>do zobaczenia przy Zamkowej</span>
-    <span>świeżo parzona kawa</span><span>proziaki prosto z blachy</span><span>domowe ciasta</span><span>sztuka na ścianach</span><span>kraft z Podkarpacia</span><span>do zobaczenia przy Zamkowej</span>
+    <span>świeżo parzona kawa</span><span>proziaki prosto z blachy</span><span>śniadania do 13:00</span><span>sztuka na ścianach</span><span>szprycery i Browar Łańcut</span><span>do zobaczenia przy Zamkowej</span>
+    <span>świeżo parzona kawa</span><span>proziaki prosto z blachy</span><span>śniadania do 13:00</span><span>sztuka na ścianach</span><span>szprycery i Browar Łańcut</span><span>do zobaczenia przy Zamkowej</span>
   </div></div>
 
   <!-- OFFER -->
@@ -473,19 +480,19 @@
       <div class="offer">
         <article class="offer-card rv">
           <div class="ph"><span class="num">kawa</span><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=75" alt="Kawa w filiżance na drewnianym stole" loading="lazy" width="700" height="600"></div>
-          <div class="body"><h3>Kawa</h3><p>Aromatyczna kawa parzona z dbałością o każdy detal — idealna na przerwę w zwiedzaniu.</p><a class="more" href="#menu">Zobacz kawy <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="body"><h3>Kawa</h3><p>Od doppio i flat white po espresso tonic i orange espresso — także na mleku roślinnym.</p><a class="more" href="#menu">Zobacz kawy <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="offer-card rv" style="--d:80ms">
           <div class="ph"><span class="num">proziak</span><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=75" alt="Świeże wypieki na desce" loading="lazy" width="700" height="600"></div>
-          <div class="body"><h3>Proziaki</h3><p>Nasza specjalność: podkarpacki placek z blachy w autorskich wersjach, np. z szarpaną wieprzowiną albo wędzonym łososiem.</p><a class="more" href="#proziak">Poznaj proziaki <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="body"><h3>Proziaki</h3><p>Jedenaście autorskich kanapek na podkarpackim proziaku — od Ferdynanda po Hrabinę.</p><a class="more" href="#proziak">Poznaj proziaki <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="offer-card rv" style="--d:160ms">
           <div class="ph"><span class="num">słodko</span><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=75" alt="Kawałek domowego ciasta" loading="lazy" width="700" height="600"></div>
-          <div class="body"><h3>Domowe ciasta</h3><p>Pieczone na miejscu — spróbuj ciasta czekoladowego z kremem malinowym.</p><a class="more" href="#menu">Zobacz desery <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="body"><h3>Śniadania i desery</h3><p>Śniadania codziennie do 13:00, a desery każdego dnia inne — zapytaj przy barze.</p><a class="more" href="#menu">Zobacz desery <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="offer-card rv" style="--d:240ms">
           <div class="ph"><span class="num">wieczorem</span><img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=700&q=75" alt="Szklanki piwa rzemieślniczego" loading="lazy" width="700" height="600"></div>
-          <div class="body"><h3>Regionalny kraft</h3><p>Piwa z podkarpackich browarów rzemieślniczych — na spokojny wieczór w dobrym towarzystwie.</p><a class="more" href="#wieczory">Wieczory u nas <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="body"><h3>Piwo i szprycery</h3><p>Browar Łańcut, piwo lane, cydry i dziewięć szprycerów — wiele także w wersji 0%.</p><a class="more" href="#wieczory">Wieczory u nas <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
       </div>
     </div>
@@ -502,10 +509,11 @@
       <div>
         <span class="eyebrow rv">Autorski proziak</span>
         <h2 class="h2 rv" id="story-t">Smak Podkarpacia <em>w naszym wydaniu</em></h2>
-        <p class="lead rv">Proziak to tradycyjny placek na sodzie, pieczony na blasze — prosty, ciepły i pachnący domem. U nas podajemy go w autorskich wersjach, których nie znajdziesz nigdzie indziej.</p>
+        <p class="lead rv">Proziak to robione na miejscu podkarpackie pieczywo z dodatkiem sody oczyszczonej. Tworzymy z niego jedenaście autorskich kanapek — każda ma swoje imię. A jeśli wolisz, każdego proziaka zamienimy na tortillę.</p>
         <ul class="ticks">
-          <li class="rv"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Proziak Antoni</b><span>szarpana wieprzowina, coleslaw, sos BBQ, opcjonalnie jalapeño</span></div></li>
-          <li class="rv" style="--d:80ms"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Proziak Izabela</b><span>wędzony łosoś, kremowy twaróg, pomidor, szpinak</span></div></li>
+          <li class="rv"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Ferdynand</b><span>szarpana wieprzowina, colesław, sos BBQ</span></div></li>
+          <li class="rv" style="--d:80ms"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Hrabina</b><span>szynka prosciutto, ser kozi, szpinak, karmelizowana gruszka, orzech włoski</span></div></li>
+          <li class="rv" style="--d:160ms"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Otton</b><span>hummus z suszonymi pomidorami, kiełki, świeży ogórek — bez mięsa</span></div></li>
         </ul>
         <p class="rv" style="margin-top:30px"><a class="btn btn-primary" href="#menu">Zobacz w menu <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
@@ -515,16 +523,16 @@
   <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="margin-top:-1px"><path d="M0 0v40c160 30 320 40 480 20s320-50 480-30 320 50 480 30V0z" fill="#F1E6D6"/></svg>
 
   <!-- MENU -->
-  <!-- Ceny: wpisz kwotę w <span class="price"></span> przy danej pozycji (np. 12 zł). Puste pole = brak kropek i ceny. -->
+  <!-- Menu przepisane z karty ART CAFÉ. Ceny w <span class="price">, np. 33 zł. -->
   <section class="section" id="menu" aria-labelledby="menu-t" style="padding-top:clamp(40px,6vw,80px)">
     <div class="container">
       <div class="menu-head">
         <div>
           <span class="eyebrow rv">Menu</span>
           <h2 class="h2 rv" id="menu-t">Nasza karta — <em>krótka, ale dopieszczona</em></h2>
-          <p class="lead rv">Autorskie proziaki, sałatki, domowe ciasta, kawa i szprycery. Wybierz kategorię albo wyszukaj, na co masz ochotę.</p>
+          <p class="lead rv">Śniadania do 13:00, jedenaście autorskich proziaków, sałatki, kawa, lemoniady i szprycery. Wybierz kategorię albo wyszukaj, na co masz ochotę.</p>
         </div>
-        <div class="chalk rv" style="--d:100ms"><h3>Warto spróbować</h3><ul><li>proziak Antoni</li><li>proziak Izabela</li><li>szprycer Hugo</li></ul><small>Pełna karta i ceny — na miejscu i na naszym Facebooku.</small></div>
+        <div class="chalk rv" style="--d:100ms"><h3>Śniadania do 13:00</h3><ul><li>Poranna Ceremonia</li><li>Zamkowy Rytuał</li><li>Proziak Jana · Stanisława</li></ul><small>Codziennie, każde 33 zł. Zamówienia przyjmujemy przy barze.</small></div>
       </div>
 
       <div class="menu-book rv">
@@ -536,56 +544,168 @@
         </div>
 
         <div class="toolbar">
-          <div class="cats" id="cats" role="group" aria-label="Kategorie menu"><span class="cat-pill" id="catPill" aria-hidden="true"></span><button type="button" class="cat-btn" data-cat="all" aria-pressed="true">Wszystko</button><button type="button" class="cat-btn" data-cat="proziaki" aria-pressed="false"><svg aria-hidden="true"><use href="#i-wheat"/></svg>Proziaki</button><button type="button" class="cat-btn" data-cat="salatki" aria-pressed="false"><svg aria-hidden="true"><use href="#i-leaf"/></svg>Sałatki</button><button type="button" class="cat-btn" data-cat="desery" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cake"/></svg>Desery</button><button type="button" class="cat-btn" data-cat="kawa" aria-pressed="false"><svg aria-hidden="true"><use href="#i-coffee"/></svg>Kawa</button><button type="button" class="cat-btn" data-cat="szprycery" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cup"/></svg>Szprycery</button><button type="button" class="cat-btn" data-cat="piwo" aria-pressed="false"><svg aria-hidden="true"><use href="#i-beer"/></svg>Piwo i wino</button></div>
-          <label class="search"><span class="sr-only">Szukaj w menu</span><svg aria-hidden="true"><use href="#i-search"/></svg><input type="search" id="menuSearch" placeholder="Szukaj, np. łosoś, Hugo…" autocomplete="off"></label>
+          <div class="cats" id="cats" role="group" aria-label="Kategorie menu"><span class="cat-pill" id="catPill" aria-hidden="true"></span><button type="button" class="cat-btn" data-cat="all" aria-pressed="true">Wszystko</button><button type="button" class="cat-btn" data-cat="sniadania" aria-pressed="false"><svg aria-hidden="true"><use href="#i-sun"/></svg>Śniadania</button><button type="button" class="cat-btn" data-cat="proziaki" aria-pressed="false"><svg aria-hidden="true"><use href="#i-wheat"/></svg>Proziaki</button><button type="button" class="cat-btn" data-cat="salatki" aria-pressed="false"><svg aria-hidden="true"><use href="#i-leaf"/></svg>Sałatki</button><button type="button" class="cat-btn" data-cat="przekaski" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cake"/></svg>Przystawki i desery</button><button type="button" class="cat-btn" data-cat="kawa" aria-pressed="false"><svg aria-hidden="true"><use href="#i-coffee"/></svg>Kawa</button><button type="button" class="cat-btn" data-cat="gorace" aria-pressed="false"><svg aria-hidden="true"><use href="#i-mug"/></svg>Napoje gorące</button><button type="button" class="cat-btn" data-cat="zimne" aria-pressed="false"><svg aria-hidden="true"><use href="#i-glass"/></svg>Napoje zimne</button><button type="button" class="cat-btn" data-cat="piwo" aria-pressed="false"><svg aria-hidden="true"><use href="#i-beer"/></svg>Piwo i cydr</button><button type="button" class="cat-btn" data-cat="alkohol" aria-pressed="false"><svg aria-hidden="true"><use href="#i-wine"/></svg>Szprycery i wino</button></div>
+          <label class="search"><span class="sr-only">Szukaj w menu</span><svg aria-hidden="true"><use href="#i-search"/></svg><input type="search" id="menuSearch" placeholder="Szukaj, np. halloumi, latte…" autocomplete="off"></label>
         </div>
 
         <div class="mcats" id="mcats" aria-live="polite">
-          <section class="mcat" data-cat="proziaki" aria-labelledby="mc-proziaki">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-wheat"/></svg></span><div><h4 id="mc-proziaki">Proziaki</h4><span>autorskie, z Podkarpacia</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Proziak Antoni<span class="badge-s star">autorski</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Szarpana wieprzowina, coleslaw, sos BBQ, opcjonalnie jalapeño.</p></div>
-            <div class="mi"><div class="mi-row"><b>Proziak Izabela<span class="badge-s star">autorski</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Wędzony łosoś, kremowy twaróg, pomidor, szpinak.</p></div>
-            <p class="extras">Więcej autorskich proziaków znajdziesz w karcie na miejscu.</p>
+          <section class="mcat" data-cat="sniadania" aria-labelledby="mc-1">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-sun"/></svg></span><div><h4 id="mc-1">Śniadania</h4><span>codziennie do 13:00</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Poranna Ceremonia</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Jajecznica z 3 jaj z boczkiem, cebulą i papryką, grillowane pomidorki koktajlowe, rukola, 2 małe proziaki.</p></div>
+            <div class="mi"><div class="mi-row"><b>Zamkowy Rytuał</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Jajecznica z 3 jaj z wołowiną, fasolą, kukurydzą, marynowana czerwona cebula, rukola, 2 małe proziaki.</p></div>
+            <div class="mi"><div class="mi-row"><b>Proziak Jana</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>2 jaja sadzone, grillowane salami, rukola, suszone pomidory, marynowana czerwona cebula, prażony słonecznik, sos BBQ.</p></div>
+            <div class="mi"><div class="mi-row"><b>Proziak Stanisława</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>2 jaja sadzone, szynka prosciutto, szpinak, kremowy twarożek, pomidorki koktajlowe.</p></div>
           </section>
-          <section class="mcat" data-cat="salatki" aria-labelledby="mc-salatki">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-leaf"/></svg></span><div><h4 id="mc-salatki">Sałatki</h4><span>sycące i kolorowe</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Sałatka Marszałkowej</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Ciecierzyca, burak, marynowana cebula.</p></div>
-            <div class="mi"><div class="mi-row"><b>Sałatka Grabska</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Grillowany kurczak, szpinak, prażone migdały, feta, ogórek, rzodkiewka, dressing miodowo‑musztardowy.</p></div>
+          <section class="mcat" data-cat="proziaki" aria-labelledby="mc-2">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-wheat"/></svg></span><div><h4 id="mc-2">Proziaki</h4><span>autorskie kanapki</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Ferdynand</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Szarpana wieprzowina, colesław, sos BBQ.</p></div>
+            <div class="mi"><div class="mi-row"><b>Jerzy</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Mielona wołowina z fasolą i kukurydzą, ser cheddar, rukola, marynowana czerwona cebula, sos kolendrowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Alfred</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Grillowany kurczak, ser grana padano, szpinak, suszone pomidory, czerwona cebula, sos balsamiczny.</p></div>
+            <div class="mi"><div class="mi-row"><b>Bernard</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Grillowany kurczak, ser cheddar, rukola, grillowana cebula z papryką, pikantny sos majonezowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Antoni</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Grillowany kurczak, ser mozzarella, rukola, konfitura z czerwonej cebuli, ogórek kiszony, sos majonezowo‑ziołowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Edmund</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Grillowany kurczak, ser mozzarella, karmelizowane pomidorki koktajlowe, czerwona cebula, rukola, majonez truflowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Wanda</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Grillowany ser halloumi, szpinak, suszone pomidory, świeży ogórek, sos musztardowo‑miodowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Otton</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Hummus z suszonymi pomidorami, kiełki, świeży ogórek, marynowana czerwona cebula.</p></div>
+            <div class="mi"><div class="mi-row"><b>Diabeł Łańcucki<span class="badge-s star">ostry</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Grillowane salami pepperoni, rukola, papryczki jalapeño, czarne oliwki, czerwona cebula, ajvar.</p></div>
+            <div class="mi"><div class="mi-row"><b>Izabela</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Łosoś wędzony, kremowy twarożek, szpinak, pomidorki koktajlowe.</p></div>
+            <div class="mi"><div class="mi-row"><b>Hrabina</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Szynka prosciutto, ser kozi, szpinak, karmelizowana gruszka, orzech włoski.</p></div>
+            <p class="extras">Proziak to robione na miejscu podkarpackie pieczywo z dodatkiem sody oczyszczonej. <b>Każdego proziaka można zamienić na tortillę.</b> Papryczki jalapeño <b>+1 zł</b>.</p>
           </section>
-          <section class="mcat" data-cat="desery" aria-labelledby="mc-desery">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-cake"/></svg></span><div><h4 id="mc-desery">Desery</h4><span>domowe ciasta</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Ciasto czekoladowe z kremem malinowym</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Wilgotne czekoladowe warstwy i kwaskowy krem malinowy.</p></div>
-            <p class="extras">Ciasta pieczemy sami — aktualny wybór zobaczysz w witrynie.</p>
+          <section class="mcat" data-cat="salatki" aria-labelledby="mc-3">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-leaf"/></svg></span><div><h4 id="mc-3">Sałatki</h4><span>z małym proziakiem</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Ordynata</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Rukola, bekon, ser grana padano, czerwona cebula, suszone pomidory, prażony słonecznik, dressing balsamiczny.</p></div>
+            <div class="mi"><div class="mi-row"><b>Grabska</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Szpinak, grillowany kurczak, ser feta, pomidorki koktajlowe, rzodkiewka, prażone migdały, dressing musztardowo‑miodowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Pałacowa</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Szpinak, grillowany ser halloumi, pomidorki koktajlowe, karmelizowana gruszka, prażone migdały, dressing żurawinowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Paradna</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Rukola, szynka prosciutto, ser feta, burak, karmelizowana gruszka, orzechy włoskie, dressing balsamiczny.</p></div>
+            <div class="mi"><div class="mi-row"><b>Marszałkowej</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Szpinak, rukola, pieczona ciecierzyca, burak, świeży ogórek, rzodkiewka, marynowana cebula, dressing limonkowe vinegrette.</p></div>
+            <div class="mi"><div class="mi-row"><b>Konstancja</b><span class="lead-dots" aria-hidden="true"></span><span class="price">33 zł</span></div><p>Szpinak, łosoś wędzony, świeży ogórek, pomidorki koktajlowe, oliwki czarne, prażony słonecznik, dressing limonkowe vinegrette.</p></div>
+            <p class="extras">Do każdej sałatki podajemy małego proziaka.</p>
           </section>
-          <section class="mcat" data-cat="kawa" aria-labelledby="mc-kawa">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-coffee"/></svg></span><div><h4 id="mc-kawa">Kawa</h4><span>aromatyczna, parzona z uwagą</span></div></div>
-            <p class="extras">Pełną kartę kaw i napojów znajdziesz przy barze.</p>
+          <section class="mcat" data-cat="przekaski" aria-labelledby="mc-4">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-wheat"/></svg></span><div><h4 id="mc-4">Przystawki</h4><span>na dobry początek</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Kamerdynera</b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p>4 małe proziaki + 1 smarowidło do wyboru: oliwa, masło solo, masło z czosnkiem niedźwiedzim, ajvar, domowy dżem, domowy krem czekoladowy. Dodatkowe smarowidło +3 zł.</p></div>
           </section>
-          <section class="mcat" data-cat="szprycery" aria-labelledby="mc-szprycery">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-cup"/></svg></span><div><h4 id="mc-szprycery">Szprycery</h4><span>na lato i do ogródka</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Szprycer klasyczny</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p></p></div>
-            <div class="mi"><div class="mi-row"><b>Szprycer Aperol</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p></p></div>
-            <div class="mi"><div class="mi-row"><b>Szprycer Hugo</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p></p></div>
+          <section class="mcat" data-cat="przekaski" aria-labelledby="mc-5">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-snack"/></svg></span><div><h4 id="mc-5">Zygwulska</h4><span>coś do chrupania</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Orzeszki<span class="vol">150 g</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">13 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Chipsy Lay's<span class="vol">140 g</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Popcorn<span class="vol">95 g</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">10 zł</span></div><p></p></div>
           </section>
-          <section class="mcat" data-cat="piwo" aria-labelledby="mc-piwo">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-beer"/></svg></span><div><h4 id="mc-piwo">Piwo i wino</h4><span>regionalny kraft</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Piwa rzemieślnicze<span class="badge-s leaf">regionalne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Wybór z regionalnych browarów rzemieślniczych.</p></div>
-            <div class="mi"><div class="mi-row"><b>Wino</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Zapytaj o aktualny wybór.</p></div>
+          <section class="mcat" data-cat="przekaski" aria-labelledby="mc-6">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-cake"/></svg></span><div><h4 id="mc-6">Desery</h4><span>codziennie inne</span></div></div>
+            <p class="extras">Codziennie inne desery. O wybór i ceny zapytaj przy barze.</p>
+          </section>
+          <section class="mcat" data-cat="kawa" aria-labelledby="mc-7">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-coffee"/></svg></span><div><h4 id="mc-7">Kawa</h4><span>gorąca i mrożona</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Doppio<span class="vol">60 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">9 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Cappuccino<span class="vol">300 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Latte<span class="vol">300 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Flat White<span class="vol">250 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">14 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Americano<span class="vol">250 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">13 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Mocha<span class="vol">350 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Chai Latte<span class="vol">350 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Kawa Mrożona<span class="vol">300 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Iced Americano<span class="vol">300 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">14 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Iced Latte<span class="vol">300 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">18 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Espresso Tonic<span class="vol">300 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Orange Espresso<span class="vol">300 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Baileys Latte<span class="vol">300 ml</span><span class="badge-s ">+18</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Ice Baileys<span class="vol">300 ml</span><span class="badge-s ">+18</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p></p></div>
+            <p class="extras">Mleko roślinne <b>+2 zł</b> · mleko bez laktozy <b>+2 zł</b> · syrop <b>+1 zł</b></p>
+          </section>
+          <section class="mcat" data-cat="gorace" aria-labelledby="mc-8">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-mug"/></svg></span><div><h4 id="mc-8">Napoje gorące</h4><span>herbaty, lemoniady, czekolada</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Herbata Earl Grey<span class="vol">400 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">9 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Herbata zielona<span class="vol">400 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">9 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Herbata z suszu owocowego<span class="vol">400 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">10 zł</span></div><p>Lokalne susze dostępne w różnych smakach.</p></div>
+            <div class="mi"><div class="mi-row"><b>Herbata zimowa<span class="vol">500 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p>Baza do wyboru: herbata zielona lub earl grey; goździki, cytryna, pomarańcza, maliny, agrest, żurawina, jabłko, syrop cytrynowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Herbata zimowa z nalewką 100 ml<span class="vol">500 ml</span><span class="badge-s ">+18</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">27 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Lemoniada rozgrzewająca<span class="vol">500 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p>Cytryna, pomarańcza, goździki, imbir, maliny, żurawina, agrest, przyprawa korzenna.</p></div>
+            <div class="mi"><div class="mi-row"><b>Lemoniada rozgrzewająca z nalewką 100 ml<span class="vol">500 ml</span><span class="badge-s ">+18</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">27 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Lemoniada szarlotkowa<span class="vol">500 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p>Syrop cytrynowo‑jabłkowy, cytryna, pomarańcza, goździki, imbir, maliny, żurawina, agrest, przyprawa korzenna, cynamon.</p></div>
+            <div class="mi"><div class="mi-row"><b>Czekolada belgijska<span class="vol">350 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Czekolada belgijska z piankami marshmallow<span class="vol">350 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">19 zł</span></div><p></p></div>
+          </section>
+          <section class="mcat" data-cat="zimne" aria-labelledby="mc-9">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-glass"/></svg></span><div><h4 id="mc-9">Napoje zimne</h4><span>orzeźwiająco</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Woda niegazowana / gazowana<span class="vol">330 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">7 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Coca Cola / Sprite<span class="vol">250 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">9 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Tonic<span class="vol">250 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">9 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Sok<span class="vol">250 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">9 zł</span></div><p>Pomarańcza, jabłko, czarna porzeczka.</p></div>
+            <div class="mi"><div class="mi-row"><b>Regionalny sok tłoczony<span class="vol">350 ml</span><span class="badge-s leaf">lokalny</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">10 zł</span></div><p>Naturalny sok tłoczony na zimno z lokalnych sadów.</p></div>
+            <div class="mi"><div class="mi-row"><b>Fritz-Kola<span class="vol">330 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">12 zł</span></div><p>Kola prosto z Hamburga, w której składzie znajduje się naturalna kofeina oraz prawdziwy orzech koli. Dostępna wersja bez cukru.</p></div>
+            <div class="mi"><div class="mi-row"><b>Fritz-Limo<span class="vol">330 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">12 zł</span></div><p>Orzeźwiający i pobudzający gazowany napój z dużą zawartością soków owocowych.</p></div>
+            <div class="mi"><div class="mi-row"><b>Bolek i Lolek<span class="vol">330 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">12 zł</span></div><p>Naturalnie słodzone napoje dla dzieci i dorosłych. Dostępny w różnych smakach.</p></div>
+            <div class="mi"><div class="mi-row"><b>Spezi<span class="vol">500 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">13 zł</span></div><p>Gazowany napój będący mieszanką coli i napoju pomarańczowego.</p></div>
+            <div class="mi"><div class="mi-row"><b>Mio Mio<span class="vol">500 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">13 zł</span></div><p>Orzeźwiający napój na bazie yerba mate z naturalną kofeiną, w różnych smakach.</p></div>
+            <div class="mi"><div class="mi-row"><b>Domowa lemoniada<span class="vol">450 ml / 1 l</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 / 25 zł</span></div><p>Robiona na miejscu, dostępna w różnych smakach — zapytaj obsługę.</p></div>
+          </section>
+          <section class="mcat" data-cat="piwo" aria-labelledby="mc-10">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-beer"/></svg></span><div><h4 id="mc-10">Piwo lane</h4><span>sok do piwa +1 zł</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Perła<span class="vol">300 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">10 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Perła<span class="vol">500 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">12 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Radler<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">17 zł</span></div><p>Piwo lane Perła, syrop czarny bez, syrop cytrynowy, cytrusy, malina, agrest, jabłko, mięta.</p></div>
+          </section>
+          <section class="mcat" data-cat="piwo" aria-labelledby="mc-11">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-beer"/></svg></span><div><h4 id="mc-11">Piwo butelkowe</h4><span>dostępność się zmienia</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Holba Premium</b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Budweiser</b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Weissbier</b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p>Piwo pszeniczne.</p></div>
+            <div class="mi"><div class="mi-row"><b>Browar Łańcut<span class="badge-s leaf">lokalne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">18 zł</span></div><p>Dostępne różne rodzaje.</p></div>
+            <div class="mi"><div class="mi-row"><b>Okocim 4,5%</b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p>Dostępny w różnych smakach.</p></div>
+            <div class="mi"><div class="mi-row"><b>Okocim 0%</b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p>Dostępny w różnych smakach.</p></div>
+            <div class="mi"><div class="mi-row"><b>Perła 0%</b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Heineken 0%</b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+            <p class="extras">W ofercie mamy też piwa, których dostępność się zmienia. Zapytaj przy barze.</p>
+          </section>
+          <section class="mcat" data-cat="piwo" aria-labelledby="mc-12">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-glass"/></svg></span><div><h4 id="mc-12">Cydr</h4><span>w różnych smakach</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Miłosławski<span class="vol">500 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Miłosławski 0%<span class="vol">500 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">15 zł</span></div><p></p></div>
+          </section>
+          <section class="mcat" data-cat="alkohol" aria-labelledby="mc-13">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-wine"/></svg></span><div><h4 id="mc-13">Szprycery</h4><span>350 ml</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Aperol Spritz<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p>Aperol, Prosecco, woda gazowana, pomarańcza.</p></div>
+            <div class="mi"><div class="mi-row"><b>Hugo Spritz<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p>Prosecco, woda gazowana, limonka, mięta, syrop czarny bez.</p></div>
+            <div class="mi"><div class="mi-row"><b>Melon Spritz<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p>Prosecco, woda gazowana, cytryna, syrop melonowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Mojito Spritz<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p>Prosecco, woda gazowana, limonka, mięta, syrop mojito.</p></div>
+            <div class="mi"><div class="mi-row"><b>Grejpfrut Spritz<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p>Prosecco, tonic, syrop grejpfrutowy, grejpfrut.</p></div>
+            <div class="mi"><div class="mi-row"><b>Art Spritz<span class="badge-s star">firmowy</span><span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p>Prosecco, wino białe, woda gazowana, cytryna, maliny, syrop cytrynowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Rosso Spritz</b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p>Martini Rosso, Prosecco, pomarańcza, cytryna, syrop cytrynowy.</p></div>
+            <div class="mi"><div class="mi-row"><b>Fiero Spritz</b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p>Martini Fiero, tonik, pomarańcza.</p></div>
+            <div class="mi"><div class="mi-row"><b>Passoa Lemo</b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p>Prosecco, likier Passoa, woda gazowana, cytryna, pomarańcza, syrop cytrynowy.</p></div>
+          </section>
+          <section class="mcat" data-cat="alkohol" aria-labelledby="mc-14">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-mug"/></svg></span><div><h4 id="mc-14">Alkohol na gorąco</h4><span>na chłodne wieczory</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Wino grzane czerwone<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">20 zł</span></div><p>Goździki, pomarańcza, przyprawa korzenna.</p></div>
+            <div class="mi"><div class="mi-row"><b>Wino grzane białe<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">20 zł</span></div><p>Goździki, cytryna, maliny, przyprawa korzenna.</p></div>
+            <div class="mi"><div class="mi-row"><b>Hot Aperol<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">27 zł</span></div><p>Aperol, białe wino wytrawne, sok jabłkowy, goździki, pomarańcza, przyprawa korzenna.</p></div>
+            <div class="mi"><div class="mi-row"><b>Piwo grzane<span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">19 zł</span></div><p>Perła Chmielowa, sok malinowy, sok imbirowy, goździki, cytryna, pomarańcza, maliny, żurawina, przyprawa korzenna.</p></div>
+          </section>
+          <section class="mcat" data-cat="alkohol" aria-labelledby="mc-15">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-wine"/></svg></span><div><h4 id="mc-15">Wino, sangria, nalewki</h4><span>do rozmowy o sztuce</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Wino / Prosecco — lampka<span class="vol">150 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">18 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Wino / Prosecco — butelka<span class="vol">750 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">75 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Sangria — karafka<span class="vol">1 l</span><span class="badge-s leaf">0% dostępne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">75 zł</span></div><p>Biała lub czerwona.</p></div>
+            <div class="mi"><div class="mi-row"><b>Nalewka<span class="vol">60 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">12 zł</span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Nalewka<span class="vol">150 ml</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price">25 zł</span></div><p></p></div>
+            <p class="extras">O aktualną ofertę win i nalewek zapytaj przy barze.</p>
           </section>
         </div>
         <div class="empty" id="menuEmpty" hidden><b>Hmm, tego nie mamy w karcie…</b><p>Ale zapytaj przy barze — może coś wymyślimy!</p></div>
 
         <div class="book-foot">
-          <span><svg width="18" height="18" aria-hidden="true" style="color:var(--accent)"><use href="#i-info"/></svg>Pełna karta z aktualnymi cenami dostępna na miejscu.</span>
-          <span>Alergie? Powiedz nam — doradzimy.</span>
+          <span><svg width="18" height="18" aria-hidden="true" style="color:var(--accent)"><use href="#i-info"/></svg>Zamówienia przyjmujemy przy barze.</span>
+          <span>Informacje o alergenach uzyskasz u naszych pracowników.</span>
+          <span>Ceny w zł.</span>
         </div>
       </div>
 
       <div class="duos-title"><h3 class="rv">Idealne duety</h3><span class="rv">nie wiesz, co wybrać?</span></div>
       <div class="duos">
-        <article class="duo rv"><div class="pair"><i><svg aria-hidden="true"><use href="#i-wheat"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-cup"/></svg></i></div><small>na lato w ogródku</small><h4>Proziak Izabela &amp; szprycer Hugo</h4><p>Wędzony łosoś z twarogiem i orzeźwiający szprycer — lekko i z klasą.</p></article>
-        <article class="duo rv" style="--d:80ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-coffee"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-cake"/></svg></i></div><small>na popołudnie</small><h4>Kawa &amp; ciasto czekoladowe z kremem malinowym</h4><p>Domowe ciasto i aromatyczna kawa — klasyk, który zawsze działa.</p></article>
-        <article class="duo rv" style="--d:160ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-beer"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-wheat"/></svg></i></div><small>na wieczór</small><h4>Regionalny kraft &amp; proziak Antoni</h4><p>Szarpana wieprzowina z sosem BBQ i piwo z lokalnego browaru.</p></article>
+        <article class="duo rv"><div class="pair"><i><svg aria-hidden="true"><use href="#i-wheat"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-wine"/></svg></i></div><small>na lato w ogródku</small><h4>Proziak Izabela &amp; Hugo Spritz</h4><p>Wędzony łosoś z twarożkiem i orzeźwiający szprycer z czarnym bzem.</p></article>
+        <article class="duo rv" style="--d:80ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-sun"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-coffee"/></svg></i></div><small>na dobry początek dnia</small><h4>Zamkowy Rytuał &amp; Flat White</h4><p>Jajecznica z wołowiną i dwa małe proziaki, a do tego porządna kawa.</p></article>
+        <article class="duo rv" style="--d:160ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-beer"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-wheat"/></svg></i></div><small>na wieczór</small><h4>Browar Łańcut &amp; proziak Ferdynand</h4><p>Lokalne piwo i szarpana wieprzowina z colesławem i sosem BBQ.</p></article>
       </div>
     </div>
   </section>
@@ -619,10 +739,10 @@
       <div>
         <span class="eyebrow rv">Piątki i soboty do północy</span>
         <h2 class="h2 rv" id="ev-t">Wieczorem jest <em>jeszcze przytulniej</em></h2>
-        <p class="lead rv">Kiedy za oknem robi się ciemno, zapalamy lampki, nalewamy regionalny kraft i zostajemy dłużej. Idealne miejsce na spotkanie ze znajomymi.</p>
+        <p class="lead rv">Kiedy za oknem robi się ciemno, zapalamy lampki, nalewamy szprycery i piwo z Browaru Łańcut, a w piątki i soboty zostajemy do północy. Idealne miejsce na spotkanie ze znajomymi.</p>
         <div class="ev-list">
           <div class="ev rv"><svg aria-hidden="true"><use href="#i-palette"/></svg><b>Wernisaże</b><span>otwarcia nowych wystaw</span></div>
-          <div class="ev rv" style="--d:80ms"><svg aria-hidden="true"><use href="#i-beer"/></svg><b>Wieczory z kraftem</b><span>piwa z Podkarpacia</span></div>
+          <div class="ev rv" style="--d:80ms"><svg aria-hidden="true"><use href="#i-beer"/></svg><b>Szprycery i Browar Łańcut</b><span>także w wersji 0%</span></div>
           <div class="ev rv" style="--d:160ms"><svg aria-hidden="true"><use href="#i-leaf"/></svg><b>Ogródek</b><span>pełen kwiatów, na ciepłe dni</span></div>
         </div>
         <p class="rv" style="margin-top:30px"><a class="btn btn-light" href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Wydarzenia na Facebooku</a></p>

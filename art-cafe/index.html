@@ -132,25 +132,83 @@
   .ticks span { color: var(--text-soft); font-size: .98rem; }
 
   /* ---------- menu ---------- */
-  .menu-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(36px, 6vw, 80px); align-items: start; }
-  .menu-aside { position: sticky; top: 110px; }
-  .menu-aside .ph { aspect-ratio: 4 / 3; border-radius: var(--radius); margin-top: 28px; box-shadow: var(--shadow); }
-  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-  .tab { min-height: 46px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--line); background: var(--foam); color: var(--espresso); font: 600 .98rem/1 var(--sans); cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
-  .tab:hover { border-color: var(--coffee); }
-  .tab[aria-selected="true"] { background: var(--espresso); color: var(--cream); border-color: var(--espresso); }
-  .menu-card { background: var(--foam); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(22px, 3vw, 36px); }
-  .menu-card[hidden] { display: none; }
-  .menu-card h3 { font-size: 1.6rem; display: flex; align-items: baseline; gap: 12px; }
-  .menu-card h3 .hand { font-size: 1.3rem; font-weight: 500; }
-  .item { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 18px 0; border-bottom: 1px dashed var(--line); animation: fade .45s var(--ease) both; animation-delay: calc(var(--i, 0) * 50ms); }
-  .item:last-of-type { border-bottom: 0; padding-bottom: 0; }
-  .item b { font: 600 1.15rem/1.3 var(--serif); }
-  .item p { grid-column: 1 / -1; color: var(--text-soft); font-size: .96rem; }
-  .item .tag { align-self: center; font: 700 .72rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: #F6E3D6; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+  .menu-head { display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px 60px; align-items: end; margin-bottom: clamp(36px, 5vw, 56px); }
+  .menu-head .chalk { margin-top: 0; }
+  .menu-book {
+    position: relative; background: var(--foam); border-radius: 28px; padding: clamp(18px, 3vw, 40px);
+    box-shadow: 0 40px 80px -40px rgba(46,33,26,.45), 0 0 0 1px var(--line);
+  }
+  .menu-book::before { content: ""; position: absolute; inset: 12px; border: 1.5px solid var(--line); border-radius: 20px; pointer-events: none; }
+  .menu-book::after { content: ""; position: absolute; inset: 18px; border: 1px dashed #EADCC8; border-radius: 16px; pointer-events: none; }
+  .book-top { position: relative; z-index: 1; text-align: center; padding: 14px 0 6px; }
+  .book-top .crest { width: 54px; height: 54px; margin: 0 auto 6px; color: var(--accent); }
+  .book-top h3 { font: 600 clamp(1.8rem, 3.4vw, 2.6rem)/1 var(--serif); letter-spacing: .06em; text-transform: uppercase; }
+  .book-top p { font: 700 1.5rem/1 var(--hand); color: var(--accent); margin-top: 6px; }
+  .ornament { display: flex; align-items: center; gap: 14px; justify-content: center; color: var(--caramel); margin: 16px auto 0; max-width: 320px; }
+  .ornament::before, .ornament::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: .7; }
+  .ornament svg { width: 18px; height: 18px; }
+
+  .toolbar { position: sticky; top: 76px; z-index: 5; display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; justify-content: space-between; margin: 26px 0 8px; padding: 12px; background: rgba(255,253,249,.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 999px; border: 1px solid var(--line); }
+  .cats { position: relative; flex: 1 1 0; min-width: 0; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent); mask-image: linear-gradient(90deg, #000 92%, transparent); padding-right: 16px; }
+  .cats::-webkit-scrollbar { display: none; }
+  .cat-btn { position: relative; z-index: 1; flex: none; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 0; border-radius: 999px; background: transparent; color: var(--coffee); font: 700 .95rem/1 var(--sans); cursor: pointer; transition: color .25s; }
+  .cat-btn svg { width: 18px; height: 18px; }
+  .cat-btn:hover { color: var(--espresso); }
+  .cat-btn[aria-pressed="true"] { color: var(--cream); }
+  .cat-pill { position: absolute; z-index: 0; top: 0; left: 0; height: 44px; border-radius: 999px; background: var(--espresso); transition: transform .45s var(--ease), width .45s var(--ease); }
+  .search { position: relative; flex: 0 0 210px; }
+  .search svg { position: absolute; left: 14px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); color: var(--text-soft); pointer-events: none; }
+  .search input { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 999px; background: var(--cream); padding: 0 16px 0 42px; font: 500 1rem var(--sans); color: var(--espresso); }
+  .search input::placeholder { color: #8C7A6B; }
+  .search input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(168,80,43,.18); }
+
+  .mcats { position: relative; z-index: 1; columns: 2; column-gap: clamp(28px, 5vw, 64px); padding: 18px clamp(4px, 1.5vw, 18px) 8px; }
+  .mcats.single { columns: 1; max-width: 680px; margin-inline: auto; }
+  .mcat { break-inside: avoid; padding: 22px 0 18px; animation: fade .5s var(--ease) both; }
+  .mcat[hidden] { display: none; }
+  .mcat-head { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  .mcat-ico { width: 52px; height: 52px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--latte); color: var(--accent); }
+  .mcat-ico svg { width: 26px; height: 26px; }
+  .mcat-head h4 { margin: 0; font: 600 1.7rem/1 var(--serif); }
+  .mcat-head span { display: block; font: 700 1.25rem/1 var(--hand); color: var(--accent); margin-top: 4px; }
+  .mi { padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .mi:last-of-type { border-bottom: 0; }
+  .mi[hidden] { display: none; }
+  .mi-row { display: flex; align-items: baseline; gap: 10px; }
+  .mi-row b { font: 600 1.14rem/1.3 var(--serif); }
+  .mi-row .lead-dots { flex: 1; min-width: 24px; border-bottom: 2px dotted #CDB89E; transform: translateY(-4px); }
+  .mi-row .price { font: 700 1.05rem/1 var(--sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .mi-row .price:empty { display: none; }
+  .mi-row:has(.price:empty) .lead-dots { display: none; }
+  .mi p { color: var(--text-soft); font-size: .95rem; margin-top: 3px; }
+  .badge-s { display: inline-flex; align-items: center; gap: 5px; margin-left: 6px; font: 700 .68rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: #F6E3D6; padding: 5px 8px; border-radius: 999px; vertical-align: 2px; white-space: nowrap; }
+  .badge-s.star { background: var(--espresso); color: #F6D48F; }
+  .badge-s.leaf { background: #E4EADB; color: #4B5E3A; }
+  .extras { margin-top: 10px; padding: 14px 16px; background: var(--cream); border-radius: 14px; font-size: .92rem; color: var(--text-soft); }
+  .extras b { color: var(--espresso); }
+  mark.hl { background: #F6D48F; color: inherit; border-radius: 3px; padding: 0 1px; }
+  .empty { position: relative; z-index: 1; text-align: center; padding: 40px 16px 30px; }
+  .empty[hidden] { display: none; }
+  .empty b { display: block; font: 700 2rem/1.1 var(--hand); color: var(--accent); }
+  .empty p { color: var(--text-soft); margin-top: 6px; }
+  .book-foot { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 24px; padding: 18px 12px 8px; margin-top: 8px; border-top: 1px solid var(--line); color: var(--text-soft); font-size: .9rem; text-align: center; }
+  .book-foot span { display: inline-flex; align-items: center; gap: 8px; }
+
+  .duos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: clamp(40px, 5vw, 64px); }
+  .duo { position: relative; background: var(--latte); border-radius: var(--radius); padding: 26px 24px 24px; transition: transform .35s var(--ease), box-shadow .35s; }
+  .duo:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .duo .pair { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .duo .pair i { width: 54px; height: 54px; border-radius: 50%; background: var(--foam); display: grid; place-items: center; color: var(--accent); }
+  .duo .pair i svg { width: 26px; height: 26px; }
+  .duo .pair em { font: 700 1.8rem/1 var(--hand); color: var(--caramel); font-style: normal; }
+  .duo small { font: 700 1.3rem/1 var(--hand); color: var(--accent); }
+  .duo h4 { margin: 6px 0 0; font: 600 1.35rem/1.25 var(--serif); }
+  .duo p { color: var(--text-soft); margin-top: 8px; font-size: .96rem; }
+  .duos-title { display: flex; align-items: baseline; gap: 14px; margin-top: clamp(48px, 6vw, 72px); }
+  .duos-title h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  .duos-title span { font: 700 1.5rem/1 var(--hand); color: var(--accent); }
+  .duos-title + .duos { margin-top: 22px; }
   @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
-  .menu-note { display: flex; gap: 10px; margin-top: 18px; color: var(--text-soft); font-size: .95rem; }
-  .menu-note svg { width: 20px; height: 20px; flex: none; margin-top: 3px; color: var(--accent); }
 
   /* ---------- art ---------- */
   .art { background: var(--foam); border-block: 1px solid var(--line); }
@@ -286,9 +344,8 @@
   /* ---------- responsive ---------- */
   @media (max-width: 1024px) {
     .offer { grid-template-columns: repeat(2, 1fr); }
-    .menu-wrap { grid-template-columns: 1fr; }
-    .menu-aside { position: static; }
-    .menu-aside .ph { display: none; }
+    .menu-head { grid-template-columns: 1fr; }
+    .duos { grid-template-columns: 1fr; }
     .ev-list { grid-template-columns: 1fr; }
   }
   @media (max-width: 860px) {
@@ -306,6 +363,12 @@
     .a2, .a3 { grid-column: span 1; grid-row: span 1; }
     .a-text { grid-column: 1 / -1; grid-row: auto; }
     .map { min-height: 320px; }
+  }
+  @media (max-width: 760px) {
+    .mcats { columns: 1; }
+    .toolbar { border-radius: 22px; top: 70px; }
+    .search { flex: 1 1 100%; }
+    .cats { flex-basis: 100%; }
   }
   @media (max-width: 560px) {
     .offer { grid-template-columns: 1fr; }
@@ -338,6 +401,11 @@
     <symbol id="i-fb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
     <symbol id="i-nav" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2M14 2v2M6 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.5 12a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8z"/><path d="M4 8h16M12 8l2-6h3"/></symbol>
+    <symbol id="i-wheat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/></symbol>
+    <symbol id="i-cake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20M7 8v3M12 8v3M17 8v3M7 4h.01M12 4h.01M17 4h.01"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   </defs>
@@ -446,56 +514,84 @@
   <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="margin-top:-1px"><path d="M0 0v40c160 30 320 40 480 20s320-50 480-30 320 50 480 30V0z" fill="#F1E6D6"/></svg>
 
   <!-- MENU -->
+  <!-- Ceny: wpisz kwotę w <span class="price"></span> przy danej pozycji (np. 12 zł). Puste pole = brak kropek i ceny. -->
   <section class="section" id="menu" aria-labelledby="menu-t" style="padding-top:clamp(40px,6vw,80px)">
-    <div class="container menu-wrap">
-      <div class="menu-aside">
-        <span class="eyebrow rv">Menu</span>
-        <h2 class="h2 rv" id="menu-t">Co dziś <em>zamówisz?</em></h2>
-        <p class="lead rv">Krótka karta, za to dopracowana. Desery i dodatki zmieniamy sezonowo — o propozycje dnia zapytaj przy barze.</p>
-        <div class="chalk rv"><h3>Polecamy dziś</h3><ul><li>flat white</li><li>proziak wytrawny</li><li>szarlotka na ciepło</li></ul><small>Propozycje dnia zmieniają się — zapytaj przy barze.</small></div>
+    <div class="container">
+      <div class="menu-head">
+        <div>
+          <span class="eyebrow rv">Menu</span>
+          <h2 class="h2 rv" id="menu-t">Nasza karta — <em>krótka, ale dopieszczona</em></h2>
+          <p class="lead rv">Kawa parzona z uwagą, proziaki prosto z blachy i domowe desery. Wybierz kategorię albo po prostu wyszukaj, na co masz ochotę.</p>
+        </div>
+        <div class="chalk rv" style="--d:100ms"><h3>Polecamy dziś</h3><ul><li>flat white</li><li>proziak wytrawny</li><li>szarlotka na ciepło</li></ul><small>Propozycje dnia zmieniają się — zapytaj przy barze.</small></div>
       </div>
-      <div class="rv">
-        <div class="tabs" role="tablist" aria-label="Kategorie menu">
-          <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Kawa i napoje</button>
-          <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Proziaki</button>
-          <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Desery</button>
-          <button class="tab" role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Wieczorem</button>
+
+      <div class="menu-book rv">
+        <div class="book-top">
+          <svg class="crest" viewBox="0 0 54 54" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="27" cy="27" r="25" stroke-dasharray="2 3"/><path d="M15 23h20v7a9 9 0 0 1-9 9h-2a9 9 0 0 1-9-9z"/><path d="M35 25h2.5a3.5 3.5 0 0 1 0 7H35"/><path d="M21 19c-1-2 1-3 0-5M26 19c-1-2 1-3 0-5M31 19c-1-2 1-3 0-5"/></svg>
+          <h3>Karta</h3>
+          <p>ART CAFÉ · galeria marzenie</p>
+          <div class="ornament" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 4 4 7 8 8-4 1-7 4-8 8-1-4-4-7-8-8 4-1 7-4 8-8z"/></svg></div>
         </div>
 
-        <div class="menu-card" role="tabpanel" id="p1" aria-labelledby="t1">
-          <h3>Kawa i napoje <span class="hand">na każdą porę</span></h3>
-          <div class="item" style="--i:0"><b>Espresso</b><p>Krótkie, intensywne, z karmelową nutą.</p></div>
-          <div class="item" style="--i:1"><b>Cappuccino</b><p>Klasyczne proporcje i gęsta mleczna pianka.</p></div>
-          <div class="item" style="--i:2"><b>Flat white</b><span class="tag">polecamy</span><p>Podwójne espresso z aksamitnym mlekiem.</p></div>
-          <div class="item" style="--i:3"><b>Latte</b><p>Łagodne i kremowe, także na napoju roślinnym.</p></div>
-          <div class="item" style="--i:4"><b>Kawa z alternatywy</b><p>Drip lub aeropress z sezonowych ziaren.</p></div>
-          <div class="item" style="--i:5"><b>Czekolada na gorąco</b><p>Gęsta, prawdziwa czekolada.</p></div>
-          <div class="item" style="--i:6"><b>Herbaty i lemoniady</b><p>Herbaty liściaste i domowe lemoniady sezonowe.</p></div>
+        <div class="toolbar">
+          <div class="cats" id="cats" role="group" aria-label="Kategorie menu"><span class="cat-pill" id="catPill" aria-hidden="true"></span><button type="button" class="cat-btn" data-cat="all" aria-pressed="true">Wszystko</button><button type="button" class="cat-btn" data-cat="kawa" aria-pressed="false"><svg aria-hidden="true"><use href="#i-coffee"/></svg>Kawa</button><button type="button" class="cat-btn" data-cat="napoje" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cup"/></svg>Inne napoje</button><button type="button" class="cat-btn" data-cat="proziaki" aria-pressed="false"><svg aria-hidden="true"><use href="#i-wheat"/></svg>Proziaki</button><button type="button" class="cat-btn" data-cat="desery" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cake"/></svg>Desery</button><button type="button" class="cat-btn" data-cat="wieczor" aria-pressed="false"><svg aria-hidden="true"><use href="#i-beer"/></svg>Wieczorem</button></div>
+          <label class="search"><span class="sr-only">Szukaj w menu</span><svg aria-hidden="true"><use href="#i-search"/></svg><input type="search" id="menuSearch" placeholder="Szukaj, np. sernik, latte…" autocomplete="off"></label>
         </div>
 
-        <div class="menu-card" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
-          <h3>Proziaki <span class="hand">prosto z blachy</span></h3>
-          <div class="item" style="--i:0"><b>Proziak klasyczny</b><p>Z masłem i dobrą solą.</p></div>
-          <div class="item" style="--i:1"><b>Proziak wytrawny</b><span class="tag">bestseller</span><p>Z serem, ziołami i sezonowymi dodatkami.</p></div>
-          <div class="item" style="--i:2"><b>Proziak na słodko</b><p>Z domową konfiturą, twarożkiem i miodem.</p></div>
-          <div class="item" style="--i:3"><b>Proziak sezonowy</b><p>Kompozycja zmieniana co kilka tygodni.</p></div>
+        <div class="mcats" id="mcats" aria-live="polite">
+          <section class="mcat" data-cat="kawa" aria-labelledby="mc-kawa">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-coffee"/></svg></span><div><h4 id="mc-kawa">Kawa</h4><span>z ekspresu i alternatywy</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Espresso</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Krótkie i intensywne, z karmelową nutą.</p></div>
+            <div class="mi"><div class="mi-row"><b>Doppio</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Podwójne espresso dla wymagających.</p></div>
+            <div class="mi"><div class="mi-row"><b>Americano</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Espresso dopełnione gorącą wodą.</p></div>
+            <div class="mi"><div class="mi-row"><b>Cappuccino</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Klasyczne proporcje, gęsta mleczna pianka.</p></div>
+            <div class="mi"><div class="mi-row"><b>Flat white<span class="badge-s star">polecamy</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Podwójne espresso i aksamitne mleko.</p></div>
+            <div class="mi"><div class="mi-row"><b>Latte</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Łagodne i kremowe — idealne na dłuższą chwilę.</p></div>
+            <div class="mi"><div class="mi-row"><b>Kawa z alternatywy</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Drip lub aeropress z sezonowych ziaren. Zapytaj baristę o profil.</p></div>
+            <p class="extras"><b>Dodatki:</b> mleko roślinne, syrop, dodatkowe espresso — zapytaj przy barze.</p>
+          </section>
+          <section class="mcat" data-cat="napoje" aria-labelledby="mc-napoje">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-cup"/></svg></span><div><h4 id="mc-napoje">Inne napoje</h4><span>na ciepło i na zimno</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Czekolada na gorąco</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Gęsta, prawdziwa czekolada.</p></div>
+            <div class="mi"><div class="mi-row"><b>Herbata liściasta</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Czarna, zielona, owocowa — do wyboru.</p></div>
+            <div class="mi"><div class="mi-row"><b>Lemoniada domowa<span class="badge-s ">sezonowa</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Sezonowe smaki, orzeźwiająca.</p></div>
+            <div class="mi"><div class="mi-row"><b>Soki i woda</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Na szybkie orzeźwienie.</p></div>
+          </section>
+          <section class="mcat" data-cat="proziaki" aria-labelledby="mc-proziaki">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-wheat"/></svg></span><div><h4 id="mc-proziaki">Proziaki</h4><span>prosto z blachy</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Proziak klasyczny</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Z masłem i szczyptą dobrej soli.</p></div>
+            <div class="mi"><div class="mi-row"><b>Proziak wytrawny<span class="badge-s star">bestseller</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Z serem, ziołami i sezonowymi dodatkami.</p></div>
+            <div class="mi"><div class="mi-row"><b>Proziak na słodko</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Z domową konfiturą, twarożkiem i miodem.</p></div>
+            <div class="mi"><div class="mi-row"><b>Proziak sezonowy<span class="badge-s ">sezonowy</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Autorska kompozycja zmieniana co kilka tygodni.</p></div>
+          </section>
+          <section class="mcat" data-cat="desery" aria-labelledby="mc-desery">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-cake"/></svg></span><div><h4 id="mc-desery">Desery</h4><span>domowe, codziennie świeże</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Ciasto dnia</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Codziennie inne — sprawdź w witrynie.</p></div>
+            <div class="mi"><div class="mi-row"><b>Sernik</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Kremowy, na kruchym spodzie.</p></div>
+            <div class="mi"><div class="mi-row"><b>Szarlotka na ciepło<span class="badge-s ">jesienią</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Z gałką lodów waniliowych.</p></div>
+            <div class="mi"><div class="mi-row"><b>Lody</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Gałka lub dwie, do kawy albo solo.</p></div>
+          </section>
+          <section class="mcat" data-cat="wieczor" aria-labelledby="mc-wieczor">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-beer"/></svg></span><div><h4 id="mc-wieczor">Wieczorem</h4><span>pt i sob do północy</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Piwo rzemieślnicze<span class="badge-s leaf">regionalne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Rotacyjny wybór z browarów z Podkarpacia.</p></div>
+            <div class="mi"><div class="mi-row"><b>Wino</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Czerwone lub białe, na kieliszki.</p></div>
+            <div class="mi"><div class="mi-row"><b>Deska przekąsek<span class="badge-s star">dla ekipy</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Sery, wędliny i proziaki — do podziału.</p></div>
+          </section>
         </div>
+        <div class="empty" id="menuEmpty" hidden><b>Hmm, tego nie mamy w karcie…</b><p>Ale zapytaj przy barze — może coś wymyślimy!</p></div>
 
-        <div class="menu-card" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
-          <h3>Desery <span class="hand">domowe</span></h3>
-          <div class="item" style="--i:0"><b>Ciasto dnia</b><p>Codziennie inne — sprawdź w witrynie.</p></div>
-          <div class="item" style="--i:1"><b>Sernik</b><p>Kremowy, na kruchym spodzie.</p></div>
-          <div class="item" style="--i:2"><b>Szarlotka na ciepło</b><span class="tag">jesienią</span><p>Z gałką lodów waniliowych.</p></div>
+        <div class="book-foot">
+          <span><svg width="18" height="18" aria-hidden="true" style="color:var(--accent)"><use href="#i-info"/></svg>Pełna karta z aktualnymi cenami dostępna na miejscu.</span>
+          <span>Alergie? Powiedz nam — doradzimy.</span>
         </div>
+      </div>
 
-        <div class="menu-card" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
-          <h3>Wieczorem <span class="hand">pt i sob do północy</span></h3>
-          <div class="item" style="--i:0"><b>Piwa regionalne</b><span class="tag">z Podkarpacia</span><p>Rotacyjny wybór z browarów rzemieślniczych.</p></div>
-          <div class="item" style="--i:1"><b>Wino</b><p>Czerwone lub białe, na kieliszki.</p></div>
-          <div class="item" style="--i:2"><b>Deska przekąsek</b><p>Sery, wędliny i proziaki do podziału.</p></div>
-        </div>
-
-        <p class="menu-note"><svg aria-hidden="true"><use href="#i-info"/></svg>Aktualne ceny i pełna karta dostępne na miejscu. Masz alergię? Daj nam znać — chętnie doradzimy.</p>
+      <div class="duos-title"><h3 class="rv">Idealne duety</h3><span class="rv">nie wiesz, co wybrać?</span></div>
+      <div class="duos">
+        <article class="duo rv"><div class="pair"><i><svg aria-hidden="true"><use href="#i-coffee"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-wheat"/></svg></i></div><small>na dobry początek dnia</small><h4>Flat white &amp; proziak klasyczny</h4><p>Energia z podwójnego espresso i ciepły proziak z masłem — przed zwiedzaniem Zamku jak znalazł.</p></article>
+        <article class="duo rv" style="--d:80ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-cup"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-cake"/></svg></i></div><small>na leniwe popołudnie</small><h4>Czekolada &amp; szarlotka na ciepło</h4><p>Gęsta czekolada i szarlotka z lodami. Najlepsza terapia na chłodny dzień.</p></article>
+        <article class="duo rv" style="--d:160ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-beer"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-users"/></svg></i></div><small>na wieczór ze znajomymi</small><h4>Kraft z Podkarpacia &amp; deska przekąsek</h4><p>W piątki i soboty siedzimy do północy — weź ekipę i zostańcie dłużej.</p></article>
       </div>
     </div>
   </section>
@@ -654,20 +750,61 @@
     els.forEach(e => io.observe(e));
   }
 
-  const tabs = [...document.querySelectorAll('[role="tab"]')];
-  const select = tab => tabs.forEach(t => {
-    const on = t === tab;
-    t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
-    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+  // ---- menu: category filter + search ----
+  const catBtns = [...document.querySelectorAll('.cat-btn')];
+  const pill = document.getElementById('catPill');
+  const mcats = [...document.querySelectorAll('.mcat')];
+  const search = document.getElementById('menuSearch');
+  const empty = document.getElementById('menuEmpty');
+  const norm = t => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ł/g, 'l');
+  document.querySelectorAll('.mi').forEach(mi => {
+    mi._b = mi.querySelector('b'); mi._p = mi.querySelector('p');
+    mi._name = mi._b.firstChild.textContent; mi._desc = mi._p.textContent;
+    mi._txt = norm(mi._name + ' ' + mi._desc);
   });
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => select(t));
-    t.addEventListener('keydown', e => {
-      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (!d) return; e.preventDefault();
-      const n = tabs[(i + d + tabs.length) % tabs.length]; n.focus(); select(n);
+  let current = 'all';
+  const movePill = () => {
+    const b = catBtns.find(x => x.dataset.cat === current);
+    pill.style.width = b.offsetWidth + 'px';
+    pill.style.transform = `translateX(${b.offsetLeft}px)`;
+  };
+  const esc = t => t.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  const mark = (text, q) => {
+    if (!q) return esc(text);
+    const n = norm(text), i = n.indexOf(q);
+    return i < 0 ? esc(text) : esc(text.slice(0, i)) + '<mark class="hl">' + esc(text.slice(i, i + q.length)) + '</mark>' + esc(text.slice(i + q.length));
+  };
+  const render = () => {
+    const q = norm(search.value.trim());
+    let any = false;
+    mcats.forEach(c => {
+      let n = 0;
+      c.querySelectorAll('.mi').forEach(mi => {
+        const ok = !q || mi._txt.includes(q);
+        mi.hidden = !ok; if (ok) n++;
+        mi._b.firstChild.replaceWith(document.createRange().createContextualFragment(`<span>${mark(mi._name, q)}</span>`));
+        mi._p.innerHTML = mark(mi._desc, q);
+      });
+      const show = (current === 'all' || c.dataset.cat === current) && n > 0;
+      c.hidden = !show; if (show) any = true;
+      if (show) { c.style.animation = 'none'; void c.offsetWidth; c.style.animation = ''; }
     });
+    empty.hidden = any;
+    document.getElementById('mcats').classList.toggle('single', current !== 'all');
+  };
+  catBtns.forEach(b => b.addEventListener('click', () => {
+    current = b.dataset.cat;
+    catBtns.forEach(x => x.setAttribute('aria-pressed', x === b));
+    movePill(); render();
+    b.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+  }));
+  search.addEventListener('input', () => {
+    if (search.value && current !== 'all') { current = 'all'; catBtns.forEach(x => x.setAttribute('aria-pressed', x.dataset.cat === 'all')); movePill(); }
+    render();
   });
+  addEventListener('resize', movePill);
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(movePill);
+  movePill();
 
   const hrs = { 0: [10, 21], 1: [10, 21], 2: [10, 21], 3: [10, 21], 4: [10, 21], 5: [10, 24], 6: [10, 24] };
   try {

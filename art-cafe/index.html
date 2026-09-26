@@ -180,6 +180,7 @@
   .mi-row .price { font: 700 1.05rem/1 var(--sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .mi-row .price:empty { display: none; }
   .mi-row:has(.price:empty) .lead-dots { display: none; }
+  .mi p:empty { display: none; }
   .mi p { color: var(--text-soft); font-size: .95rem; margin-top: 3px; }
   .badge-s { display: inline-flex; align-items: center; gap: 5px; margin-left: 6px; font: 700 .68rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: #F6E3D6; padding: 5px 8px; border-radius: 999px; vertical-align: 2px; white-space: nowrap; }
   .badge-s.star { background: var(--espresso); color: #F6D48F; }
@@ -406,6 +407,7 @@
     <symbol id="i-cup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.5 12a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8z"/><path d="M4 8h16M12 8l2-6h3"/></symbol>
     <symbol id="i-wheat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/></symbol>
     <symbol id="i-cake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20M7 8v3M12 8v3M17 8v3M7 4h.01M12 4h.01M17 4h.01"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   </defs>
@@ -450,7 +452,7 @@
         <div class="stamp" aria-hidden="true"><svg viewBox="0 0 140 140"><defs><path id="sc" d="M70,70 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><circle cx="70" cy="70" r="67" fill="#FFFDF9"/><circle cx="70" cy="70" r="60" fill="none" stroke="#A8502B" stroke-width="1.2" stroke-dasharray="3 4"/><text font-family="Karla, sans-serif" font-weight="700" font-size="12" letter-spacing="2.2" fill="#2E211A"><textPath href="#sc" textLength="318" lengthAdjust="spacing">CODZIENNIE OD 10:00 • ŁAŃCUT • </textPath></text></svg><b>10:00</b></div>
         <div class="ph main parallax" data-speed="-0.04"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=75" alt="Przytulne wnętrze kawiarni ze stolikami i ciepłym światłem" width="1000" height="1100" fetchpriority="high"></div>
         <div class="ph small parallax" data-speed="0.06"><svg class="steam" viewBox="0 0 70 70" aria-hidden="true"><path d="M22 60c-8-12 8-16 0-30"/><path d="M36 60c-8-12 8-16 0-30"/><path d="M50 60c-8-12 8-16 0-30"/></svg><div class="clip"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=75" alt="Filiżanka kawy z latte art" width="600" height="600"></div></div>
-        <div class="note">prosto z blachy!<small>autorskie proziaki codziennie</small></div>
+        <div class="note">prosto z blachy!<small>nasze autorskie proziaki</small></div>
       </div>
     </div>
   </section>
@@ -471,15 +473,15 @@
       <div class="offer">
         <article class="offer-card rv">
           <div class="ph"><span class="num">kawa</span><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=75" alt="Kawa w filiżance na drewnianym stole" loading="lazy" width="700" height="600"></div>
-          <div class="body"><h3>Kawa</h3><p>Espresso, flat white, cappuccino i kawa z alternatywy — parzone z dbałością o każdy detal.</p><a class="more" href="#menu">Zobacz kawy <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="body"><h3>Kawa</h3><p>Aromatyczna kawa parzona z dbałością o każdy detal — idealna na przerwę w zwiedzaniu.</p><a class="more" href="#menu">Zobacz kawy <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="offer-card rv" style="--d:80ms">
           <div class="ph"><span class="num">proziak</span><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=75" alt="Świeże wypieki na desce" loading="lazy" width="700" height="600"></div>
-          <div class="body"><h3>Proziaki</h3><p>Nasza specjalność: podkarpacki placek z blachy w autorskich wersjach — na słodko i na wytrawnie.</p><a class="more" href="#proziak">Poznaj proziaki <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="body"><h3>Proziaki</h3><p>Nasza specjalność: podkarpacki placek z blachy w autorskich wersjach, np. z szarpaną wieprzowiną albo wędzonym łososiem.</p><a class="more" href="#proziak">Poznaj proziaki <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="offer-card rv" style="--d:160ms">
           <div class="ph"><span class="num">słodko</span><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=75" alt="Kawałek domowego ciasta" loading="lazy" width="700" height="600"></div>
-          <div class="body"><h3>Domowe desery</h3><p>Ciasto dnia, sernik, szarlotka na ciepło — idealne do popołudniowej kawy.</p><a class="more" href="#menu">Zobacz desery <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <div class="body"><h3>Domowe ciasta</h3><p>Pieczone na miejscu — spróbuj ciasta czekoladowego z kremem malinowym.</p><a class="more" href="#menu">Zobacz desery <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="offer-card rv" style="--d:240ms">
           <div class="ph"><span class="num">wieczorem</span><img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=700&q=75" alt="Szklanki piwa rzemieślniczego" loading="lazy" width="700" height="600"></div>
@@ -502,9 +504,8 @@
         <h2 class="h2 rv" id="story-t">Smak Podkarpacia <em>w naszym wydaniu</em></h2>
         <p class="lead rv">Proziak to tradycyjny placek na sodzie, pieczony na blasze — prosty, ciepły i pachnący domem. U nas podajemy go w autorskich wersjach, których nie znajdziesz nigdzie indziej.</p>
         <ul class="ticks">
-          <li class="rv"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Klasyczny</b><span>z masłem i szczyptą soli, jak u babci</span></div></li>
-          <li class="rv" style="--d:80ms"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Na wytrawnie</b><span>z serem, ziołami i sezonowymi dodatkami</span></div></li>
-          <li class="rv" style="--d:160ms"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Na słodko</b><span>z konfiturą, twarożkiem i miodem</span></div></li>
+          <li class="rv"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Proziak Antoni</b><span>szarpana wieprzowina, coleslaw, sos BBQ, opcjonalnie jalapeño</span></div></li>
+          <li class="rv" style="--d:80ms"><svg aria-hidden="true"><use href="#i-check"/></svg><div><b>Proziak Izabela</b><span>wędzony łosoś, kremowy twaróg, pomidor, szpinak</span></div></li>
         </ul>
         <p class="rv" style="margin-top:30px"><a class="btn btn-primary" href="#menu">Zobacz w menu <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
       </div>
@@ -521,9 +522,9 @@
         <div>
           <span class="eyebrow rv">Menu</span>
           <h2 class="h2 rv" id="menu-t">Nasza karta — <em>krótka, ale dopieszczona</em></h2>
-          <p class="lead rv">Kawa parzona z uwagą, proziaki prosto z blachy i domowe desery. Wybierz kategorię albo po prostu wyszukaj, na co masz ochotę.</p>
+          <p class="lead rv">Autorskie proziaki, sałatki, domowe ciasta, kawa i szprycery. Wybierz kategorię albo wyszukaj, na co masz ochotę.</p>
         </div>
-        <div class="chalk rv" style="--d:100ms"><h3>Polecamy dziś</h3><ul><li>flat white</li><li>proziak wytrawny</li><li>szarlotka na ciepło</li></ul><small>Propozycje dnia zmieniają się — zapytaj przy barze.</small></div>
+        <div class="chalk rv" style="--d:100ms"><h3>Warto spróbować</h3><ul><li>proziak Antoni</li><li>proziak Izabela</li><li>szprycer Hugo</li></ul><small>Pełna karta i ceny — na miejscu i na naszym Facebooku.</small></div>
       </div>
 
       <div class="menu-book rv">
@@ -535,48 +536,41 @@
         </div>
 
         <div class="toolbar">
-          <div class="cats" id="cats" role="group" aria-label="Kategorie menu"><span class="cat-pill" id="catPill" aria-hidden="true"></span><button type="button" class="cat-btn" data-cat="all" aria-pressed="true">Wszystko</button><button type="button" class="cat-btn" data-cat="kawa" aria-pressed="false"><svg aria-hidden="true"><use href="#i-coffee"/></svg>Kawa</button><button type="button" class="cat-btn" data-cat="napoje" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cup"/></svg>Inne napoje</button><button type="button" class="cat-btn" data-cat="proziaki" aria-pressed="false"><svg aria-hidden="true"><use href="#i-wheat"/></svg>Proziaki</button><button type="button" class="cat-btn" data-cat="desery" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cake"/></svg>Desery</button><button type="button" class="cat-btn" data-cat="wieczor" aria-pressed="false"><svg aria-hidden="true"><use href="#i-beer"/></svg>Wieczorem</button></div>
-          <label class="search"><span class="sr-only">Szukaj w menu</span><svg aria-hidden="true"><use href="#i-search"/></svg><input type="search" id="menuSearch" placeholder="Szukaj, np. sernik, latte…" autocomplete="off"></label>
+          <div class="cats" id="cats" role="group" aria-label="Kategorie menu"><span class="cat-pill" id="catPill" aria-hidden="true"></span><button type="button" class="cat-btn" data-cat="all" aria-pressed="true">Wszystko</button><button type="button" class="cat-btn" data-cat="proziaki" aria-pressed="false"><svg aria-hidden="true"><use href="#i-wheat"/></svg>Proziaki</button><button type="button" class="cat-btn" data-cat="salatki" aria-pressed="false"><svg aria-hidden="true"><use href="#i-leaf"/></svg>Sałatki</button><button type="button" class="cat-btn" data-cat="desery" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cake"/></svg>Desery</button><button type="button" class="cat-btn" data-cat="kawa" aria-pressed="false"><svg aria-hidden="true"><use href="#i-coffee"/></svg>Kawa</button><button type="button" class="cat-btn" data-cat="szprycery" aria-pressed="false"><svg aria-hidden="true"><use href="#i-cup"/></svg>Szprycery</button><button type="button" class="cat-btn" data-cat="piwo" aria-pressed="false"><svg aria-hidden="true"><use href="#i-beer"/></svg>Piwo i wino</button></div>
+          <label class="search"><span class="sr-only">Szukaj w menu</span><svg aria-hidden="true"><use href="#i-search"/></svg><input type="search" id="menuSearch" placeholder="Szukaj, np. łosoś, Hugo…" autocomplete="off"></label>
         </div>
 
         <div class="mcats" id="mcats" aria-live="polite">
-          <section class="mcat" data-cat="kawa" aria-labelledby="mc-kawa">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-coffee"/></svg></span><div><h4 id="mc-kawa">Kawa</h4><span>z ekspresu i alternatywy</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Espresso</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Krótkie i intensywne, z karmelową nutą.</p></div>
-            <div class="mi"><div class="mi-row"><b>Doppio</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Podwójne espresso dla wymagających.</p></div>
-            <div class="mi"><div class="mi-row"><b>Americano</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Espresso dopełnione gorącą wodą.</p></div>
-            <div class="mi"><div class="mi-row"><b>Cappuccino</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Klasyczne proporcje, gęsta mleczna pianka.</p></div>
-            <div class="mi"><div class="mi-row"><b>Flat white<span class="badge-s star">polecamy</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Podwójne espresso i aksamitne mleko.</p></div>
-            <div class="mi"><div class="mi-row"><b>Latte</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Łagodne i kremowe — idealne na dłuższą chwilę.</p></div>
-            <div class="mi"><div class="mi-row"><b>Kawa z alternatywy</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Drip lub aeropress z sezonowych ziaren. Zapytaj baristę o profil.</p></div>
-            <p class="extras"><b>Dodatki:</b> mleko roślinne, syrop, dodatkowe espresso — zapytaj przy barze.</p>
-          </section>
-          <section class="mcat" data-cat="napoje" aria-labelledby="mc-napoje">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-cup"/></svg></span><div><h4 id="mc-napoje">Inne napoje</h4><span>na ciepło i na zimno</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Czekolada na gorąco</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Gęsta, prawdziwa czekolada.</p></div>
-            <div class="mi"><div class="mi-row"><b>Herbata liściasta</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Czarna, zielona, owocowa — do wyboru.</p></div>
-            <div class="mi"><div class="mi-row"><b>Lemoniada domowa<span class="badge-s ">sezonowa</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Sezonowe smaki, orzeźwiająca.</p></div>
-            <div class="mi"><div class="mi-row"><b>Soki i woda</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Na szybkie orzeźwienie.</p></div>
-          </section>
           <section class="mcat" data-cat="proziaki" aria-labelledby="mc-proziaki">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-wheat"/></svg></span><div><h4 id="mc-proziaki">Proziaki</h4><span>prosto z blachy</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Proziak klasyczny</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Z masłem i szczyptą dobrej soli.</p></div>
-            <div class="mi"><div class="mi-row"><b>Proziak wytrawny<span class="badge-s star">bestseller</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Z serem, ziołami i sezonowymi dodatkami.</p></div>
-            <div class="mi"><div class="mi-row"><b>Proziak na słodko</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Z domową konfiturą, twarożkiem i miodem.</p></div>
-            <div class="mi"><div class="mi-row"><b>Proziak sezonowy<span class="badge-s ">sezonowy</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Autorska kompozycja zmieniana co kilka tygodni.</p></div>
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-wheat"/></svg></span><div><h4 id="mc-proziaki">Proziaki</h4><span>autorskie, z Podkarpacia</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Proziak Antoni<span class="badge-s star">autorski</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Szarpana wieprzowina, coleslaw, sos BBQ, opcjonalnie jalapeño.</p></div>
+            <div class="mi"><div class="mi-row"><b>Proziak Izabela<span class="badge-s star">autorski</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Wędzony łosoś, kremowy twaróg, pomidor, szpinak.</p></div>
+            <p class="extras">Więcej autorskich proziaków znajdziesz w karcie na miejscu.</p>
+          </section>
+          <section class="mcat" data-cat="salatki" aria-labelledby="mc-salatki">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-leaf"/></svg></span><div><h4 id="mc-salatki">Sałatki</h4><span>sycące i kolorowe</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Sałatka Marszałkowej</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Ciecierzyca, burak, marynowana cebula.</p></div>
+            <div class="mi"><div class="mi-row"><b>Sałatka Grabska</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Grillowany kurczak, szpinak, prażone migdały, feta, ogórek, rzodkiewka, dressing miodowo‑musztardowy.</p></div>
           </section>
           <section class="mcat" data-cat="desery" aria-labelledby="mc-desery">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-cake"/></svg></span><div><h4 id="mc-desery">Desery</h4><span>domowe, codziennie świeże</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Ciasto dnia</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Codziennie inne — sprawdź w witrynie.</p></div>
-            <div class="mi"><div class="mi-row"><b>Sernik</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Kremowy, na kruchym spodzie.</p></div>
-            <div class="mi"><div class="mi-row"><b>Szarlotka na ciepło<span class="badge-s ">jesienią</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Z gałką lodów waniliowych.</p></div>
-            <div class="mi"><div class="mi-row"><b>Lody</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Gałka lub dwie, do kawy albo solo.</p></div>
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-cake"/></svg></span><div><h4 id="mc-desery">Desery</h4><span>domowe ciasta</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Ciasto czekoladowe z kremem malinowym</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Wilgotne czekoladowe warstwy i kwaskowy krem malinowy.</p></div>
+            <p class="extras">Ciasta pieczemy sami — aktualny wybór zobaczysz w witrynie.</p>
           </section>
-          <section class="mcat" data-cat="wieczor" aria-labelledby="mc-wieczor">
-            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-beer"/></svg></span><div><h4 id="mc-wieczor">Wieczorem</h4><span>pt i sob do północy</span></div></div>
-            <div class="mi"><div class="mi-row"><b>Piwo rzemieślnicze<span class="badge-s leaf">regionalne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Rotacyjny wybór z browarów z Podkarpacia.</p></div>
-            <div class="mi"><div class="mi-row"><b>Wino</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Czerwone lub białe, na kieliszki.</p></div>
-            <div class="mi"><div class="mi-row"><b>Deska przekąsek<span class="badge-s star">dla ekipy</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Sery, wędliny i proziaki — do podziału.</p></div>
+          <section class="mcat" data-cat="kawa" aria-labelledby="mc-kawa">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-coffee"/></svg></span><div><h4 id="mc-kawa">Kawa</h4><span>aromatyczna, parzona z uwagą</span></div></div>
+            <p class="extras">Pełną kartę kaw i napojów znajdziesz przy barze.</p>
+          </section>
+          <section class="mcat" data-cat="szprycery" aria-labelledby="mc-szprycery">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-cup"/></svg></span><div><h4 id="mc-szprycery">Szprycery</h4><span>na lato i do ogródka</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Szprycer klasyczny</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Szprycer Aperol</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p></p></div>
+            <div class="mi"><div class="mi-row"><b>Szprycer Hugo</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p></p></div>
+          </section>
+          <section class="mcat" data-cat="piwo" aria-labelledby="mc-piwo">
+            <div class="mcat-head"><span class="mcat-ico"><svg aria-hidden="true"><use href="#i-beer"/></svg></span><div><h4 id="mc-piwo">Piwo i wino</h4><span>regionalny kraft</span></div></div>
+            <div class="mi"><div class="mi-row"><b>Piwa rzemieślnicze<span class="badge-s leaf">regionalne</span></b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Wybór z regionalnych browarów rzemieślniczych.</p></div>
+            <div class="mi"><div class="mi-row"><b>Wino</b><span class="lead-dots" aria-hidden="true"></span><span class="price"></span></div><p>Zapytaj o aktualny wybór.</p></div>
           </section>
         </div>
         <div class="empty" id="menuEmpty" hidden><b>Hmm, tego nie mamy w karcie…</b><p>Ale zapytaj przy barze — może coś wymyślimy!</p></div>
@@ -589,9 +583,9 @@
 
       <div class="duos-title"><h3 class="rv">Idealne duety</h3><span class="rv">nie wiesz, co wybrać?</span></div>
       <div class="duos">
-        <article class="duo rv"><div class="pair"><i><svg aria-hidden="true"><use href="#i-coffee"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-wheat"/></svg></i></div><small>na dobry początek dnia</small><h4>Flat white &amp; proziak klasyczny</h4><p>Energia z podwójnego espresso i ciepły proziak z masłem — przed zwiedzaniem Zamku jak znalazł.</p></article>
-        <article class="duo rv" style="--d:80ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-cup"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-cake"/></svg></i></div><small>na leniwe popołudnie</small><h4>Czekolada &amp; szarlotka na ciepło</h4><p>Gęsta czekolada i szarlotka z lodami. Najlepsza terapia na chłodny dzień.</p></article>
-        <article class="duo rv" style="--d:160ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-beer"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-users"/></svg></i></div><small>na wieczór ze znajomymi</small><h4>Kraft z Podkarpacia &amp; deska przekąsek</h4><p>W piątki i soboty siedzimy do północy — weź ekipę i zostańcie dłużej.</p></article>
+        <article class="duo rv"><div class="pair"><i><svg aria-hidden="true"><use href="#i-wheat"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-cup"/></svg></i></div><small>na lato w ogródku</small><h4>Proziak Izabela &amp; szprycer Hugo</h4><p>Wędzony łosoś z twarogiem i orzeźwiający szprycer — lekko i z klasą.</p></article>
+        <article class="duo rv" style="--d:80ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-coffee"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-cake"/></svg></i></div><small>na popołudnie</small><h4>Kawa &amp; ciasto czekoladowe z kremem malinowym</h4><p>Domowe ciasto i aromatyczna kawa — klasyk, który zawsze działa.</p></article>
+        <article class="duo rv" style="--d:160ms"><div class="pair"><i><svg aria-hidden="true"><use href="#i-beer"/></svg></i><em>+</em><i><svg aria-hidden="true"><use href="#i-wheat"/></svg></i></div><small>na wieczór</small><h4>Regionalny kraft &amp; proziak Antoni</h4><p>Szarpana wieprzowina z sosem BBQ i piwo z lokalnego browaru.</p></article>
       </div>
     </div>
   </section>
@@ -629,7 +623,7 @@
         <div class="ev-list">
           <div class="ev rv"><svg aria-hidden="true"><use href="#i-palette"/></svg><b>Wernisaże</b><span>otwarcia nowych wystaw</span></div>
           <div class="ev rv" style="--d:80ms"><svg aria-hidden="true"><use href="#i-beer"/></svg><b>Wieczory z kraftem</b><span>piwa z Podkarpacia</span></div>
-          <div class="ev rv" style="--d:160ms"><svg aria-hidden="true"><use href="#i-users"/></svg><b>Spotkania prywatne</b><span>urodziny, małe przyjęcia</span></div>
+          <div class="ev rv" style="--d:160ms"><svg aria-hidden="true"><use href="#i-leaf"/></svg><b>Ogródek</b><span>pełen kwiatów, na ciepłe dni</span></div>
         </div>
         <p class="rv" style="margin-top:30px"><a class="btn btn-light" href="https://www.facebook.com/artcafegaleriamarzenie/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Wydarzenia na Facebooku</a></p>
       </div>
@@ -785,7 +779,8 @@
         mi._b.firstChild.replaceWith(document.createRange().createContextualFragment(`<span>${mark(mi._name, q)}</span>`));
         mi._p.innerHTML = mark(mi._desc, q);
       });
-      const show = (current === 'all' || c.dataset.cat === current) && n > 0;
+      const hasItems = c.querySelector('.mi');
+      const show = (current === 'all' || c.dataset.cat === current) && (n > 0 || (!hasItems && (!q || norm(c.textContent).includes(q))));
       c.hidden = !show; if (show) any = true;
       if (show) { c.style.animation = 'none'; void c.offsetWidth; c.style.animation = ''; }
     });

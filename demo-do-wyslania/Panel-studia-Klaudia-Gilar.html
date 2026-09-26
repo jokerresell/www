@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel studia — Klaudia Gilar</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2B211D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232B211D'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='28' fill='%23D9B98C'%3EKG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F6F1EC;
+    --surface: #FFFFFF;
+    --surface-2: #FBF7F3;
+    --fg: #2B211D;
+    --fg-soft: #5C4D45;
+    --muted: #6E5E55;
+    --border: #E6D9CD;
+    --border-strong: #D3C2B3;
+    --dark: #2B211D;
+    --on-dark: #F7EFE8;
+    --accent: #8C6A3F;
+    --accent-light: #D9B98C;
+    --rose: #A85D52;
+    --focus: #8C6A3F;
+
+    --ok: #2F6B45;      --ok-bg: #E6F1E9;
+    --warn: #8A5A00;    --warn-bg: #FBF0D9;
+    --bad: #B3261E;     --bad-bg: #FBE7E5;
+    --info: #3D5A80;    --info-bg: #E6EDF6;
+    --neutral-bg: #EFE9E3;
+
+    /* service identity colors (always paired with a text label) */
+    --svc-brwi: #7A5646;
+    --svc-usta: #A85D52;
+    --svc-kreska: #3F4E63;
+    --svc-remover: #5E6B3A;
+    --svc-dopig: #9A7A4A;
+    --svc-konsult: #6B6B78;
+
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-full: 999px;
+    --shadow: 0 1px 2px rgba(43,33,29,.06), 0 8px 24px -12px rgba(43,33,29,.18);
+    --shadow-lg: 0 30px 60px -20px rgba(43,33,29,.35);
+    --sidebar: 248px;
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; font-family: var(--font-sans); font-size: 15px; line-height: 1.55;
+    background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  a { color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  svg { display: block; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+  [hidden] { display: none !important; }
+  #view:focus { outline: none; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .ic { width: 20px; height: 20px; flex: none; }
+
+  /* ---------- Layout ---------- */
+  .app { display: grid; min-height: 100%; }
+  @media (min-width: 1024px) { .app { grid-template-columns: var(--sidebar) 1fr; } }
+
+  .sidebar {
+    background: var(--dark); color: var(--on-dark); display: flex; flex-direction: column;
+    padding: 20px 14px; gap: 24px;
+    position: fixed; inset: 0 auto 0 0; width: min(84vw, 280px); z-index: 60;
+    transform: translateX(-100%); transition: transform .3s var(--ease);
+  }
+  .sidebar.open { transform: none; box-shadow: var(--shadow-lg); }
+  @media (min-width: 1024px) {
+    .sidebar { position: sticky; top: 0; height: 100vh; width: auto; transform: none; }
+  }
+  .scrim { position: fixed; inset: 0; background: rgba(43,33,29,.45); z-index: 55; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility 0s linear .25s; }
+  .scrim.show { opacity: 1; visibility: visible; transition-delay: 0s; }
+  @media (min-width: 1024px) { .scrim { display: none; } }
+
+  .brand { display: flex; align-items: center; gap: 12px; padding: 4px 8px; text-decoration: none; }
+  .brand-mark {
+    width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none;
+    background: var(--accent-light); color: var(--dark); font-family: var(--font-display); font-style: italic;
+  }
+  .brand-name { display: grid; }
+  .brand strong { font-family: var(--font-display); font-weight: 500; font-size: 1.05rem; display: block; line-height: 1.2; }
+  .brand-name > span { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(247,239,232,.6); }
+
+  .nav { display: grid; gap: 2px; }
+  .nav-label { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(247,239,232,.5); padding: 0 12px 8px; }
+  .nav a {
+    display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: var(--r-sm);
+    text-decoration: none; color: rgba(247,239,232,.78); font-weight: 500; font-size: .92rem;
+    transition: background-color .18s ease, color .18s ease;
+  }
+  .nav a:hover { background: rgba(247,239,232,.08); color: var(--on-dark); }
+  .nav a[aria-current="page"] { background: rgba(217,185,140,.16); color: var(--on-dark); box-shadow: inset 3px 0 0 var(--accent-light); }
+  .nav a[aria-current="page"] .ic { color: var(--accent-light); }
+  .nav .count {
+    margin-left: auto; min-width: 22px; height: 22px; padding: 0 7px; border-radius: var(--r-full);
+    background: var(--accent-light); color: var(--dark); font-size: .75rem; font-weight: 600; display: grid; place-items: center;
+  }
+  .nav .count[hidden] { display: none; }
+  .sidebar-foot { margin-top: auto; display: grid; gap: 10px; }
+  .user {
+    display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: var(--r-md);
+    background: rgba(247,239,232,.06); font-size: .85rem;
+  }
+  .user .av { width: 34px; height: 34px; border-radius: 50%; background: #5E4A40; display: grid; place-items: center; font-weight: 600; font-size: .8rem; }
+  .user small { display: block; color: rgba(247,239,232,.6); font-size: .75rem; }
+  .site-link { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border-radius: var(--r-sm); text-decoration: none; font-size: .88rem; color: rgba(247,239,232,.78); }
+  .site-link:hover { background: rgba(247,239,232,.08); color: var(--on-dark); }
+
+  .main { min-width: 0; display: flex; flex-direction: column; }
+  .topbar {
+    position: sticky; top: 0; z-index: 30; background: rgba(246,241,236,.9);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px; padding: 12px 16px; min-height: 68px;
+  }
+  @media (min-width: 768px) { .topbar { padding: 14px 32px; } }
+  .menu-btn { display: grid; }
+  @media (min-width: 1024px) { .btn.menu-btn { display: none; } }
+  .page-title { font-family: var(--font-display); font-weight: 400; font-size: 1.55rem; line-height: 1.2; }
+  .page-sub { font-size: .82rem; color: var(--muted); }
+  .topbar-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  .demo-pill { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: var(--r-full); background: var(--warn-bg); color: var(--warn); display: none; }
+  @media (min-width: 640px) { .demo-pill { display: inline-block; } }
+
+  .content { padding: 20px 16px 64px; display: grid; gap: 20px; align-content: start; }
+  @media (min-width: 768px) { .content { padding: 28px 32px 64px; gap: 24px; } }
+
+  /* ---------- Primitives ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px;
+    border-radius: var(--r-full); border: 1px solid transparent; font-weight: 500; font-size: .9rem; white-space: nowrap;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease, transform .15s ease;
+    text-decoration: none; background: none;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn .ic { width: 18px; height: 18px; }
+  .btn-primary { background: var(--dark); color: var(--on-dark); }
+  .btn-primary:hover { background: #45352E; }
+  .btn-outline { border-color: var(--border-strong); background: var(--surface); }
+  .btn-outline:hover { border-color: var(--fg-soft); }
+  .btn-ghost:hover { background: var(--neutral-bg); }
+  .btn-danger { color: var(--bad); border-color: #EBC3BF; background: var(--surface); }
+  .btn-danger:hover { background: var(--bad-bg); }
+  .btn-sm { min-height: 36px; padding: 0 14px; font-size: .84rem; }
+  .icon-btn { width: 44px; height: 44px; padding: 0; border-radius: 50%; }
+  .btn-label-sm { display: none; }
+  @media (min-width: 640px) { .btn-label-sm { display: inline; } }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--shadow); }
+  .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px 0; flex-wrap: wrap; }
+  .card-head h2 { font-size: 1rem; font-weight: 600; }
+  .card-head p { font-size: .82rem; color: var(--muted); }
+  .card-body { padding: 16px 20px 20px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: var(--r-full);
+    font-size: .75rem; font-weight: 600; white-space: nowrap; background: var(--neutral-bg); color: var(--fg-soft);
+  }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .badge.ok { background: var(--ok-bg); color: var(--ok); }
+  .badge.warn { background: var(--warn-bg); color: var(--warn); }
+  .badge.bad { background: var(--bad-bg); color: var(--bad); }
+  .badge.info { background: var(--info-bg); color: var(--info); }
+
+  .svc-tag { display: inline-flex; align-items: center; gap: 8px; font-size: .86rem; }
+  .svc-dot { width: 10px; height: 10px; border-radius: 3px; flex: none; background: var(--c, #999); }
+
+  .empty { padding: 32px 16px; text-align: center; color: var(--muted); font-size: .9rem; display: grid; gap: 10px; justify-items: center; }
+  .empty .ic { width: 32px; height: 32px; color: var(--border-strong); }
+
+  /* Fields */
+  .field { display: grid; gap: 6px; }
+  .field label, .field .lbl { font-size: .82rem; font-weight: 500; }
+  .field .hint { font-size: .78rem; color: var(--muted); }
+  .field .err { font-size: .78rem; color: var(--bad); display: none; }
+  .field.invalid .err { display: block; }
+  .field.invalid :is(input, select, textarea) { border-color: var(--bad); }
+  .input, .field input, .field select, .field textarea {
+    width: 100%; min-height: 44px; padding: 10px 12px; font-size: 16px;
+    border: 1px solid var(--border-strong); border-radius: var(--r-sm); background: var(--surface);
+    transition: border-color .18s ease, box-shadow .18s ease;
+  }
+  .field textarea { min-height: 88px; resize: vertical; }
+  .input:focus, .field :is(input, select, textarea):focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(140,106,63,.2); }
+  .grid-2 { display: grid; gap: 14px; }
+  @media (min-width: 560px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+  .search { position: relative; flex: 1 1 240px; max-width: 360px; }
+  .search .ic { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); width: 18px; height: 18px; }
+  .search input { padding-left: 38px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    min-height: 36px; padding: 0 14px; border-radius: var(--r-full); border: 1px solid var(--border-strong);
+    background: var(--surface); font-size: .85rem; color: var(--fg-soft); display: inline-flex; align-items: center; gap: 8px;
+    transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .chip:hover { border-color: var(--fg-soft); }
+  .chip[aria-pressed="true"] { background: var(--dark); border-color: var(--dark); color: var(--on-dark); }
+  .chip .n { font-size: .75rem; opacity: .75; }
+
+  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th { text-align: left; font-size: .74rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 12px 16px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr.clickable { cursor: pointer; transition: background-color .15s ease; }
+  tbody tr.clickable:hover { background: var(--surface-2); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .cell-main { font-weight: 500; }
+  .cell-sub { font-size: .8rem; color: var(--muted); }
+  th button.sort { all: unset; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; }
+  th button.sort:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+  /* Mobile list-as-cards */
+  @media (max-width: 719px) {
+    table.responsive thead { display: none; }
+    table.responsive, table.responsive tbody, table.responsive tr, table.responsive td { display: block; width: 100%; }
+    table.responsive tr { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+    table.responsive td { border: 0; padding: 3px 0; display: flex; justify-content: space-between; gap: 12px; text-align: right; }
+    table.responsive td::before { content: attr(data-label); color: var(--muted); font-size: .8rem; text-align: left; }
+    table.responsive td.primary { display: block; text-align: left; padding-bottom: 6px; }
+    table.responsive td.primary::before { display: none; }
+  }
+
+  /* ---------- Dashboard ---------- */
+  .kpis { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1100px) { .kpis { grid-template-columns: repeat(4, 1fr); } }
+  .kpis > *, .dash-grid > * { min-width: 0; }
+  .kpi { padding: 18px 20px; display: grid; gap: 4px; }
+  .kpi .lbl { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .kpi .lbl .ic { width: 16px; height: 16px; }
+  .kpi .val { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1.15; font-variant-numeric: tabular-nums; }
+  .kpi .delta { font-size: .78rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 2px 6px; align-items: center; }
+  .kpi .delta span { white-space: nowrap; }
+  .kpi .delta .up { color: var(--ok); font-weight: 600; }
+  .kpi .delta .down { color: var(--bad); font-weight: 600; }
+
+  .dash-grid { display: grid; gap: 20px; }
+  @media (min-width: 1100px) { .dash-grid { grid-template-columns: 1.35fr 1fr; } }
+
+  .agenda { display: grid; }
+  .agenda-item {
+    display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .agenda-item:last-child { border-bottom: 0; }
+  .agenda-item time { font-variant-numeric: tabular-nums; font-weight: 600; font-size: .95rem; }
+  .agenda-item time small { display: block; font-weight: 400; color: var(--muted); font-size: .75rem; }
+  .agenda-item .who { font-weight: 500; }
+  .agenda-item .what { font-size: .82rem; color: var(--muted); }
+  .agenda-item .bar { border-left: 3px solid var(--c); padding-left: 12px; }
+  .agenda-item button.link { all: unset; cursor: pointer; display: block; }
+  .agenda-item button.link:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; border-radius: 4px; }
+
+  /* Bar chart */
+  .chart { position: relative; }
+  .chart-plot { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-left: 52px; align-items: end; height: 200px; padding-top: 24px; border-bottom: 1px solid var(--border-strong); position: relative; }
+  .gridline { position: absolute; left: -52px; right: 0; border-top: 1px dashed var(--border); pointer-events: none; }
+  .gridline span { position: absolute; left: 0; width: 46px; top: -9px; font-size: .7rem; color: var(--muted); background: var(--surface); padding-right: 6px; font-variant-numeric: tabular-nums; }
+  .bar-col { position: relative; height: 100%; display: flex; align-items: flex-end; justify-content: center; cursor: default; outline: none; }
+  .bar-col .b { width: min(44px, 70%); border-radius: 4px 4px 0 0; background: #CDB6A5; transition: background-color .15s ease; }
+  .bar-col.current .b { background: var(--rose); }
+  .bar-col:hover .b, .bar-col:focus-visible .b { background: #8E6A5A; }
+  .bar-col.current:hover .b, .bar-col.current:focus-visible .b { background: #8E4A41; }
+  .bar-col:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+  .bar-col .direct { position: absolute; right: 0; top: -22px; font-size: .78rem; font-weight: 600; white-space: nowrap; }
+  .chart-x { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-left: 52px; margin-top: 8px; font-size: .78rem; color: var(--muted); text-align: center; }
+  .tip {
+    position: absolute; z-index: 5; pointer-events: none; background: var(--dark); color: var(--on-dark);
+    padding: 8px 12px; border-radius: var(--r-sm); font-size: .8rem; line-height: 1.4; white-space: nowrap;
+    transform: translate(-50%, -100%); opacity: 0; transition: opacity .12s ease;
+  }
+  .tip.show { opacity: 1; }
+  .tip strong { display: block; font-size: .9rem; }
+
+  .reminder { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .reminder:last-child { border-bottom: 0; }
+  .reminder .meta { flex: 1; min-width: 0; }
+  .reminder .meta div:first-child { font-weight: 500; }
+  .reminder .meta div:last-child { font-size: .8rem; color: var(--muted); }
+
+  /* ---------- Calendar ---------- */
+  .cal-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .cal-range { font-weight: 600; font-size: 1rem; min-width: 190px; }
+  .cal { overflow-x: auto; }
+  .cal-grid { display: grid; grid-template-columns: 56px repeat(6, minmax(120px, 1fr)); min-width: 820px; }
+  .cal-head { position: sticky; top: 0; background: var(--surface); z-index: 2; padding: 12px 8px; border-bottom: 1px solid var(--border); text-align: center; font-size: .82rem; }
+  .cal-head strong { display: block; font-size: 1.2rem; font-family: var(--font-display); font-weight: 400; }
+  .cal-head.today strong { color: var(--surface); background: var(--rose); width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; margin: 2px auto 0; }
+  .cal-times { border-right: 1px solid var(--border); }
+  .cal-times div:first-child { visibility: hidden; }
+  .cal-times div { height: 56px; font-size: .72rem; color: var(--muted); text-align: right; padding: 0 8px; transform: translateY(-8px); font-variant-numeric: tabular-nums; }
+  .cal-day { position: relative; border-right: 1px solid var(--border); background-image: repeating-linear-gradient(to bottom, transparent 0 55px, var(--border) 55px 56px); }
+  .cal-day.closed-after { }
+  .cal-day .closed { position: absolute; left: 0; right: 0; background: repeating-linear-gradient(135deg, var(--surface-2) 0 6px, var(--neutral-bg) 6px 12px); pointer-events: none; }
+  .slot { position: absolute; left: 0; right: 0; height: 28px; border: 0; background: transparent; padding: 0; }
+  .slot:hover { background: rgba(140,106,63,.08); }
+  .slot:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; border-radius: 4px; }
+  .appt {
+    position: absolute; left: 4px; right: 4px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; border-radius: var(--r-sm); padding: 6px 8px; text-align: left;
+    background: color-mix(in srgb, var(--c) 14%, white); border: 0; border-left: 3px solid var(--c);
+    font-size: .78rem; line-height: 1.3; overflow: hidden; color: var(--fg); z-index: 1;
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .appt:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+  .appt strong { display: block; font-size: .82rem; }
+  .appt span.t { display: block; }
+  .appt.cancelled { opacity: .55; text-decoration: line-through; }
+  .appt.done { background: color-mix(in srgb, var(--c) 8%, var(--surface-2)); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: .8rem; color: var(--fg-soft); padding: 14px 20px; border-top: 1px solid var(--border); }
+
+  .agenda-day { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+  .agenda-day:last-child { border-bottom: 0; }
+  .agenda-day h3 { font-size: .85rem; font-weight: 600; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+  .agenda-day h3.today { color: var(--rose); }
+
+  /* ---------- Services ---------- */
+  .svc-row { display: grid; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--border); align-items: end; }
+  .svc-row:last-child { border-bottom: 0; }
+  @media (min-width: 800px) { .svc-row { grid-template-columns: 1.6fr .8fr .8fr auto; } }
+  .svc-row .name { display: flex; gap: 10px; align-items: center; min-height: 44px; }
+  .svc-row .name .svc-dot { width: 14px; height: 14px; }
+  .svc-row .name strong { font-weight: 600; }
+  .svc-row .name small { display: block; color: var(--muted); font-size: .78rem; font-weight: 400; }
+  .suffix { position: relative; }
+  .suffix input { padding-right: 44px; }
+  .suffix span { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: .85rem; pointer-events: none; }
+  .switch { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: .85rem; cursor: pointer; }
+  .switch input { width: 40px; height: 22px; appearance: none; -webkit-appearance: none; background: var(--border-strong); border-radius: 999px; position: relative; cursor: pointer; transition: background-color .2s ease; margin: 0; }
+  .switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s var(--ease); }
+  .switch input:checked { background: var(--ok); }
+  .switch input:checked::after { transform: translateX(18px); }
+
+  /* ---------- Dialog ---------- */
+  dialog {
+    border: 0; padding: 0; border-radius: var(--r-lg); width: min(560px, calc(100vw - 24px)); max-height: calc(100dvh - 24px);
+    box-shadow: var(--shadow-lg); background: var(--surface); color: var(--fg);
+  }
+  dialog::backdrop { background: rgba(43,33,29,.5); }
+  dialog[open] { animation: pop .22s var(--ease); }
+  @keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.98); } }
+  .dlg { display: flex; flex-direction: column; max-height: calc(100dvh - 24px); }
+  .dlg-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+  .dlg-head h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; }
+  .dlg-body { padding: 20px; display: grid; gap: 14px; overflow-y: auto; }
+  .dlg-foot { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; padding: 14px 20px; border-top: 1px solid var(--border); background: var(--surface-2); }
+  .dlg-foot .spacer { flex: 1; }
+  .notice { display: flex; gap: 10px; padding: 10px 12px; border-radius: var(--r-sm); font-size: .84rem; background: var(--warn-bg); color: var(--warn); }
+  .notice[hidden] { display: none; }
+  .notice .ic { width: 18px; height: 18px; margin-top: 1px; }
+  .history { display: grid; gap: 0; border: 1px solid var(--border); border-radius: var(--r-md); }
+  .history li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: .86rem; }
+  .history li:last-child { border-bottom: 0; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .stat-row div { background: var(--surface-2); border-radius: var(--r-sm); padding: 10px 12px; }
+  .stat-row small { display: block; color: var(--muted); font-size: .75rem; }
+  .stat-row strong { font-variant-numeric: tabular-nums; }
+
+  /* Toast */
+  .toasts { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 100; display: grid; gap: 8px; }
+  .toast {
+    display: flex; align-items: center; gap: 10px; background: var(--dark); color: var(--on-dark);
+    padding: 12px 16px; border-radius: var(--r-md); box-shadow: var(--shadow-lg); font-size: .88rem;
+    animation: toast-in .25s var(--ease);
+  }
+  .toast .ic { color: var(--accent-light); width: 18px; height: 18px; }
+  .toast button { background: none; border: 0; color: var(--accent-light); font-weight: 600; padding: 4px 6px; margin-left: 6px; }
+  @keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
+
+  .settings { display: grid; gap: 20px; }
+  @media (min-width: 900px) { .settings { grid-template-columns: 1fr 1fr; } }
+  .settings p { color: var(--fg-soft); font-size: .9rem; }
+  .settings .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></g></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.8c1.8.7 3 2.4 3.5 5.2"/></g></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="8" cy="8" r="1.5"/></g></symbol>
+    <symbol id="i-cog" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h10"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7"/><path d="M15 11.2c3.2.2 6 1.4 6 2.8v4c0 1.7-2.7 3-6 3-2.1 0-4-.5-5-1.4"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/></g></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 20a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m-5-5 5 5 5-5M4 20h16"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.3-5.7L4 8.5M4 4v4.5h4.5"/></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Menu panelu">
+    <a class="brand" href="#/pulpit">
+      <span class="brand-mark" aria-hidden="true">KG</span>
+      <span class="brand-name"><strong>Klaudia Gilar</strong><span>Panel studia</span></span>
+    </a>
+    <nav aria-label="Sekcje panelu">
+      <p class="nav-label">Menu</p>
+      <ul class="nav">
+        <li><a href="#/pulpit" data-route="pulpit"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg>Pulpit</a></li>
+        <li><a href="#/kalendarz" data-route="kalendarz"><svg class="ic" aria-hidden="true"><use href="#i-cal"/></svg>Kalendarz</a></li>
+        <li><a href="#/zgloszenia" data-route="zgloszenia"><svg class="ic" aria-hidden="true"><use href="#i-inbox"/></svg>Zgłoszenia<span class="count" id="lead-count" hidden></span></a></li>
+        <li><a href="#/klientki" data-route="klientki"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Klientki</a></li>
+        <li><a href="#/uslugi" data-route="uslugi"><svg class="ic" aria-hidden="true"><use href="#i-tag"/></svg>Usługi i cennik</a></li>
+        <li><a href="#/ustawienia" data-route="ustawienia"><svg class="ic" aria-hidden="true"><use href="#i-cog"/></svg>Ustawienia</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="site-link" href="Strona-studia-Klaudia-Gilar.html" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Zobacz stronę studia</a>
+      <div class="user"><span class="av" aria-hidden="true">KG</span><div>Klaudia Gilar<small>Właścicielka</small></div></div>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="btn btn-ghost icon-btn menu-btn" id="menu-btn" aria-label="Otwórz menu" aria-controls="sidebar" aria-expanded="false"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button>
+      <div>
+        <h1 class="page-title" id="page-title">Pulpit</h1>
+        <p class="page-sub" id="page-sub"></p>
+      </div>
+      <div class="topbar-actions">
+        <span class="demo-pill" title="Dane zapisują się tylko w tej przeglądarce">Tryb demo</span>
+        <button class="btn btn-primary" id="new-appt-btn"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg><span class="btn-label-sm">Nowa wizyta</span><span class="sr-only">Nowa wizyta</span></button>
+      </div>
+    </header>
+    <main class="content" id="view" tabindex="-1"></main>
+  </div>
+</div>
+
+<!-- Appointment dialog -->
+<dialog id="appt-dlg" aria-labelledby="appt-dlg-title">
+  <form class="dlg" id="appt-form" method="dialog" novalidate>
+    <div class="dlg-head">
+      <h2 id="appt-dlg-title">Nowa wizyta</h2>
+      <button type="button" class="btn btn-ghost icon-btn" data-close aria-label="Zamknij"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="dlg-body">
+      <div class="field">
+        <label for="a-client">Klientka</label>
+        <select id="a-client" name="client" required></select>
+        <span class="err">Wybierz klientkę.</span>
+      </div>
+      <div class="grid-2" id="a-new-client" hidden>
+        <div class="field"><label for="a-new-name">Imię i nazwisko</label><input id="a-new-name" autocomplete="off"><span class="err">Podaj imię i nazwisko.</span></div>
+        <div class="field"><label for="a-new-phone">Telefon</label><input id="a-new-phone" type="tel" inputmode="tel" autocomplete="off"></div>
+      </div>
+      <div class="field">
+        <label for="a-service">Zabieg</label>
+        <select id="a-service" name="service" required></select>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label for="a-date">Data</label><input id="a-date" type="date" required><span class="err">Wybierz datę.</span></div>
+        <div class="field"><label for="a-time">Godzina</label><input id="a-time" type="time" step="900" min="08:00" max="19:00" required><span class="err">Podaj godzinę.</span></div>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label for="a-duration">Czas trwania</label><div class="suffix"><input id="a-duration" type="number" min="15" step="15" inputmode="numeric"><span>min</span></div></div>
+        <div class="field"><label for="a-price">Cena</label><div class="suffix"><input id="a-price" type="number" min="0" step="10" inputmode="numeric"><span>zł</span></div></div>
+      </div>
+      <div class="field" id="a-status-wrap">
+        <label for="a-status">Status</label>
+        <select id="a-status">
+          <option value="zaplanowana">Zaplanowana</option>
+          <option value="zakonczona">Zakończona</option>
+          <option value="odwolana">Odwołana</option>
+        </select>
+      </div>
+      <div class="field"><label for="a-notes">Notatki</label><textarea id="a-notes" placeholder="np. pigment, uwagi po konsultacji"></textarea></div>
+      <p class="notice" id="a-conflict" role="alert" hidden><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+    </div>
+    <div class="dlg-foot">
+      <button type="button" class="btn btn-danger" id="a-delete" hidden>Usuń</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn btn-outline" data-close>Anuluj</button>
+      <button type="submit" class="btn btn-primary">Zapisz wizytę</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Client dialog -->
+<dialog id="client-dlg" aria-labelledby="client-dlg-title">
+  <form class="dlg" id="client-form" method="dialog" novalidate>
+    <div class="dlg-head">
+      <h2 id="client-dlg-title">Klientka</h2>
+      <button type="button" class="btn btn-ghost icon-btn" data-close aria-label="Zamknij"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="dlg-body">
+      <div class="grid-2">
+        <div class="field"><label for="c-name">Imię i nazwisko</label><input id="c-name" required autocomplete="off"><span class="err">Podaj imię i nazwisko.</span></div>
+        <div class="field"><label for="c-phone">Telefon</label><input id="c-phone" type="tel" inputmode="tel" autocomplete="off"></div>
+      </div>
+      <div class="field"><label for="c-email">E-mail</label><input id="c-email" type="email" autocomplete="off"></div>
+      <div class="field"><label for="c-notes">Karta klientki / notatki</label><textarea id="c-notes" placeholder="Przeciwwskazania, typ skóry, użyte pigmenty…"></textarea></div>
+      <div id="c-history"></div>
+    </div>
+    <div class="dlg-foot">
+      <button type="button" class="btn btn-outline" id="c-book" hidden>Umów wizytę</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn btn-outline" data-close>Anuluj</button>
+      <button type="submit" class="btn btn-primary">Zapisz</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================= Utilities ================= */
+  var STORE_KEY = 'kg_admin_v1';
+  var LEADS_KEY = 'kg_leads';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  function esc(v) { return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function uid() { return Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-4); }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function iso(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function parseISO(s) { var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
+  function startOfWeek(d) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); var wd = (x.getDay() + 6) % 7; return addDays(x, -wd); }
+  function toMin(t) { var p = t.split(':'); return +p[0] * 60 + +p[1]; }
+  function fromMin(m) { return pad(Math.floor(m / 60)) + ':' + pad(m % 60); }
+  var TODAY = new Date(); TODAY.setHours(0, 0, 0, 0);
+  var TODAY_ISO = iso(TODAY);
+  var fmtMoney = new Intl.NumberFormat('pl-PL', { maximumFractionDigits: 0 });
+  function money(n) { return fmtMoney.format(n) + ' zł'; }
+  var DAYS = ['niedziela', 'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota'];
+  var DAYS_SHORT = ['nd', 'pn', 'wt', 'śr', 'cz', 'pt', 'sb'];
+  var MONTHS = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
+  var MONTHS_NOM = ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'];
+  function fmtDate(s, withDay) { var d = parseISO(s); return (withDay ? DAYS_SHORT[d.getDay()] + ', ' : '') + d.getDate() + ' ' + MONTHS[d.getMonth()]; }
+  function relDate(s) {
+    var diff = Math.round((parseISO(s) - TODAY) / 864e5);
+    if (diff === 0) return 'dziś'; if (diff === 1) return 'jutro'; if (diff === -1) return 'wczoraj';
+    return fmtDate(s, true);
+  }
+  function initials(name) { return name.split(/\s+/).map(function (w) { return w[0]; }).join('').slice(0, 2).toUpperCase(); }
+  function plural(n, one, few, many) { var m10 = n % 10, m100 = n % 100; if (n === 1) return one; if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few; return many; }
+  function storageGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function storageSet(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+  function storageDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+
+  /* ================= Seed data ================= */
+  var SERVICES = [
+    { id: 'brwi', name: 'Brwi pudrowe', price: 1100, duration: 150, color: 'var(--svc-brwi)', visible: true, main: true },
+    { id: 'usta', name: 'Usta akwarelowe', price: 1200, duration: 180, color: 'var(--svc-usta)', visible: true, main: true },
+    { id: 'kreska', name: 'Kreski i rzęsy', price: 800, duration: 120, color: 'var(--svc-kreska)', visible: true, main: true },
+    { id: 'remover', name: 'Remover i korekty', price: 350, duration: 90, color: 'var(--svc-remover)', visible: true, main: false },
+    { id: 'dopig', name: 'Dopigmentowanie', price: 0, duration: 90, color: 'var(--svc-dopig)', visible: false, main: false },
+    { id: 'konsult', name: 'Konsultacja', price: 0, duration: 30, color: 'var(--svc-konsult)', visible: false, main: false }
+  ];
+  var NAMES = ['Anna Malinowska', 'Karolina Wójcik', 'Joanna Sowa', 'Magdalena Kruk', 'Ewelina Nowak', 'Patrycja Zając', 'Natalia Dudek', 'Aleksandra Pająk', 'Monika Rak', 'Justyna Bąk', 'Weronika Lis', 'Katarzyna Mazur', 'Paulina Wróbel', 'Agnieszka Kowal', 'Sylwia Pietrzak', 'Dominika Kania'];
+
+  function seed() {
+    var s = 7;
+    function rnd() { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }
+    function pick(a) { return a[Math.floor(rnd() * a.length)]; }
+    var clients = NAMES.map(function (n, i) {
+      return { id: 'c' + i, name: n, phone: '+48 5' + pad(10 + i * 3) + ' ' + (100 + i * 37) + ' ' + (200 + i * 29), email: '', notes: i % 4 === 0 ? 'Skóra mieszana, skłonność do zaczerwienień.' : '' };
+    });
+    var appts = [];
+    function add(date, start, svcId, clientId, status) {
+      var svc = SERVICES.filter(function (x) { return x.id === svcId; })[0];
+      appts.push({ id: uid(), clientId: clientId, serviceId: svcId, date: iso(date), start: start, duration: svc.duration, price: svc.price, status: status, notes: '' });
+    }
+    // History: ~6 months back
+    var mainIds = ['brwi', 'brwi', 'brwi', 'usta', 'kreska', 'remover'];
+    var weekStart = startOfWeek(TODAY);
+    for (var back = 180; back >= 1; back -= 1) {
+      var d = addDays(TODAY, -back);
+      if (d >= weekStart) continue;
+      if (d.getDay() === 0) continue;
+      if (rnd() < 0.55) continue;
+      var startT = pick(['09:00', '10:00', '12:30', '14:00']);
+      var svc = pick(mainIds);
+      var c = pick(clients).id;
+      add(d, startT, svc, c, rnd() < 0.06 ? 'odwolana' : 'zakonczona');
+      // follow-up touch-up 6 weeks later for main services, if it's in the past
+      var f = addDays(d, 42);
+      if (svc !== 'remover' && f < weekStart && f.getDay() !== 0 && rnd() < 0.7) add(f, '16:00', 'dopig', c, 'zakonczona');
+    }
+    // This & next week
+    var wk = startOfWeek(TODAY);
+    var plan = [
+      [0, '09:00', 'brwi'], [0, '13:00', 'konsult'], [0, '14:00', 'usta'],
+      [1, '10:00', 'kreska'], [1, '15:00', 'dopig'],
+      [2, '09:30', 'brwi'], [2, '13:30', 'remover'],
+      [3, '09:00', 'usta'], [3, '14:30', 'brwi'],
+      [4, '10:00', 'brwi'], [4, '13:00', 'dopig'], [4, '15:30', 'konsult'],
+      [5, '09:00', 'kreska'], [5, '11:30', 'dopig'],
+      [7, '09:00', 'brwi'], [7, '14:00', 'konsult'], [8, '10:00', 'usta'], [9, '09:00', 'brwi'], [9, '13:00', 'dopig'], [11, '10:00', 'kreska']
+    ];
+    plan.forEach(function (p, i) {
+      var day = addDays(wk, p[0]);
+      add(day, p[1], p[2], clients[(i * 5) % clients.length].id, day < TODAY ? 'zakonczona' : 'zaplanowana');
+    });
+    [['Emilia Górska', 38, 'brwi'], ['Zuzanna Kmieć', 47, 'usta'], ['Laura Siwiec', 33, 'kreska']].forEach(function (x, i) {
+      var nc = { id: 'cx' + i, name: x[0], phone: '+48 69' + i + ' 404 ' + (310 + i * 11), email: '', notes: '' };
+      clients.push(nc);
+      var dd = addDays(TODAY, -x[1]); if (dd.getDay() === 0) dd = addDays(dd, -1);
+      add(dd, '10:00', x[2], nc.id, 'zakonczona');
+    });
+    appts[appts.length - 6].notes = 'Pigment: Warm Brown 2. Pierwszy zabieg.';
+    var leads = [
+      { id: 'l1', name: 'Oliwia', phone: '+48 600 123 456', service: 'brwi', when: 'Jak najszybciej', msg: 'Nigdy nie miałam makijażu permanentnego, zależy mi na naturalnym efekcie.', createdAt: new Date(Date.now() - 2 * 36e5).toISOString(), status: 'nowe' },
+      { id: 'l2', name: 'Marta', phone: '+48 511 222 333', service: 'remover', when: 'Termin elastyczny', msg: 'Mam stare brwi z innego salonu, zrobiły się szare.', createdAt: new Date(Date.now() - 20 * 36e5).toISOString(), status: 'nowe' },
+      { id: 'l3', name: 'Iga', phone: '+48 790 450 120', service: 'usta', when: 'W przyszłym miesiącu', msg: '', createdAt: new Date(Date.now() - 3 * 864e5).toISOString(), status: 'w-kontakcie' },
+      { id: 'l4', name: 'Beata', phone: '+48 604 998 877', service: 'kreska', when: 'W ciągu 2 tygodni', msg: 'Czy można połączyć z brwiami?', createdAt: new Date(Date.now() - 6 * 864e5).toISOString(), status: 'umowione' }
+    ];
+    return { version: 1, services: JSON.parse(JSON.stringify(SERVICES)), clients: clients, appts: appts, leads: leads };
+  }
+
+  var state;
+  function load() {
+    var raw = storageGet(STORE_KEY);
+    try { state = raw ? JSON.parse(raw) : null; } catch (e) { state = null; }
+    if (!state || state.version !== 1) { state = seed(); save(); }
+    importLeads();
+  }
+  function save() { storageSet(STORE_KEY, JSON.stringify(state)); }
+  // Leads submitted from the public site's form
+  function importLeads() {
+    var raw = storageGet(LEADS_KEY), incoming = [];
+    try { incoming = raw ? JSON.parse(raw) : []; } catch (e) {}
+    if (!incoming.length) return 0;
+    var known = {}; state.leads.forEach(function (l) { known[l.id] = 1; });
+    var added = 0;
+    incoming.forEach(function (l) { if (!known[l.id]) { l.status = 'nowe'; state.leads.unshift(l); added++; } });
+    storageDel(LEADS_KEY);
+    if (added) save();
+    return added;
+  }
+
+  function svcById(id) { return state.services.filter(function (s) { return s.id === id; })[0] || { name: id, color: '#999', price: 0, duration: 60 }; }
+  function clientById(id) { return state.clients.filter(function (c) { return c.id === id; })[0] || { name: '—', phone: '' }; }
+  function sortAppts(a, b) { return a.date === b.date ? toMin(a.start) - toMin(b.start) : (a.date < b.date ? -1 : 1); }
+
+  /* ================= Toast ================= */
+  function toast(msg, undo) {
+    var el = document.createElement('div');
+    el.className = 'toast';
+    el.innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>' + esc(msg) + '</span>';
+    if (undo) {
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = 'Cofnij';
+      b.addEventListener('click', function () { undo(); el.remove(); });
+      el.appendChild(b);
+    }
+    $('#toasts').appendChild(el);
+    setTimeout(function () { el.remove(); }, undo ? 6000 : 3200);
+  }
+
+  /* ================= Router ================= */
+  var ROUTES = {
+    pulpit: { title: 'Pulpit', render: renderDashboard },
+    kalendarz: { title: 'Kalendarz', render: renderCalendar },
+    zgloszenia: { title: 'Zgłoszenia', render: renderLeads },
+    klientki: { title: 'Klientki', render: renderClients },
+    uslugi: { title: 'Usługi i cennik', render: renderServices },
+    ustawienia: { title: 'Ustawienia', render: renderSettings }
+  };
+  var current = 'pulpit';
+  function route() {
+    var name = (location.hash.replace(/^#\/?/, '') || 'pulpit').split('?')[0];
+    if (!ROUTES[name]) name = 'pulpit';
+    var changed = name !== current;
+    current = name;
+    $$('.nav a').forEach(function (a) { if (a.dataset.route === name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    $('#page-title').textContent = ROUTES[name].title;
+    document.title = ROUTES[name].title + ' — Panel studia KG';
+    render();
+    closeSidebar();
+    if (changed) { window.scrollTo(0, 0); $('#view').focus({ preventScroll: true }); }
+  }
+  function render() {
+    $('#page-sub').textContent = '';
+    ROUTES[current].render($('#view'));
+    updateLeadCount();
+  }
+  function updateLeadCount() {
+    var n = state.leads.filter(function (l) { return l.status === 'nowe'; }).length;
+    var el = $('#lead-count'); el.hidden = !n; el.textContent = n;
+    el.setAttribute('aria-label', n + ' ' + plural(n, 'nowe', 'nowe', 'nowych'));
+  }
+
+  /* ================= Dashboard ================= */
+  function renderDashboard(v) {
+    var d = TODAY;
+    $('#page-sub').textContent = 'Dzień dobry, Klaudio · ' + DAYS[d.getDay()] + ', ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
+    var wkStart = iso(startOfWeek(TODAY)), wkEnd = iso(addDays(startOfWeek(TODAY), 6));
+    var active = state.appts.filter(function (a) { return a.status !== 'odwolana'; });
+    var today = active.filter(function (a) { return a.date === TODAY_ISO; }).sort(sortAppts);
+    var week = active.filter(function (a) { return a.date >= wkStart && a.date <= wkEnd; });
+    var newLeads = state.leads.filter(function (l) { return l.status === 'nowe'; });
+
+    // Revenue by month (completed only), last 6 months
+    var months = [];
+    for (var i = 5; i >= 0; i--) {
+      var md = new Date(TODAY.getFullYear(), TODAY.getMonth() - i, 1);
+      months.push({ key: md.getFullYear() + '-' + pad(md.getMonth() + 1), label: MONTHS_NOM[md.getMonth()].slice(0, 3), full: MONTHS_NOM[md.getMonth()] + ' ' + md.getFullYear(), sum: 0, count: 0 });
+    }
+    state.appts.forEach(function (a) {
+      if (a.status !== 'zakonczona') return;
+      var m = months.filter(function (x) { return a.date.slice(0, 7) === x.key; })[0];
+      if (m) { m.sum += +a.price || 0; m.count++; }
+    });
+    var cur = months[5], prev = months[4];
+    var delta = prev.sum ? Math.round((cur.sum - prev.sum) / prev.sum * 100) : 0;
+    // scheduled revenue this month (planned)
+    var planned = active.filter(function (a) { return a.status === 'zaplanowana' && a.date.slice(0, 7) === cur.key; }).reduce(function (s, a) { return s + (+a.price || 0); }, 0);
+
+    // touch-up reminders: main service done 4–10 weeks ago, no later touch-up/appointment for that client
+    var reminders = [];
+    state.clients.forEach(function (c) {
+      var list = state.appts.filter(function (a) { return a.clientId === c.id && a.status !== 'odwolana'; }).sort(sortAppts);
+      var lastMain = list.filter(function (a) { return svcById(a.serviceId).main && a.status === 'zakonczona'; }).pop();
+      if (!lastMain) return;
+      var days = Math.round((TODAY - parseISO(lastMain.date)) / 864e5);
+      if (days < 28 || days > 70) return;
+      var after = list.some(function (a) { return a.date > lastMain.date; });
+      if (!after) reminders.push({ client: c, appt: lastMain, days: days });
+    });
+    reminders.sort(function (a, b) { return b.days - a.days; });
+
+    var max = Math.max.apply(null, months.map(function (m) { return m.sum; })) || 1;
+    var step = Math.pow(10, Math.floor(Math.log10(max))) * (max / Math.pow(10, Math.floor(Math.log10(max))) > 5 ? 2 : 1);
+    var top = Math.ceil(max / step) * step;
+    var grid = '';
+    for (var g = step; g <= top; g += step) grid += '<div class="gridline" style="bottom:' + (g / top * 100 * (176 / 200)) + '%" aria-hidden="true"><span>' + fmtMoney.format(g / 1000) + ' tys.</span></div>';
+
+    v.innerHTML =
+      '<section class="kpis" aria-label="Podsumowanie">' +
+        kpi('i-cal', 'Wizyty dziś', today.length, today.length ? 'najbliższa ' + (today.filter(function (a) { return a.status === 'zaplanowana'; })[0] || today[0]).start : 'wolny dzień') +
+        kpi('i-clock', 'Wizyty w tym tygodniu', week.length, active.filter(function (a) { return a.date > wkEnd && a.date <= iso(addDays(startOfWeek(TODAY), 13)); }).length + ' w kolejnym') +
+        kpi('i-inbox', 'Nowe zgłoszenia', newLeads.length, newLeads.length ? '<a href="#/zgloszenia">Odpowiedz teraz</a>' : 'wszystko obsłużone') +
+        kpi('i-coins', 'Przychód — ' + MONTHS_NOM[TODAY.getMonth()], money(cur.sum), (prev.sum ? '<span class="' + (delta >= 0 ? 'up' : 'down') + '">' + (delta >= 0 ? '▲ ' : '▼ ') + Math.abs(delta) + '%</span><span>vs poprz. miesiąc</span>' : '') + (planned ? '<span>+' + money(planned) + ' zaplanowane</span>' : '')) +
+      '</section>' +
+      '<div class="dash-grid">' +
+        '<section class="card" aria-labelledby="today-h">' +
+          '<div class="card-head"><div><h2 id="today-h">Plan na dziś</h2><p>' + today.length + ' ' + plural(today.length, 'wizyta', 'wizyty', 'wizyt') + '</p></div><a class="btn btn-outline btn-sm" href="#/kalendarz">Otwórz kalendarz</a></div>' +
+          '<div class="card-body">' + (today.length ? '<ul class="agenda">' + today.map(agendaItem).join('') + '</ul>' : empty('i-cal', 'Brak wizyt na dziś.')) + '</div>' +
+        '</section>' +
+        '<section class="card" aria-labelledby="leads-h">' +
+          '<div class="card-head"><div><h2 id="leads-h">Najnowsze zgłoszenia</h2><p>Z formularza na stronie</p></div><a class="btn btn-outline btn-sm" href="#/zgloszenia">Wszystkie</a></div>' +
+          '<div class="card-body">' + (state.leads.length ? '<ul>' + state.leads.slice(0, 4).map(function (l) {
+            return '<li class="reminder"><span class="svc-dot" style="--c:' + svcById(l.service).color + '"></span><div class="meta"><div>' + esc(l.name) + ' · ' + esc(svcById(l.service).name) + '</div><div>' + timeAgo(l.createdAt) + ' · ' + esc(l.phone) + '</div></div>' + leadBadge(l.status) + '</li>';
+          }).join('') + '</ul>' : empty('i-inbox', 'Brak zgłoszeń.')) + '</div>' +
+        '</section>' +
+        '<section class="card" aria-labelledby="rev-h">' +
+          '<div class="card-head"><div><h2 id="rev-h">Przychód z zakończonych wizyt</h2><p>Ostatnie 6 miesięcy</p></div></div>' +
+          '<div class="card-body"><div class="chart" id="rev-chart">' +
+            '<div class="chart-plot">' + grid + months.map(function (m, idx) {
+              var h = m.sum / top * 100;
+              return '<div class="bar-col' + (idx === 5 ? ' current' : '') + '" tabindex="0" role="img" aria-label="' + m.full + ': ' + money(m.sum) + ', ' + m.count + ' ' + plural(m.count, 'wizyta', 'wizyty', 'wizyt') + '" data-tip="<strong>' + money(m.sum) + '</strong>' + m.full + ' · ' + m.count + ' ' + plural(m.count, 'wizyta', 'wizyty', 'wizyt') + '">' +
+                '<div class="b" style="height:' + Math.max(h * (176 / 200), m.sum ? 1.5 : 0) + '%"></div>' +
+                (idx === 5 ? '<span class="direct" style="bottom:calc(' + (h * 176 / 200) + '% + 6px);top:auto">' + money(m.sum) + '</span>' : '') +
+              '</div>';
+            }).join('') + '</div>' +
+            '<div class="chart-x" aria-hidden="true">' + months.map(function (m) { return '<span>' + m.label + '</span>'; }).join('') + '</div>' +
+            '<div class="tip" id="rev-tip"></div>' +
+          '</div></div>' +
+        '</section>' +
+        '<section class="card" aria-labelledby="rem-h">' +
+          '<div class="card-head"><div><h2 id="rem-h">Do umówienia: dopigmentowanie</h2><p>4–10 tygodni po zabiegu, bez kolejnej wizyty</p></div></div>' +
+          '<div class="card-body">' + (reminders.length ? '<ul>' + reminders.slice(0, 5).map(function (r) {
+            return '<li class="reminder"><svg class="ic" style="color:var(--accent)" aria-hidden="true"><use href="#i-bell"/></svg><div class="meta"><div>' + esc(r.client.name) + '</div><div>' + esc(svcById(r.appt.serviceId).name) + ' · ' + r.days + ' dni temu</div></div><button class="btn btn-outline btn-sm" data-book-client="' + r.client.id + '">Umów</button></li>';
+          }).join('') + '</ul>' + (reminders.length > 5 ? '<p class="cell-sub" style="margin-top:8px">+ ' + (reminders.length - 5) + ' kolejnych</p>' : '') : empty('i-check', 'Wszystkie dopigmentowania umówione.')) + '</div>' +
+        '</section>' +
+      '</div>';
+
+    bindChart($('#rev-chart'));
+    $$('[data-appt]', v).forEach(function (b) { b.addEventListener('click', function () { openAppt(b.dataset.appt); }); });
+    $$('[data-book-client]', v).forEach(function (b) { b.addEventListener('click', function () { openAppt(null, { clientId: b.dataset.bookClient, serviceId: 'dopig' }); }); });
+  }
+  function kpi(icon, label, value, sub) {
+    return '<div class="card kpi"><span class="lbl"><svg class="ic" aria-hidden="true"><use href="#' + icon + '"/></svg>' + label + '</span><span class="val">' + value + '</span><span class="delta">' + sub + '</span></div>';
+  }
+  function agendaItem(a) {
+    var s = svcById(a.serviceId), c = clientById(a.clientId);
+    return '<li class="agenda-item"><time>' + a.start + '<small>' + fromMin(toMin(a.start) + a.duration) + '</small></time>' +
+      '<button class="link bar" style="--c:' + s.color + '" data-appt="' + a.id + '"><span class="who">' + esc(c.name) + '</span><span class="what" style="display:block">' + esc(s.name) + (a.price ? ' · ' + money(a.price) : '') + '</span></button>' +
+      apptBadge(a.status) + '</li>';
+  }
+  function empty(icon, text) { return '<div class="empty"><svg class="ic" aria-hidden="true"><use href="#' + icon + '"/></svg>' + text + '</div>'; }
+  function timeAgo(isoStr) {
+    var m = Math.round((Date.now() - new Date(isoStr)) / 6e4);
+    if (m < 1) return 'przed chwilą'; if (m < 60) return m + ' min temu';
+    var h = Math.round(m / 60); if (h < 24) return h + ' h temu';
+    var d = Math.round(h / 24); return d + ' ' + plural(d, 'dzień', 'dni', 'dni') + ' temu';
+  }
+  function bindChart(root) {
+    var tip = $('.tip', root);
+    function show(col) {
+      var r = col.getBoundingClientRect(), rr = root.getBoundingClientRect(), b = $('.b', col).getBoundingClientRect();
+      tip.innerHTML = col.dataset.tip;
+      tip.style.left = (r.left - rr.left + r.width / 2) + 'px';
+      tip.style.top = (b.top - rr.top - 8) + 'px';
+      tip.classList.add('show');
+    }
+    function hide() { tip.classList.remove('show'); }
+    $$('.bar-col', root).forEach(function (c) {
+      c.addEventListener('mouseenter', function () { show(c); });
+      c.addEventListener('focus', function () { show(c); });
+      c.addEventListener('mouseleave', hide);
+      c.addEventListener('blur', hide);
+    });
+  }
+
+  var APPT_STATUS = { zaplanowana: ['Zaplanowana', 'info'], zakonczona: ['Zakończona', 'ok'], odwolana: ['Odwołana', ''] };
+  function apptBadge(s) { var x = APPT_STATUS[s] || [s, '']; return '<span class="badge ' + x[1] + '">' + x[0] + '</span>'; }
+  var LEAD_STATUS = { 'nowe': ['Nowe', 'warn'], 'w-kontakcie': ['W kontakcie', 'info'], 'umowione': ['Umówione', 'ok'], 'odrzucone': ['Odrzucone', ''] };
+  function leadBadge(s) { var x = LEAD_STATUS[s] || [s, '']; return '<span class="badge ' + x[1] + '">' + x[0] + '</span>'; }
+
+  /* ================= Calendar ================= */
+  var calWeek = startOfWeek(TODAY);
+  var HOUR_H = 56, DAY_START = 8, DAY_END = 19;
+  var wide = window.matchMedia('(min-width: 900px)');
+  wide.addEventListener('change', function () { if (current === 'kalendarz') render(); });
+
+  function renderCalendar(v) {
+    var days = [];
+    for (var i = 0; i < 6; i++) days.push(addDays(calWeek, i));
+    var first = days[0], last = days[5];
+    var rangeText = first.getDate() + (first.getMonth() !== last.getMonth() ? ' ' + MONTHS[first.getMonth()] : '') + ' – ' + last.getDate() + ' ' + MONTHS[last.getMonth()] + ' ' + last.getFullYear();
+    var weekAppts = state.appts.filter(function (a) { return a.date >= iso(first) && a.date <= iso(last); });
+    $('#page-sub').textContent = weekAppts.filter(function (a) { return a.status !== 'odwolana'; }).length + ' wizyt w wybranym tygodniu';
+
+    var body;
+    if (wide.matches) {
+      var times = '';
+      for (var h = DAY_START; h < DAY_END; h++) times += '<div>' + pad(h) + ':00</div>';
+      body = '<div class="cal"><div class="cal-grid" role="grid" aria-label="Tydzień ' + rangeText + '">' +
+        '<div class="cal-head" aria-hidden="true"></div>' +
+        days.map(function (d) { return '<div class="cal-head' + (iso(d) === TODAY_ISO ? ' today' : '') + '">' + DAYS_SHORT[d.getDay()] + '<strong>' + d.getDate() + '</strong></div>'; }).join('') +
+        '<div class="cal-times" aria-hidden="true">' + times + '</div>' +
+        days.map(function (d) {
+          var ds = iso(d), closeAt = d.getDay() === 6 ? 14 : 18;
+          var slots = '';
+          for (var m = DAY_START * 60; m < DAY_END * 60; m += 30) {
+            if (m < 9 * 60 || m >= closeAt * 60) continue;
+            slots += '<button class="slot" style="top:' + ((m - DAY_START * 60) / 60 * HOUR_H) + 'px" data-slot="' + ds + '|' + fromMin(m) + '" aria-label="Dodaj wizytę ' + fmtDate(ds, true) + ' o ' + fromMin(m) + '"></button>';
+          }
+          var closed = '<div class="closed" style="top:0;height:' + HOUR_H + 'px"></div><div class="closed" style="top:' + ((closeAt - DAY_START) * HOUR_H) + 'px;bottom:0"></div>';
+          var items = weekAppts.filter(function (a) { return a.date === ds; }).sort(sortAppts).map(function (a) {
+            var s = svcById(a.serviceId), c = clientById(a.clientId);
+            var top = (toMin(a.start) - DAY_START * 60) / 60 * HOUR_H, hgt = Math.max(a.duration / 60 * HOUR_H - 3, 24);
+            return '<button class="appt' + (a.status === 'odwolana' ? ' cancelled' : a.status === 'zakonczona' ? ' done' : '') + '" style="--c:' + s.color + ';top:' + top + 'px;height:' + hgt + 'px" data-appt="' + a.id + '">' +
+              '<strong>' + esc(c.name) + '</strong><span class="t">' + a.start + '–' + fromMin(toMin(a.start) + a.duration) + '</span><span class="t">' + esc(s.name) + '</span>' +
+              '<span class="sr-only">, ' + APPT_STATUS[a.status][0] + '</span></button>';
+          }).join('');
+          return '<div class="cal-day" style="height:' + ((DAY_END - DAY_START) * HOUR_H) + 'px">' + closed + slots + items + '</div>';
+        }).join('') +
+        '</div></div>';
+    } else {
+      body = days.map(function (d) {
+        var ds = iso(d);
+        var list = weekAppts.filter(function (a) { return a.date === ds; }).sort(sortAppts);
+        return '<div class="agenda-day"><h3 class="' + (ds === TODAY_ISO ? 'today' : '') + '">' + DAYS[d.getDay()] + ', ' + d.getDate() + ' ' + MONTHS[d.getMonth()] +
+          '<button class="btn btn-ghost btn-sm" data-slot="' + ds + '|' + (d.getDay() === 6 ? '09:00' : '10:00') + '" aria-label="Dodaj wizytę ' + fmtDate(ds, true) + '"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></h3>' +
+          (list.length ? '<ul class="agenda">' + list.map(agendaItem).join('') + '</ul>' : '<p class="cell-sub">Brak wizyt</p>') + '</div>';
+      }).join('');
+    }
+
+    v.innerHTML =
+      '<div class="cal-toolbar">' +
+        '<button class="btn btn-outline icon-btn" id="cal-prev" aria-label="Poprzedni tydzień"><svg class="ic" aria-hidden="true"><use href="#i-left"/></svg></button>' +
+        '<button class="btn btn-outline icon-btn" id="cal-next" aria-label="Następny tydzień"><svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></button>' +
+        '<button class="btn btn-outline btn-sm" id="cal-today">Dziś</button>' +
+        '<span class="cal-range" aria-live="polite">' + rangeText + '</span>' +
+      '</div>' +
+      '<section class="card" style="overflow:hidden">' + body +
+        '<div class="legend" aria-label="Legenda zabiegów">' + state.services.map(function (s) { return '<span class="svc-tag"><span class="svc-dot" style="--c:' + s.color + '"></span>' + esc(s.name) + '</span>'; }).join('') + '</div>' +
+      '</section>';
+
+    $('#cal-prev').addEventListener('click', function () { calWeek = addDays(calWeek, -7); render(); $('#cal-prev').focus(); });
+    $('#cal-next').addEventListener('click', function () { calWeek = addDays(calWeek, 7); render(); $('#cal-next').focus(); });
+    $('#cal-today').addEventListener('click', function () { calWeek = startOfWeek(TODAY); render(); });
+    $$('[data-appt]', v).forEach(function (b) { b.addEventListener('click', function () { openAppt(b.dataset.appt); }); });
+    $$('[data-slot]', v).forEach(function (b) { b.addEventListener('click', function () { var p = b.dataset.slot.split('|'); openAppt(null, { date: p[0], start: p[1] }); }); });
+    // scroll grid to 9:00 region is default since it starts at 8
+  }
+
+  /* ================= Appointment dialog ================= */
+  var apptDlg = $('#appt-dlg'), apptForm = $('#appt-form');
+  var editing = null, pendingLead = null;
+  function fillSelects() {
+    $('#a-client').innerHTML = '<option value="">— wybierz —</option><option value="__new">+ Nowa klientka</option>' +
+      state.clients.slice().sort(function (a, b) { return a.name.localeCompare(b.name, 'pl'); }).map(function (c) { return '<option value="' + c.id + '">' + esc(c.name) + '</option>'; }).join('');
+    $('#a-service').innerHTML = state.services.map(function (s) { return '<option value="' + s.id + '">' + esc(s.name) + (s.price ? ' — ' + money(s.price) : '') + '</option>'; }).join('');
+  }
+  function openAppt(id, preset) {
+    fillSelects();
+    preset = preset || {};
+    editing = id ? state.appts.filter(function (a) { return a.id === id; })[0] : null;
+    pendingLead = preset.leadId || null;
+    var a = editing || {
+      clientId: preset.clientId || '', serviceId: preset.serviceId || 'brwi',
+      date: preset.date || TODAY_ISO, start: preset.start || '10:00', status: 'zaplanowana', notes: preset.notes || ''
+    };
+    var svc = svcById(a.serviceId);
+    $('#appt-dlg-title').textContent = editing ? 'Edytuj wizytę' : 'Nowa wizyta';
+    $('#a-client').value = preset.newClient ? '__new' : a.clientId;
+    $('#a-new-client').hidden = !preset.newClient;
+    $('#a-new-name').value = preset.newClient ? preset.newClient.name : '';
+    $('#a-new-phone').value = preset.newClient ? preset.newClient.phone : '';
+    $('#a-service').value = a.serviceId;
+    $('#a-date').value = a.date;
+    $('#a-time').value = a.start;
+    $('#a-duration').value = editing ? a.duration : svc.duration;
+    $('#a-price').value = editing ? a.price : svc.price;
+    $('#a-status').value = a.status;
+    $('#a-status-wrap').hidden = !editing;
+    $('#a-notes').value = a.notes || '';
+    $('#a-delete').hidden = !editing;
+    $$('.field', apptForm).forEach(function (f) { f.classList.remove('invalid'); });
+    checkConflict();
+    apptDlg.showModal();
+  }
+  $('#a-client').addEventListener('change', function () { $('#a-new-client').hidden = this.value !== '__new'; if (this.value === '__new') $('#a-new-name').focus(); });
+  $('#a-service').addEventListener('change', function () { var s = svcById(this.value); $('#a-duration').value = s.duration; $('#a-price').value = s.price; checkConflict(); });
+  ['#a-date', '#a-time', '#a-duration'].forEach(function (s) { $(s).addEventListener('input', checkConflict); });
+  function checkConflict() {
+    var date = $('#a-date').value, start = $('#a-time').value, dur = +$('#a-duration').value || 0;
+    var n = $('#a-conflict');
+    if (!date || !start) { n.hidden = true; return; }
+    var s1 = toMin(start), e1 = s1 + dur;
+    var clash = state.appts.filter(function (a) {
+      if (editing && a.id === editing.id) return false;
+      if (a.date !== date || a.status === 'odwolana') return false;
+      var s2 = toMin(a.start), e2 = s2 + a.duration; return s1 < e2 && s2 < e1;
+    })[0];
+    var day = parseISO(date).getDay(), close = day === 6 ? 14 * 60 : 18 * 60;
+    var msg = '';
+    if (clash) msg = 'Termin koliduje z wizytą: ' + clientById(clash.clientId).name + ' (' + clash.start + '–' + fromMin(toMin(clash.start) + clash.duration) + ').';
+    else if (day === 0) msg = 'Niedziela — studio jest nieczynne.';
+    else if (s1 < 9 * 60 || e1 > close) msg = 'Wizyta wykracza poza godziny otwarcia (' + (day === 6 ? '9:00–14:00' : '9:00–18:00') + ').';
+    n.hidden = !msg; $('span', n).textContent = msg;
+  }
+  apptForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true;
+    function need(sel, cond) { var f = $(sel).closest('.field'); f.classList.toggle('invalid', !cond); if (!cond && ok) { $(sel).focus(); ok = false; } }
+    var cval = $('#a-client').value;
+    need('#a-client', !!cval);
+    if (cval === '__new') need('#a-new-name', $('#a-new-name').value.trim().length > 1);
+    need('#a-date', !!$('#a-date').value);
+    need('#a-time', !!$('#a-time').value);
+    if (!ok) return;
+    var clientId = cval;
+    if (cval === '__new') {
+      var nc = { id: 'c' + uid(), name: $('#a-new-name').value.trim(), phone: $('#a-new-phone').value.trim(), email: '', notes: '' };
+      state.clients.push(nc); clientId = nc.id;
+    }
+    var data = {
+      clientId: clientId, serviceId: $('#a-service').value, date: $('#a-date').value, start: $('#a-time').value,
+      duration: +$('#a-duration').value || svcById($('#a-service').value).duration, price: +$('#a-price').value || 0,
+      status: editing ? $('#a-status').value : 'zaplanowana', notes: $('#a-notes').value.trim()
+    };
+    if (editing) Object.assign(editing, data);
+    else { data.id = uid(); state.appts.push(data); }
+    if (pendingLead) { var l = state.leads.filter(function (x) { return x.id === pendingLead; })[0]; if (l) l.status = 'umowione'; }
+    save(); apptDlg.close();
+    if (!editing && current === 'kalendarz') calWeek = startOfWeek(parseISO(data.date));
+    render();
+    toast(editing ? 'Wizyta zaktualizowana' : 'Wizyta dodana: ' + fmtDate(data.date, true) + ', ' + data.start);
+  });
+  $('#a-delete').addEventListener('click', function () {
+    if (!editing) return;
+    var removed = editing, idx = state.appts.indexOf(removed);
+    state.appts.splice(idx, 1); save(); apptDlg.close(); render();
+    toast('Wizyta usunięta', function () { state.appts.splice(idx, 0, removed); save(); render(); });
+  });
+
+  $$('dialog [data-close]').forEach(function (b) { b.addEventListener('click', function () { b.closest('dialog').close(); }); });
+  $$('dialog').forEach(function (d) { d.addEventListener('click', function (e) { if (e.target === d) d.close(); }); });
+
+  /* ================= Leads ================= */
+  var leadFilter = 'wszystkie';
+  function renderLeads(v) {
+    var counts = { wszystkie: state.leads.length };
+    Object.keys(LEAD_STATUS).forEach(function (k) { counts[k] = state.leads.filter(function (l) { return l.status === k; }).length; });
+    $('#page-sub').textContent = counts.nowe + ' ' + plural(counts.nowe, 'nowe zgłoszenie', 'nowe zgłoszenia', 'nowych zgłoszeń') + ' do obsłużenia';
+    var list = state.leads.filter(function (l) { return leadFilter === 'wszystkie' || l.status === leadFilter; })
+      .sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); });
+    var filters = [['wszystkie', 'Wszystkie']].concat(Object.keys(LEAD_STATUS).map(function (k) { return [k, LEAD_STATUS[k][0]]; }));
+    v.innerHTML =
+      '<div class="toolbar" role="group" aria-label="Filtruj według statusu"><div class="chips">' + filters.map(function (f) {
+        return '<button class="chip" aria-pressed="' + (leadFilter === f[0]) + '" data-filter="' + f[0] + '">' + f[1] + ' <span class="n">' + counts[f[0]] + '</span></button>';
+      }).join('') + '</div></div>' +
+      '<section class="card">' + (list.length ?
+        '<div class="table-wrap"><table class="responsive"><thead><tr><th>Osoba</th><th>Zabieg</th><th>Preferowany termin</th><th>Otrzymano</th><th>Status</th><th><span class="sr-only">Akcje</span></th></tr></thead><tbody>' +
+        list.map(function (l) {
+          var s = svcById(l.service);
+          return '<tr>' +
+            '<td class="primary"><div class="cell-main">' + esc(l.name) + '</div><div class="cell-sub"><a href="tel:' + esc(l.phone.replace(/\s/g, '')) + '">' + esc(l.phone) + '</a></div>' + (l.msg ? '<div class="cell-sub" style="max-width:40ch;margin-top:4px">„' + esc(l.msg) + '”</div>' : '') + '</td>' +
+            '<td data-label="Zabieg"><span class="svc-tag"><span class="svc-dot" style="--c:' + s.color + '"></span>' + esc(s.name === 'nie-wiem' ? 'Nie wie jeszcze' : s.name) + '</span></td>' +
+            '<td data-label="Termin">' + esc(l.when) + '</td>' +
+            '<td data-label="Otrzymano">' + timeAgo(l.createdAt) + '</td>' +
+            '<td data-label="Status"><label class="sr-only" for="ls-' + l.id + '">Status zgłoszenia ' + esc(l.name) + '</label><select class="input" id="ls-' + l.id + '" data-lead-status="' + l.id + '" style="min-height:36px;padding:4px 10px;font-size:.85rem;width:auto">' +
+              Object.keys(LEAD_STATUS).map(function (k) { return '<option value="' + k + '"' + (l.status === k ? ' selected' : '') + '>' + LEAD_STATUS[k][0] + '</option>'; }).join('') + '</select></td>' +
+            '<td data-label="" class="num"><div style="display:flex;gap:6px;justify-content:flex-end"><a class="btn btn-ghost icon-btn" href="tel:' + esc(l.phone.replace(/\s/g, '')) + '" aria-label="Zadzwoń do ' + esc(l.name) + '"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></a>' +
+              (l.status !== 'umowione' ? '<button class="btn btn-primary btn-sm" data-lead-book="' + l.id + '">Umów wizytę</button>' : '') + '</div></td>' +
+          '</tr>';
+        }).join('') + '</tbody></table></div>'
+        : empty('i-inbox', 'Brak zgłoszeń w tej kategorii.')) + '</section>' +
+      '<p class="cell-sub">Zgłoszenia z formularza na stronie studia pojawiają się tu automatycznie (w tej samej przeglądarce).</p>';
+
+    $$('[data-filter]', v).forEach(function (b) { b.addEventListener('click', function () { leadFilter = b.dataset.filter; render(); var nb = $('[data-filter="' + leadFilter + '"]'); if (nb) nb.focus(); }); });
+    $$('[data-lead-status]', v).forEach(function (s) {
+      s.addEventListener('change', function () {
+        var l = state.leads.filter(function (x) { return x.id === s.dataset.leadStatus; })[0];
+        l.status = s.value; save(); updateLeadCount(); toast('Status: ' + LEAD_STATUS[s.value][0]);
+        if (leadFilter !== 'wszystkie') render();
+      });
+    });
+    $$('[data-lead-book]', v).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var l = state.leads.filter(function (x) { return x.id === b.dataset.leadBook; })[0];
+        var digits = function (p) { return (p || '').replace(/\D/g, '').slice(-9); };
+        var existing = state.clients.filter(function (c) { return digits(c.phone) && digits(c.phone) === digits(l.phone); })[0];
+        var svc = state.services.some(function (s) { return s.id === l.service; }) ? l.service : 'konsult';
+        openAppt(null, existing ? { clientId: existing.id, serviceId: svc, leadId: l.id, notes: l.msg } : { newClient: { name: l.name, phone: l.phone }, serviceId: svc, leadId: l.id, notes: l.msg });
+      });
+    });
+  }
+
+  /* ================= Clients ================= */
+  var clientQuery = '', clientSort = { key: 'last', dir: -1 };
+  function clientStats(c) {
+    var list = state.appts.filter(function (a) { return a.clientId === c.id; }).sort(sortAppts);
+    var done = list.filter(function (a) { return a.status === 'zakonczona'; });
+    var upcoming = list.filter(function (a) { return a.status === 'zaplanowana' && a.date >= TODAY_ISO; })[0];
+    return { list: list, visits: done.length, spent: done.reduce(function (s, a) { return s + (+a.price || 0); }, 0), last: done.length ? done[done.length - 1].date : '', next: upcoming };
+  }
+  function renderClients(v) {
+    $('#page-sub').textContent = state.clients.length + ' ' + plural(state.clients.length, 'klientka', 'klientki', 'klientek') + ' w bazie';
+    v.innerHTML =
+      '<div class="toolbar"><div class="search"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg><label class="sr-only" for="c-search">Szukaj klientki</label><input class="input" id="c-search" type="search" placeholder="Szukaj po imieniu lub telefonie" value="' + esc(clientQuery) + '"></div>' +
+      '<button class="btn btn-outline" id="c-add"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>Dodaj klientkę</button></div>' +
+      '<section class="card" id="c-table"></section>';
+    drawClients();
+    var inp = $('#c-search');
+    inp.addEventListener('input', function () { clientQuery = inp.value; drawClients(); });
+    $('#c-add').addEventListener('click', function () { openClient(null); });
+  }
+  function drawClients() {
+    var q = clientQuery.trim().toLowerCase();
+    var rows = state.clients.map(function (c) { return { c: c, s: clientStats(c) }; })
+      .filter(function (r) { return !q || r.c.name.toLowerCase().indexOf(q) > -1 || (r.c.phone || '').replace(/\s/g, '').indexOf(q.replace(/\s/g, '')) > -1; });
+    var k = clientSort.key, d = clientSort.dir;
+    rows.sort(function (a, b) {
+      var x = k === 'name' ? a.c.name : k === 'visits' ? a.s.visits : k === 'spent' ? a.s.spent : a.s.last;
+      var y = k === 'name' ? b.c.name : k === 'visits' ? b.s.visits : k === 'spent' ? b.s.spent : b.s.last;
+      return (typeof x === 'string' ? x.localeCompare(y, 'pl') : x - y) * d;
+    });
+    function th(key, label, cls) {
+      var on = clientSort.key === key;
+      return '<th class="' + (cls || '') + '" aria-sort="' + (on ? (clientSort.dir > 0 ? 'ascending' : 'descending') : 'none') + '"><button class="sort" data-sort="' + key + '">' + label + (on ? (clientSort.dir > 0 ? ' ↑' : ' ↓') : '') + '</button></th>';
+    }
+    var t = $('#c-table');
+    t.innerHTML = rows.length ? '<div class="table-wrap"><table class="responsive"><thead><tr>' + th('name', 'Klientka') + '<th>Telefon</th>' + th('visits', 'Wizyty', 'num') + th('spent', 'Wydała', 'num') + th('last', 'Ostatnia wizyta') + '<th>Najbliższa</th></tr></thead><tbody>' +
+      rows.map(function (r) {
+        return '<tr class="clickable" data-client="' + r.c.id + '">' +
+          '<td class="primary"><div style="display:flex;gap:10px;align-items:center"><span class="avatar" aria-hidden="true" style="width:34px;height:34px;border-radius:50%;background:var(--neutral-bg);display:grid;place-items:center;font-size:.75rem;font-weight:600;flex:none">' + esc(initials(r.c.name)) + '</span><button class="link cell-main" style="all:unset;cursor:pointer;font-weight:500" data-client-btn="' + r.c.id + '">' + esc(r.c.name) + '</button></div></td>' +
+          '<td data-label="Telefon">' + esc(r.c.phone || '—') + '</td>' +
+          '<td data-label="Wizyty" class="num">' + r.s.visits + '</td>' +
+          '<td data-label="Wydała" class="num">' + money(r.s.spent) + '</td>' +
+          '<td data-label="Ostatnia">' + (r.s.last ? relDate(r.s.last) : '—') + '</td>' +
+          '<td data-label="Najbliższa">' + (r.s.next ? relDate(r.s.next.date) + ', ' + r.s.next.start : '<span class="cell-sub">—</span>') + '</td></tr>';
+      }).join('') + '</tbody></table></div>' : empty('i-search', 'Nie znaleziono klientek pasujących do „' + esc(clientQuery) + '”.');
+    $$('[data-sort]', t).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var key = b.dataset.sort;
+        clientSort = { key: key, dir: clientSort.key === key ? -clientSort.dir : (key === 'name' ? 1 : -1) };
+        drawClients(); $('[data-sort="' + key + '"]').focus();
+      });
+    });
+    $$('tr[data-client]', t).forEach(function (tr) { tr.addEventListener('click', function () { openClient(tr.dataset.client); }); });
+  }
+  var clientDlg = $('#client-dlg'), clientEditing = null;
+  function openClient(id) {
+    clientEditing = id ? clientById(id) : null;
+    var c = clientEditing || { name: '', phone: '', email: '', notes: '' };
+    $('#client-dlg-title').textContent = clientEditing ? c.name : 'Nowa klientka';
+    $('#c-name').value = c.name; $('#c-phone').value = c.phone || ''; $('#c-email').value = c.email || ''; $('#c-notes').value = c.notes || '';
+    $('#c-name').closest('.field').classList.remove('invalid');
+    $('#c-book').hidden = !clientEditing;
+    var h = '';
+    if (clientEditing) {
+      var s = clientStats(c);
+      h = '<div class="stat-row"><div><small>Wizyty</small><strong>' + s.visits + '</strong></div><div><small>Wydała</small><strong>' + money(s.spent) + '</strong></div><div><small>Ostatnio</small><strong>' + (s.last ? fmtDate(s.last) : '—') + '</strong></div></div>' +
+        '<div class="field" style="margin-top:14px"><span class="lbl">Historia wizyt</span>' + (s.list.length ? '<ul class="history">' + s.list.slice().reverse().slice(0, 8).map(function (a) {
+          var sv = svcById(a.serviceId);
+          return '<li><span class="svc-tag"><span class="svc-dot" style="--c:' + sv.color + '"></span>' + esc(sv.name) + '</span><span class="cell-sub">' + fmtDate(a.date) + ' ' + a.date.slice(0, 4) + ' · ' + APPT_STATUS[a.status][0] + '</span></li>';
+        }).join('') + '</ul>' : '<p class="cell-sub">Brak wizyt.</p>') + '</div>';
+    }
+    $('#c-history').innerHTML = h;
+    clientDlg.showModal();
+  }
+  $('#client-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = $('#c-name').value.trim();
+    if (name.length < 2) { $('#c-name').closest('.field').classList.add('invalid'); $('#c-name').focus(); return; }
+    var data = { name: name, phone: $('#c-phone').value.trim(), email: $('#c-email').value.trim(), notes: $('#c-notes').value.trim() };
+    if (clientEditing) Object.assign(clientEditing, data); else { data.id = 'c' + uid(); state.clients.push(data); }
+    save(); clientDlg.close(); render(); toast(clientEditing ? 'Zapisano kartę klientki' : 'Dodano klientkę');
+  });
+  $('#c-book').addEventListener('click', function () { var id = clientEditing.id; clientDlg.close(); openAppt(null, { clientId: id }); });
+
+  /* ================= Services ================= */
+  function renderServices(v) {
+    $('#page-sub').textContent = 'Ceny widoczne na stronie aktualizują się po zapisaniu';
+    v.innerHTML =
+      '<form class="card" id="svc-form" novalidate>' +
+        '<div class="card-head" style="padding-bottom:16px;border-bottom:1px solid var(--border)"><div><h2>Cennik zabiegów</h2><p>Cena „od” i orientacyjny czas trwania</p></div></div>' +
+        state.services.map(function (s) {
+          return '<div class="svc-row">' +
+            '<div class="name"><span class="svc-dot" style="--c:' + s.color + '"></span><div><strong>' + esc(s.name) + '</strong><small>' + (s.main ? 'Zabieg główny · dopigmentowanie w cenie' : s.id === 'remover' ? 'Zabieg dodatkowy' : 'Wizyta wewnętrzna') + '</small></div></div>' +
+            '<div class="field"><label for="p-' + s.id + '">Cena</label><div class="suffix"><input id="p-' + s.id + '" type="number" min="0" step="10" inputmode="numeric" value="' + s.price + '" data-price="' + s.id + '"><span>zł</span></div><span class="err">Podaj kwotę ≥ 0.</span></div>' +
+            '<div class="field"><label for="d-' + s.id + '">Czas</label><div class="suffix"><input id="d-' + s.id + '" type="number" min="15" step="15" inputmode="numeric" value="' + s.duration + '" data-dur="' + s.id + '"><span>min</span></div><span class="err">Min. 15 min.</span></div>' +
+            '<label class="switch"><input type="checkbox" data-vis="' + s.id + '"' + (s.visible ? ' checked' : '') + (['dopig', 'konsult'].indexOf(s.id) > -1 ? ' disabled' : '') + '> Na stronie</label>' +
+          '</div>';
+        }).join('') +
+        '<div class="dlg-foot" style="border-radius:0 0 var(--r-lg) var(--r-lg)"><button type="reset" class="btn btn-outline">Przywróć</button><button type="submit" class="btn btn-primary">Zapisz cennik</button></div>' +
+      '</form>';
+    var f = $('#svc-form');
+    f.addEventListener('reset', function (e) { e.preventDefault(); render(); });
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var bad = null;
+      $$('[data-price]', f).forEach(function (i) { var ok = i.value !== '' && +i.value >= 0; i.closest('.field').classList.toggle('invalid', !ok); if (!ok && !bad) bad = i; });
+      $$('[data-dur]', f).forEach(function (i) { var ok = +i.value >= 15; i.closest('.field').classList.toggle('invalid', !ok); if (!ok && !bad) bad = i; });
+      if (bad) { bad.focus(); return; }
+      state.services.forEach(function (s) {
+        s.price = +$('[data-price="' + s.id + '"]', f).value;
+        s.duration = +$('[data-dur="' + s.id + '"]', f).value;
+        s.visible = $('[data-vis="' + s.id + '"]', f).checked;
+      });
+      save(); toast('Cennik zapisany — strona studia pokazuje nowe ceny');
+    });
+  }
+
+  /* ================= Settings ================= */
+  function renderSettings(v) {
+    $('#page-sub').textContent = 'Dane i kopia zapasowa';
+    v.innerHTML =
+      '<div class="settings">' +
+        '<section class="card"><div class="card-body"><h2 style="font-size:1rem;margin-bottom:6px">Kopia zapasowa</h2><p>Pobierz wszystkie dane (klientki, wizyty, zgłoszenia, cennik) jako plik JSON.</p><div class="actions"><button class="btn btn-outline" id="s-export"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>Eksportuj dane</button></div></div></section>' +
+        '<section class="card"><div class="card-body"><h2 style="font-size:1rem;margin-bottom:6px">Dane demonstracyjne</h2><p>Panel działa w trybie demo — dane zapisują się tylko w tej przeglądarce. Możesz przywrócić przykładowe dane w każdej chwili.</p><div class="actions"><button class="btn btn-danger" id="s-reset"><svg class="ic" aria-hidden="true"><use href="#i-reset"/></svg>Przywróć dane przykładowe</button></div></div></section>' +
+        '<section class="card"><div class="card-body"><h2 style="font-size:1rem;margin-bottom:6px">Godziny otwarcia</h2><p>Pon.–pt. 9:00–18:00 · sob. 9:00–14:00 · niedz. nieczynne. Kalendarz ostrzega przed wizytami poza tymi godzinami.</p></div></section>' +
+        '<section class="card"><div class="card-body"><h2 style="font-size:1rem;margin-bottom:6px">Strona studia</h2><p>Formularz rezerwacji trafia do zakładki „Zgłoszenia”, a ceny z „Usługi i cennik” są pokazywane na stronie.</p><div class="actions"><a class="btn btn-outline" href="Strona-studia-Klaudia-Gilar.html" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg>Otwórz stronę</a></div></div></section>' +
+      '</div>';
+    $('#s-export').addEventListener('click', function () {
+      var blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'studio-kg-' + TODAY_ISO + '.json';
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      toast('Plik z danymi pobrany');
+    });
+    $('#s-reset').addEventListener('click', function () {
+      if (!confirm('Przywrócić dane przykładowe? Wszystkie zmiany zostaną utracone.')) return;
+      state = seed(); save(); render(); toast('Przywrócono dane przykładowe');
+    });
+  }
+
+  /* ================= Shell ================= */
+  var sidebar = $('#sidebar'), scrim = $('#scrim'), menuBtn = $('#menu-btn');
+  function openSidebar() { sidebar.classList.add('open'); scrim.classList.add('show'); menuBtn.setAttribute('aria-expanded', 'true'); $('.nav a', sidebar).focus(); }
+  function closeSidebar() { if (!sidebar.classList.contains('open')) return; sidebar.classList.remove('open'); scrim.classList.remove('show'); menuBtn.setAttribute('aria-expanded', 'false'); }
+  menuBtn.addEventListener('click', openSidebar);
+  scrim.addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && sidebar.classList.contains('open')) { closeSidebar(); menuBtn.focus(); } });
+  $('#new-appt-btn').addEventListener('click', function () { openAppt(null); });
+
+  // New leads submitted in another tab
+  window.addEventListener('storage', function (e) {
+    if (e.key === LEADS_KEY && e.newValue) { var n = importLeads(); if (n) { render(); toast('Nowe zgłoszenie ze strony (' + n + ')'); } }
+  });
+
+  load();
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body>
+</html>

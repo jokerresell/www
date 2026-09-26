@@ -246,6 +246,7 @@
     padding: 30px 26px; display: flex; flex-direction: column; gap: 16px;
     transition: transform .3s var(--ease-out), box-shadow .3s ease, border-color .3s ease;
   }
+  .service[hidden] { display: none; }
   .service:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--color-blush); }
   .service-icon {
     width: 64px; height: 64px; border-radius: 50%; background: var(--color-bg-alt);
@@ -645,7 +646,7 @@
       </div>
 
       <div class="services-grid">
-        <article class="service reveal">
+        <article class="service reveal" data-svc="brwi">
           <div class="service-icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 24c7-7 17-9 30-6"/><path d="M8 22.5l2-3M12 20.5l2-3.2M16 19.2l1.8-3.2M20 18.4l1.6-3M24 18.2l1.2-2.8M28 18.4l1-2.6" opacity=".6"/></svg>
           </div>
@@ -657,12 +658,12 @@
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Dopigmentowanie w cenie</li>
           </ul>
           <div class="service-foot">
-            <span class="price"><small>od</small>1 100 zł</span>
+            <span class="price"><small>od</small><span data-price="brwi">1 100</span> zł</span>
             <span class="duration"><svg aria-hidden="true"><use href="#i-clock"/></svg>ok. 2,5 h</span>
           </div>
         </article>
 
-        <article class="service reveal">
+        <article class="service reveal" data-svc="usta">
           <div class="service-icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M5 20c4-3 8-6 11-6 2 0 3 1 4 1s2-1 4-1c3 0 7 3 11 6-4 1-9 2-15 2s-11-1-15-2z"/><path d="M5 20c4 5 9 8 15 8s11-3 15-8"/></svg>
           </div>
@@ -674,12 +675,12 @@
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Dopigmentowanie w cenie</li>
           </ul>
           <div class="service-foot">
-            <span class="price"><small>od</small>1 200 zł</span>
+            <span class="price"><small>od</small><span data-price="usta">1 200</span> zł</span>
             <span class="duration"><svg aria-hidden="true"><use href="#i-clock"/></svg>ok. 3 h</span>
           </div>
         </article>
 
-        <article class="service reveal">
+        <article class="service reveal" data-svc="kreska">
           <div class="service-icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 22c7-8 21-8 28 0"/><path d="M5 22c7 6 21 6 28 0"/><path d="M33 22l4-3" stroke-width="2.2"/><circle cx="19" cy="22" r="3.2"/></svg>
           </div>
@@ -691,12 +692,12 @@
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Dopigmentowanie w cenie</li>
           </ul>
           <div class="service-foot">
-            <span class="price"><small>od</small>800 zł</span>
+            <span class="price"><small>od</small><span data-price="kreska">800</span> zł</span>
             <span class="duration"><svg aria-hidden="true"><use href="#i-clock"/></svg>ok. 2 h</span>
           </div>
         </article>
 
-        <article class="service reveal">
+        <article class="service reveal" data-svc="remover">
           <div class="service-icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30c6-10 18-18 26-22"/><path d="M12 10a8 8 0 0 0 8 8M28 26a6 6 0 0 0-6-6" opacity=".6"/><circle cx="10" cy="30" r="2"/></svg>
           </div>
@@ -708,7 +709,7 @@
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Korekta prac z innych salonów</li>
           </ul>
           <div class="service-foot">
-            <span class="price"><small>od</small>350 zł</span>
+            <span class="price"><small>od</small><span data-price="remover">350</span> zł</span>
             <span class="duration"><svg aria-hidden="true"><use href="#i-clock"/></svg>ok. 1–1,5 h</span>
           </div>
         </article>
@@ -924,7 +925,7 @@
             </div>
             <div class="field">
               <label for="phone">Telefon <span class="req" aria-hidden="true">*</span></label>
-              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9 +()\-]{9,}" aria-describedby="phone-err">
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9 +\(\)\-]{9,}" aria-describedby="phone-err">
               <span class="error" id="phone-err">Podaj poprawny numer telefonu (min. 9 cyfr).</span>
             </div>
           </div>
@@ -998,7 +999,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year">2026</span> Make-up Studio Permanent by Klaudia Gilar</span>
-      <span>Strona demonstracyjna — dane kontaktowe, ceny i opinie są przykładowe.</span>
+      <span>Strona demonstracyjna — dane kontaktowe, ceny i opinie są przykładowe. <a href="admin/" style="text-decoration:underline">Panel studia</a></span>
     </div>
   </div>
 </footer>
@@ -1149,12 +1150,40 @@
     var btn = form.querySelector('button[type="submit"]');
     btn.setAttribute('aria-busy', 'true');
     status.classList.remove('show');
+    var lead = {
+      id: 'w' + Date.now().toString(36),
+      name: document.getElementById('name').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      service: (form.querySelector('input[name="service"]:checked') || {}).value || 'nie-wiem',
+      when: document.getElementById('date').value,
+      msg: document.getElementById('msg').value.trim(),
+      createdAt: new Date().toISOString()
+    };
+    try {
+      var queue = JSON.parse(localStorage.getItem('kg_leads') || '[]');
+      queue.push(lead);
+      localStorage.setItem('kg_leads', JSON.stringify(queue));
+    } catch (err) {}
     setTimeout(function () {
       btn.removeAttribute('aria-busy');
       form.reset();
       status.classList.add('show');
     }, 1100);
   });
+
+  // Prices and visibility managed in the studio panel (admin/)
+  try {
+    var admin = JSON.parse(localStorage.getItem('kg_admin_v1') || 'null');
+    if (admin && admin.services) {
+      var fmt = new Intl.NumberFormat('pl-PL');
+      admin.services.forEach(function (sv) {
+        var price = document.querySelector('[data-price="' + sv.id + '"]');
+        if (price) price.textContent = fmt.format(sv.price);
+        var card = document.querySelector('.service[data-svc="' + sv.id + '"]');
+        if (card) card.hidden = sv.visible === false;
+      });
+    }
+  } catch (err) {}
 
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
